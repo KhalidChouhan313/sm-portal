@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+:root {
+    --gradient-primary: linear-gradient(90deg, #11998E 0.01%, #31E080 99.98%, #38EF7D 99.99%);
+    --color-primary: #1C9679;
+    --color-white: #fff;
+    --color-heading: #161616;
+    --color-text: #111;
+    --color-text-light: #7b7b7b;
+    --font-poppins: "Poppins", sans-serif;
+    --font-jakarta: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+    font-family: var(--font-poppins);
+}

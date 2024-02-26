@@ -1,0 +1,246 @@
+.app_header {
+    background: var(--gradient-primary);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 1rem 2rem;
+    position: relative;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100.22px;
+    height: 80.188px;
+    object-fit: contain;
+}
+
+.nav_items {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.nav_item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.nav_item.active a {
+    border-radius: 5px;
+    border: 1px solid rgba(238, 238, 238, 0.50);
+    background: #FFF;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.34);
+    padding: .3rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user_info {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    background: #31E080;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.user_info>img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.ui_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.ui_details strong {
+    font-size: 1rem;
+    margin-bottom: -5px;
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.ui_details span {
+    font-size: .9rem;
+    font-weight: 300;
+    color: var(--color-white);
+}
+
+.chev_down {
+    margin-left: 1rem;
+    rotate: 90deg;
+    color: var(--color-white);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.setting {
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px 0px 0px 12px;
+    background: #31E080;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.42);
+    cursor: pointer;
+    padding: .5rem .75rem;
+}
+
+.setting img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.settings_menu {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(20, 20, 20, 0.52);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 250ms;
+}
+
+.settings_menu.in_view {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sidebar_wrapper {
+    position: absolute;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    background-color: white;
+    height: 100%;
+    transition: 250ms;
+}
+
+.settings_menu.in_view .sidebar_wrapper {
+    right: 0px;
+    box-shadow: -3px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar_content {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    margin: 2rem 0 1rem 1rem;
+    border-radius: 12px 0px 0px 12px;
+    background: #FFF;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.42);
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.top>div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.top span {
+    color: #000;
+    font-family: "Plus Jakarta Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.close_btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 7px 1rem 0 0;
+}
+
+.s_items_card {
+    margin: 1rem .75rem;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: -1px 0px 4px rgba(0, 0, 0, 0.25);
+    padding: 1rem 1.5rem;
+    flex: 1;
+}
+
+.s_ic_items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.s_ic_i_item {
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: .75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch_box {
+    height: 22px;
+    width: 50px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: 250ms;
+}
+
+.switch_box::before {
+    content: "";
+    border-radius: 17px;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    background-color: #888888;
+    transition: 250ms;
+}
+
+.switch_box.active {
+    background-color: #0dc977;
+}
+
+.switch_box.active::before {
+    left: 31px;
+    background-color: white;
+}
