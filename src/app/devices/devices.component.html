@@ -1,1 +1,52 @@
-<p>devices works!</p>
+<main class="content">
+    <aside class="sidebar">
+        <h4>Devices</h4>
+        <ul>
+            <li *ngFor="let item of devices" (click)="setCurrent(item.id)" [class.active]="current?.id === item.id">
+                <img [src]="current?.id === item.id ? '../../assets/icons/device_active.svg' : '../../assets/icons/device.svg'"
+                    alt="a">
+                <span>{{item.name}}</span>
+            </li>
+        </ul>
+    </aside>
+    <div class="right">
+        <div class="banner">
+            <div class="top">
+                <div class="t_left">
+                    <div class="name">
+                        <img src="../../assets/icons/whatsapp.svg" alt="w">
+                        <span>{{current?.model}}</span>
+                    </div>
+                    <div class="status">
+                        <span>Auth Status:</span>
+                        <strong>
+                            <div class="dot" [class.active]="current?.auth_status?.toLowerCase() === 'authenticated'">
+                            </div>
+                            {{current?.auth_status}}
+                        </strong>
+                    </div>
+                    <div class="status">
+                        <span>Connection:</span>
+                        <strong>{{current?.connection}}</strong>
+                    </div>
+                </div>
+                <div class="t_right">
+                    <button>
+                        <img src="../../assets/icons/refresh.svg" alt="r">
+                    </button>
+                    <button>
+                        <img src="../../assets/icons/logout.svg" alt="r">
+                    </button>
+                    <button>
+                        <img src="../../assets/icons/reload.svg" alt="r">
+                    </button>
+                </div>
+            </div>
+            <img src="../../assets/banner.svg" alt="banner" class="banner_img">
+        </div>
+        <div class="device_content">
+            <app-reports></app-reports>
+            <app-stats></app-stats>
+        </div>
+    </div>
+</main>

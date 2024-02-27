@@ -9,6 +9,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { DevicesComponent } from './devices/devices.component';
 import { MessagesSidebarComponent } from './components/messages-sidebar/messages-sidebar.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { MessagesSidebarComponent } from './components/messages-sidebar/messages
     MessagesComponent,
     BlockListComponent,
     DevicesComponent,
-    MessagesSidebarComponent
+    MessagesSidebarComponent,
+    ReportsComponent,
+    StatsComponent,
+    ActivityDetailsComponent
   ],
   imports: [
     BrowserModule,
