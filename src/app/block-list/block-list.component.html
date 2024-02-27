@@ -1,1 +1,66 @@
-<p>block-list works!</p>
+<main class="content">
+    <div class="table_container">
+        <div class="header">
+            <div class="left">
+                <div>phone input</div>
+                <button class="service_btn" [class.active]="currentServiceType === 'whatsapp'"
+                    (click)="setServiceType('whatsapp')">
+                    <div class="dot"></div>
+                    <span>WhatsApp</span>
+                </button>
+                <button class="service_btn" [class.active]="currentServiceType === 'sms'"
+                    (click)="setServiceType('sms')">
+                    <div class="dot"></div>
+                    <span>SMS</span>
+                </button>
+            </div>
+            <div class="right">
+                <button class="add_btn">Add</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>User Mobile Number</th>
+                    <th>WhatsApp</th>
+                    <th>SMS</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>(+92) 308 0123456</td>
+                    <td>
+                        <div class="switch_box" [class.active]="true">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="switch_box" [class.active]="false">
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../../assets/icons/delete.svg" alt="d">
+                    </td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>(+92) 308 0123456</td>
+                    <td>
+                        <div class="switch_box" [class.active]="false">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="switch_box" [class.active]="true">
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../../assets/icons/delete.svg" alt="d">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

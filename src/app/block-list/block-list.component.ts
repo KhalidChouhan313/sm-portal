@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./block-list.component.css']
 })
 export class BlockListComponent {
-
+  currentServiceType = "sms";
+  setServiceType = (value: string) => this.currentServiceType = value;
 }
