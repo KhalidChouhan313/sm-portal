@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { MessagesSidebarComponent } from './components/messages-sidebar/messages
 import { ReportsComponent } from './components/reports/reports.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
+import { MultiSeriesChartComponent } from './components/multi-series-chart/multi-series-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { ActivityDetailsComponent } from './components/activity-details/activity
     MessagesSidebarComponent,
     ReportsComponent,
     StatsComponent,
-    ActivityDetailsComponent
+    ActivityDetailsComponent,
+    MultiSeriesChartComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
