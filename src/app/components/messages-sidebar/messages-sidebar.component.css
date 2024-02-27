@@ -34,6 +34,9 @@
     padding: .5rem;
     cursor: pointer;
     gap: 1rem;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
     transition: 250ms;
 }
 
@@ -65,6 +68,8 @@
 
 .full .sbm_item {
     padding: .5rem 1.25rem;
+    width: 250px;
+    justify-content: flex-start;
 }
 
 .full .sbm_item span:nth-child(2) {
