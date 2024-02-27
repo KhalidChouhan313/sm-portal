@@ -4,10 +4,12 @@
     </div>
     <div class="stats_body">
         <div class="cards">
-            <div class="card" *ngFor="let card of cardsData">
+            <div class="card" *ngFor="let card of cardsData" [class.row]="statsCardStyles === 'row'">
                 <img [src]="card.icon" [alt]="card.count">
-                <p>{{card.label}}</p>
-                <h5>{{card.count}}</h5>
+                <div>
+                    <p>{{card.label}}</p>
+                    <h5>{{card.count}}</h5>
+                </div>
             </div>
         </div>
 

@@ -46,7 +46,71 @@
         </div>
         <div class="device_content">
             <app-reports></app-reports>
-            <app-stats></app-stats>
+            <app-stats [statsCardStyles]="'row'"></app-stats>
+            <div class="note">
+                <p>
+                    Please note that “not sent” , might be because target is not valid mobile or international number or
+                    your settings are configured not be send this Message type by SMS.
+                    <br>
+                    <br>
+                    Device sending is limited to avoid bans , these limits are gradually reduced to mitigate that risk.
+                </p>
+            </div>
+            <div class="tables">
+                <div class="table_card">
+                    <div class="tc_header">
+                        <h4>Message To Driver</h4>
+                    </div>
+                    <div class="tc_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Message Type</th>
+                                    <th>Duration</th>
+                                    <th>Total</th>
+                                    <th>Yes</th>
+                                    <th>No</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Message Type</td>
+                                    <td>Duration</td>
+                                    <td>Total</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="table_card">
+                    <div class="tc_header">
+                        <h4>Bookings</h4>
+                    </div>
+                    <div class="tc_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Duration</th>
+                                    <th>Total</th>
+                                    <th>Cancelled</th>
+                                    <th>Confirmed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td>Total</td>
+                                    <td>Cancelled</td>
+                                    <td>Confirmed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <app-activity-details></app-activity-details>
         </div>
     </div>
 </main>

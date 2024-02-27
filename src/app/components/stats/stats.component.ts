@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-stats',
@@ -24,4 +24,6 @@ export class StatsComponent {
       icon: "../../assets/icons/messages.svg"
     },
   ]
+
+  @Input() statsCardStyles: string = "";
 }

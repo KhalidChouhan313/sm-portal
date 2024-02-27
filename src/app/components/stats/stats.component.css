@@ -98,3 +98,23 @@
     text-align: center;
     border: 1px solid #e1e1e1;
 }
+
+.card.row {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.card.row img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.card.row p {
+    font-size: 1rem;
+}
+
+.card.row h5 {
+    margin-top: 0;
+}
