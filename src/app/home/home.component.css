@@ -202,3 +202,126 @@
 .d_card .status.active {
     background-color: #0B7A60;
 }
+
+.data_table {
+    margin-top: 1rem;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: .7rem;
+}
+
+.dt_header {
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .7rem 1rem;
+}
+
+.buttons_group {
+    display: flex;
+    gap: .7rem;
+}
+
+.buttons_group button,
+.buttons_group select {
+    border: none;
+    outline: none;
+    padding: .2rem .7rem;
+    border-radius: 5px;
+    background: rgba(217, 217, 217, 0.30);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.30);
+    color: rgba(123, 123, 123, 0.71);
+    font-family: var(--jakarta);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.buttons_group select option {
+    color: #111;
+}
+
+.search_and_date {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.25);
+    padding: 0 .5rem;
+}
+
+.search input {
+    padding: .5rem;
+    border: none;
+    outline: none;
+}
+
+.search_and_date button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem .7rem;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #02AABD 0%, #00CDAC 100%);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.search_and_date button img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.data_table table {
+    width: 100%;
+}
+
+.data_table table thead {
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1rem;
+}
+
+.data_table th {
+    padding: .75rem;
+    color: #888;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-family: var(--jakarta);
+}
+
+.data_table table tbody tr {
+    margin-top: .7rem;
+    border-radius: 2px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.data_table td {
+    color: #7B7B7B;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    padding: .5rem;
+    text-align: center;
+}

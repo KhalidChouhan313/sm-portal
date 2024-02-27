@@ -1,1 +1,15 @@
-<p>messages works!</p>
+<main class="content">
+    <app-messages-sidebar></app-messages-sidebar>
+    <div class="instance_grid">
+        <div class="instance_card" *ngFor="let instance of instanceData">
+            <div class="ic_top">
+                <h4>{{instance.name}}</h4>
+                <button class="edit" (click)="toggleEdit(instance.id)">
+                    <img src="../../assets/icons/edit.svg" alt="e">
+                    <span>{{instance.isEditable ? "Save": "Edit"}}</span>
+                </button>
+            </div>
+            <textarea [disabled]="!instance.isEditable" [value]="instance.value" placeholder="Type here..."></textarea>
+        </div>
+    </div>
+</main>

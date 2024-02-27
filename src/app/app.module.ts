@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { MessagesComponent } from './messages/messages.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { DevicesComponent } from './devices/devices.component';
+import { MessagesSidebarComponent } from './components/messages-sidebar/messages-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DevicesComponent } from './devices/devices.component';
     HomeComponent,
     MessagesComponent,
     BlockListComponent,
-    DevicesComponent
+    DevicesComponent,
+    MessagesSidebarComponent
   ],
   imports: [
     BrowserModule,

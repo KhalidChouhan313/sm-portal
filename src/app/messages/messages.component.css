@@ -1,0 +1,77 @@
+.content {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.instance_grid {
+    display: grid;
+    flex: 1;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.instance_card {
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 1rem .7rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.ic_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 1rem;
+}
+
+.ic_top h4 {
+    font-family: var(--jakarta);
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: linear-gradient(180deg, #1C9679 0%, #0DC997 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 1px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: .34rem;
+}
+
+.edit {
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    gap: .5rem;
+    padding: .2rem .5rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.instance_card textarea {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border-top: 2px solid #CCC;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    font-size: .8rem;
+    font-style: normal;
+    line-height: normal;
+    font-family: var(--jakarta);
+    resize: none;
+}
+
+.instance_card:nth-child(4) {
+    grid-column: span 3;
+}
