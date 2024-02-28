@@ -1,6 +1,6 @@
 .app_header {
     background: var(--gradient-primary);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 3px 4px 0px rgb(206, 206, 206);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,7 +35,7 @@
     border-radius: 5px;
     border: 1px solid rgba(238, 238, 238, 0.50);
     background: #FFF;
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.34);
+    box-shadow: 2px 2px 4px 0px rgba(109, 109, 109, 0.34);
     padding: .3rem;
     color: var(--color-primary);
     font-weight: 600;
@@ -55,7 +55,7 @@
     padding: .5rem 1rem;
     border-radius: 8px;
     background: #31E080;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(136, 136, 136, 0.34);
 }
 
 .user_info>img {
@@ -100,7 +100,7 @@
     flex-shrink: 0;
     border-radius: 12px 0px 0px 12px;
     background: #31E080;
-    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.42);
+    box-shadow: -2px 4px 4px 0px rgba(136, 136, 136, 0.34);
     cursor: pointer;
     padding: .5rem .75rem;
 }
@@ -141,7 +141,7 @@
 
 .settings_menu.in_view .sidebar_wrapper {
     right: 0px;
-    box-shadow: -3px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: -3px 2px 4px 0px rgba(136, 136, 136, 0.34);
 }
 
 .sidebar_content {
@@ -155,7 +155,7 @@
     margin: 2rem 0 1rem 1rem;
     border-radius: 12px 0px 0px 12px;
     background: #FFF;
-    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.42);
+    box-shadow: -2px 4px 4px 0px rgba(165, 165, 165, 0.34);
     padding: .5rem;
     display: flex;
     align-items: center;
@@ -193,7 +193,7 @@
     margin: 1rem .75rem;
     border-radius: 5px;
     background: #FFF;
-    box-shadow: -1px 0px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: -1px 0px 4px rgba(165, 165, 165, 0.34);
     padding: 1rem 1.5rem;
     flex: 1;
 }
@@ -207,7 +207,7 @@
 .s_ic_i_item {
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 4px 0px rgba(165, 165, 165, 0.34);
     padding: .75rem;
     display: flex;
     justify-content: space-between;
@@ -244,4 +244,81 @@
 .switch_box.active::before {
     left: 31px;
     background-color: white;
+}
+
+@media screen and (max-width: 1500px) {
+    .app_header {
+        padding: .5rem 0 .5rem 1.2rem;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 64px;
+    }
+
+    .nav_item img {
+        width: 19px;
+        height: 19px;
+        object-fit: contain;
+    }
+
+    .nav_item a span {
+        font-size: .9rem;
+    }
+
+    .user_info {
+        padding: .5rem .75rem;
+    }
+
+    .user_info>img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .ui_details strong {
+        font-size: .75rem;
+    }
+
+    .ui_details span {
+        font-size: .68rem;
+    }
+
+    .chev_down {
+        margin-left: .7rem;
+    }
+
+    .setting img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .sidebar_wrapper {
+        width: 300px;
+    }
+
+    .top {
+        margin: 1rem 0 .6rem 1rem;
+    }
+
+    .top>div {
+        gap: .5rem;
+    }
+
+    .top img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+
+    .top span {
+        font-size: .9rem;
+    }
+
+    .s_items_card {
+        padding: .5rem;
+    }
+
+    .s_ic_i_item {
+        font-size: .8rem;
+    }
 }

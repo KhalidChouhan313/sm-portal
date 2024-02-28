@@ -1,7 +1,7 @@
 .sidebar {
     border-radius: 12px;
     background: #FFF;
-    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     width: fit-content;
     padding: 1.25rem 1rem;
     transition: 250ms;
@@ -26,9 +26,9 @@
 }
 
 .sbm_item {
-    border-radius: 2px;
+    border-radius: 7px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     display: flex;
     align-items: center;
     padding: .5rem;
@@ -75,4 +75,30 @@
 .full .sbm_item span:nth-child(2) {
     position: static;
     opacity: 1;
+}
+
+@media screen and (max-width: 1500px) {
+    .sidebar {
+        padding: .7rem;
+    }
+
+    .full .sbm_item {
+        width: 180px;
+    }
+
+    .sbm_item span {
+        font-size: .8rem;
+    }
+
+    .sbm_item img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    .toggle img {
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+    }
 }

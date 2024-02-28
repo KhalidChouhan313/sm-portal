@@ -1,13 +1,13 @@
 .stats {
-    border-radius: 5px;
+    border-radius: 10px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
 }
 
 .stats_header {
     padding: 18px 25px;
     border-radius: 5px;
-    border-bottom: 1px solid #B5B5B5;
+    border-bottom: 1px solid #e2e2e2;
     background: #FFF;
 }
 
@@ -32,7 +32,7 @@
 .card {
     flex: 1;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0px 4px 4px 0px rgba(23, 23, 23, 0.35);
     container-name: card;
     container-type: inline-size;
@@ -78,25 +78,26 @@
 .table {
     width: 100%;
     margin-top: 1rem;
-    border-radius: 5px;
-    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    overflow: hidden;
     background: #FFF;
-    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     border-collapse: collapse;
 }
 
 .table thead {
     border-radius: 5px;
-    border-bottom: 1px solid #E1E1E1;
     background: #FFF;
-    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.table tr {
+    border-bottom: 1px solid #E1E1E1;
 }
 
 .table tr th,
 .table tr td {
     padding: .5rem;
     text-align: center;
-    border: 1px solid #e1e1e1;
 }
 
 .card.row {
@@ -117,4 +118,45 @@
 
 .card.row h5 {
     margin-top: 0;
+}
+
+@media screen and (max-width: 1500px) {
+    .stats_header {
+        padding: .7rem 1rem;
+    }
+
+    .stats_header h4 {
+        font-size: 1.25rem;
+    }
+
+    .stats_body {
+        padding: .5rem;
+    }
+
+    .card {
+        box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+        padding: .75rem;
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+    }
+
+    .card h5 {
+        font-size: 1rem;
+        margin-top: 0;
+    }
+
+    .card img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .card p {
+        font-size: .6rem;
+    }
+
+    .table th,
+    .table td {
+        font-size: .8rem;
+    }
 }

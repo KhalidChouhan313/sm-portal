@@ -1,9 +1,9 @@
 .container {
     height: 500px;
     padding: 1.25rem;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     display: flex;
     flex-direction: column;
 }
@@ -19,4 +19,15 @@
 
 .chart_con {
     flex: 1;
+}
+
+@media screen and (max-width: 1500px) {
+    .container {
+        height: 350px;
+        padding: .75rem;
+    }
+
+    .container>h4 {
+        font-size: 1.25rem;
+    }
 }

@@ -15,7 +15,7 @@
 .instance_card {
     border-radius: 12px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1rem .7rem;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
 .edit {
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     display: flex;
     gap: .5rem;
     padding: .2rem .5rem;
@@ -60,10 +60,9 @@
     outline: none;
     height: 100%;
     width: 100%;
-    border-radius: 5px;
-    border-top: 2px solid #CCC;
+    border-radius: 10px;
     background: #FFF;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid #e1e1e1;
     padding: 1rem;
     font-size: .8rem;
     font-style: normal;
@@ -74,4 +73,20 @@
 
 .instance_card:nth-child(4) {
     grid-column: span 3;
+}
+
+@media screen and (max-width: 1500px) {
+    .ic_top h4 {
+        font-size: 1rem;
+    }
+
+    .edit {
+        font-size: .7rem;
+    }
+
+    .edit img {
+        width: 10px;
+        height: 10px;
+        object-fit: contain;
+    }
 }

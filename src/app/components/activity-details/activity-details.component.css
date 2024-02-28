@@ -2,14 +2,14 @@
     margin-top: 1rem;
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: .7rem;
 }
 
 .dt_header {
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
@@ -31,7 +31,7 @@
     padding: .2rem .7rem;
     border-radius: 5px;
     background: rgba(217, 217, 217, 0.30);
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     color: rgba(123, 123, 123, 0.71);
     font-family: var(--jakarta);
     font-size: 15px;
@@ -57,14 +57,21 @@
     gap: .5rem;
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 0 .5rem;
 }
 
 .search input {
-    padding: .5rem;
     border: none;
     outline: none;
+    padding: .2rem .7rem;
+    border-radius: 5px;
+    font-family: var(--jakarta);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
 }
 
 .search_and_date button {
@@ -87,13 +94,8 @@
 
 .data_table table {
     width: 100%;
-}
-
-.data_table table thead {
-    border-radius: 5px;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .data_table th {
@@ -106,11 +108,10 @@
     font-family: var(--jakarta);
 }
 
-.data_table table tbody tr {
+.data_table tr {
     margin-top: .7rem;
     border-radius: 2px;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 0px 1px 0px rgba(165, 165, 165, 0.34);
 }
 
 .data_table td {
@@ -122,3 +123,5 @@
     padding: .5rem;
     text-align: center;
 }
+
+@media screen and (max-width: 1500px) {}

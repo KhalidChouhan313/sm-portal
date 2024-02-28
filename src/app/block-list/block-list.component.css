@@ -4,9 +4,9 @@
 }
 
 .table_container {
-    border-radius: 5px;
+    border-radius: 10px;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     height: 100%;
     padding: 1.25rem 1rem;
 }
@@ -15,10 +15,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 10px;
     border-top: 1px solid #E1E1E1;
     background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1.5rem;
 }
 
@@ -30,7 +30,7 @@
 .left>div {
     border-radius: 5px;
     background: #FFF;
-    box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@
     cursor: pointer;
     border-radius: 5px;
     background: rgba(217, 217, 217, 0.30);
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     color: rgba(123, 123, 123, 0.71);
     font-size: 16px;
     font-style: normal;
@@ -71,7 +71,7 @@
 .add_btn {
     border-radius: 5px;
     background: linear-gradient(180deg, #34836E 0%, #0DC997 100%);
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     border: none;
     outline: none;
     color: #FFF;
@@ -87,13 +87,9 @@
 .table_container table {
     width: 100%;
     margin-top: 1.5rem;
-}
-
-.table_container thead tr {
-    border-radius: 5px;
-    border-top: 1px solid #E1E1E1;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .table_container th {
@@ -104,12 +100,6 @@
     font-weight: 500;
     line-height: normal;
     padding: 1rem;
-}
-
-.table_container tbody tr {
-    border-radius: 5px;
-    background: #FFF;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
 }
 
 .table_container td {
@@ -155,4 +145,26 @@
 .switch_box.active::before {
     left: 36px;
     background-color: white;
+}
+
+@media screen and (max-width: 1500px) {
+    .header {
+        padding: .8rem;
+    }
+
+    .left>div {
+        padding: .5rem .8rem;
+    }
+
+    .service_btn {
+        padding: .5rem;
+    }
+
+    .add_btn {
+        font-size: .9rem;
+    }
+
+    .table_container tr {
+        box-shadow: 0px 0px 1px 0px rgba(112, 112, 112, 0.34);
+    }
 }
