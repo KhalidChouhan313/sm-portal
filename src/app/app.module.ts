@@ -13,7 +13,6 @@ import { MessagesSidebarComponent } from './components/messages-sidebar/messages
 import { ReportsComponent } from './components/reports/reports.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
-import { MultiSeriesChartComponent } from './components/multi-series-chart/multi-series-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { MultiSeriesChartComponent } from './components/multi-series-chart/multi
     ReportsComponent,
     StatsComponent,
     ActivityDetailsComponent,
-    MultiSeriesChartComponent
   ],
   imports: [
     BrowserModule,
