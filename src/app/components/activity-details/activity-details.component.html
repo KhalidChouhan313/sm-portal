@@ -1,12 +1,17 @@
-<div class="data_table">
+<div class="data_table" (click)="toggleShowSearch($event)">
     <div class="dt_header">
         <div class="buttons_group">
-            <button>
+            <button *ngIf="!showSearch" class="search_toggle_btn">
                 Target
             </button>
-            <button>
-                Target Types
-            </button>
+            <input type="search" placeholder="Search here.." *ngIf="showSearch" id="search_input"
+                class="search_toggle_btn">
+            <select>
+                <option value="">Target Types</option>
+                <option value="One">One</option>
+                <option value="Two">Two</option>
+                <option value="Three">Three</option>
+            </select>
             <select>
                 <option value="">Status</option>
                 <option value="active">Active</option>
@@ -19,7 +24,7 @@
                 <option value="SMS">SMS</option>
             </select>
         </div>
-        <div class="search_and_date">
+        <div class="search_and_date" *ngIf="!showSearch">
             <div class="search">
                 <input type="search" placeholder="search messages">
                 <img src="../../assets/icons/search.svg" alt="s">

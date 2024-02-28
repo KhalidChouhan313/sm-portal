@@ -15,6 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: .7rem 1rem;
+    gap: 1rem;
 }
 
 .buttons_group {
@@ -23,7 +24,8 @@
 }
 
 .buttons_group button,
-.buttons_group select {
+.buttons_group select,
+.buttons_group input {
     border: none;
     outline: none;
     padding: .2rem .7rem;

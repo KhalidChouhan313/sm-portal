@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./activity-details.component.css']
 })
 export class ActivityDetailsComponent {
+  showSearch = false;
+  toggleShowSearch = (e: any) => {
+    if (e.target.classList[0] !== "search_toggle_btn") {
+      this.showSearch = false
+    } else {
+      this.showSearch = true
+    }
+  }
 
 }
