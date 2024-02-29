@@ -2,7 +2,17 @@
     <div class="table_container">
         <div class="header">
             <div class="left">
-                <div>phone input</div>
+                <form #f="ngForm" [formGroup]="phoneForm">
+                        <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[
+                              SearchCountryField.Iso2,
+                              SearchCountryField.Name
+                            ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                            [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                            [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+                        </ngx-intl-tel-input>
+                </form>
                 <button class="service_btn" [class.active]="currentServiceType === 'whatsapp'"
                     (click)="setServiceType('whatsapp')">
                     <div class="dot"></div>

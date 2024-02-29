@@ -1,3 +1,5 @@
+@import "../../styles.css";
+
 .content {
     padding: 1rem;
     height: 80vh;
@@ -25,16 +27,6 @@
 .left {
     display: flex;
     gap: 1rem;
-}
-
-.left>div {
-    border-radius: 5px;
-    background: #FFF;
-    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .5rem 1.5rem;
 }
 
 .service_btn {
@@ -150,10 +142,6 @@
 @media screen and (max-width: 1500px) {
     .header {
         padding: .8rem;
-    }
-
-    .left>div {
-        padding: .5rem .8rem;
     }
 
     .service_btn {

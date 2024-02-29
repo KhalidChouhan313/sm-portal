@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgChartsModule } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { MessagesSidebarComponent } from './components/messages-sidebar/messages
 import { ReportsComponent } from './components/reports/reports.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { ActivityDetailsComponent } from './components/activity-details/activity
     AppRoutingModule,
     NgChartsModule,
     FormsModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+    NgxIntlTelInputModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
