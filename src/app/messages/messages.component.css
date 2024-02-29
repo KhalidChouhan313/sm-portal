@@ -9,7 +9,7 @@
     flex: 1;
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1.2fr .8fr;
 }
 
 .instance_card {
@@ -41,6 +41,18 @@
     border-radius: 1px;
     border-bottom: 1px solid #CCC;
     padding-bottom: .34rem;
+}
+
+.ict_right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ict_right>span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #353535;
 }
 
 .edit {

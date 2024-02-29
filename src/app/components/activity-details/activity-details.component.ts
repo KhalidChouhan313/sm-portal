@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ActivityDetailsComponent {
   showSearch = false;
+  selected: any;
   toggleShowSearch = (e: any) => {
     if (e.target.classList[0] !== "search_toggle_btn") {
       this.showSearch = false

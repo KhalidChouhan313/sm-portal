@@ -4,7 +4,7 @@
     </button>
     <ul class="sb_menu">
         <li *ngFor="let item of sidebarMenu" class="sbm_item" [class.active]="item.active"
-            (click)="toggleActive(item.id)">
+            (click)="toggleActive(item.id)" [attr.data-label]="item.label">
             <img [src]="item .active ? item.icon_active : item.icon" alt="">
             <span>{{item.label}}</span>
         </li>

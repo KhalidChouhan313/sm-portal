@@ -30,8 +30,11 @@
                 <img src="../../assets/icons/search.svg" alt="s">
             </div>
             <button>
-                <img src="../../assets/icons/calendar.svg" alt="c">
+                <label for="date_input">
+                    <img src="../../assets/icons/calendar.svg" alt="c">
+                </label>
             </button>
+            <input type="text" ngxDaterangepickerMd [(ngModel)]="selected" class="form-control" id="date_input" />
         </div>
     </div>
     <table>

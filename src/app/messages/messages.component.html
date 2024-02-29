@@ -4,12 +4,18 @@
         <div class="instance_card" *ngFor="let instance of instanceData">
             <div class="ic_top">
                 <h4>{{instance.name}}</h4>
-                <button class="edit" (click)="toggleEdit(instance.id)">
-                    <img src="../../assets/icons/edit.svg" alt="e">
-                    <span>{{instance.isEditable ? "Save": "Edit"}}</span>
-                </button>
+                <div class="ict_right">
+                    <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
+                        {{instance.value.length}} / {{instance.limit}} characters
+                    </span>
+                    <button class="edit" (click)="toggleEdit(instance.id)">
+                        <img src="../../assets/icons/edit.svg" alt="e">
+                        <span>{{instance.isEditable ? "Save": "Edit"}}</span>
+                    </button>
+                </div>
             </div>
-            <textarea [disabled]="!instance.isEditable" [value]="instance.value" placeholder="Type here..."></textarea>
+            <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
+                (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
         </div>
     </div>
 </main>

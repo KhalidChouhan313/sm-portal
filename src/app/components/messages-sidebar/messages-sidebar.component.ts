@@ -14,7 +14,7 @@ export class MessagesSidebarComponent {
       id: 1,
       label: "Booking",
       icon: "../../../assets/icons/booking.svg",
-      icon_active: "../../../assets/icons/booking.svg",
+      icon_active: "../../../assets/icons/booking_a.svg",
       active: true
     },
     {

@@ -37,7 +37,46 @@
     width: 40px;
     height: 40px;
     justify-content: center;
+    position: relative;
     transition: 250ms;
+}
+
+.sbm_item::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 140%;
+    transform: translate(0%, -50%);
+    white-space: nowrap;
+    background-color: white;
+    padding: .6rem 1.25rem;
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+    color: black;
+    pointer-events: none;
+    border-radius: 0 5px 5px 0;
+    font-size: .8rem;
+    opacity: 0;
+    transition: 250ms;
+}
+
+.sbm_item:after {
+    content: "";
+    border-right: 22px solid white;
+    position: absolute;
+    top: 50%;
+    left: calc(140% - 22px);
+    transform: translateY(-50%);
+    border-top: 22px solid transparent;
+    filter: drop-shadow(1px 2px 5px 0px rgba(165, 165, 165, 0.34));
+    border-bottom: 22px solid transparent;
+    pointer-events: none;
+    opacity: 0;
+    transition: 250ms;
+}
+
+.sbm_item:hover::before,
+.sbm_item:hover::after {
+    opacity: 1;
 }
 
 .sbm_item.active {
@@ -70,6 +109,11 @@
     padding: .5rem 1.25rem;
     width: 250px;
     justify-content: flex-start;
+}
+
+.full .sbm_item::before,
+.full .sbm_item::after {
+    display: none;
 }
 
 .full .sbm_item span:nth-child(2) {

@@ -49,6 +49,7 @@
     display: flex;
     align-items: center;
     gap: .7rem;
+    position: relative;
 }
 
 .search {
@@ -59,6 +60,16 @@
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 0 .5rem;
+}
+
+#date_input {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 550px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .search input {
@@ -75,6 +86,12 @@
 }
 
 .search_and_date button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.search_and_date button label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,5 +140,3 @@
     padding: .5rem;
     text-align: center;
 }
-
-@media screen and (max-width: 1500px) {}
