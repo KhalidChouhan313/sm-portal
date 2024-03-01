@@ -189,6 +189,7 @@
     display: flex;
     margin-bottom: 1.5rem;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .table_card {
