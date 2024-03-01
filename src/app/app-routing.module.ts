@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MessagesComponent } from './messages/messages.component';
-import { BlockListComponent } from './block-list/block-list.component';
-import { DevicesComponent } from './devices/devices.component';
 
 const routes: Routes = [
   {
@@ -11,17 +8,17 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "messages",
-    component: MessagesComponent
+    path: 'messages',
+    loadChildren: () => import('./messages/messages.module').then((m) => m.MessagesModule),
   },
   {
-    path: "block-list",
-    component: BlockListComponent
+    path: 'block-list',
+    loadChildren: () => import('./block-list/block-list.module').then((m) => m.BlockListModule),
   },
   {
-    path: "devices",
-    component: DevicesComponent
-  },
+    path: 'devices',
+    loadChildren: () => import('./devices/devices.module').then((m) => m.DevicesModule),
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-reports',
@@ -8,7 +8,17 @@ import { Chart } from 'chart.js';
 })
 export class ReportsComponent implements OnInit {
   ngOnInit(): void {
+
+    Chart.register(...registerables);
+
     const ctx = document.getElementById('lineChart') as HTMLCanvasElement;
+    
+    // Check if there is an existing chart and destroy it
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) {
+      existingChart.destroy();
+    }
+
     new Chart(ctx, {
       type: 'line',
       data: {
