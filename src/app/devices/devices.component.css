@@ -216,6 +216,7 @@
 
 .tc_body {
     padding: 1rem;
+    overflow-x: auto;
 }
 
 .tc_body table {
@@ -224,6 +225,7 @@
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     width: 100%;
+    min-width: 450px;
 }
 
 .tc_body thead tr {
@@ -249,4 +251,49 @@
     color: #111;
     font-weight: 500;
 
+}
+
+@media screen and (max-width:976px) {
+    .content{
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .sidebar{
+        height: fit-content;
+        overflow: auto;
+        z-index: 2;
+        top: 160px;
+    }
+    .sidebar h4{
+        display: none;
+    }
+    .sidebar ul {
+        flex-direction: row;
+    }
+    .banner{
+        padding: 1rem 1rem 0;
+    }
+    .top{
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    .t_right{
+        align-self: flex-end;
+        gap: 1.5rem;
+    }
+    .banner_img{
+        width: 100%;
+    }
+    .device_content{
+        padding: 250px 1rem 1rem;
+    }
+    .note{
+        padding: 1rem;
+    }
+    .tables{
+        flex-direction: column;
+    }
+    .note p{
+        font-size: .8rem;
+    }
 }

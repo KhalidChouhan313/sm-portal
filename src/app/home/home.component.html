@@ -49,3 +49,49 @@
         </div>
     </div>
 </div>
+
+<div class="mobile">
+    <app-stats></app-stats>
+    <app-reports></app-reports>
+    <div class="devices">
+        <div class="d_header">
+            <h4>Devices</h4>
+            <a routerLink="/devices">View all</a>
+        </div>
+        <div class="d_body">
+            <div class="d_card">
+                <div class="d_c_info">
+                    <img src="../../assets/icons/android.svg" alt="android">
+                    <span>Motorola</span>
+                </div>
+                <span>Motorola Edge 30</span>
+                <div class="status" [class.active]="true"></div>
+            </div>
+            <div class="d_card">
+                <div class="d_c_info">
+                    <img src="../../assets/icons/android.svg" alt="android">
+                    <span>Motorola</span>
+                </div>
+                <span>Motorola Edge 30</span>
+                <div class="status" [class.active]="true"></div>
+            </div>
+            <div class="d_card">
+                <div class="d_c_info">
+                    <img src="../../assets/icons/android.svg" alt="android">
+                    <span>Motorola</span>
+                </div>
+                <span>Motorola Edge 30</span>
+                <div class="status" [class.active]="false"></div>
+            </div>
+            <div class="d_card">
+                <div class="d_c_info">
+                    <img src="../../assets/icons/android.svg" alt="android">
+                    <span>Motorola</span>
+                </div>
+                <span>Motorola Edge 30</span>
+                <div class="status" [class.active]="true"></div>
+            </div>
+        </div>
+    </div>
+    <app-activity-details></app-activity-details>
+</div>

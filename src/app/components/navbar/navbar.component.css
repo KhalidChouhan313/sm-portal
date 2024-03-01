@@ -324,3 +324,19 @@
         font-size: .8rem;
     }
 }
+
+@media screen and (max-width: 976px) {
+    .app_header{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem;
+        row-gap: 1.5rem;
+    }
+    .navbar{
+        order: 2;
+        grid-column: span 2;
+    }
+    .nav_items{
+        justify-content: space-around;
+    }
+}

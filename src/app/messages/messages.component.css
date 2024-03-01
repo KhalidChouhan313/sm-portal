@@ -102,3 +102,15 @@
         object-fit: contain;
     }
 }
+
+@media screen and (max-width: 976px) {
+    .instance_grid{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .instance_card{
+        flex: 1;
+        min-width: 300px;
+        height: 400px;
+    }
+}

@@ -76,12 +76,15 @@
     cursor: pointer;
 }
 
-.table_container table {
+.table_container .table_wrapper {
     width: 100%;
     margin-top: 1.5rem;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
+}
+.table_wrapper table{
+    min-width: 600px;
 }
 
 .table_container th {
@@ -155,4 +158,24 @@
     .table_container tr {
         box-shadow: 0px 0px 1px 0px rgba(112, 112, 112, 0.34);
     }
+}
+
+@media screen and (max-width: 976px) {
+    .header{
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+    .left{
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+    .left form{
+        height: 50px;
+        width: 100%;
+     }
+     .service_btn{
+        height: 50px;
+     }
 }

@@ -109,10 +109,13 @@
     object-fit: cover;
 }
 
-.data_table table {
+.data_table .table_wrapper {
     width: 100%;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
+}
+.table_wrapper table{
+    min-width: 800px;
 }
 
 .data_table th {
@@ -139,4 +142,18 @@
     line-height: normal;
     padding: .5rem;
     text-align: center;
+}
+
+@media screen and (max-width: 976px) {
+ .dt_header{
+    padding: .5rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+ }   
+ .buttons_group{
+    order: 2;
+    overflow: auto;
+    padding-bottom: .7rem;
+ }
 }

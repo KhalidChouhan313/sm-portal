@@ -74,14 +74,17 @@
     line-height: normal;
     margin-top: .75rem;
 }
-
-.table {
+.table_wrapper{
     width: 100%;
     margin-top: 1rem;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+}
+
+.table {
+    min-width: 470px;
     border-collapse: collapse;
 }
 
@@ -158,5 +161,30 @@
     .table th,
     .table td {
         font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 976px) {
+    .cards{
+        flex-wrap: wrap;
+    }
+    .card,
+    .card.row{
+        padding:  1rem;
+        width: 100%;
+        min-width: 270px;
+    }
+    .card img,
+    .card.row img{
+        height: 70px;
+        width: 70px;
+    }
+    .card p,
+    .card.row p{
+        font-size: .8rem;
+    }
+    .card h5,
+    .card.row h5{
+        font-size: 1.3rem;
     }
 }
