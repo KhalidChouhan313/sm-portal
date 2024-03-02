@@ -24,28 +24,25 @@ export class ReportsComponent implements OnInit {
       data: {
         labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         datasets: [
-          {
-            label: 'Total Sent',
-            data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 10],
-            borderColor: 'rgba(12, 231, 250, 0.50)',
-            // backgroundColor: 'rgba(12, 231, 250, 0.30)',
-            // fill: true,
-          },
-          {
-            label: 'Whatsapp',
-            data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 55].sort((a, b) => a - b),
-            borderColor: 'rgba(250, 145, 107, 0.50)',
-            // backgroundColor: '#FA916B8e',
-            // fill: true,
-          },
-          {
-            label: 'SMS',
-            data: [45, 56, 34, 23, 43, 65, 32, 12, 15, 66],
-            borderColor: '#4669FA',
-            // backgroundColor: '#4669FA66',
-            // fill: true,
-          },
-        ]
+  {
+    label: 'Total Sent',
+    data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 10],
+    borderColor: 'rgba(12, 231, 250, 0.50)',
+    pointBackgroundColor: 'rgba(12, 231, 250, 0.50)',
+  },
+  {
+    label: 'Whatsapp',
+    data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 55].sort((a, b) => a - b),
+    borderColor: 'rgba(250, 145, 107, 0.50)',
+    pointBackgroundColor: 'rgba(250, 145, 107, 0.50)',
+  },
+  {
+    label: 'SMS',
+    data: [45, 56, 34, 23, 43, 65, 32, 12, 15, 66],
+    borderColor: '#4669FA',
+    pointBackgroundColor: '#4669FA',
+  },
+]
       },
       options: {
         responsive: true,
