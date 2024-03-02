@@ -32,14 +32,14 @@ export class ReportsComponent implements OnInit {
             // fill: true,
           },
           {
-            label: 'Total Sent By Whatsapp',
+            label: 'Whatsapp',
             data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 55].sort((a, b) => a - b),
             borderColor: 'rgba(250, 145, 107, 0.50)',
             // backgroundColor: '#FA916B8e',
             // fill: true,
           },
           {
-            label: 'Total Sent By SMS',
+            label: 'SMS',
             data: [45, 56, 34, 23, 43, 65, 32, 12, 15, 66],
             borderColor: '#4669FA',
             // backgroundColor: '#4669FA66',

@@ -43,7 +43,11 @@
     font-weight: 600;
     font-size: 1.2rem;
 }
-
+.nav_item img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
 .header_right {
     display: flex;
     align-items: center;
@@ -327,16 +331,23 @@
 
 @media screen and (max-width: 976px) {
     .app_header{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 1rem;
-        row-gap: 1.5rem;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: stretch;
+        padding: 1rem 0 1rem 1rem;
+    }
+    .logo{
+        display: none;
     }
     .navbar{
         order: 2;
         grid-column: span 2;
     }
     .nav_items{
-        justify-content: space-around;
+        justify-content: space-between;
+        padding-right: 1rem;
+    }
+    .header_right{
+        justify-content: space-between;
     }
 }

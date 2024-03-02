@@ -21,6 +21,20 @@ export class DevicesComponent {
       auth_status: "Not-Authenticated",
       connection: "Inactive"
     },
+    {
+      id: 3,
+      name: "Samsung",
+      model: "Samsung Note 10 Ultra",
+      auth_status: "Not-Authenticated",
+      connection: "Inactive"
+    },
+    {
+      id: 4,
+      name: "Samsung",
+      model: "Samsung Note 10 Ultra",
+      auth_status: "Not-Authenticated",
+      connection: "Inactive"
+    },
   ]
 
   current: any = this.devices?.[0]

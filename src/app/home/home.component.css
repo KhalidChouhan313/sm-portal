@@ -14,14 +14,14 @@
     flex: 4.2;
     min-width: 500px;
 }
-
-.d_header {
+.devices{
     border-radius: 10px;
-    border-bottom: 1px solid #d6d6d6;
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    margin-top: .7rem;
     padding: 1rem 1.5rem;
+    margin-top: .7rem;
+}
+.d_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,9 +49,6 @@
 .d_body {
     margin-top: 1rem;
     border-radius: 10px;
-    background: #FFF;
-    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    padding: .5rem 1rem;
     display: flex;
     flex-direction: column;
     gap: .7rem;

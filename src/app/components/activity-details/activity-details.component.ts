@@ -16,4 +16,6 @@ export class ActivityDetailsComponent {
     }
   }
 
+  currentItem = 0;
+  setCurrentItem = (index:number) => this.currentItem = index;
 }

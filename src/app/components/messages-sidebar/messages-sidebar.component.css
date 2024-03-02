@@ -148,11 +148,45 @@
 }
 
 @media screen and (max-width: 976px) {
-    .sidebar{
+    .sidebar {
         position: sticky;
         top: 160px;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
     }
-    .full{
-        position: absolute;
+
+    .toggle {
+        display: none;
+    }
+
+    .sb_menu {
+        flex-direction: row;
+        padding-bottom: 1rem;
+        overflow-x: auto;
+    }
+
+    .sbm_item {
+        flex: 1;
+        width: fit-content;
+        gap: .5rem;
+        align-items: center;
+    }
+
+    .sbm_item img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    .sb_menu .sbm_item span {
+        position: static;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+    .sbm_item::before,
+    .sbm_item::after {
+        display: none;
     }
 }

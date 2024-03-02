@@ -3,15 +3,15 @@
         <div class="header">
             <div class="left">
                 <form #f="ngForm" [formGroup]="phoneForm">
-                        <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
-                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
-                            [searchCountryField]="[
+                    <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[
                               SearchCountryField.Iso2,
                               SearchCountryField.Name
                             ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
-                            [phoneValidation]="true" [separateDialCode]="separateDialCode"
-                            [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
-                        </ngx-intl-tel-input>
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                        [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+                    </ngx-intl-tel-input>
                 </form>
                 <button class="service_btn" [class.active]="currentServiceType === 'whatsapp'"
                     (click)="setServiceType('whatsapp')">
@@ -29,50 +29,85 @@
             </div>
         </div>
 
-        <div class="table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>User Mobile Number</th>
-                    <th>WhatsApp</th>
-                    <th>SMS</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>(+92) 308 0123456</td>
-                    <td>
+        <div class="table_wrapper pc_view">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>User Mobile Number</th>
+                        <th>WhatsApp</th>
+                        <th>SMS</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>(+92) 308 0123456</td>
+                        <td>
+                            <div class="switch_box" [class.active]="true">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="switch_box" [class.active]="false">
+                            </div>
+                        </td>
+                        <td>
+                            <img src="../../assets/icons/delete.svg" alt="d">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>(+92) 308 0123456</td>
+                        <td>
+                            <div class="switch_box" [class.active]="false">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="switch_box" [class.active]="true">
+                            </div>
+                        </td>
+                        <td>
+                            <img src="../../assets/icons/delete.svg" alt="d">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table_wrapper mobile_view">
+            <div class="item">
+                <span><strong>Number</strong></span>
+                <div>
+                    <span><strong>WhatsApp</strong></span>
+                    <span><strong>SMS</strong></span>
+                </div>
+            </div>
+            <div class="item">
+                <span>(+92) 307 0186322</span>
+                <div>
+                    <span>
                         <div class="switch_box" [class.active]="true">
                         </div>
-                    </td>
-                    <td>
+                    </span>
+                    <span>
                         <div class="switch_box" [class.active]="false">
                         </div>
-                    </td>
-                    <td>
-                        <img src="../../assets/icons/delete.svg" alt="d">
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>(+92) 308 0123456</td>
-                    <td>
-                        <div class="switch_box" [class.active]="false">
-                        </div>
-                    </td>
-                    <td>
+                    </span>
+                </div>
+            </div>
+            <div class="item">
+                <span>(+92) 307 0186322</span>
+                <div>
+                    <span>
                         <div class="switch_box" [class.active]="true">
                         </div>
-                    </td>
-                    <td>
-                        <img src="../../assets/icons/delete.svg" alt="d">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    </span>
+                    <span>
+                        <div class="switch_box" [class.active]="false">
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
