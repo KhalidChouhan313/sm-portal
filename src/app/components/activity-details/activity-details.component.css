@@ -82,6 +82,47 @@
     pointer-events: none;
 }
 
+.search_and_date button::before {
+    content: "Custom Date Picker";
+    position: absolute;
+    top: 67px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    background-color: white;
+    padding: .6rem 1.25rem;
+    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+    color: black;
+    pointer-events: none;
+    border-radius: 5px;
+    font-size: .8rem;
+    opacity: 0;
+    transition: 250ms;
+    z-index: 10;
+}
+
+.search_and_date button:after {
+    content: "";
+    border-bottom: 22px solid white;
+    position: absolute;
+    top: 44px;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    border-right: 22px solid transparent;
+    filter: drop-shadow(1px 2px 5px 0px rgba(165, 165, 165, 0.34));
+    border-left: 22px solid transparent;
+    pointer-events: none;
+    opacity: 0;
+    transition: 250ms;
+    z-index: 10;
+}
+
+.search_and_date button:hover::before,
+.search_and_date button:hover::after {
+    opacity: 1;
+}
+
+
 .search input {
     border: none;
     outline: none;
@@ -99,6 +140,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
+    position: relative;
 }
 
 .search_and_date button label {
@@ -287,5 +329,10 @@
     .bottom div strong,
     .bottom div span {
         font-size: .8rem;
+    }
+
+    .search_and_date button:hover::before,
+    .search_and_date button:hover::after {
+        display: none;
     }
 }

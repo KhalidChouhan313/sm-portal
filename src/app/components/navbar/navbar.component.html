@@ -4,7 +4,8 @@
     </a>
     <nav class="navbar">
         <ul class="nav_items">
-            <li class="nav_item" *ngFor="let item of menuItems" [class.active]="isMenuItemActive(item)">
+            <li class="nav_item" *ngFor="let item of menuItems" [class.active]="isMenuItemActive(item)"
+                [attr.data-label]="item.label">
                 <a [routerLink]="item.link">
                     <img [src]="isMenuItemActive(item) ?item.icon : item.activeIcon" [alt]="item.label">
                     <span *ngIf="isMenuItemActive(item)">{{item.label}}</span>
