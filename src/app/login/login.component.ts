@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  isMenuOpen: boolean = true;
+  isMenuOpen: boolean = false;
   toggleMenu = () => this.isMenuOpen = !this.isMenuOpen;
 }

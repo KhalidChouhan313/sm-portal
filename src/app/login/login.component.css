@@ -78,6 +78,7 @@
     flex: 1;
     background-color: transparent;
     padding: .7rem 0;
+    width: 100%;
 }
 
 .inp_container input::placeholder {
@@ -229,5 +230,15 @@
         padding: 1.5rem;
         color: white;
         width: 100%;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .inp_container {
+        min-width: 100%;
     }
 }
