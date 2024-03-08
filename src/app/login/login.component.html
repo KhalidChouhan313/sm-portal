@@ -10,6 +10,20 @@
             <li><a routerLink="/login">Services</a></li>
             <li><a routerLink="/login">Contact</a></li>
         </ul>
+
+        <div class="mobile-menu" [class.active]="isMenuOpen">
+            <div class="hamburger" (click)="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul>
+                <li><a routerLink="/login">Home</a></li>
+                <li><a routerLink="/login">About</a></li>
+                <li><a routerLink="/login">Services</a></li>
+                <li><a routerLink="/login">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="content">
