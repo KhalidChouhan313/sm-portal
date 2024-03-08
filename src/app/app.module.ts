@@ -17,6 +17,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReportsComponent,
     StatsComponent,
     ActivityDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

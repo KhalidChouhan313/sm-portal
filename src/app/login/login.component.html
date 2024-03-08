@@ -1,0 +1,39 @@
+<main class="container">
+    <nav class="nav">
+        <a href="/" class="logo">
+            <img src="../../assets/logo.png" alt="taxi-message">
+        </a>
+
+        <ul class="menu-list">
+            <li><a routerLink="/login">Home</a></li>
+            <li><a routerLink="/login">About</a></li>
+            <li><a routerLink="/login">Services</a></li>
+            <li><a routerLink="/login">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <form>
+            <h1>Login</h1>
+            <div class="inp_container">
+                <input type="text" placeholder="Username" id="username">
+                <label for="username">
+                    <img src="../../assets/icons/user.svg" alt="">
+                </label>
+            </div>
+            <div class="inp_container" style="margin-bottom: .8rem;">
+                <input type="password" placeholder="Password" id="password">
+                <label for="password">
+                    <img src="../../assets/icons/lock.svg" alt="">
+                </label>
+            </div>
+            <div class="check">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <button class="login_btn">
+                Login
+            </button>
+        </form>
+    </div>
+</main>
