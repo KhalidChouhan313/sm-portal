@@ -1,244 +1,140 @@
 .container {
-    min-height: 100vh;
-    width: 100vw;
-    background: url(../../assets/login_bg.jpeg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.nav {
+    padding: 2rem;
+    max-height: 100vh;
+    overflow: hidden;
+    gap: 1rem;
     display: flex;
-    height: 130px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 4rem 0 2rem;
-    background-color: rgba(0, 0, 0, 0.11);
-    backdrop-filter: blur(30px);
 }
 
-.logo img {
-    height: 70px;
+.left {
+    flex: 1;
+    background: url(../../assets/img/login-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 129%;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.left img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-.mobile-menu {
-    display: none;
-}
-
-.menu-list {
+.right {
+    flex: 1.5;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 3rem;
-}
-
-.menu-list li a {
-    color: var(--color-white);
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.content {
-    display: flex;
     justify-content: center;
-    align-items: center;
-    height: calc(100vh - 130px);
 }
 
-.content form {
-    padding: 3rem;
-    background-color: rgba(255, 255, 255, 0.199);
-    border-radius: 30px;
-    backdrop-filter: blur(30px);
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.content h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 3rem;
+.form h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
-.inp_container {
+.form h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #636364;
+}
+
+.inp_con {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.inp_con label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #181818;
     display: flex;
     align-items: center;
     gap: 1rem;
-    min-width: 300px;
-    border-bottom: 3px solid black;
-    margin-bottom: 2rem;
-    padding: 0 .6rem;
+    justify-content: space-between;
 }
 
-.inp_container input {
-    all: unset;
-    flex: 1;
+.inp_con label button {
+    border: none;
+    outline: none;
     background-color: transparent;
-    padding: .7rem 0;
-    width: 100%;
-}
-
-.inp_container input::placeholder {
-    color: black;
-}
-
-.inp_container label img {
-    width: 20px;
-    height: 20px;
+    color: #666666CC;
     cursor: pointer;
-    object-fit: contain;
 }
 
-.check {
+.inp_con input {
+    padding: 1rem;
+    border: 1px solid #00000040;
+    font-size: 1rem;
+    border-radius: 1rem;
+}
+
+.rem_res {
+    margin-top: 2rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: .5rem;
-    margin-bottom: 2rem;
     width: 100%;
 }
 
-.check input {
-    accent-color: black;
+.remember {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
 }
 
-.check label {
-    font-size: .9rem;
+.remember label {
+    font-size: .8rem;
+    font-weight: 500;
 }
 
-.login_btn {
-    padding: .8rem;
+.reset {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.form>button {
+    background: linear-gradient(to right, #24CC63, #1A9096);
+    padding: 1rem;
     width: 100%;
-    background-color: black;
+    margin-top: 2rem;
+    border-radius: 1rem;
     color: white;
     border: none;
     outline: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: 500;
     cursor: pointer;
+    font-size: 1rem;
 }
 
-@media screen and (max-width: 1500px) {
-    .nav {
-        height: 100px;
-        padding: 0 3rem 0 2rem;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .menu-list {
-        gap: 2rem;
-    }
-
-    .menu-list li a {
-        font-size: .8rem;
-    }
-
-    .content {
-        height: calc(100vh - 100px);
-    }
-
-    .content form {
-        padding: 2rem;
-    }
-
-    .content h1 {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
-    }
-
-    .inp_container {
-        margin-bottom: 1.5rem;
-    }
+.error {
+    font-size: .7rem;
+    color: red;
+    text-align: center;
+    margin-top: 2rem;
 }
 
-@media screen and (max-width: 976px) {
-    .menu-list {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: flex;
-        position: relative;
-        z-index: 100;
-    }
-
-    .mobile-menu .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: .2rem;
-        transition: 250ms;
-        position: relative;
-        z-index: 1;
-    }
-
-    .line {
-        height: 3px;
-        width: 25px;
-        background-color: white;
-        border-radius: 10px;
-        transition: 250ms;
-    }
-
-    .mobile-menu.active .line:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu.active .line:nth-child(1) {
-        transform: translateY(5px) rotate(45deg);
-    }
-
-    .mobile-menu.active .line:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    .nav {
-        padding: 0 1.25rem 0 1.25rem;
-    }
-
-    .mobile-menu ul {
-        position: absolute;
-        right: -.75rem;
-        padding-top: calc(30px + 1rem);
-        padding-bottom: 1rem;
-        border-radius: 10px;
-        display: flex;
-        gap: 1rem;
-        flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.199);
-        backdrop-filter: blur(30px);
-        top: -300px;
-        opacity: 0;
-        pointer-events: none;
-        transition: 300ms;
-    }
-
-    .mobile-menu.active ul {
-        top: -1rem;
-        opacity: 1;
-        pointer-events: all;
-
-    }
-
-    .mobile-menu li a {
-        padding: 1.5rem;
-        color: white;
-        width: 100%;
-    }
-
-    .content {
-        padding: 1rem;
-    }
+.form>button:disabled {
+    cursor: not-allowed;
+    opacity: .7;
 }
 
-@media screen and (max-width: 400px) {
-    .inp_container {
-        min-width: 100%;
-    }
+.dha {
+    font-size: .8rem;
+    margin-top: 2rem;
+    width: 100%;
+    font-weight: 500;
 }

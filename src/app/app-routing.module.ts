@@ -4,29 +4,33 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: "",
-    component: HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
     path: 'messages',
-    loadChildren: () => import('./messages/messages.module').then((m) => m.MessagesModule),
+    loadChildren: () =>
+      import('./messages/messages.module').then((m) => m.MessagesModule),
   },
   {
     path: 'block-list',
-    loadChildren: () => import('./block-list/block-list.module').then((m) => m.BlockListModule),
+    loadChildren: () =>
+      import('./block-list/block-list.module').then((m) => m.BlockListModule),
   },
   {
     path: 'devices',
-    loadChildren: () => import('./devices/devices.module').then((m) => m.DevicesModule),
+    loadChildren: () =>
+      import('./devices/devices.module').then((m) => m.DevicesModule),
   },
   {
-    path: "login",
-    loadChildren: () => import("./login/login.module").then(m => m.LoginModules)
-  }
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModules),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

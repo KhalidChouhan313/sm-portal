@@ -1,0 +1,57 @@
+<nav class="sidebar">
+    <div class="logo">
+        <img src="../../../assets/img/logo.png" alt="">
+        <h1>Taxi Messages</h1>
+    </div>
+    <ul class="menu">
+        <li (click)="setCurrentItem('Home')" [class.active]="currentItem === 'Home'" class="menu_item">
+            <span>Home</span>
+        </li>
+        <li (click)="setCurrentItem('Messages')" [class.active]="currentItem === 'Messages'" class="menu_item">
+            <span>Messages</span>
+        </li>
+        <li (click)="setCurrentItem('Blocked')" [class.active]="currentItem === 'Blocked'" class="menu_item">
+            <span>Blocked List</span>
+        </li>
+        <li (click)="setCurrentItem('Devices')" [class.active]="currentItem === 'Devices'" class="menu_item">
+            <span>Devices</span>
+        </li>
+        <li (click)="setCurrentItem('Chatbots')" [class.active]="currentItem === 'Chatbots'" class="menu_item">
+            <span>Chatbots</span>
+        </li>
+        <ul *ngIf="currentItem === 'Chatbots'" class="sub_menu">
+            <li (click)="setCurrentSubItem('Analytics')" [class.active]="currentSubItem === 'Analytics'"
+                class="sub_menu_item">
+                <span>Analytics</span>
+            </li>
+            <li (click)="setCurrentSubItem('Chat')" [class.active]="currentSubItem === 'Chat'" class="sub_menu_item">
+                <span>Chat Flow</span>
+            </li>
+            <li (click)="setCurrentSubItem('Bookings')" [class.active]="currentSubItem === 'Bookings'"
+                class="sub_menu_item">
+                <span>Bookings</span>
+            </li>
+            <li (click)="setCurrentSubItem('Customers')" [class.active]="currentSubItem === 'Customers'"
+                class="sub_menu_item">
+                <span>Customers</span>
+            </li>
+        </ul>
+        <li (click)="setCurrentItem('App')" [class.active]="currentItem === 'App'" class="menu_item">
+            <span>App Settings</span>
+        </li>
+        <li (click)="setCurrentItem('Profile')" [class.active]="currentItem === 'Profile'" class="menu_item">
+            <span>Profile</span>
+        </li>
+    </ul>
+
+    <div class="pro">
+        <img src="../../../assets/img/pro.png" alt="">
+        <h2>Taxi Messages</h2>
+        <p>Get access to all features on tetumbas</p>
+        <button><span>Get Pro</span></button>
+    </div>
+
+    <button class="toggle">
+        <img src="../../../assets/img/toggle.png" alt="toggle">
+    </button>
+</nav>

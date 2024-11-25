@@ -18,6 +18,8 @@ import { StatsComponent } from './components/stats/stats.component';
 import { ActivityDetailsComponent } from './components/activity-details/activity-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { LoginComponent } from './login/login.component';
     StatsComponent,
     ActivityDetailsComponent,
     LoginComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { LoginComponent } from './login/login.component';
     NgxDaterangepickerMd.forRoot(),
     NgxIntlTelInputModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

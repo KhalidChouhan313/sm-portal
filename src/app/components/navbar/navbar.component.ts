@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth/auth.service';
 import { MenuItem } from 'src/types/menu-item';
 
 @Component({
@@ -8,7 +9,8 @@ import { MenuItem } from 'src/types/menu-item';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
+  user: any = this.authService.user$
 
   // nav menu 
   menuItems = [
