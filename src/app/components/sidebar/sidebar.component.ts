@@ -10,4 +10,7 @@ export class SidebarComponent {
   setCurrentItem = (e: string) => this.currentItem = e;
   currentSubItem = "";
   setCurrentSubItem = (e: string) => this.currentSubItem = e;
+
+  isToggled = false;
+  toggleNavbar = () => this.isToggled = !this.isToggled
 }

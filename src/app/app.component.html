@@ -3,6 +3,11 @@
         <app-sidebar></app-sidebar>
     </ng-container>
     <div class="body-content">
-        <router-outlet></router-outlet>
+        <ng-container *ngIf="showNavbar">
+            <app-navbar></app-navbar>
+        </ng-container>
+        <main class="main">
+            <router-outlet></router-outlet>
+        </main>
     </div>
 </div>

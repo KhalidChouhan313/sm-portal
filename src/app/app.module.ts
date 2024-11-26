@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BookingsComponent } from './bookings/bookings.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ActivityDetailsComponent,
     LoginComponent,
     SidebarComponent,
+    BookingsComponent,
   ],
   imports: [
     BrowserModule,

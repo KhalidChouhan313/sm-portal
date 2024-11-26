@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="header">
+        <div class="kanban">Chatbot <strong> / Bookings</strong></div>
+        <div class="header_more">
+            <div class="menu">
+                <button (click)="setCurrentItem(item)" *ngFor="let item of menuItems" class="menu_item"
+                    [class.active]="item.name === currentItem.name">
+                    <div class="icon">{{item.icon}}</div>
+                    <span>{{item.name}}</span>
+                </button>
+            </div>
+            <div class="search">
+                <img src="../../assets/icons/search.svg" alt="">
+                <input type="search" placeholder="Search number here...">
+            </div>
+        </div>
+    </div>
+    <div class="table_wrapper">
+        <div class="table">
+            <div class="table_header">
+                <div class="th_item">
+                    <input type="checkbox">
+                </div>
+                <div class="th_item">
+                    Date & Time
+                </div>
+                <div class="th_item">
+                    Booking ID
+                </div>
+                <div class="th_item">
+                    Customer Name
+                </div>
+                <div class="th_item">
+                    Phone Number
+                </div>
+                <div class="th_item">
+                    Pickup Date/Time
+                </div>
+                <div class="th_item">
+                    Vehicle type
+                </div>
+                <div class="th_item">
+                    Estimated Price
+                </div>
+                <div class="th_item">
+                    Status
+                </div>
+            </div>
+
+            <div *ngFor="let booking of bookingsDummy" class="table_body">
+                <div class="th_item">
+                    <input type="checkbox" [checked]="booking.selected">
+                </div>
+                <div class="th_item">
+                    {{booking.createdAt}}
+                </div>
+                <div class="th_item">
+                    {{booking.booking_id}}
+                </div>
+                <div class="th_item">
+                    {{booking.company_id}}
+                </div>
+                <div class="th_item">
+                    {{booking.phone}}
+                </div>
+                <div class="th_item">
+                    {{booking.date}} {{booking.time}}
+                </div>
+                <div class="th_item">
+                    Audi
+                </div>
+                <div class="th_item amount">
+                    $11.00 - $14.00
+                </div>
+                <div class="th_item">
+                    <div class="badge">Completed</div>
+                </div>
+                <button class="toggle_more">
+                    &darr;
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

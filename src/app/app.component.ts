@@ -8,7 +8,6 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'taxi-messages';
   showNavbar: boolean = true;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {

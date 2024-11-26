@@ -1,56 +1,16 @@
-<header class="app_header">
-    <a routerLink="/" class="logo">
-        <img src="../../../assets/logo.png" alt="taxi-message">
-    </a>
-    <nav class="navbar">
-        <ul class="nav_items">
-            <li class="nav_item" *ngFor="let item of menuItems" [class.active]="isMenuItemActive(item)"
-                [attr.data-label]="item.label">
-                <a [routerLink]="item.link">
-                    <img [src]="isMenuItemActive(item) ?item.icon : item.activeIcon" [alt]="item.label">
-                    <span *ngIf="isMenuItemActive(item)">{{item.label}}</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <div class="header_right">
-        <div class="user_info">
-            <img [src]="menuItems[0].icon" alt="user">
-            <div class="ui_details">
-                <strong>{{user?.name}}</strong>
-                <span>
-                    TechonVentures
-                </span>
-            </div>
-            <span class="chev_down">{{">"}}</span>
-        </div>
-        <button class="setting" (click)="toggleSettings()">
-            <img src="../../../assets/icons/settings.svg" alt="settings">
-        </button>
+<header class="navbar">
+    <h1>{{title}}</h1>
+    <div class="search">
+        <img src="../../../assets/icons/search.svg" alt="">
+        <input type="search" placeholder="Search here..." />
     </div>
-
-    <!-- settings menu -->
-    <div class="settings_menu" [class.in_view]="isSettingsOpen" (click)="toggleSettings()">
-        <div class="sidebar_wrapper" (click)="stopPropagation($event)">
-            <div class="sidebar_content">
-                <div class="top">
-                    <div>
-                        <img src="../../../assets/icons/settings_black.svg" alt="setting">
-                        <span>Settings</span>
-                    </div>
-                    <button class="close_btn" (click)="toggleSettings()">
-                        <img src="../../../assets/icons/x.svg" alt="x">
-                    </button>
-                </div>
-                <div class="s_items_card">
-                    <div class="s_ic_items">
-                        <div class="s_ic_i_item" *ngFor="let item of sidebarItems">
-                            <span>{{item.label}}</span>
-                            <div class="switch_box" [class.active]="item.active" (click)="toggleActiveStatus(item.id)">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="right">
+        <div class="not">not</div>
+        <div class="user">
+            <div class="dp">{{user?.name?.[0] ?? "I"}}</div>
+            <div class="user_details">
+                <p>{{user?.name ?? "Muhammad Imtiaz"}}</p>
+                <span>{{user?.phone ?? "03070186322"}}</span>
             </div>
         </div>
     </div>

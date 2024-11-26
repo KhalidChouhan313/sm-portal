@@ -23,6 +23,11 @@ const routes: Routes = [
       import('./devices/devices.module').then((m) => m.DevicesModule),
   },
   {
+    path: 'chatbot/bookings',
+    loadChildren: () =>
+      import('./bookings/bookings.module').then((m) => m.BookingsModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModules),

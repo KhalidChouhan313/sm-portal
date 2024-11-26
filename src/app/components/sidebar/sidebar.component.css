@@ -6,6 +6,14 @@
     padding: 2rem;
     height: 100vh;
     position: relative;
+    width: 320px;
+    transition: all 250ms;
+}
+
+.sidebar.toggled {
+    width: 90px;
+    padding: 1rem;
+    align-items: center;
 }
 
 .logo {
@@ -23,6 +31,12 @@
 .logo h1 {
     font-size: 1.4rem;
     font-weight: 600;
+    white-space: nowrap;
+    transition: 100ms;
+}
+
+.sidebar.toggled .logo h1 {
+    display: none;
 }
 
 .menu {
@@ -43,9 +57,23 @@
     border-radius: 1rem;
 }
 
+.icon {
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .menu_item span {
     color: #737791;
     font-size: .9rem;
+}
+
+.sidebar.toggled .menu_item span {
+    display: none;
 }
 
 .menu_item.active {
@@ -65,16 +93,29 @@
     border-left: 1px solid #737791;
 }
 
+.sidebar.toggled .sub_menu {
+    margin-left: 0;
+    padding-left: 0;
+    border: none;
+}
+
 .sub_menu_item {
     padding: 1rem;
     cursor: pointer;
     border-radius: .8rem;
     color: #737791;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
 }
 
 .sub_menu_item span {
     color: #737791;
     font-size: .9rem;
+}
+
+.sidebar.toggled .sub_menu span {
+    display: none;
 }
 
 .sub_menu_item.active {
@@ -94,6 +135,7 @@
     border-radius: 1rem;
     overflow: hidden;
     margin-top: auto;
+    min-height: fit-content;
 }
 
 .pro h2 {
@@ -129,6 +171,10 @@
     -webkit-text-fill-color: transparent;
 }
 
+.sidebar.toggled .pro {
+    display: none;
+}
+
 .toggle {
     position: absolute;
     top: 100px;
@@ -137,8 +183,8 @@
     border: none;
     outline: none;
     cursor: pointer;
-    height: 30px;
-    width: 43px;
+    height: 27px;
+    width: 36px;
     border-radius: 7px;
     box-shadow: 0 0 10px #B3B3B380;
 }
