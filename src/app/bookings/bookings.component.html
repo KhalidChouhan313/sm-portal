@@ -47,39 +47,120 @@
                 </div>
             </div>
 
-            <div *ngFor="let booking of bookingsDummy" class="table_body">
-                <div class="th_item">
-                    <input type="checkbox" [checked]="booking.selected">
+            <ng-container *ngFor="let booking of bookingsDummy">
+                <div class="table_body">
+                    <div class="th_item">
+                        <input type="checkbox" [checked]="booking.selected">
+                    </div>
+                    <div class="th_item">
+                        {{booking.createdAt}}
+                    </div>
+                    <div class="th_item">
+                        {{booking.booking_id}}
+                    </div>
+                    <div class="th_item">
+                        {{booking.company_id}}
+                    </div>
+                    <div class="th_item">
+                        {{booking.phone}}
+                    </div>
+                    <div class="th_item">
+                        {{booking.date}} {{booking.time}}
+                    </div>
+                    <div class="th_item">
+                        Audi
+                    </div>
+                    <div class="th_item amount">
+                        $11.00 - $14.00
+                    </div>
+                    <div class="th_item">
+                        <div class="badge">Completed</div>
+                    </div>
+                    <button class="toggle_more" (click)="selectBooking(booking)">
+                        &darr;
+                    </button>
                 </div>
-                <div class="th_item">
-                    {{booking.createdAt}}
+                <div class="booking_dets_wrapper" [class.active]="selectedBooking === booking._id">
+                    <div class="booking_dets">
+                        <div class="bd_left">
+                            <div class="bdl_top">
+                                <div class="total">
+                                    <div>
+                                        <span>Total Amount</span>
+                                        <div class="badge">Completed</div>
+                                    </div>
+                                    <h3>$13.00</h3>
+                                </div>
+                                <div class="bd_dets">
+                                    <div>
+                                        <span>Booking Name</span>
+                                        <span>{{booking.company_id}}</span>
+                                    </div>
+                                    <div>
+                                        <span>Vehicle</span>
+                                        <span>Audi</span>
+                                    </div>
+                                    <div>
+                                        <span>Scheduled For</span>
+                                        <span>{{booking.date}} {{booking.time}}</span>
+                                    </div>
+                                    <div>
+                                        <span>Estimated Price</span>
+                                        <span>$11.00 - $14.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bdl_bottom">
+                                <div class="company_dets">
+                                    <div class="dp">I</div>
+                                    <div class="other_dets">
+                                        <span>WhatsApp Profile</span>
+                                        <strong>Imtiaz0307</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bd_right">
+                            <div class="bdr_item">
+                                <strong>Customer Name</strong>
+                                <span>{{booking.company_id}}</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Contact Number</strong>
+                                <span>03070186322</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Booking Creation Date</strong>
+                                <span>{{booking.createdAt}}</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Booking ID</strong>
+                                <span>{{booking.booking_id}}</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Pickup Date/Time</strong>
+                                <span>{{booking.date}} {{booking.time}}</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Current Status</strong>
+                                <span>Completed</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Pickup Location</strong>
+                                <span>Somewhere in Manchester, UK</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Drop-Off Location</strong>
+                                <span>Somewhere in London, UK</span>
+                            </div>
+                            <div class="bdr_item">
+                                <strong>Customer Notes</strong>
+                                <textarea placeholder="Note From Customer"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="th_item">
-                    {{booking.booking_id}}
-                </div>
-                <div class="th_item">
-                    {{booking.company_id}}
-                </div>
-                <div class="th_item">
-                    {{booking.phone}}
-                </div>
-                <div class="th_item">
-                    {{booking.date}} {{booking.time}}
-                </div>
-                <div class="th_item">
-                    Audi
-                </div>
-                <div class="th_item amount">
-                    $11.00 - $14.00
-                </div>
-                <div class="th_item">
-                    <div class="badge">Completed</div>
-                </div>
-                <button class="toggle_more">
-                    &darr;
-                </button>
-            </div>
-
+            </ng-container>
         </div>
     </div>
 </div>

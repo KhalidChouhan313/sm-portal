@@ -52,6 +52,15 @@ export class BookingsComponent implements OnInit {
     )
   };
 
+  selectedBooking: string = "";
+  selectBooking = (item: any) => {
+    if (item._id === this.selectedBooking) {
+      this.selectedBooking = ""
+    } else {
+      this.selectedBooking = item?._id
+    }
+  }
+
   // bookings dummy
   bookingsDummy = [
     {
@@ -62,52 +71,7 @@ export class BookingsComponent implements OnInit {
       date: "",
       phone: "923070186322",
       time: "ASAP",
-      _id: "6745a70a75994f2a07415264",
-
-    },
-    {
-      selected: false,
-      booking_id: "56873038",
-      company_id: "5fa33297c9ec66867188999f",
-      createdAt: new Date("2024-11-26T10:46:34.924Z").toLocaleString(),
-      date: "",
-      phone: "923070186322",
-      time: "ASAP",
-      _id: "6745a70a75994f2a07415264",
-
-    },
-    {
-      selected: false,
-      booking_id: "56873038",
-      company_id: "5fa33297c9ec66867188999f",
-      createdAt: new Date("2024-11-26T10:46:34.924Z").toLocaleString(),
-      date: "",
-      phone: "923070186322",
-      time: "ASAP",
-      _id: "6745a70a75994f2a07415264",
-
-    },
-    {
-      selected: false,
-      booking_id: "56873038",
-      company_id: "5fa33297c9ec66867188999f",
-      createdAt: new Date("2024-11-26T10:46:34.924Z").toLocaleString(),
-      date: "",
-      phone: "923070186322",
-      time: "ASAP",
-      _id: "6745a70a75994f2a07415264",
-
-    },
-    {
-      selected: false,
-      booking_id: "56873038",
-      company_id: "5fa33297c9ec66867188999f",
-      createdAt: new Date("2024-11-26T10:46:34.924Z").toLocaleString(),
-      date: "",
-      phone: "923070186322",
-      time: "ASAP",
-      _id: "6745a70a75994f2a07415264",
-
+      _id: "6745a70a75994f2a07415264a",
     },
   ]
 }
