@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { BookingsComponent } from './bookings/bookings.component';
     LoginComponent,
     SidebarComponent,
     BookingsComponent,
+    CustomersComponent,
   ],
   imports: [
     BrowserModule,

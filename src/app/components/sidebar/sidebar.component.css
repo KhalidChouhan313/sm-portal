@@ -194,3 +194,13 @@
     width: 100%;
     object-fit: cover;
 }
+
+@media screen and (max-width: 1400px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .sidebar.toggled {
+        width: 60px;
+    }
+}

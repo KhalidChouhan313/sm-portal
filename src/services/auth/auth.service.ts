@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  public user$ = "";
+  public user$: any = null;
 
   constructor(private http: HttpClient) { }
 

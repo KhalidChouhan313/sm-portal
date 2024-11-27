@@ -28,6 +28,11 @@ const routes: Routes = [
       import('./bookings/bookings.module').then((m) => m.BookingsModule),
   },
   {
+    path: 'chatbot/customers',
+    loadChildren: () =>
+      import('./customers/customers.module').then((m) => m.CustomersModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModules),

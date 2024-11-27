@@ -24,6 +24,13 @@ body {
     overflow-x: hidden;
 }
 
+@media screen and (max-width: 1400px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+/* 
 .iti {
     height: 100%;
 }
@@ -36,4 +43,4 @@ body {
     align-items: center;
     height: 100%;
     width: 300px;
-}
+} */
