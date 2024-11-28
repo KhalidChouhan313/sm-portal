@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './screens/home/home.component';
 
 const routes: Routes = [
   {
@@ -10,32 +10,32 @@ const routes: Routes = [
   {
     path: 'messages',
     loadChildren: () =>
-      import('./messages/messages.module').then((m) => m.MessagesModule),
+      import('./screens/messages/messages.module').then((m) => m.MessagesModule),
   },
   {
     path: 'block-list',
     loadChildren: () =>
-      import('./block-list/block-list.module').then((m) => m.BlockListModule),
+      import('./screens/block-list/block-list.module').then((m) => m.BlockListModule),
   },
   {
     path: 'devices',
     loadChildren: () =>
-      import('./devices/devices.module').then((m) => m.DevicesModule),
+      import('./screens/devices/devices.module').then((m) => m.DevicesModule),
   },
   {
     path: 'chatbot/bookings',
     loadChildren: () =>
-      import('./bookings/bookings.module').then((m) => m.BookingsModule),
+      import('./screens/bookings/bookings.module').then((m) => m.BookingsModule),
   },
   {
     path: 'chatbot/customers',
     loadChildren: () =>
-      import('./customers/customers.module').then((m) => m.CustomersModule),
+      import('./screens/customers/customers.module').then((m) => m.CustomersModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModules),
+      import('./screens/login/login.module').then((m) => m.LoginModules),
   },
 ];
 

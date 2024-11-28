@@ -8,7 +8,7 @@
 
 .left {
     flex: 1;
-    background: url(../../assets/img/login-bg.png);
+    background: url(../../../assets/img/login-bg.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 129%;
