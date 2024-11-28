@@ -16,6 +16,6 @@ export class CustomersService {
       "Authorization": `Bearer ${token}`
     });
 
-    return this.http.get(environment.apiUrl + `/api/company-users/${company_id}`, { headers });
+    return this.http.get(environment.apiUrl + `/api/waba/company-users/${company_id}`, { headers });
   }
 }

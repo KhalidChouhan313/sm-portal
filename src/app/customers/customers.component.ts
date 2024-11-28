@@ -11,22 +11,74 @@ export class CustomersComponent implements OnInit {
 
   constructor(private authService: AuthService, private customersService: CustomersService) { }
 
-  customers = [];
+  customers: any[] = [];
+  currentPage: number = 1;
+  usersPerPage: number = 10;
+  totalCustomers: number = 0;
+  selectedCustomer: string = "";
+  loading = true;
 
   ngOnInit(): void {
-    const token = localStorage.getItem("token")
+    this.loading = true
+    const token = localStorage.getItem("token");
     this.authService.authenticateUser(token as string).subscribe(
       (res) => {
         if (res?._id) {
           this.customersService.getCompanyUsers(res?._id).subscribe(
-            (res) => { console.log(res) },
-            (err) => { console.log(err) }
-          )
+            (res) => {
+              this.customers = res?.data ?? [];
+              this.totalCustomers = this.customers.length;
+              this.loading = false
+            },
+            (err) => {
+              console.log(err);
+              this.loading = false
+            }
+          );
         }
       },
       (err) => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
+  }
+
+  selectCustomer(item: any) {
+    if (item.user_name === this.selectedCustomer) {
+      this.selectedCustomer = "";
+    } else {
+      this.selectedCustomer = item?.user_name;
+    }
+  }
+
+  // Pagination logic
+  paginate(customers: any[]) {
+    const startIndex = (this.currentPage - 1) * this.usersPerPage;
+    const endIndex = startIndex + this.usersPerPage;
+    return customers.slice(startIndex, endIndex);
+  }
+
+  // To navigate to the previous page
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  // To navigate to the next page
+  nextPage() {
+    const totalPages = Math.ceil(this.totalCustomers / this.usersPerPage);
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  // To set the current page
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+
+  get totalPages() {
+    return Math.ceil(this.totalCustomers / this.usersPerPage);
   }
 }
