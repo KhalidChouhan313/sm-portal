@@ -7,7 +7,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class ChatFlowComponent {
   selectedCard: any = null;
-  cards = Array(4)
+  cards = Array(2)
     .fill(0)
     .map((_, i) => ({
       _id: i,
