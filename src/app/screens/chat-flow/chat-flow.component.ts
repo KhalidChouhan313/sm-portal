@@ -22,6 +22,7 @@ export class ChatFlowComponent {
       ]
     }));
   selectedButton: any = null
+  zoomLevel = 1;
 
   private isDraggingCard = false;
   private isDraggingCanvas = false;
@@ -111,5 +112,23 @@ export class ChatFlowComponent {
   @HostListener('document:mouseup', ['$event'])
   onMouseUp() {
     this.stopCanvasDragging();
+  }
+
+  zoomIn() {
+    this.zoomLevel += 0.1;
+    this.applyZoom();
+  }
+
+  zoomOut() {
+    this.zoomLevel = Math.max(0.1, this.zoomLevel - 0.1);
+    this.applyZoom();
+  }
+
+  applyZoom() {
+    const cards = this.canvas.nativeElement.querySelectorAll(".card")
+    cards.forEach((item: HTMLElement) => {
+      item.style.transform = `scale(${this.zoomLevel})`;
+      item.style.transformOrigin = 'top left'; // To zoom from the top-left corner
+    });
   }
 }

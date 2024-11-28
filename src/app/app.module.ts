@@ -23,6 +23,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookingsComponent } from './screens/bookings/bookings.component';
 import { CustomersComponent } from './screens/customers/customers.component';
 import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
     BookingsComponent,
     CustomersComponent,
     ChatFlowComponent,
+    DoughnutChartComponent,
   ],
   imports: [
     BrowserModule,

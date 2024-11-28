@@ -1,7 +1,7 @@
 .container {
     display: flex;
     gap: 1.5rem;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
 }
 
 .left {
@@ -14,13 +14,15 @@
     flex: 4.2;
     min-width: 500px;
 }
-.devices{
+
+.devices {
     border-radius: 10px;
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1rem 1.5rem;
     margin-top: .7rem;
 }
+
 .d_header {
     display: flex;
     justify-content: space-between;
@@ -103,7 +105,8 @@
 .d_card .status.active {
     background-color: #0B7A60;
 }
-.mobile{
+
+.mobile {
     display: none;
 }
 
@@ -127,10 +130,11 @@
 }
 
 @media screen and (max-width: 976px) {
-    .container{
+    .container {
         display: none;
     }
-    .mobile{
+
+    .mobile {
         padding: 1rem;
         display: flex;
         flex-direction: column;

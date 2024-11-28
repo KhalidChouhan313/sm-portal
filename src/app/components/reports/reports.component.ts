@@ -12,7 +12,7 @@ export class ReportsComponent implements OnInit {
     Chart.register(...registerables);
 
     const ctx = document.getElementById('lineChart') as HTMLCanvasElement;
-    
+
     // Check if there is an existing chart and destroy it
     const existingChart = Chart.getChart(ctx);
     if (existingChart) {
@@ -22,27 +22,39 @@ export class ReportsComponent implements OnInit {
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         datasets: [
-  {
-    label: 'Total Sent',
-    data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 10],
-    borderColor: 'rgba(12, 231, 250, 0.50)',
-    pointBackgroundColor: 'rgba(12, 231, 250, 0.50)',
-  },
-  {
-    label: 'Whatsapp',
-    data: [10, 30, 25, 34, 43, 54, 23, 64, 43, 55].sort((a, b) => a - b),
-    borderColor: 'rgba(250, 145, 107, 0.50)',
-    pointBackgroundColor: 'rgba(250, 145, 107, 0.50)',
-  },
-  {
-    label: 'SMS',
-    data: [45, 56, 34, 23, 43, 65, 32, 12, 15, 66],
-    borderColor: '#4669FA',
-    pointBackgroundColor: '#4669FA',
-  },
-]
+          {
+            label: 'Total Sent',
+            data: [8, 12, 10, 14, 9, 14, 10],
+            borderColor: '#FF515C',
+            pointBorderColor: '#FF515C',
+            pointBackgroundColor: '#FF515C',
+            tension: .4,
+            borderWidth: 7,
+            pointBorderWidth: 0,
+          },
+          {
+            label: 'Whatsapp',
+            data: [8 - 2, 12 + 2, 10 - 2, 14 - 4, 9 - 2, 14 + 2, 10 - 2],
+            borderColor: '#2EBC96',
+            pointBorderColor: '#2EBC96',
+            pointBackgroundColor: '#2EBC96',
+            tension: .4,
+            borderWidth: 7,
+            pointBorderWidth: 0,
+          },
+          {
+            label: 'SMS',
+            data: [8 + 2, 12 - 2, 10 + 2, 14 - 4, 9 + 2, 14 - 2, 10 + 2],
+            borderColor: '#3B82F6',
+            pointBorderColor: '#3B82F6',
+            pointBackgroundColor: '#3B82F6',
+            tension: .4,
+            borderWidth: 7,
+            pointBorderWidth: 0,
+          },
+        ]
       },
       options: {
         responsive: true,
@@ -50,23 +62,29 @@ export class ReportsComponent implements OnInit {
         scales: {
           x: {
             display: true,
+            grid: {
+              display: false,  // Remove grid lines for the x-axis
+            }
           },
           y: {
             display: true,
+            grid: {
+              display: false,  // Remove grid lines for the y-axis
+            }
           }
         },
         plugins: {
           legend: {
             position: 'top',
-            align: "end",
+            align: "center",
             labels: {
-              boxHeight: 9,
-              boxWidth: 9,
+              boxHeight: 20,
+              boxWidth: 20,
               textAlign: "center",
               boxPadding: 430,
               usePointStyle: true,
               pointStyle: "circle",
-              padding: 20
+              padding: 20,
             },
           },
         },

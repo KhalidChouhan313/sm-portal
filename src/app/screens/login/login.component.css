@@ -4,6 +4,8 @@
     overflow: hidden;
     gap: 1rem;
     display: flex;
+    background-color: white;
+    margin: -2rem;
 }
 
 .left {
