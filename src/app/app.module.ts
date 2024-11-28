@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookingsComponent } from './screens/bookings/bookings.component';
 import { CustomersComponent } from './screens/customers/customers.component';
+import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CustomersComponent } from './screens/customers/customers.component';
     SidebarComponent,
     BookingsComponent,
     CustomersComponent,
+    ChatFlowComponent,
   ],
   imports: [
     BrowserModule,

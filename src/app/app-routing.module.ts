@@ -33,6 +33,11 @@ const routes: Routes = [
       import('./screens/customers/customers.module').then((m) => m.CustomersModule),
   },
   {
+    path: 'chatbot/chat-flow',
+    loadChildren: () =>
+      import('./screens/chat-flow/chat-flow.module').then((m) => m.ChatflowModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./screens/login/login.module').then((m) => m.LoginModules),
