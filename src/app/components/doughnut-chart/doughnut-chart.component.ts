@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartOptions, ChartData, ChartType } from 'chart.js';
 
 @Component({
@@ -6,32 +6,43 @@ import { ChartOptions, ChartData, ChartType } from 'chart.js';
   templateUrl: './doughnut-chart.component.html',
   styleUrls: ['./doughnut-chart.component.css']
 })
-export class DoughnutChartComponent {
+export class DoughnutChartComponent implements OnInit {
+
+  @Input() colors: string[] = []
+  @Input() data: any[] = []
 
   // Doughnut chart options
   public doughnutChartOptions: ChartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        // position: 'top',
+        display: false
       },
     },
   };
 
   // Doughnut chart labels
-  public doughnutChartLabels: string[] = ['Red', 'Blue', 'Yellow'];
+  public doughnutChartLabels: string[] = this.colors;
 
   // Doughnut chart data
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: [
       {
-        data: [300, 500, 100],
-        backgroundColor: ['#FF5733', '#33B5FF', '#FFEB3B'],
-        hoverBackgroundColor: ['#FF4C00', '#2980B9', '#F4D03F'],
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: [],
+        borderWidth: 0,
       },
     ],
   };
+
+  ngOnInit(): void {
+    this.doughnutChartData.datasets[0].data = this.data
+    this.doughnutChartData.datasets[0].backgroundColor = this.colors
+    this.doughnutChartData.datasets[0].hoverBackgroundColor = this.colors.map(item => `${item}7e`)
+  }
 
   // Doughnut chart type
   public doughnutChartType: ChartType = 'doughnut';
