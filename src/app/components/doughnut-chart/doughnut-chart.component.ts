@@ -41,7 +41,8 @@ export class DoughnutChartComponent implements OnInit {
   ngOnInit(): void {
     this.doughnutChartData.datasets[0].data = this.data
     this.doughnutChartData.datasets[0].backgroundColor = this.colors
-    this.doughnutChartData.datasets[0].hoverBackgroundColor = this.colors.map(item => `${item}7e`)
+    this.doughnutChartData.datasets[0].hoverBackgroundColor = this.colors.map(item => `${item}7e`),
+      this.doughnutChartData.datasets[0].borderWidth = 2
   }
 
   // Doughnut chart type

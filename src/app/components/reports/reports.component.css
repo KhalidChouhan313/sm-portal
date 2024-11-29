@@ -6,22 +6,94 @@
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
+    border: 1.132px solid #F8F9FA;
+    background: #FFF;
+    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.55);
 }
 
-.container>h4 {
-    color: #161616;
-    font-size: 28px;
+.top {
+    display: flex;
+    margin-bottom: .5rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.top h4 {
+    color: #030303;
+    font-family: Poppins;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36.233px;
+}
+
+.top .left span {
+    color: var(--Greys-Blue-Grey-700, #737791);
+    font-family: "Plus Jakarta Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 33.968px;
+    /* 188.712% */
+}
+
+.legends {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    background-color: var(--bg);
+    border-radius: .5rem;
+}
+
+.legend .circle {
+    border-radius: 10px;
+    background-color: var(--color);
+    height: 10px;
+    width: 10px;
+}
+
+.legend span {
+    color: var(--color);
+    font-family: "Plus Jakarta Sans";
+    font-size: .7rem;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
-    font-family: var(--jakarta);
+    line-height: 16px;
+    /* 133.333% */
+    letter-spacing: -0.24px;
 }
 
 .chart_con {
     flex: 1;
 }
 
-@media screen and (max-width: 1500px) {
+.top button {
+    border: none;
+    background-color: white;
+    padding: .6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    color: #030303;
+    font-family: Poppins;
+    font-size: .9rem;
+    font-style: normal;
+    font-weight: 500;
+    border-radius: 9.058px;
+    border: 1.132px solid #C3D3E2;
+}
+
+/* @media screen and (max-width: 1500px) {
     .container {
         height: 350px;
         padding: .75rem;
@@ -30,4 +102,4 @@
     .container>h4 {
         font-size: 1.25rem;
     }
-}
+} */

@@ -75,17 +75,18 @@ export class ReportsComponent implements OnInit {
         },
         plugins: {
           legend: {
-            position: 'top',
-            align: "center",
-            labels: {
-              boxHeight: 20,
-              boxWidth: 20,
-              textAlign: "center",
-              boxPadding: 430,
-              usePointStyle: true,
-              pointStyle: "circle",
-              padding: 20,
-            },
+            display: false
+            // position: 'top',
+            // align: "center",
+            // labels: {
+            //   boxHeight: 20,
+            //   boxWidth: 20,
+            //   textAlign: "center",
+            //   boxPadding: 430,
+            //   usePointStyle: true,
+            //   pointStyle: "circle",
+            //   padding: 20,
+            // },
           },
         },
       }

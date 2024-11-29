@@ -11,7 +11,6 @@
 
 .reports {
     flex: 1;
-    padding: .5rem;
 }
 
 .bottom {
@@ -207,6 +206,142 @@
     background-color: var(--color);
     border-radius: 15px;
 }
+
+.activity {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: calc(100% - 411px - 2rem);
+}
+
+.a_top {
+    display: flex;
+    gap: 1rem;
+}
+
+.a_top button {
+    padding: .75rem 1rem;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.a_top button span {
+    color: #737791;
+    font-family: Poppins;
+    font-size: .95rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.a_top button.filter {
+    border-radius: 8px;
+    background: linear-gradient(270deg, #2EBC96 0%, #1A9096 100%);
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.a_top button.filter span {
+    color: white;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 12px;
+    background: linear-gradient(273deg, #2EBC96 2.11%, #1A9096 121.12%);
+    padding: 1.5rem 3rem;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    border-radius: 5.343px;
+    border: none;
+    background: #FFF;
+    box-shadow: 0px 0px 5.343px 0px rgba(0, 0, 0, 0.10);
+    outline: none;
+    top: .6rem;
+    right: .6rem;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filters video {
+    object-fit: cover;
+    border-radius: 5.893px;
+    background: #FFFFFD;
+    width: 164.56px;
+    height: 170px;
+    flex-shrink: 0;
+}
+
+.filters>.left {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.inp_con {
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inp_con label {
+    color: #FFF;
+    font-size: .8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: .2rem;
+}
+
+.inp_con select {
+    border-radius: 9.418px;
+    border: 0.856px solid #D9D9D9;
+    background: rgba(217, 217, 217, 0.10);
+    outline: none;
+    padding: 1rem;
+}
+
+.a_table_wrapper {
+    overflow-x: auto;
+    background: #FFF;
+    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.25);
+}
+
+.a_table {
+    min-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+}
+
+.at_item {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6.201px;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.93);
+    background: #FFF;
+}
+
+.at_item div {
+    padding: 1rem;
+}
+
 
 @media screen and (max-width: 1500px) {
     .container {
