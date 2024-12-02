@@ -7,6 +7,27 @@ import { Component, NgModule } from '@angular/core';
 })
 
 export class MessagesComponent {
+
+  tab = ""
+  tabs = [
+    { name: "Booking" },
+    { name: "Tracking" },
+    { name: "Arrived" },
+    { name: "Paylink" },
+    { name: "PrePay" },
+    { name: "Review" },
+    { name: "Driver" },
+    { name: "Pre Auth" },
+    { name: "Custom 1" },
+    { name: "Custom 2" },
+    { name: "ChatBot" },
+    { name: "Missed Calls" },
+  ]
+
+  selectTab = (t) => {
+    this.tab = t
+  }
+
   instanceData = [
     {
       id: 1,
@@ -30,7 +51,7 @@ export class MessagesComponent {
     },
     {
       id: 4,
-      name: "Booking Message 4",
+      name: "Booking Message 1",
       value: "",
       isEditable: false,
       limit: 128

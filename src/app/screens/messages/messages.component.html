@@ -1,21 +1,69 @@
 <main class="content">
-    <app-messages-sidebar></app-messages-sidebar>
-    <div class="instance_grid">
-        <div class="instance_card" *ngFor="let instance of instanceData">
-            <div class="ic_top">
-                <h4>{{instance.name}}</h4>
-                <div class="ict_right">
-                    <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
-                        {{instance.value.length}} / {{instance.limit}} characters
-                    </span>
-                    <button class="edit" (click)="toggleEdit(instance.id)">
-                        <img src="../../assets/icons/edit.svg" alt="e">
-                        <span>{{instance.isEditable ? "Save": "Edit"}}</span>
-                    </button>
+    <!-- <app-messages-sidebar></app-messages-sidebar> -->
+    <div>
+        <div class="tabs">
+            <div class="tab" *ngFor="let t of tabs" [class.active]="tab === t.name" (click)="selectTab(t.name)">
+                {{t.name}}</div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="top" style="margin-top: 0;">
+            <h1>Booking Messages For WhatsApp</h1>
+            <!-- <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" viewBox="0 0 21 14" fill="none">
+                <path d="M2 1.79065H18.67M5.12556 7.00002H15.5443M9.29302 12.2094H11.3768" stroke="white"
+                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>
+                View All Messages
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path d="M6.50342 8.33337L10.6701 12.5L14.8367 8.33337" stroke="white" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button> -->
+        </div>
+        <div class="instance_grid">
+            <div class="instance_card" *ngFor="let instance of instanceData.slice(0, 3)">
+                <div class="ic_top">
+                    <h4>{{instance.name}}</h4>
+                    <div class="ict_right">
+                        <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
+                            {{instance.value.length}} / {{instance.limit}} characters
+                        </span>
+                        <button class="edit" (click)="toggleEdit(instance.id)">
+                            <img src="../../assets/icons/edit.svg" alt="e">
+                            <span>{{instance.isEditable ? "Save": "Edit"}}</span>
+                        </button>
+                    </div>
                 </div>
+                <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
+                    (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
             </div>
-            <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
-                (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
+        </div>
+
+        <div class="top">
+            <h1>
+                Booking Messages For SMS
+            </h1>
+        </div>
+        <div class="instance_grid">
+            <div class="instance_card" *ngFor="let instance of instanceData.slice(3, instanceData.length)">
+                <div class="ic_top">
+                    <h4>{{instance.name}}</h4>
+                    <div class="ict_right">
+                        <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
+                            {{instance.value.length}} / {{instance.limit}} characters
+                        </span>
+                        <button class="edit" (click)="toggleEdit(instance.id)">
+                            <img src="../../assets/icons/edit.svg" alt="e">
+                            <span>{{instance.isEditable ? "Save": "Edit"}}</span>
+                        </button>
+                    </div>
+                </div>
+                <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
+                    (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
+            </div>
         </div>
     </div>
 </main>
