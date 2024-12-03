@@ -38,6 +38,11 @@ const routes: Routes = [
       import('./screens/chat-flow/chat-flow.module').then((m) => m.ChatflowModule),
   },
   {
+    path: 'app-settings',
+    loadChildren: () =>
+      import('./screens/app-settings/app-settings.module').then((m) => m.AppSettingsModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./screens/login/login.module').then((m) => m.LoginModules),

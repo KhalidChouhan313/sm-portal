@@ -24,6 +24,7 @@ import { BookingsComponent } from './screens/bookings/bookings.component';
 import { CustomersComponent } from './screens/customers/customers.component';
 import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { AppSettingsComponent } from './screens/app-settings/app-settings.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-cha
     CustomersComponent,
     ChatFlowComponent,
     DoughnutChartComponent,
+    AppSettingsComponent,
   ],
   imports: [
     BrowserModule,

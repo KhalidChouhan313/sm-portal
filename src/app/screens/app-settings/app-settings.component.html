@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="left">
+        <div class="item" *ngFor="let item of tabs" (click)="setCurrentTab(item)"
+            [class.active]="item.name === currentTab?.name">
+            <img [src]="item.icon" alt="">
+            <span>{{item.name}}</span>
+        </div>
+    </div>
+    <div class="right">
+        <div class="top">Settings / <strong>{{currentTab?.name}}</strong></div>
+
+        <div class="h">
+            Outgoing SMS Settings
+        </div>
+        <div class="toggles">
+            <div class="toggle" *ngFor="let toggle of togglesData">
+                <span>{{toggle.label}}</span>
+                <div class="switch_box" [class.active]="toggle.enabled">
+                </div>
+            </div>
+        </div>
+        <div class="h">
+            Outgoing SMS Settings
+        </div>
+        <div class="credentials_tabs">
+            <label>
+                <input type="radio" name="tab" id="tab">
+                <span>SMS Gateway Credentials</span>
+            </label>
+            <label class="active">
+                <input type="radio" name="tab" id="tab">
+                <span>Icabbi App Credentials</span>
+            </label>
+        </div>
+        <div class="credentials">
+            <div class="inp_con">
+                <label for="">SMS App API</label>
+                <input type="text" readonly disabled value="https://api.accabi.com">
+            </div>
+            <div class="inp_con">
+                <label for="">App Key</label>
+                <input type="text" readonly disabled value="https://api.accabi.com">
+            </div>
+        </div>
+    </div>
+</div>

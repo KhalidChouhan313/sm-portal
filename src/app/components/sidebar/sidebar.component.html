@@ -7,31 +7,35 @@
         <ul class="menu">
             <a [routerLink]="'/'">
                 <li (click)="setCurrentItem('Home')" [class.active]="currentItem === 'Home'" class="menu_item">
-                    <img src="./icons/home.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/home.svg" style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Home</span>
                 </li>
             </a>
             <a [routerLink]="'/messages'">
                 <li (click)="setCurrentItem('Messages')" [class.active]="currentItem === 'Messages'" class="menu_item">
-                    <img src="./icons/messages.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/messages.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Messages</span>
                 </li>
             </a>
             <a [routerLink]="'/block-list'">
                 <li (click)="setCurrentItem('Blocked')" [class.active]="currentItem === 'Blocked'" class="menu_item">
-                    <img src="./icons/blocked-list.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/blocked-list.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Blocked List</span>
                 </li>
             </a>
             <a [routerLink]="'/devices'">
                 <li (click)="setCurrentItem('Devices')" [class.active]="currentItem === 'Devices'" class="menu_item">
-                    <img src="./icons/devices.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/devices.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Devices</span>
                 </li>
             </a>
             <a [routerLink]="'/chatbot/analytics'">
                 <li (click)="setCurrentItem('Chatbots')" [class.active]="currentItem === 'Chatbots'" class="menu_item">
-                    <img src="./icons/chatbots.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/chatbots.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Chatbots</span>
                 </li>
             </a>
@@ -39,41 +43,47 @@
                 <a [routerLink]="'/chatbot/analytics'">
                     <li (click)="setCurrentSubItem('Analytics')" [class.active]="currentSubItem === 'Analytics'"
                         class="sub_menu_item">
-                        <img src="./icons/analytics.png" style="height: 30px; width: 30px; object-fit: contain;">
+                        <img src="../../../assets/icons/analytics.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Analytics</span>
                     </li>
                 </a>
                 <a [routerLink]="'/chatbot/chat-flow'">
                     <li (click)="setCurrentSubItem('Chat')" [class.active]="currentSubItem === 'Chat'"
                         class="sub_menu_item">
-                        <img src="./icons/chat-flow.png" style="height: 30px; width: 30px; object-fit: contain;">
+                        <img src="../../../assets/icons/chat-flow.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Chat Flow</span>
                     </li>
                 </a>
                 <a [routerLink]="'/chatbot/bookings'">
                     <li (click)="setCurrentSubItem('Bookings')" [class.active]="currentSubItem === 'Bookings'"
                         class="sub_menu_item">
-                        <img src="./icons/bookings.png" style="height: 30px; width: 30px; object-fit: contain;">
+                        <img src="../../../assets/icons/bookings.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Bookings</span>
                     </li>
                 </a>
                 <a [routerLink]="'/chatbot/customers'">
                     <li (click)="setCurrentSubItem('Customers')" [class.active]="currentSubItem === 'Customers'"
                         class="sub_menu_item">
-                        <img src="./icons/customers.png" style="height: 30px; width: 30px; object-fit: contain;">
+                        <img src="../../../assets/icons/customers.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Customers</span>
                     </li>
                 </a>
             </ul>
-            <a [routerLink]="'/settings'">
+            <a [routerLink]="'/app-settings'">
                 <li (click)="setCurrentItem('App')" [class.active]="currentItem === 'App'" class="menu_item">
-                    <img src="./icons/app-settings.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/app-settings.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>App Settings</span>
                 </li>
             </a>
             <a [routerLink]="'/profile'">
                 <li (click)="setCurrentItem('Profile')" [class.active]="currentItem === 'Profile'" class="menu_item">
-                    <img src="./icons/profile.png" style="height: 30px; width: 30px; object-fit: contain;">
+                    <img src="../../../assets/icons/profile.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Profile</span>
                 </li>
             </a>
