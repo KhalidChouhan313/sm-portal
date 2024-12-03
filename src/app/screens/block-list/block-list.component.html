@@ -1,4 +1,4 @@
-<main class="content">
+<!-- <main class="content">
     <div class="table_container">
         <div class="header">
             <div class="left">
@@ -110,4 +110,101 @@
             </div>
         </div>
     </div>
-</main>
+</main> -->
+
+<div class="container">
+    <div class="top">
+        <p>
+            Please note that “not sent” , might be because target is not valid mobile or international number or your
+            settings are configured not be send this Message type by SMS.
+            <br>
+            <br>
+            Device sending is limited to avoid bans , these limits are gradually reduced to mitigate that risk.
+        </p>
+        <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M2.93934 18.9393C2.35355 19.5251 2.35355 20.4749 2.93934 21.0607C3.52513 21.6464 4.47487 21.6464 5.06066 21.0607L12 14.1213L18.9393 21.0607C19.5251 21.6464 20.4749 21.6464 21.0607 21.0607C21.6464 20.4749 21.6464 19.5251 21.0607 18.9393L14.1213 12L21.0607 5.06066C21.6464 4.47487 21.6464 3.52513 21.0607 2.93934C20.4749 2.35355 19.5251 2.35355 18.9393 2.93934L12 9.87868L5.06066 2.93934C4.47487 2.35355 3.52513 2.35355 2.93934 2.93934C2.35355 3.52513 2.35355 4.47487 2.93934 5.06066L9.87868 12L2.93934 18.9393Z"
+                    fill="white" />
+            </svg></button>
+        <img src="../../../assets/img/block-warn.png" alt="">
+    </div>
+    <div class="table-top">
+        <div class="tt-left">
+            <button [class.active]="true">
+                All Messages
+            </button>
+            <button>
+                WhatsApp
+            </button>
+            <button>
+                SMS
+            </button>
+        </div>
+        <div class="tt-right">
+            <div class="search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path
+                        d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
+                        fill="#5C5E64" />
+                </svg>
+                <input type="search" placeholder="Search number here..">
+            </div>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
+                        fill="white" />
+                </svg>
+                <span>Add New</span>
+            </button>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <div class="table">
+            <div class="t-item">
+                <div class="ti-item">No</div>
+                <div class="ti-item">User Mobile Number</div>
+                <div class="ti-item">WhatsApp</div>
+                <div class="ti-item">SMS</div>
+                <div class="ti-item">Actions</div>
+            </div>
+            <div class="t-item">
+                <div class="ti-item">1</div>
+                <div class="ti-item">+923070186322</div>
+                <div class="ti-item">
+                    <div class="switch_box" [class.active]="true">
+                    </div>
+                </div>
+                <div class="ti-item">
+                    <div class="switch_box" [class.active]="false">
+                    </div>
+                </div>
+                <div class="ti-item actions">
+                    <button style="--content: 'Delete';">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22" fill="none">
+                            <path
+                                d="M18.0038 21.0541H6.15764C5.70881 21.0541 5.27837 20.8758 4.961 20.5585C4.64363 20.2411 4.46533 19.8106 4.46533 19.3618V4.13104H19.6961V19.3618C19.6961 19.8106 19.5178 20.2411 19.2004 20.5585C18.8831 20.8758 18.4526 21.0541 18.0038 21.0541Z"
+                                stroke="#615E83" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9.5415 15.9764V9.20718" stroke="#615E83" stroke-width="1.3" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M14.6191 15.9764V9.20718" stroke="#615E83" stroke-width="1.3"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M1.08008 4.13104H23.0801" stroke="#615E83" stroke-width="1.3"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.6184 0.745972H9.54143C9.0926 0.745972 8.66216 0.924268 8.34479 1.24164C8.02742 1.55901 7.84912 1.98945 7.84912 2.43828V4.13059H16.3107V2.43828C16.3107 1.98945 16.1324 1.55901 15.815 1.24164C15.4976 0.924268 15.0672 0.745972 14.6184 0.745972Z"
+                                stroke="#615E83" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button style="--content: 'Edit';">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                            <path
+                                d="M21.0139 2.42608C20.6972 2.11071 20.3211 1.86122 19.9074 1.69203C19.4938 1.52283 19.0507 1.43727 18.6037 1.44029C18.1568 1.44332 17.7149 1.53487 17.3035 1.70965C16.8922 1.88444 16.5195 2.13899 16.2071 2.45862L2.72573 15.94L1.08008 22.3599L7.5 20.7133L20.9814 7.23195C21.3011 6.91968 21.5557 6.54713 21.7305 6.13585C21.9054 5.72456 21.997 5.2827 22 4.8358C22.003 4.3889 21.9174 3.94584 21.7482 3.53222C21.5789 3.11861 21.3294 2.74265 21.0139 2.42608V2.42608Z"
+                                stroke="#615E83" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
