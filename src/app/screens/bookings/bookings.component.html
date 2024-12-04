@@ -46,9 +46,12 @@
                     Status
                 </div>
             </div>
-
+            <div *ngIf="loading"
+                style="height: 100px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <app-loader></app-loader>
+            </div>
             <ng-container *ngFor="let booking of bookingsDummy">
-                <div class="table_body">
+                <div *ngIf="!loading" class="table_body">
                     <div class="th_item">
                         <input type="checkbox" [checked]="booking.selected">
                     </div>

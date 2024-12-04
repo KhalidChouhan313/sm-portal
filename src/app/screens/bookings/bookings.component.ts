@@ -36,18 +36,19 @@ export class BookingsComponent implements OnInit {
 
   currentItem: { name: string, icon: string } = this.menuItems[0];
   setCurrentItem = (item: any) => this.currentItem = item
-
+  loading = true;
 
   // bookings
   bookings: any[] = [];
   ngOnInit(): void {
     this.bookingsService.getAllBookings().subscribe(
       (res) => {
-        console.log(res)
         this.bookings = res.data?.map((item: any) => ({ ...item, selected: false }))
+        this.loading = false
       },
       (_) => {
         this.bookings = []
+        this.loading = false
       }
     )
   };

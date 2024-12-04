@@ -4,13 +4,18 @@
         <img src="../../../assets/icons/search.svg" alt="">
         <input type="search" placeholder="Search here..." />
     </div>
-    <div class="right">
-        <img src="" alt="" style="height: 30px; width: 30px;">
+    <ng-container *ngIf="loading">
+        <app-loader></app-loader>
+    </ng-container>
+    <div *ngIf="!loading" class="right">
+        <div class="notification">
+            <img src="../../../assets/icons/notification_nav.svg">
+        </div>
         <div class="user">
-            <div class="dp">{{user?.name?.[0] ?? "I"}}</div>
+            <div class="dp">{{user?.name?.[0]}}</div>
             <div class="user_details">
-                <p>{{user?.name ?? "Muhammad Imtiaz"}}</p>
-                <span>{{user?.phone ?? "03070186322"}}</span>
+                <p>{{user?.name}}</p>
+                <span>{{user?.phone}}</span>
             </div>
         </div>
     </div>

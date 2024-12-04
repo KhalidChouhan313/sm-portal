@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <div class="kanban">Chatbot <strong> / Bookings</strong></div>
+        <div class="kanban">Chatbot <strong> / Customers</strong></div>
         <div class="header_more">
             <button class="filter">
                 Filters
@@ -24,10 +24,7 @@
         </div>
     </div>
     <div class="table_wrapper">
-        <div *ngIf="loading">
-            Loading...
-        </div>
-        <div class="table" *ngIf="!loading">
+        <div class="table">
             <div class="table_header">
                 <div class="th_item">
                     <input type="checkbox">
@@ -48,8 +45,12 @@
                     Actions
                 </div>
             </div>
+            <div *ngIf="loading"
+                style="height: 100px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <app-loader></app-loader>
+            </div>
             <ng-container *ngFor="let customer of customers">
-                <div class="table_body">
+                <div *ngIf="!loading" class="table_body">
                     <div class="th_item">
                         <input type="checkbox">
                     </div>

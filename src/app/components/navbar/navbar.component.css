@@ -82,3 +82,20 @@
     font-weight: 400;
     color: #737791;
 }
+
+.notification {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: rgba(46, 188, 150, 0.20);
+    cursor: pointer;
+}
+
+.notification img {
+    width: 60%;
+    height: 60%;
+}
