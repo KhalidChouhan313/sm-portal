@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat-flow',
@@ -7,100 +7,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class ChatFlowComponent {
   selectedCard: any = null;
-  cards = Array(2)
-    .fill(0)
-    .map((_, i) => ({
-      _id: i,
-      top: 0,
-      left: 0,
-      title: "Random Title",
-      message: "Hey 👋 \n How's going?",
-      buttons: [
-        "Any Vehicle",
-        "Saloon",
-        "Estate"
-      ]
-    }));
   selectedButton: any = null
-  zoomLevel = 1;
-
-  private isDraggingCard = false;
-  private isDraggingCanvas = false;
-  private draggedCardIndex: number | null = null;
-
-  private startX = 0;
-  private startY = 0;
-  private initialX = 0;
-  private initialY = 0;
-
-  private canvasStartScrollLeft = 0;
-  private canvasStartScrollTop = 0;
-
-  @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLDivElement>;
-
-  ngOnInit() {
-    this.randomizeCardPositions();
-  }
-
-  randomizeCardPositions() {
-    const canvasRect = this.canvas.nativeElement.getBoundingClientRect();
-
-    this.cards = this.cards.map((item) => ({
-      ...item,
-      top: Math.trunc(Math.random() * (canvasRect.height / 1.2)),
-      left: Math.trunc(Math.random() * (canvasRect.width / 1.2))
-    }));
-  }
-
-  startDraggingCard(event: MouseEvent, index: number) {
-    event.stopPropagation();
-    this.isDraggingCard = true;
-    this.draggedCardIndex = index;
-    this.startX = event.clientX;
-    this.startY = event.clientY;
-    this.initialX = this.cards[index].left;
-    this.initialY = this.cards[index].top;
-  }
-
-  startCanvasDragging(event: MouseEvent) {
-    if (this.isDraggingCard) return;
-
-    this.isDraggingCanvas = true;
-    this.startX = event.clientX;
-    this.startY = event.clientY;
-
-    this.canvasStartScrollLeft = this.canvas.nativeElement.scrollLeft;
-    this.canvasStartScrollTop = this.canvas.nativeElement.scrollTop;
-
-    this.canvas.nativeElement.classList.add('dragging');
-  }
-
-  onCanvasMouseMove(event: MouseEvent) {
-    if (this.isDraggingCard && this.draggedCardIndex !== null) {
-      // Dragging card logic
-      const dx = event.clientX - this.startX;
-      const dy = event.clientY - this.startY;
-
-      this.cards[this.draggedCardIndex].left = this.initialX + dx;
-      this.cards[this.draggedCardIndex].top = this.initialY + dy;
-    } else if (this.isDraggingCanvas) {
-      // Dragging canvas logic
-      const dx = this.startX - event.clientX;
-      const dy = this.startY - event.clientY;
-
-      this.canvas.nativeElement.scrollLeft = this.canvasStartScrollLeft + dx;
-      this.canvas.nativeElement.scrollTop = this.canvasStartScrollTop + dy;
-    }
-  }
-
-  stopCanvasDragging() {
-    this.isDraggingCanvas = false;
-    this.isDraggingCard = false;
-    this.draggedCardIndex = null;
-
-    this.canvas.nativeElement.classList.remove('dragging');
-  }
-
   selectCard = (item: any) => {
     this.selectedCard = item;
   }
@@ -109,26 +16,87 @@ export class ChatFlowComponent {
     this.selectedButton = item;
   }
 
-  @HostListener('document:mouseup', ['$event'])
-  onMouseUp() {
-    this.stopCanvasDragging();
-  }
-
-  zoomIn() {
-    this.zoomLevel += 0.1;
-    this.applyZoom();
-  }
-
-  zoomOut() {
-    this.zoomLevel = Math.max(0.1, this.zoomLevel - 0.1);
-    this.applyZoom();
-  }
-
-  applyZoom() {
-    const cards = this.canvas.nativeElement.querySelectorAll(".card")
-    cards.forEach((item: HTMLElement) => {
-      item.style.transform = `scale(${this.zoomLevel})`;
-      item.style.transformOrigin = 'top left'; // To zoom from the top-left corner
-    });
-  }
+  cards = [
+    {
+      type: "main",
+      title: "On Click",
+      desc: "A Trigger is an event that starts your Automation. Click to add a Trigger.",
+      id: "m1",
+      linkedTo: ["c1"],
+      bottomText: "Then",
+      triggers: [],
+      buttons: [
+      ]
+    },
+    {
+      type: "conditional",
+      title: "Conditions",
+      desc: "",
+      id: "c1",
+      bottomText: "If Contact doesn’t match any of conditions",
+      linkedTo: [],
+      triggers: [
+        {
+          name: "Example Action 1",
+          linkedTo: ["s1"]
+        },
+        {
+          name: "Example Action 2",
+          linkedTo: ["s2"]
+        },
+      ],
+      buttons: []
+    },
+    {
+      type: "simple",
+      title: "Welcome Message",
+      desc: "🤖 Hi, thanks for getting in touch, to get a quote or make a booking I need to get some details from you. Firstly, please send your pick-up address or send your current location through the WhatsApp Send Your Current Location feature To restart this chat just send the word home at any time",
+      id: "s1",
+      bottomText: "Next Steps",
+      linkedTo: [],
+      triggers: [],
+      buttons: [
+        {
+          name: "Example 1 Again",
+          action: () => console.log(`Example 1 triggered again.`),
+          linkedTo: []
+        }
+      ]
+    },
+    {
+      type: "simple",
+      title: "Welcome Message",
+      desc: "🤖 Hi, thanks for getting in touch, to get a quote or make a booking I need to get some details from you. Firstly, please send your pick-up address or send your current location through the WhatsApp Send Your Current Location feature To restart this chat just send the word home at any time",
+      id: "s2",
+      bottomText: "Next Steps",
+      linkedTo: [],
+      triggers: [],
+      buttons: [
+        {
+          name: "Example 2 Again",
+          action: () => console.log(`Example 2 triggered again.`),
+          linkedTo: ["c2"]
+        }
+      ]
+    },
+    {
+      type: "conditional",
+      title: "Condition 2",
+      desc: "",
+      id: "c2",
+      bottomText: "If Contact doesn’t match any of conditions",
+      linkedTo: [],
+      triggers: [
+        {
+          name: "Condition 2 Example 1",
+          linkedTo: []
+        },
+        {
+          name: "Condition 2 Example 2",
+          linkedTo: []
+        },
+      ],
+      buttons: []
+    },
+  ]
 }
