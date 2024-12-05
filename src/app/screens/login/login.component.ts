@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
               this.authService.user$ = res
               console.log(res)
               localStorage.setItem('token', token);
+              localStorage.setItem("user_details", token)
               const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
               this.router.navigateByUrl(returnUrl);
             },
