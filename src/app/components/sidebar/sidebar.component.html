@@ -72,6 +72,14 @@
                         <span>Customers</span>
                     </li>
                 </a>
+                <a [routerLink]="'/chatbot/bot-settings'">
+                    <li (click)="setCurrentSubItem('Customers')" [class.active]="currentSubItem === 'Bot Settings'"
+                        class="sub_menu_item">
+                        <img src="../../../assets/icons/bot-settings.svg"
+                            style="height: 30px; width: 30px; object-fit: contain;">
+                        <span>Bot Settings</span>
+                    </li>
+                </a>
             </ul>
             <a [routerLink]="'/app-settings'">
                 <li (click)="setCurrentItem('App')" [class.active]="currentItem === 'App'" class="menu_item">

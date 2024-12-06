@@ -11,12 +11,20 @@
         <div class="notification">
             <img src="../../../assets/icons/notification_nav.svg">
         </div>
-        <div class="user">
+        <div class="user" (click)="showLogoutOptions = !showLogoutOptions">
             <div class="dp">{{user?.name?.[0]}}</div>
             <div class="user_details">
                 <p>{{user?.name}}</p>
                 <span>{{user?.phone}}</span>
             </div>
+            <svg style="align-self: flex-start; transition: 250ms;" [class.rotate]="showLogoutOptions"
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6L8 10L12 6" stroke="#151D48" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="logout" *ngIf="showLogoutOptions">
+            <button (click)="logoutHandler()">Logout</button>
         </div>
     </div>
 </header>

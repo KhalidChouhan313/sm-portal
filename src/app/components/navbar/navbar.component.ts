@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   user: any = null;
   title: string = 'Home';
   loading = true;
+  showLogoutOptions = false;
 
   ngOnInit(): void {
     this.checkAuthentication();
@@ -35,10 +36,14 @@ export class NavbarComponent implements OnInit {
         localStorage.setItem('user_details', JSON.stringify(res));
       },
       (err) => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user_details');
-        this.router.navigateByUrl('/login');
+        this.logoutHandler()
       }
     );
+  }
+
+  logoutHandler = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_details');
+    this.router.navigateByUrl('/login');
   }
 }

@@ -26,6 +26,7 @@ import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { AppSettingsComponent } from './screens/app-settings/app-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { BotSettingsComponent } from './screens/bot-settings/bot-settings.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     DoughnutChartComponent,
     AppSettingsComponent,
     LoaderComponent,
+    BotSettingsComponent,
   ],
   imports: [
     BrowserModule,

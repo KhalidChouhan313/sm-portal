@@ -45,12 +45,14 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .user {
     display: flex;
     align-items: center;
     gap: 1rem;
+    cursor: pointer;
 }
 
 .dp {
@@ -98,4 +100,27 @@
 .notification img {
     width: 60%;
     height: 60%;
+}
+
+.rotate {
+    rotate: 180deg;
+    translate: 0 30px;
+}
+
+.logout {
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.logout button {
+    padding: 1rem 6rem;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-radius: .6rem;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 0 10px #caceca;
+    cursor: pointer;
 }
