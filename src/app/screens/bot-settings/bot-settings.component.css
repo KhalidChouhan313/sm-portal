@@ -336,3 +336,210 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.q-l {
+    margin: 2rem 1rem;
+}
+
+.q-l-tags {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.q-l-tags h1,
+.q-l-alt h1 {
+    color: #151D48;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    position: relative;
+    width: fit-content;
+}
+
+.q-l-tags h1::before,
+.q-l-alt h1::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: calc(100% + .5rem);
+    bottom: 1;
+    background: url(../../../assets/warning.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.q-l-t-bot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 9px;
+    border-bottom: 1px solid #E5E5ED;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: .5rem;
+}
+
+.new {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
+    box-shadow: 0px 5px 22px 0px #EEE;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: .3rem .5rem;
+    color: #FFF;
+
+    /* Text/Text Regular 1 */
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.new svg {
+    width: 1.1rem;
+}
+
+.q-l-t-tag {
+    border-radius: 8px;
+    background: rgba(238, 238, 238, 0.70);
+    box-shadow: 0px 5px 22px 0px #EEE;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .3rem .5rem;
+    width: fit-content;
+}
+
+.q-l-t-tag input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    max-width: fit-content;
+}
+
+.q-l-t-tag svg {
+    width: 1.1rem;
+    cursor: pointer;
+}
+
+.q-l-alt {
+    margin-top: 2.5rem;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    border-radius: 9px;
+    border: 1px solid #E5E5ED;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.field input {
+    padding: 1rem;
+    width: 100%;
+
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    color: #737791;
+
+    /* Text/Text Regular 1 */
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.q-l-a-bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.check {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
+
+.check label {
+    color: #151D48;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.36px;
+}
+
+.q-l-a-bot button {
+    padding: .7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    border-radius: 8px;
+    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
+    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 1rem;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.q-l-table {
+    margin-top: 2.5rem;
+}
+
+.q-l-t-header {
+    border-radius: 9.149px;
+    border-bottom: 1.475px solid rgba(238, 238, 238, 0.93);
+    background: #EEE;
+    padding: 1.5rem;
+    display: flex;
+}
+
+.q-l-t-header span {
+    flex: 1;
+    color: #737791;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "Plus Jakarta Sans";
+    font-size: 23.605px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.472px;
+    text-align: center;
+}
+
+.q-l-t-header span:nth-child(2) {
+    flex: 4;
+}
