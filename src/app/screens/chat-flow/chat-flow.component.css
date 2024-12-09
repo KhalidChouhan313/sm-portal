@@ -494,3 +494,34 @@
     font-weight: 700;
     border-radius: .5rem;
 }
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    gap: .6rem;
+    background: rgba(46, 188, 150, 0.30);
+    padding: 0 1rem;
+}
+
+.input input,
+.input input::placeholder {
+    padding: .7rem 0;
+    color: #1A9096;
+    font-family: Poppins;
+    font-size: .6rem;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px;
+    /* 100% */
+}
