@@ -6,5 +6,48 @@ import { Component } from '@angular/core';
   styleUrls: ['./broadcast-whatsapp.component.css']
 })
 export class BroadcastWhatsappComponent {
+  drafts = [
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      contacts: "B T PF T",
+      delay: "1 Minute",
+      messages: "Book the taxi for your trip, because it will take you so long.",
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      contacts: "B T PF T",
+      delay: "1 Minute",
+      messages: "Book the taxi for your trip, because it will take you so long.",
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      contacts: "B T PF T",
+      delay: "1 Minute",
+      messages: "Book the taxi for your trip, because it will take you so long.",
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      contacts: "B T PF T",
+      delay: "1 Minute",
+      messages: "Book the taxi for your trip, because it will take you so long.",
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      contacts: "B T PF T",
+      delay: "1 Minute",
+      messages: "Book the taxi for your trip, because it will take you so long.",
+      status: "Completed"
+    }
+  ]
 
+  addMode = false;
 }

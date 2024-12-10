@@ -48,4 +48,6 @@ export class BroadcastSmsComponent {
       status: "Completed"
     }
   ]
+
+  addMode = false;
 }

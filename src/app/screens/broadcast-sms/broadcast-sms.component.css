@@ -79,6 +79,7 @@
     border-bottom: 1px solid #EEE;
     background: #FFF;
     white-space: nowrap;
+    align-items: center;
 }
 
 .ti-item.message {
@@ -130,6 +131,197 @@
     gap: 71px;
     color: #7B7B7B;
     font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.add-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.add-top h1 {
+    color: #030303;
+    font-family: Poppins;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    /* 39.2px */
+}
+
+.btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.btns button {
+    border-radius: 8px;
+    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
+    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
+    padding: .75rem;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.btns button svg {
+    width: 2rem;
+    aspect-ratio: 1;
+}
+
+.setup {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    min-width: 300px;
+}
+
+.left-main-head {
+    padding: 1rem;
+    margin-left: -1.5rem;
+    text-align: center;
+    color: #030303;
+    font-family: Poppins;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    /* 33.6px */
+    background: #EEE;
+}
+
+.fields {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.inp-con {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.inp-con label {
+    color: #030303;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    /* 28px */
+}
+
+.inp-con input,
+.inp-con select,
+.inp-con textarea {
+    border-radius: 9px;
+    border: 1px solid #E5E5ED;
+    padding: 1rem;
+    outline: none;
+}
+
+.inp-con textarea {
+    height: 120px;
+    resize: none;
+}
+
+.mobile-con {
+    min-width: 300px;
+    flex: 1.3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile {
+    width: 60%;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-header {
+    display: flex;
+    gap: 1.5rem;
+    background: #EEE;
+    align-items: center;
+    padding: 1.25rem;
+}
+
+.c-header h1 {
+    color: #030303;
+    font-family: Poppins;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    /* 33.6px */
+}
+
+.c-header p {
+    color: #030303;
+    font-size: .8rem;
+    font-style: normal;
+    line-height: normal;
+    gap: .4rem;
+    display: flex;
+}
+
+.c-list {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.c-list div {
+    padding: 1rem;
+    text-align: center;
+    color: #737791;
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.412px;
+    border-radius: 5px;
+    border-bottom: 0.5px solid #EEE;
+    background: #FFF;
+}
+
+.badge {
+    padding: .5rem .7rem;
+    border-radius: 10px;
+    background: #24CC63;
+    color: #FFF;
+    font-size: 1rem;
+    width: fit-content;
+    margin: 0 auto;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
