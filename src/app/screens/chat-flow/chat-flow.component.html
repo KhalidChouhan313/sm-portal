@@ -57,8 +57,8 @@
             <div class="card" [ngClass]="card.type" *ngFor="let card of cards;let i = index;" [id]="card.id"
                 style="max-width: 25%;">
                 <div class="card_top">
-                    <svg *ngIf="card.type === 'simple'" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                        viewBox="0 0 30 30" fill="none">
+                    <svg *ngIf="card.type === 'simple' || card.type === 'simple-input'"
+                        xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                         <circle cx="15" cy="15" r="15" fill="#24CC63" />
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M20.1084 18.5676C19.8899 19.186 19.0216 19.6975 18.3292 19.8471C17.8552 19.9477 17.237 20.0273 15.1543 19.1642C12.815 18.195 9.56664 14.7428 9.56664 12.4454C9.56664 11.2758 10.241 9.91398 11.4201 9.91398C11.9875 9.91398 12.1126 9.92505 12.2993 10.3729C12.5177 10.9006 13.0506 12.2006 13.1141 12.3339C13.376 12.8805 12.8476 13.2006 12.4642 13.6766C12.3419 13.8198 12.2032 13.9747 12.3582 14.2413C12.5123 14.5024 13.0452 15.3709 13.8283 16.0681C14.8398 16.9693 15.66 17.257 15.9537 17.3794C16.1721 17.4701 16.4331 17.4489 16.5926 17.2785C16.7947 17.06 17.0458 16.6975 17.3014 16.3403C17.4818 16.0846 17.7111 16.0527 17.9513 16.1433C18.1135 16.1996 20.1754 17.1571 20.2624 17.3104C20.3268 17.4219 20.3268 17.9493 20.1084 18.5676ZM14.8343 5.76904H14.8298C9.83309 5.76904 5.76904 9.83432 5.76904 14.8325C5.76904 16.8144 6.40802 18.6531 7.49473 20.1445L6.36542 23.5123L9.84851 22.3993C11.2814 23.3476 12.9917 23.896 14.8343 23.896C19.831 23.896 23.896 19.8307 23.896 14.8325C23.896 9.83432 19.831 5.76904 14.8343 5.76904Z"
@@ -67,7 +67,7 @@
                     <img src="../../../assets/icons/main-card.png" *ngIf="card.type === 'main'" alt="">
                     <img src="../../../assets/icons/condition-card.png" *ngIf="card.type === 'conditional'" alt="">
                     <div class="top_dets">
-                        <span *ngIf="card.type === 'simple'">WhatsApp</span>
+                        <span *ngIf="card.type === 'simple'|| card.type === 'simple-input'">WhatsApp</span>
                         <h1>{{card.title}}</h1>
                     </div>
                 </div>
