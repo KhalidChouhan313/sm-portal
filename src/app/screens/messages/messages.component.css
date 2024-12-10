@@ -102,6 +102,7 @@
 .ic_top h4 {
     color: #737791;
     font-family: Poppins;
+text-transform: capitalize;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;

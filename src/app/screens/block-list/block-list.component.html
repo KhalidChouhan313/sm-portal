@@ -52,8 +52,9 @@
             </div>
             <div class="inp_con">
                 <label for="">Target</label>
-                <select>
+                <select [(ngModel)]="type">
                     <option value="">Select Target</option>
+                    <option value="both">Both</option>
                     <option value="sms">SMS</option>
                     <option value="whatsapp">WhatsApp</option>
                 </select>
@@ -81,15 +82,15 @@
                     <div class="ti-item">{{it?.phone}}</div>
                     <div class="ti-item">
                         <div class="switch_box" [class.active]="it?.whatsapp"
-                            (click)="blockWhatsApp(!it.whatsapp, it.user_id, i)">
+                            (click)="blockWhatsApp(!it.whatsapp, it._id, i)">
                         </div>
                     </div>
                     <div class="ti-item">
-                        <div class="switch_box" [class.active]="it?.sms" (click)="blockSms(!it.sms, it.user_id, i)">
+                        <div class="switch_box" [class.active]="it?.sms" (click)="blockSms(!it.sms, it._id, i)">
                         </div>
                     </div>
                     <div class="ti-item actions">
-                        <button style="--content: 'Delete';" (click)="deleteBlacklistUser(it.user_id, i)">
+                        <button style="--content: 'Delete';" (click)="deleteBlacklistUser(it._id, i)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22"
                                 fill="none">
                                 <path
@@ -108,7 +109,7 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </button>
-                        <button style="--content: 'Edit';">
+                        <!-- <button style="--content: 'Edit';">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"
                                 fill="none">
                                 <path
@@ -116,7 +117,7 @@
                                     stroke="#615E83" stroke-width="1.3" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </ng-container>

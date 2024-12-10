@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
           this.authService.authenticateUser(token).subscribe(
             (res) => {
               this.authService.user$ = res
-              console.log(res)
+              console.log(res, token)
               localStorage.setItem('token', token);
-              localStorage.setItem("user_details", token)
+              localStorage.setItem("user_details", JSON.stringify({ _id: res._id }))
               const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
               this.router.navigateByUrl(returnUrl);
             },

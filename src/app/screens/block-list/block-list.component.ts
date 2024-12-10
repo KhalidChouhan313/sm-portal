@@ -19,7 +19,6 @@ export class BlockListComponent {
   ]
   tab: any = this.tabs[0];
   showBanner = true;
-
   showAddCon = false
   currentUser: any;
   blacklist = [];
@@ -58,8 +57,8 @@ export class BlockListComponent {
     let obj = {
       user_id: this.currentUser._id,
       phone: this.phone,
-      whatsapp: this.type === "whatsapp" ? true : false,
-      sms: this.type === "sms" ? true : false
+      whatsapp: this.type === "whatsapp" || this.type === "both" ? true : false,
+      sms: this.type === "sms" || this.type === "both" ? true : false,
     }
     this.BS.setBlacklistUser(obj).subscribe(usr => {
       this.phone = '';
