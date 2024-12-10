@@ -43,6 +43,16 @@ const routes: Routes = [
       import('./screens/bot-settings/bot-settings.module').then((m) => m.BotSettingsModule),
   },
   {
+    path: 'broadcast-sms',
+    loadChildren: () =>
+      import('./screens/broadcast-sms/broadcast-sms.module').then((m) => m.broadcastSmsModule),
+  },
+  {
+    path: 'broadcast-whatsapp',
+    loadChildren: () =>
+      import('./screens/broadcast-whatsapp/broadcast-whatsapp.module').then((m) => m.broadcastWhatsappModule),
+  },
+  {
     path: 'app-settings',
     loadChildren: () =>
       import('./screens/app-settings/app-settings.module').then((m) => m.AppSettingsModule),

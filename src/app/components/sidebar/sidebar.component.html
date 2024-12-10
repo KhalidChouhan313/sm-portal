@@ -32,7 +32,7 @@
                     <span>Devices</span>
                 </li>
             </a>
-            <a [routerLink]="'/chatbot/analytics'">
+            <a [routerLink]="'/chatbot/analytics'" (click)="setCurrentSubItem('Analytics')">
                 <li (click)="setCurrentItem('Chatbots')" [class.active]="currentItem === 'Chatbots'" class="menu_item">
                     <img src="../../../assets/icons/chatbots.png"
                         style="height: 30px; width: 30px; object-fit: contain;">
@@ -78,6 +78,32 @@
                         <img src="../../../assets/icons/bot-settings.svg"
                             style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Bot Settings</span>
+                    </li>
+                </a>
+            </ul>
+            <a [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')">
+                <li (click)="setCurrentItem('Broadcast')" [class.active]="currentItem === 'Broadcast'"
+                    class="menu_item">
+                    <img src="../../../assets/icons/app-settings.png"
+                        style="height: 30px; width: 30px; object-fit: contain;">
+                    <span>Broadcast</span>
+                </li>
+            </a>
+            <ul *ngIf="currentItem === 'Broadcast'" class="sub_menu">
+                <a [routerLink]="'/broadcast-sms'">
+                    <li (click)="setCurrentSubItem('SMS')" [class.active]="currentSubItem === 'SMS'"
+                        class="sub_menu_item">
+                        <img src="../../../assets/icons/analytics.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
+                        <span>SMS</span>
+                    </li>
+                </a>
+                <a [routerLink]="'/broadcast-whatsapp'">
+                    <li (click)="setCurrentSubItem('WhatsApp')" [class.active]="currentSubItem === 'WhatsApp'"
+                        class="sub_menu_item">
+                        <img src="../../../assets/icons/analytics.png"
+                            style="height: 30px; width: 30px; object-fit: contain;">
+                        <span>WhatsApp</span>
                     </li>
                 </a>
             </ul>
