@@ -79,6 +79,11 @@
     border-bottom: 1px solid #EEE;
     background: #FFF;
     white-space: nowrap;
+    align-items: center;
+}
+
+.t-item.template {
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
 }
 
 .ti-item.message {
@@ -192,6 +197,9 @@
     gap: 1rem;
     flex: 1;
     min-width: 300px;
+    max-width: 450px;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .left-main-head {
@@ -231,6 +239,12 @@
     /* 28px */
 }
 
+.inp-con label span {
+    color: #888;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
 .inp-con input,
 .inp-con select,
 .inp-con textarea {
@@ -255,60 +269,7 @@
 
 .mobile {
     width: 60%;
-}
-
-.contacts {
-    display: flex;
-    flex-direction: column;
-}
-
-.c-header {
-    display: flex;
-    gap: 1.5rem;
-    background: #EEE;
-    align-items: center;
-    padding: 1.25rem;
-}
-
-.c-header h1 {
-    color: #030303;
-    font-family: Poppins;
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-    /* 33.6px */
-}
-
-.c-header p {
-    color: #030303;
-    font-size: .8rem;
-    font-style: normal;
-    line-height: normal;
-    gap: .4rem;
-    display: flex;
-}
-
-.c-list {
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.c-list div {
-    padding: 1rem;
-    text-align: center;
-    color: #737791;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.412px;
-    border-radius: 5px;
-    border-bottom: 0.5px solid #EEE;
-    background: #FFF;
+    max-width: 300px;
 }
 
 .badge {

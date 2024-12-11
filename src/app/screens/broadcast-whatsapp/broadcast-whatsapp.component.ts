@@ -49,5 +49,39 @@ export class BroadcastWhatsappComponent {
     }
   ]
 
-  addMode = false;
+  templates = [
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      lastEdit: new Date().toLocaleString(),
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      lastEdit: new Date().toLocaleString(),
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      lastEdit: new Date().toLocaleString(),
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      lastEdit: new Date().toLocaleString(),
+      status: "Completed"
+    },
+    {
+      date: new Date().toLocaleString(),
+      name: "LesGo",
+      lastEdit: new Date().toLocaleString(),
+      status: "Completed"
+    }
+  ]
+
+  showTemplates = false;
+  addMode = true;
 }
