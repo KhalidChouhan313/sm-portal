@@ -51,6 +51,13 @@
                 <div class="e_others">
                     <textarea class="e_card_message" placeholder="Type message.." [(ngModel)]="normal_msg"
                         rows="20"></textarea>
+                    <div class="btns">
+                        <button (click)="selectButton(buttonText)" *ngFor="let buttonText of selectedCard?.buttons">
+                            {{buttonText}}
+                            <img src="../../../assets/icons/edit.svg" alt="">
+                        </button>
+                        <button (click)="selectButton('Title')" class="add">+ Add Button</button>
+                    </div>
                 </div>
                 <img src="../../../assets/img/warning.png" alt="">
                 <button [disabled]="isSaving" class="save-button" (click)="setMessage()">Save</button>
