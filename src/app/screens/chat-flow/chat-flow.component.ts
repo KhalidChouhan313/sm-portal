@@ -121,6 +121,7 @@ export class ChatFlowComponent implements OnInit {
   messageList = [];
   currMessage: any;
   currIndex: number = -1;
+  isSaving = false;
 
   constructor(
     private BS: BotService,
@@ -231,6 +232,7 @@ export class ChatFlowComponent implements OnInit {
     //   }
     //   keywords.push(kObj)
     // });
+    this.isSaving = true
     let obj = {
       _id: this.currMessage._id,
       msg_name: this.msgName,
@@ -242,6 +244,7 @@ export class ChatFlowComponent implements OnInit {
       this.messageList[this.currIndex] = result
       this.isEdit = false;
       this.currIndex = -1;
+      this.isSaving = false;
       this.ngOnInit();
       // this.keywordList = [];
       // this.messageList[this.currIndex].keywords.map(word => {
