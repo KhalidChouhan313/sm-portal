@@ -20,14 +20,14 @@
             </a>
             <a [routerLink]="'/block-list'">
                 <li (click)="setCurrentItem('Blocked')" [class.active]="currentItem === 'Blocked'" class="menu_item">
-                    <img src="../../../assets/icons/blocked-list.png"
+                    <img src="../../../assets/icons/blocked-list.svg"
                         style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Blocked List</span>
                 </li>
             </a>
             <a [routerLink]="'/devices'">
                 <li (click)="setCurrentItem('Devices')" [class.active]="currentItem === 'Devices'" class="menu_item">
-                    <img src="../../../assets/icons/devices.png"
+                    <img src="../../../assets/icons/devices.svg"
                         style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Devices</span>
                 </li>
@@ -43,7 +43,7 @@
                 <a [routerLink]="'/chatbot/analytics'">
                     <li (click)="setCurrentSubItem('Analytics')" [class.active]="currentSubItem === 'Analytics'"
                         class="sub_menu_item">
-                        <img src="../../../assets/icons/analytics.png"
+                        <img src="../../../assets/icons/analytics.svg"
                             style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Analytics</span>
                     </li>
@@ -59,7 +59,7 @@
                 <a [routerLink]="'/chatbot/bookings'">
                     <li (click)="setCurrentSubItem('Bookings')" [class.active]="currentSubItem === 'Bookings'"
                         class="sub_menu_item">
-                        <img src="../../../assets/icons/bookings.png"
+                        <img src="../../../assets/icons/bookings.svg"
                             style="height: 30px; width: 30px; object-fit: contain;">
                         <span>Bookings</span>
                     </li>
@@ -84,7 +84,7 @@
             <a [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')">
                 <li (click)="setCurrentItem('Broadcast')" [class.active]="currentItem === 'Broadcast'"
                     class="menu_item">
-                    <img src="../../../assets/icons/app-settings.png"
+                    <img src="../../../assets/icons/broadcast.svg"
                         style="height: 30px; width: 30px; object-fit: contain;">
                     <span>Broadcast</span>
                 </li>
@@ -93,7 +93,7 @@
                 <a [routerLink]="'/broadcast-sms'">
                     <li (click)="setCurrentSubItem('SMS')" [class.active]="currentSubItem === 'SMS'"
                         class="sub_menu_item">
-                        <img src="../../../assets/icons/analytics.png"
+                        <img src="../../../assets/icons/broadcast-sms.svg"
                             style="height: 30px; width: 30px; object-fit: contain;">
                         <span>SMS</span>
                     </li>
@@ -101,7 +101,7 @@
                 <a [routerLink]="'/broadcast-whatsapp'">
                     <li (click)="setCurrentSubItem('WhatsApp')" [class.active]="currentSubItem === 'WhatsApp'"
                         class="sub_menu_item">
-                        <img src="../../../assets/icons/analytics.png"
+                        <img src="../../../assets/icons/broadcast-w.svg"
                             style="height: 30px; width: 30px; object-fit: contain;">
                         <span>WhatsApp</span>
                     </li>

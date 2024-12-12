@@ -432,3 +432,20 @@
     outline: none;
     padding: .75rem;
 }
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 8px;
+    border: 2px dashed #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

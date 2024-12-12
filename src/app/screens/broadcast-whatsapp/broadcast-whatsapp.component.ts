@@ -83,7 +83,7 @@ export class BroadcastWhatsappComponent {
   ]
 
   showTemplates = false;
-  addMode = false;
+  addMode = true;
   showDateAndTimeModal = false;
   @Input() newBroadcastDesc = ""
 }
