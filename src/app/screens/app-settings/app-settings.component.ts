@@ -24,7 +24,7 @@ export class AppSettingsComponent {
       icon: "../../../assets/icons/help.png"
     },
   ]
-  currentTab: any = this.tabs[0];
+  currentTab: any = this.tabs[1];
   setCurrentTab = (item) => this.currentTab = item;
 
   togglesData = [

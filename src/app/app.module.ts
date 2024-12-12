@@ -27,6 +27,9 @@ import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-cha
 import { AppSettingsComponent } from './screens/app-settings/app-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BotSettingsComponent } from './screens/bot-settings/bot-settings.component';
+import { BroadcastSmsComponent } from './screens/broadcast-sms/broadcast-sms.component';
+import { BroadcastWhatsappComponent } from './screens/broadcast-whatsapp/broadcast-whatsapp.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { BotSettingsComponent } from './screens/bot-settings/bot-settings.compon
     AppSettingsComponent,
     LoaderComponent,
     BotSettingsComponent,
+    BroadcastSmsComponent,
+    BroadcastWhatsappComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

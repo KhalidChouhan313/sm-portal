@@ -11,6 +11,7 @@ import { AuthService } from 'src/services/auth/auth.service';
 export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private adminServices: AdminService) { }
   devices = []
+  showFilters = false
 
   ngOnInit(): void {
     this.adminServices.getDevices().subscribe(

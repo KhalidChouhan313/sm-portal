@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <div class="kanban">Chatbot <strong> / Bookings</strong></div>
+        <div class="kanban">Chatbot <strong> / Chat Flow</strong></div>
         <button>
             <img src="../../../assets/save.png">
             <span>Save Changes</span>
@@ -46,14 +46,25 @@
         </div>
         <div *ngIf="isEdit" class="message-edit">
             <div class="message-edit-box">
+                <input type="text" readonly class="e_card_title" [value]="currMessage.msg_name">
                 <!-- <input class="edit-input"> -->
-                <textarea class="edit-textarea" placeholder="Type message.." [(ngModel)]="normal_msg"
-                    rows="20"></textarea>
-                <button class="save-button" (click)="setMessage()">Save</button>
-                <button class="cancel-button" (click)="cancelEdit()">Cancel</button>
+                <div class="e_others">
+                    <textarea class="e_card_message" placeholder="Type message.." [(ngModel)]="normal_msg"
+                        rows="20"></textarea>
+                    <div class="btns">
+                        <button (click)="selectButton(buttonText)" *ngFor="let buttonText of selectedCard?.buttons">
+                            {{buttonText}}
+                            <img src="../../../assets/icons/edit.svg" alt="">
+                        </button>
+                        <button (click)="selectButton('Title')" class="add">+ Add Button</button>
+                    </div>
+                </div>
+                <img src="../../../assets/img/warning.png" alt="">
+                <button [disabled]="isSaving" class="save-button" (click)="setMessage()">Save</button>
+                <button [disabled]="isSaving" class="cancel-button" (click)="cancelEdit()">Cancel</button>
             </div>
         </div>
-        <div class="cards-tree" style="flex-wrap: wrap;">
+        <div class="cards-tree">
             <div class="card" [ngClass]="card.type" *ngFor="let card of cards;let i = index;" [id]="card.id"
                 style="max-width: 25%;">
                 <div class="card_top">
@@ -88,16 +99,16 @@
                     </div> -->
                 </div>
                 <div *ngIf="card.bottomText" class="bottom-text">
-                    <a *ngIf="i != currIndex" (click)="openMessage(i)">Edit</a>
-                    <a *ngIf="i == currIndex" (click)="cancelEdit()">Cancel</a>
+                    <a *ngIf="i != currIndex" style="cursor: pointer;" (click)="openMessage(i)">Edit</a>
+                    <a *ngIf="i == currIndex" style="cursor: pointer;" (click)="cancelEdit()">Cancel</a>
                 </div>
-                <!-- <div *ngIf="card.linkedTo.length > 0" class="link-line" [attr.data-linkTo]="card.linkedTo[0]">
+                <div *ngIf="card.linkedTo.length > 0" class="link-line" [attr.data-linkTo]="card.linkedTo[0]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="115" height="124" viewBox="0 0 115 124" fill="none">
                         <path class="path"
                             d="M0.333333 120.5C0.333333 121.973 1.52724 123.167 3 123.167C4.47276 123.167 5.66667 121.973 5.66667 120.5C5.66667 119.027 4.47276 117.833 3 117.833C1.52724 117.833 0.333333 119.027 0.333333 120.5ZM109.333 3C109.333 4.47276 110.527 5.66667 112 5.66667C113.473 5.66667 114.667 4.47276 114.667 3C114.667 1.52724 113.473 0.333333 112 0.333333C110.527 0.333333 109.333 1.52724 109.333 3ZM3.17207 120.969L11.7763 117.816L11.4322 116.877L2.82793 120.031L3.17207 120.969ZM109.257 3.5H112V2.5H109.257V3.5ZM50.7831 61.9743C50.7831 29.6798 76.9629 3.5 109.257 3.5V2.5C76.4106 2.5 49.7831 29.1275 49.7831 61.9743H50.7831ZM11.7763 117.816C35.2058 109.228 50.7831 86.928 50.7831 61.9743H49.7831C49.7831 86.5084 34.4677 108.434 11.4322 116.877L11.7763 117.816Z"
                             fill="#5A677D" />
                     </svg>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

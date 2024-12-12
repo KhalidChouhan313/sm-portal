@@ -38,6 +38,7 @@ export class DevicesComponent {
   ]
 
   current: any = this.devices?.[0]
+  showFilters = false;
 
   setCurrent = (id: number) => {
     this.current = this.devices.find(i => i.id === id)
