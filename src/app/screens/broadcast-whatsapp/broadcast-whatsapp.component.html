@@ -83,7 +83,7 @@
                     </div>
                     <div class="inp-con message">
                         <label for="">Message</label>
-                        <textarea placeholder="Type message here"></textarea>
+                        <textarea [(ngModel)]="newBroadcastDesc" placeholder="Type message here"></textarea>
                     </div>
                     <div class="inp-con">
                         <label>Footer <span>Optional</span></label>
@@ -101,7 +101,10 @@
                 </div>
             </div>
             <div class="mobile-con">
-                <img src="../../../assets/w-mobile.png" alt="" class="mobile">
+                <div class="mobile-wrapper">
+                    <img src="../../../assets/w-mobile.png" alt="" class="mobile">
+                    <div class="mobile-text">{{newBroadcastDesc}}</div>
+                </div>
             </div>
         </div>
     </ng-container>

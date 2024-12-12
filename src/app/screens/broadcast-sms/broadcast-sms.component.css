@@ -594,9 +594,31 @@
     align-items: center;
 }
 
-.mobile {
+.mobile-wrapper {
     width: 60%;
     max-width: 300px;
+    position: relative;
+    container-type: inline-size;
+}
+
+.mobile {
+    width: 100%;
+}
+
+.mobile-wrapper div {
+    background-color: white;
+    position: absolute;
+    bottom: 15.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4cqi;
+    width: 83%;
+    height: 33%;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-wrap: wrap;
+    overflow: auto;
+    line-break: auto;
 }
 
 .badge {

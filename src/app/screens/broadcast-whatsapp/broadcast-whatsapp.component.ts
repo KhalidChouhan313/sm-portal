@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-broadcast-whatsapp',
@@ -85,4 +85,5 @@ export class BroadcastWhatsappComponent {
   showTemplates = false;
   addMode = false;
   showDateAndTimeModal = false;
+  @Input() newBroadcastDesc = ""
 }

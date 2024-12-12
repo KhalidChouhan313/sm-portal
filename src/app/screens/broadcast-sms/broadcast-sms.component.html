@@ -67,12 +67,15 @@
                     </div>
                     <div class="inp-con message">
                         <label for="">Message</label>
-                        <textarea placeholder=" Type message here"></textarea>
+                        <textarea [(ngModel)]="newBroadcastDesc" placeholder=" Type message here"></textarea>
                     </div>
                 </div>
             </div>
             <div class="mobile-con">
-                <img src="../../../assets/mobile.png" alt="" class="mobile">
+                <div class="mobile-wrapper">
+                    <img src="../../../assets/mobile.png" alt="" class="mobile">
+                    <div class="mobile-text">{{newBroadcastDesc}}</div>
+                </div>
             </div>
             <div class="contacts">
                 <div class="c-header">
