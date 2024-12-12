@@ -122,7 +122,7 @@
                         <span>Enter a new tag</span>
                     </button>
                     <div class="q-l-t-tag">
-                        <input type="text" value="cbl400">
+                        <input type="text" [(ngModel)]="userQuery">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                             <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="#737791" />
                             <path
@@ -141,14 +141,16 @@
                             d="M23.869 2.13102C23.5056 1.76922 23.0742 1.483 22.5996 1.28889C22.125 1.09477 21.6167 0.996618 21.1039 1.00009C20.5912 1.00356 20.0842 1.10859 19.6123 1.30911C19.1403 1.50963 18.7128 1.80167 18.3544 2.16836L2.88797 17.6348L1 25L8.36522 23.111L23.8316 7.64454C24.1984 7.28629 24.4906 6.85888 24.6911 6.38704C24.8917 5.91519 24.9968 5.40827 25.0003 4.89557C25.0037 4.38287 24.9056 3.87456 24.7114 3.40005C24.5172 2.92553 24.2309 2.49421 23.869 2.13102V2.13102Z"
                             stroke="#615E83" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <input type="text" placeholder="Enter alternative user query">
+                    <input type="text" [(ngModel)]="botQuery" placeholder="Enter alternative user query">
                 </div>
                 <div class="q-l-a-bot">
                     <div class="check">
-                        <input type="checkbox" name="airport" id="airport">
+                        <input type="checkbox" [(ngModel)]="isAirport" name="airport" id="airport">
                         <label for="airport">Airpot Address</label>
                     </div>
-                    <button>Update</button>
+                    <button [disabled]="
+              isEditQuery || !userQuery.length || !botQuery
+            " (click)="addAirport()">Add</button>
                 </div>
             </div>
 
@@ -156,6 +158,20 @@
                 <div class="q-l-t-header">
                     <span>Bot Query</span>
                     <span>User Queries</span>
+                </div>
+                <div class="query-code-list">
+                    <div style="display: flex; flex-wrap: wrap">
+                        <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
+                            <div class="col-md-3" style="border-right: 1px solid #c1c1c1;">{{qry.bot_query}}</div>
+                            <div class="col-md-8"
+                                style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                                <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
+                            </div>
+                            <a style="display: flex;justify-content: center;align-items: center;"
+                                (click)="deleteAirport(i)"><img style="height: 1.2rem; margin: 0px 5px"
+                                    src="../../../assets/icons/remove.png" /></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
