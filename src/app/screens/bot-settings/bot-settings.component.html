@@ -9,13 +9,14 @@
         <div class="ap-si">
             <div class="ap-si-c">
                 <h1>Additional Price</h1>
-                <input type="number" value="0">
-                <button>Update</button>
+                <input type="number" [(ngModel)]="additionalPrice" value="0">
+                <button [disabled]="additionalPrice < 0 || additionalPrice == null"
+                    (click)="updateAdditionalPrice()">Update</button>
             </div>
             <div class="ap-si-c">
                 <h1>Site ID</h1>
-                <input type="number" value="0">
-                <button>Update</button>
+                <input [(ngModel)]="siteId" type="number" value="0">
+                <button [disabled]="siteId <0 || additionalPrice == null" (click)="updateSiteID()">Update</button>
             </div>
         </div>
         <div class="c-bg-heading">
@@ -26,34 +27,36 @@
                 <div class="r-a-c-p-field">
                     <label>Pickup Center Point</label>
                     <div class="inp-con">
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="pickupLatitude" type="number">
                         <span>:</span>
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="pickupLongitude" type="number">
                     </div>
                 </div>
                 <div class="r-a-c-p-field">
                     <label>Radius</label>
                     <div class="inp-con">
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="pickupRadius" type="number">
                     </div>
                 </div>
                 <div class="r-a-c-p-field">
                     <label>Destination Center Point</label>
                     <div class="inp-con">
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="destinationLatitude" type="number">
                         <span>:</span>
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="destinationLongitude" type="number">
                     </div>
                 </div>
                 <div class="r-a-c-p-field">
                     <label>Radius</label>
                     <div class="inp-con">
-                        <input value="52.23232" type="number">
+                        <input [(ngModel)]="destinationRadius" type="number">
                     </div>
                 </div>
             </div>
             <div class="r-a-c-p-right">
-                <button>Update</button>
+                <button
+                    [disabled]="!pickupRadius || !pickupLongitude || !pickupLatitude ||!destinationRadius || !destinationLongitude || !destinationLatitude"
+                    (click)="updateCenterPoint()">Update</button>
             </div>
         </div>
         <div class="c-bg-heading">
@@ -63,19 +66,19 @@
             <div class="p-c-l-i">
                 <div class="p-c-l-i-con">
                     <label for="">Outcode:</label>
-                    <input type="number">
+                    <input [(ngModel)]="outcode" type="text">
                 </div>
                 <div class="p-c-l-i-con">
                     <label for="">Sector:</label>
-                    <input type="number">
+                    <input [(ngModel)]="sector" type="text">
                 </div>
                 <div class="p-c-l-i-con">
                     <label for="">Unit:</label>
-                    <input type="number">
+                    <input [(ngModel)]="unit" type="text">
                 </div>
             </div>
             <div class="p-c-l-btns">
-                <button class="new">
+                <button class="new" [disabled]="isEditCode || !outcode" (click)="addZipcode()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M0 1.22294L0.877727 0.345215H7.89955L8.77727 1.22294V8.24476L7.89955 9.12249H0.877727L0 8.24476V1.22294ZM1.75545 2.10067V7.36703H7.02182V2.10067H1.75545ZM11.4105 0.345215L10.5327 1.22294V8.24476L11.4105 9.12249H18.4323L19.31 8.24476V1.22294L18.4323 0.345215H11.4105ZM12.2882 7.36703V2.10067H17.5545V7.36703H12.2882ZM15.7991 19.6552H14.0436V16.1443H10.5327V14.3889H14.0436V10.8779H15.7991V14.3889H19.31V16.1443H15.7991V19.6552ZM0.877727 10.8779L0 11.7557V18.7775L0.877727 19.6552H7.89955L8.77727 18.7775V11.7557L7.89955 10.8779H0.877727ZM1.75545 17.8998V12.6334H7.02182V17.8998H1.75545Z"
@@ -90,10 +93,10 @@
                 </button>
             </div>
             <div class="p-c-l-keywords">
-                <div *ngFor="let code of codes" class="code">
-                    <span>{{code.toLowerCase()}}</span>
-                    <svg (click)="removeCode(code)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="25" viewBox="0 0 24 25" fill="none">
+                <div *ngFor="let code of zipcodeList; let i = index" class="code">
+                    <span (click)="selectCode(i)">{{ code.outcode }}{{ code.sector }}{{ code.unit }}</span>
+                    <svg (click)="deleteCode(i)" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="25" viewBox="0 0 24 25" fill="none">
                         <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="white" />
                         <path
                             d="M6.27748 16.8827C5.90751 17.2527 5.90751 17.8526 6.27748 18.2225C6.64745 18.5925 7.24729 18.5925 7.61726 18.2225L12 13.8398L16.3827 18.2225C16.7527 18.5925 17.3525 18.5925 17.7225 18.2225C18.0925 17.8526 18.0925 17.2527 17.7225 16.8827L13.3398 12.5L17.7225 8.11726C18.0925 7.74729 18.0925 7.14745 17.7225 6.77748C17.3525 6.40751 16.7527 6.40751 16.3827 6.77748L12 11.1602L7.61726 6.77748C7.24729 6.40751 6.64745 6.40751 6.27748 6.77748C5.90751 7.14745 5.90751 7.74729 6.27748 8.11726L10.6602 12.5L6.27748 16.8827Z"
@@ -119,7 +122,7 @@
                         <span>Enter a new tag</span>
                     </button>
                     <div class="q-l-t-tag">
-                        <input type="text" value="cbl400">
+                        <input type="text" [(ngModel)]="userQuery">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                             <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="#737791" />
                             <path
@@ -138,14 +141,16 @@
                             d="M23.869 2.13102C23.5056 1.76922 23.0742 1.483 22.5996 1.28889C22.125 1.09477 21.6167 0.996618 21.1039 1.00009C20.5912 1.00356 20.0842 1.10859 19.6123 1.30911C19.1403 1.50963 18.7128 1.80167 18.3544 2.16836L2.88797 17.6348L1 25L8.36522 23.111L23.8316 7.64454C24.1984 7.28629 24.4906 6.85888 24.6911 6.38704C24.8917 5.91519 24.9968 5.40827 25.0003 4.89557C25.0037 4.38287 24.9056 3.87456 24.7114 3.40005C24.5172 2.92553 24.2309 2.49421 23.869 2.13102V2.13102Z"
                             stroke="#615E83" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <input type="text" placeholder="Enter alternative user query">
+                    <input type="text" [(ngModel)]="botQuery" placeholder="Enter alternative user query">
                 </div>
                 <div class="q-l-a-bot">
                     <div class="check">
-                        <input type="checkbox" name="airport" id="airport">
+                        <input type="checkbox" [(ngModel)]="isAirport" name="airport" id="airport">
                         <label for="airport">Airpot Address</label>
                     </div>
-                    <button>Update</button>
+                    <button [disabled]="
+              isEditQuery || !userQuery.length || !botQuery
+            " (click)="addAirport()">Add</button>
                 </div>
             </div>
 
@@ -153,6 +158,20 @@
                 <div class="q-l-t-header">
                     <span>Bot Query</span>
                     <span>User Queries</span>
+                </div>
+                <div class="query-code-list">
+                    <div style="display: flex; flex-wrap: wrap">
+                        <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
+                            <div class="col-md-3" style="border-right: 1px solid #c1c1c1;">{{qry.bot_query}}</div>
+                            <div class="col-md-8"
+                                style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                                <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
+                            </div>
+                            <a style="display: flex;justify-content: center;align-items: center;"
+                                (click)="deleteAirport(i)"><img style="height: 1.2rem; margin: 0px 5px"
+                                    src="../../../assets/icons/remove.png" /></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

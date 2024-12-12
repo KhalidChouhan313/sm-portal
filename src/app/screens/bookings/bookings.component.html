@@ -50,31 +50,32 @@
                 style="height: 100px; width: 100%; display: flex; align-items: center; justify-content: center;">
                 <app-loader></app-loader>
             </div>
-            <ng-container *ngFor="let booking of bookingsDummy">
+            <ng-container *ngFor="let booking of bookings;">
                 <div *ngIf="!loading" class="table_body">
                     <div class="th_item">
                         <input type="checkbox" [checked]="booking.selected">
                     </div>
                     <div class="th_item">
-                        {{booking.createdAt}}
+                        {{booking.createdAt | date }}, {{booking.createdAt | date:'hh:mm' }}
                     </div>
                     <div class="th_item">
                         {{booking.booking_id}}
                     </div>
                     <div class="th_item">
-                        {{booking.company_id}}
+                        {{booking.user_name ? booking.user_name:'-'}}
                     </div>
                     <div class="th_item">
                         {{booking.phone}}
                     </div>
                     <div class="th_item">
-                        {{booking.date}} {{booking.time}}
+                        <span *ngIf="booking.time != 'ASAP'">{{booking.date}}, {{booking.time}}</span>
+                        <span *ngIf="booking.time == 'ASAP'">ASAP</span>
                     </div>
                     <div class="th_item">
-                        Audi
+                        {{booking.vehicle_type}}
                     </div>
-                    <div class="th_item amount">
-                        $11.00 - $14.00
+                    <div class="th_item">
+                        {{booking.estimated_fare}}
                     </div>
                     <div class="th_item">
                         <div class="badge">Completed</div>
@@ -83,7 +84,8 @@
                         &darr;
                     </button>
                 </div>
-                <div class="booking_dets_wrapper" [class.active]="selectedBooking === booking._id">
+                <div *ngIf="currentBookingDetails" class="booking_dets_wrapper"
+                    [class.active]="selectedBooking === booking._id">
                     <div class="booking_dets">
                         <div class="bd_left">
                             <div class="bdl_top">
@@ -92,16 +94,16 @@
                                         <span>Total Amount</span>
                                         <div class="badge">Completed</div>
                                     </div>
-                                    <h3>$13.00</h3>
+                                    <h3>{{currentBookingDetails.payment.total}}</h3>
                                 </div>
                                 <div class="bd_dets">
                                     <div>
                                         <span>Booking Name</span>
-                                        <span>{{booking.company_id}}</span>
+                                        <span>{{booking.user_name}}</span>
                                     </div>
                                     <div>
                                         <span>Vehicle</span>
-                                        <span>Audi</span>
+                                        <span>{{currentBookingDetails.vehicle_type}}</span>
                                     </div>
                                     <div>
                                         <span>Scheduled For</span>
@@ -109,7 +111,7 @@
                                     </div>
                                     <div>
                                         <span>Estimated Price</span>
-                                        <span>$11.00 - $14.00</span>
+                                        <span>{{booking.estimated_fare}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +120,7 @@
                                     <div class="dp">I</div>
                                     <div class="other_dets">
                                         <span>WhatsApp Profile</span>
-                                        <strong>Imtiaz0307</strong>
+                                        <strong>{{booking.user_name}}</strong>
                                     </div>
                                 </div>
                             </div>
@@ -126,15 +128,15 @@
                         <div class="bd_right">
                             <div class="bdr_item">
                                 <strong>Customer Name</strong>
-                                <span>{{booking.company_id}}</span>
+                                <span>{{booking.user_name}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Contact Number</strong>
-                                <span>03070186322</span>
+                                <span>{{booking.phone}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking Creation Date</strong>
-                                <span>{{booking.createdAt}}</span>
+                                <span>{{booking.createdAt | date}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking ID</strong>
@@ -142,19 +144,20 @@
                             </div>
                             <div class="bdr_item">
                                 <strong>Pickup Date/Time</strong>
-                                <span>{{booking.date}} {{booking.time}}</span>
+                                <span *ngIf="booking.time != 'ASAP'">{{booking.date}}, {{booking.time}}</span>
+                                <span *ngIf="booking.time == 'ASAP'">ASAP</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Current Status</strong>
-                                <span>Completed</span>
+                                <span>{{currentBookingDetails.status}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Pickup Location</strong>
-                                <span>Somewhere in Manchester, UK</span>
+                                <span>{{currentBookingDetails.address.formatted}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Drop-Off Location</strong>
-                                <span>Somewhere in London, UK</span>
+                                <span>{{currentBookingDetails.destination.formatted}}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Customer Notes</strong>
