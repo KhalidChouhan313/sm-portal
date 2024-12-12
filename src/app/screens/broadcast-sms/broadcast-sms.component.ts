@@ -50,4 +50,5 @@ export class BroadcastSmsComponent {
   ]
 
   addMode = false;
+  showDateAndTimeModal = false;
 }

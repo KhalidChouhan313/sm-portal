@@ -83,5 +83,6 @@ export class BroadcastWhatsappComponent {
   ]
 
   showTemplates = false;
-  addMode = true;
+  addMode = false;
+  showDateAndTimeModal = false;
 }

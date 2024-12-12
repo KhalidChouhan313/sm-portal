@@ -16,7 +16,7 @@
             <h1>SMS Create Broadcast</h1>
             <div class="btns">
                 <button>Send</button>
-                <button>
+                <button (click)="showDateAndTimeModal=true">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32"
                         height="32" viewBox="0 0 32 32" fill="none">
                         <mask id="mask0_1220_7888" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -173,3 +173,53 @@
         </div>
     </ng-container>
 </div>
+
+<app-modal *ngIf="showDateAndTimeModal">
+    <div class="m-header">
+        <div class="mh-d">
+            <h1>Set Schedule</h1>
+            <button (click)="showDateAndTimeModal=false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                    <path d="M18.8887 17.3363L2.16671 1.96289M18.8887 1.96289L2.16671 17.3363" stroke="#2EBC96"
+                        stroke-width="2.38885" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+        <div class="mh-d">
+            <h1>Enter Date & Time</h1>
+            <div class="mhd-btns">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.7111 27.711C6.13867 27.711 0 21.5724 0 13.9999C0 6.42749 6.13867 0.288818 13.7111 0.288818C21.2835 0.288818 27.4222 6.42749 27.4222 13.9999C27.4222 21.5724 21.2835 27.711 13.7111 27.711ZM17.6408 7.64636L7.35754 17.9297C6.68822 18.599 6.68822 19.6842 7.35754 20.3535C8.02686 21.0228 9.11203 21.0228 9.78135 20.3535L20.0647 10.0702C20.7339 9.40085 20.7339 8.31568 20.0647 7.64636C19.3954 6.97704 18.3102 6.97704 17.6408 7.64636Z"
+                            fill="#737791" />
+                    </svg>
+                    <span>
+                        Cancel
+                    </span>
+                </button>
+                <button>
+                    <img src="../../../assets/save.png" alt="">
+                    <span>
+                        Save & Exit
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="m-body">
+        <div class="mb-left">
+            <div class="mbl-inp">
+                <label for="">Enter Date</label>
+                <input type="date">
+            </div>
+            <div class="mbl-inp">
+                <label for="">Enter Time</label>
+                <input type="time">
+            </div>
+        </div>
+        <div class="mb-right">
+            <img src="../../../assets/schedule-clock.png" alt="">
+        </div>
+    </div>
+</app-modal>

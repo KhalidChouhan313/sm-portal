@@ -284,3 +284,129 @@
     font-weight: 500;
     line-height: normal;
 }
+
+.m-header {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: linear-gradient(77deg, #2EBC96 40.89%, #1A9096 101.89%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    gap: 1.5rem;
+    border-radius: 1rem;
+}
+
+.mh-d {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.mh-d h1 {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+}
+
+.mh-d>button {
+    border: none;
+    outline: none;
+    border-radius: 7.963px;
+    background: #FFF;
+    box-shadow: 0px 0px 7.963px 0px rgba(0, 0, 0, 0.10);
+    padding: .3rem;
+    cursor: pointer;
+}
+
+.mhd-btns {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mhd-btns button {
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .6rem .9rem;
+    cursor: pointer;
+}
+
+.mhd-btns span {
+    color: #737791;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mhd-btns button:nth-child(2) {
+    border-radius: 8px;
+    background: linear-gradient(270deg, #2EBC96 0%, #1A9096 100%);
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mhd-btns button:nth-child(2) span {
+    color: white;
+}
+
+.mhd-btns button img {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.m-body {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem 3rem;
+}
+
+.mb-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.mb-right {
+    flex: 1;
+}
+
+.mb-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mbl-inp {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.mbl-inp label {
+    color: #737791;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.mbl-inp input {
+    border-radius: .5rem;
+    border: 1.276px solid #2EBC96;
+    background: rgba(217, 217, 217, 0.10);
+    outline: none;
+    padding: .75rem;
+}
