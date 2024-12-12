@@ -555,7 +555,7 @@
 
 .query-code-list {
     /* display: flex; */
-    padding: 1rem;
+    padding: 1rem 0;
     max-height: 300px;
     height: 300px;
     overflow-y: auto;
