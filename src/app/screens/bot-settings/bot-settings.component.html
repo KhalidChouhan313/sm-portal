@@ -160,16 +160,20 @@
                     <span>User Queries</span>
                 </div>
                 <div class="query-code-list">
-                    <div style="display: flex; flex-wrap: wrap">
-                        <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
-                            <div class="col-md-3" style="border-right: 1px solid #c1c1c1;">{{qry.bot_query}}</div>
-                            <div class="col-md-8"
-                                style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                                <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
-                            </div>
-                            <a style="display: flex;justify-content: center;align-items: center;"
-                                (click)="deleteAirport(i)"><img style="height: 1.2rem; margin: 0px 5px"
-                                    src="../../../assets/icons/remove.png" /></a>
+                    <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
+                        <div class="col-md-3" style="border-right: 1px solid #c1c1c1;">{{qry.bot_query}}</div>
+                        <!-- <div class="col-md-8" style="display: flex; justify-content: space-around; flex-wrap: wrap;"> -->
+                        <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
+                        <!-- </div> -->
+                        <div style="display: flex;justify-content: center;align-items: center;"
+                            (click)="deleteAirport(i)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                fill="none">
+                                <rect x="0.5" y="1.42017" width="23" height="23" rx="11.5" stroke="#737791" />
+                                <path
+                                    d="M6.27748 17.3029C5.90751 17.6729 5.90751 18.2727 6.27748 18.6427C6.64745 19.0127 7.24729 19.0127 7.61726 18.6427L12 14.2599L16.3827 18.6427C16.7527 19.0127 17.3525 19.0127 17.7225 18.6427C18.0925 18.2727 18.0925 17.6729 17.7225 17.3029L13.3398 12.9202L17.7225 8.53743C18.0925 8.16746 18.0925 7.56761 17.7225 7.19764C17.3525 6.82767 16.7527 6.82767 16.3827 7.19764L12 11.5804L7.61726 7.19765C7.24729 6.82767 6.64745 6.82767 6.27748 7.19765C5.90751 7.56762 5.90751 8.16746 6.27748 8.53743L10.6602 12.9202L6.27748 17.3029Z"
+                                    fill="#737791" />
+                            </svg>
                         </div>
                     </div>
                 </div>
