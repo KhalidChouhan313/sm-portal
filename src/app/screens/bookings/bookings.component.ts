@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingsService } from 'src/services/bookings/bookings.service';
+import { BookingsService } from 'src/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bookings',
@@ -8,8 +9,6 @@ import { BookingsService } from 'src/services/bookings/bookings.service';
 })
 
 export class BookingsComponent implements OnInit {
-
-  constructor(private bookingsService: BookingsService) { }
 
   menuItems = [
     {
@@ -37,28 +36,50 @@ export class BookingsComponent implements OnInit {
   currentItem: { name: string, icon: string } = this.menuItems[0];
   setCurrentItem = (item: any) => this.currentItem = item
   loading = true;
-
   // bookings
   bookings: any[] = [];
+  botDetails: any;
+  currentBookingDetails: any;
+  selectedBooking: string = "";
+
+  constructor(
+    private bookingsService: BookingsService,
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
-    this.bookingsService.getAllBookings().subscribe(
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    if (!currentUser) {
+      this.router.navigateByUrl('/sessions/signin');
+    }
+    // console.log(currentUser._id);
+
+    this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
       (res) => {
+        this.bookingsService.getCompanyBots(currentUser._id).subscribe((bot) => {
+          this.botDetails = bot.data[0];
+        })
         this.bookings = res.data?.map((item: any) => ({ ...item, selected: false }))
         this.loading = false
       },
-      (_) => {
+      err => {
         this.bookings = []
         this.loading = false
       }
     )
   };
 
-  selectedBooking: string = "";
   selectBooking = (item: any) => {
     if (item._id === this.selectedBooking) {
       this.selectedBooking = ""
+      this.currentBookingDetails = null;
     } else {
-      this.selectedBooking = item?._id
+      this.bookingsService.getBookingDetails(item.booking_id, this.botDetails._id).subscribe(bookingData => {
+        this.currentBookingDetails = bookingData.data;
+        this.selectedBooking = item?._id
+        console.log(bookingData);
+
+      })
     }
   }
 
