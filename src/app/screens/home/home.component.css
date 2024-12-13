@@ -24,7 +24,10 @@
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1rem 1.5rem;
     margin-top: .7rem;
-    min-width: 411px;
+    min-width: 450px;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
 }
 
 .activity {
@@ -38,22 +41,28 @@
 }
 
 .d_header h4 {
-    color: #161616;
-    font-family: var(--jakarta);
-    font-size: 24px;
+    color: var(--dark-color, #181818);
+
+    /* Heading */
+    font-family: Raleway;
+    font-size: 2rem;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
 }
 
 .d_header a {
-    color: #000;
-    font-family: var(--jakarta);
-    font-size: 12px;
+    border-radius: 70px;
+    background: rgba(46, 188, 150, 0.20);
+    padding: .6rem 1rem;
+    color: #2EBC96;
+    text-align: center;
+    font-family: Nunito;
+    font-size: .9rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
-    text-decoration-line: underline;
+    letter-spacing: 0.42px;
 }
 
 .d_body {
@@ -67,51 +76,86 @@
 }
 
 .d_card {
-    border-radius: 5px;
+    border-radius: 20px;
+    background: var(--Secondary-Primary-White, #FFF);
+    box-shadow: 0px 2px 40px 0px rgba(112, 144, 176, 0.12);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
     background: #FFF;
-    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-.d_c_info {
+    box-shadow: 0px 0px 9px 0px #EEE;
     display: flex;
     align-items: center;
-    gap: .8rem;
-}
-
-.d_c_info span {
-    color: #000;
-    font-family: var(--jakarta);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: capitalize;
-}
-
-.d_card>span {
-    color: #000;
-    font-size: 14px;
-    font-family: var(--jakarta);
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: capitalize;
-}
-
-.d_card .status {
-    background-color: #787878;
-    height: 11px;
-    width: 11px;
-    border-radius: 11px;
+    justify-content: center;
     flex-shrink: 0;
 }
 
-.d_card .status.active {
-    background-color: #0B7A60;
+.icon img {
+    width: 65%;
+}
+
+.d_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    color: var(--dark-color, #181818);
+    font-family: Nunito;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.54px;
+}
+
+.d_details span {
+    color: var(--text, #636364);
+    font-family: Nunito;
+    font-size: .9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.42px;
+    white-space: nowrap;
+}
+
+.d_details span span {
+    color: #3CD856;
+}
+
+.percentage {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--bold-text, #737791);
+    text-align: center;
+    font-family: Nunito;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.d_badge {
+    padding: .5rem .75rem;
+    color: #3CD856;
+    text-align: center;
+    font-family: Nunito;
+    font-size: .6rem;
+    border-radius: 70px;
+    background: rgba(60, 216, 86, 0.20);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.3px;
 }
 
 .mobile {
