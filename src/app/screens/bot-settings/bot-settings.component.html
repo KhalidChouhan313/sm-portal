@@ -161,10 +161,10 @@
                 </div>
                 <div class="query-code-list">
                     <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
-                        <div class="col-md-3" style="border-right: 1px solid #c1c1c1;">{{qry.bot_query}}</div>
-                        <!-- <div class="col-md-8" style="display: flex; justify-content: space-around; flex-wrap: wrap;"> -->
+                        <div class="col-md-3" style="border-right: 1px solid #c1c1c1;white-space:nowrap;">{{qry.bot_query}}</div>
+                        <div class="col-md-8" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
                         <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
-                        <!-- </div> -->
+                        </div>
                         <div style="display: flex;justify-content: center;align-items: center;"
                             (click)="deleteAirport(i)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
