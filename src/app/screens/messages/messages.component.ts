@@ -214,6 +214,7 @@ export class MessagesComponent {
 
   openMessageList(name) {
     this.currentList = name;
+    this.tab = name;
     if (this.currentList == 'chatbot') { this.currentMessageList = this.chatbot_msg; }
     if (this.currentList == 'booking') { this.currentMessageList = this.booking_msg; }
     if (this.currentList == 'late') { this.currentMessageList = this.late_msg; }

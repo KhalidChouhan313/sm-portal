@@ -14,17 +14,18 @@
     align-items: center;
     gap: 1rem;
     margin: 2rem 0;
-    justify-content: center;
+    padding: 1.6rem;
+    border-bottom: 1px solid #E0E0E0;
+    background: var(--surface-default-white, #FFF);
 }
 
 .top h1 {
-    color: #030303;
-    font-family: Poppins;
-    font-size: 2rem;
+    color: var(--dark-color, #181818);
+    font-family: Raleway;
+    font-size: 1.5rem;
     font-style: normal;
-    font-weight: 600;
-    line-height: 140%;
-    /* 50.4px */
+    font-weight: 700;
+    line-height: normal;
 }
 
 .top button {
@@ -49,12 +50,24 @@
 .tabs {
     display: flex;
     flex-direction: column;
-    min-width: 220px;
-    height: 85vh;
+    min-width: 300px;
     gap: 1rem;
-    border-radius: 12px;
-    background: linear-gradient(92deg, #2EBC96 3.89%, #1A9096 118.16%);
-    padding: 1rem;
+    border-radius: 1.2rem;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    overflow-y: auto;
+}
+
+.heading {
+    border-bottom: 1px solid #E0E0E0;
+    padding: 1.6rem 1rem;
+    color: var(--dark-color, #181818);
+    font-family: Raleway;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: var(--surface-default-white, #FFF);
 }
 
 .tab {
@@ -68,41 +81,54 @@
     font-weight: 600;
     line-height: normal;
     cursor: pointer;
+    background: var(--surface-default-white, #FFF);
+    color: var(--text, #636364);
+    font-family: Nunito;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.54px;
+    margin-top: -.5rem;
+    padding: 1rem;
 }
 
 .tab.active {
-    background-color: #eee;
+    border-radius: 12px;
+    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
+    color: white;
 }
 
 .instance_grid {
-    border-radius: 32px;
-    background: #FFF;
-    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 1.5rem;
+    gap: 1.5rem;
 }
 
 .instance_card {
-    /* border-radius: 12px;
-    background: #FFF;
-    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);*/
-    padding: 1rem .7rem;
     display: flex;
     flex-direction: column;
+    padding: .8rem 1.25rem;
+    border-radius: 15px;
+    background: var(--Secondary-Primary-White, #FFF);
+    box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.12);
 }
 
 .ic_top {
+    border-bottom: 1px solid #E0E0E0;
+    padding: 1.2rem .5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0 1rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
 }
 
 .ic_top h4 {
     color: #737791;
     font-family: Poppins;
-text-transform: capitalize;
+    text-transform: capitalize;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -138,21 +164,17 @@ text-transform: capitalize;
 .instance_card textarea {
     border: none;
     outline: none;
-    height: 100%;
-    width: 100%;
+    background-color: white;
     height: 250px;
-    border-radius: 10px;
-    background: #FFF;
-    border: 1px solid #e1e1e1;
-    padding: 1rem;
-    font-size: .8rem;
+    color: var(--text, #636364);
+    font-family: Nunito;
+    font-size: 1.1rem;
     font-style: normal;
-    line-height: normal;
-    font-family: var(--jakarta);
+    width: 100%;
     resize: none;
-    border-radius: 5px;
-    border: 1px solid #E3E3E3;
-    background: #EEE;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.54px;
 }
 
 .instance_card:nth-child(4) {
