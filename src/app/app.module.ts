@@ -30,6 +30,7 @@ import { BotSettingsComponent } from './screens/bot-settings/bot-settings.compon
 import { BroadcastSmsComponent } from './screens/broadcast-sms/broadcast-sms.component';
 import { BroadcastWhatsappComponent } from './screens/broadcast-whatsapp/broadcast-whatsapp.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ModalComponent } from './components/modal/modal.component';
     BroadcastSmsComponent,
     BroadcastWhatsappComponent,
     ModalComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,

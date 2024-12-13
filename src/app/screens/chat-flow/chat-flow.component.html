@@ -25,6 +25,11 @@
         <div *ngIf="selectedButton" class="edit_btn">
             <div class="eb_top">
                 <p> <img src="../../../assets/icons/edit.svg" alt="">Edit button</p>
+                <svg style="cursor: pointer;" (click)="selectButton('')" xmlns="http://www.w3.org/2000/svg" width="13"
+                    height="13" viewBox="0 0 13 13" fill="none">
+                    <path d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573" stroke="#2EBC96"
+                        stroke-width="1.60279" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </div>
             <div class="inp_con">
                 <label for="title">Title</label>

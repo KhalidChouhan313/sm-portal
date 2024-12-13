@@ -22,7 +22,7 @@ export class ReportsComponent implements OnInit {
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        labels: ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
         datasets: [
           {
             label: 'Total Sent',
@@ -64,10 +64,11 @@ export class ReportsComponent implements OnInit {
             display: true,
             grid: {
               display: false,  // Remove grid lines for the x-axis
+              lineWidth: 0
             }
           },
           y: {
-            display: true,
+            display: false,
             grid: {
               display: false,  // Remove grid lines for the y-axis
             }
