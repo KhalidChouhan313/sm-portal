@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BotService, AdminService } from 'src/services';
+import { BookingsService, AdminService } from 'src/services';
 import { Router } from '@angular/router';
 // import { VehicleTypeSettingsComponent } from '../vehicle-type-settings/vehicle-type-settings.component'
 // import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -124,7 +124,7 @@ export class ChatFlowComponent implements OnInit {
   isSaving = false;
 
   constructor(
-    private BS: BotService,
+    private BS: BookingsService,
     private AS: AdminService,
     // private _serviceModal: NgbModal,
     private router: Router
@@ -140,9 +140,10 @@ export class ChatFlowComponent implements OnInit {
       // if (!this.adminDetails.wtsp_bot) {
       //   this.router.navigateByUrl('/sessions/signin');
       // }
-      this.BS.getBotMessages(currentUser._id).subscribe(result => {
+      this.BS.getBotMessages(currentUser._id).subscribe((result: any) => {
+        // console.log(result);
 
-        let res: any = this.messageList = result.sort((a, b) => { return a.msg_index - b.msg_index }) //.filter(f => f.msg_index == 2)
+        let res: any = this.messageList = result.data.sort((a, b) => { return a.msg_index - b.msg_index }) //.filter(f => f.msg_index == 2)
         res = this.moveMessage(res, 3, 6)
         res = this.moveMessage(res, 15, 4)
         res = this.moveMessage(res, 20, 5)
@@ -159,7 +160,7 @@ export class ChatFlowComponent implements OnInit {
         res = this.moveMessage(res, 32, 1)
         res = this.moveMessage(res, 27, 2)
         this.messageList = res;
-        console.log(this.messageList);
+        // console.log(this.messageList);
 
         if (this.messageList.length > 0) {
           this.currMessage = this.messageList[0];

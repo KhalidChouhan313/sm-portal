@@ -37,4 +37,12 @@ export class BookingsService {
   public updateBotAdmin(obj) {
     return this.http.put(`${environment.apiUrl}/api/waba//bot-settings`, obj);
   }
+
+  public updateMessage(obj) {
+    return this.http.put(`${environment.apiUrl}/api/waba/message`, obj);
+  }
+
+  public getBotMessages(id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/messages/${id}`);
+  }
 }
