@@ -29,14 +29,15 @@
         <div class="instance_grid">
             <div class="instance_card"
                 *ngFor="let instance of currentMessageList.slice(0, currentMessageList.length-1);let i = index;">
-                <div>
+                <div style="width: 100%; display: flex;flex-direction: column;">
                     <div class="ic_top">
                         <h4>{{currentList}} Message {{i+1}}</h4>
                         <div class="ict_right">
                             <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
                                 {{instance.value.length}} / {{instance.limit}} characters
                             </span>
-                            <button class="edit" (click)="toggleEdit(instance.id)">
+                            <button *ngIf="currentMessageList[i].isEditable" class="edit"
+                                (click)="toggleEdit(instance.id)">
                                 <img src="../../assets/icons/edit.svg" alt="e">
                                 <span>{{instance.isEditable ? "Save": "Edit"}}</span>
                             </button>
@@ -46,6 +47,9 @@
                         (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea> -->
                     <textarea value="instance" placeholder="Type here..."
                         [readonly]="currentMessageList[i].isEditable"></textarea>
+                    <button class="update">
+                        Update
+                    </button>
                 </div>
             </div>
         </div>
@@ -63,7 +67,7 @@
                         <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
                             {{instance.value.length}} / {{instance.limit}} characters
                         </span>
-                        <button class="edit" (click)="toggleEdit(instance.id)">
+                        <button *ngIf="!instance.isEditable" class="edit" (click)="toggleEdit(instance.id)">
                             <img src="../../assets/icons/edit.svg" alt="e">
                             <span>{{instance.isEditable ? "Save": "Edit"}}</span>
                         </button>
@@ -71,6 +75,9 @@
                 </div>
                 <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
                     (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
+                <button class="update">
+                    Update
+                </button>
             </div>
         </div>
     </div>

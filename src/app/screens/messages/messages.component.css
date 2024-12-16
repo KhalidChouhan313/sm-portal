@@ -177,6 +177,26 @@
     letter-spacing: 0.54px;
 }
 
+.update {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
+    padding: .3rem 1.2rem;
+    color: var(--black-amp-white-white, #FFF);
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: .65rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    /* 15px */
+}
+
 .instance_card:nth-child(4) {
     grid-column: span 3;
 }

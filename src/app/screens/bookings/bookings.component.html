@@ -81,7 +81,7 @@
                         <div class="badge">Completed</div>
                     </div>
                     <button class="toggle_more" (click)="selectBooking(booking)">
-                        &darr;
+                        {{selectedBooking === booking._id ? "Hide":"View"}}
                     </button>
                 </div>
                 <div *ngIf="currentBookingDetails" class="booking_dets_wrapper"

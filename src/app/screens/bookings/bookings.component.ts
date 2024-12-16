@@ -59,7 +59,9 @@ export class BookingsComponent implements OnInit {
         this.bookingsService.getCompanyBots(currentUser._id).subscribe((bot) => {
           this.botDetails = bot.data[0];
         })
-        this.bookings = res.data?.map((item: any) => ({ ...item, selected: false }))
+        this.bookings = res.data
+          ?.map((item: any) => ({ ...item, selected: false }))
+          ?.sort((a: any, b: any) => new Date(b?.createdAt).getTime() - new Date(a?.createdAt).getTime());
         this.loading = false
       },
       err => {

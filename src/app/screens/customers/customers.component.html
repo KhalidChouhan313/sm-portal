@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <button class="toggle_more" (click)="selectCustomer(customer)">
-                        &darr;
+                        {{selectedCustomer === customer.user_name ? "Hide" : "Show"}}
                     </button>
                 </div>
                 <div class="booking_dets_wrapper" [class.active]="selectedCustomer === customer.user_name">
