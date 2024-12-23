@@ -135,7 +135,7 @@
     display: flex;
     align-items: center;
     gap: .4rem;
-    color: var(--bold-text, #737791);
+    color: var(--bold-text, #333540);
     text-align: center;
     font-family: Nunito;
     font-size: 1.1rem;
@@ -268,7 +268,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: #737791;
+    color: #333540;
     font-family: "Plus Jakarta Sans";
     font-style: normal;
     font-weight: 500;
@@ -344,7 +344,7 @@
 }
 
 .a_top button span {
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     font-size: .95rem;
     font-style: normal;

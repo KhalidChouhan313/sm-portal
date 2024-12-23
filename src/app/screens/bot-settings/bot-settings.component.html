@@ -124,10 +124,10 @@
                     <div class="q-l-t-tag">
                         <input type="text" [(ngModel)]="userQuery">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                            <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="#737791" />
+                            <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="#333540" />
                             <path
                                 d="M6.27748 16.8827C5.90751 17.2527 5.90751 17.8526 6.27748 18.2225C6.64745 18.5925 7.24729 18.5925 7.61726 18.2225L12 13.8398L16.3827 18.2225C16.7527 18.5925 17.3525 18.5925 17.7225 18.2225C18.0925 17.8526 18.0925 17.2527 17.7225 16.8827L13.3398 12.5L17.7225 8.11726C18.0925 7.74729 18.0925 7.14745 17.7225 6.77748C17.3525 6.40751 16.7527 6.40751 16.3827 6.77748L12 11.1602L7.61726 6.77748C7.24729 6.40751 6.64745 6.40751 6.27748 6.77748C5.90751 7.14745 5.90751 7.74729 6.27748 8.11726L10.6602 12.5L6.27748 16.8827Z"
-                                fill="#737791" />
+                                fill="#333540" />
                         </svg>
                     </div>
                 </div>
@@ -161,18 +161,19 @@
                 </div>
                 <div class="query-code-list">
                     <div class="qry-list-item" *ngFor="let qry of queryList; let i = index">
-                        <div class="col-md-3" style="border-right: 1px solid #c1c1c1;white-space:nowrap;">{{qry.bot_query}}</div>
+                        <div class="col-md-3" style="border-right: 1px solid #c1c1c1;white-space:nowrap;">
+                            {{qry.bot_query}}</div>
                         <div class="col-md-8" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                        <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
+                            <div *ngFor="let uQry of qry.user_query">{{uQry}}</div>
                         </div>
                         <div style="display: flex;justify-content: center;align-items: center;"
                             (click)="deleteAirport(i)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                                 fill="none">
-                                <rect x="0.5" y="1.42017" width="23" height="23" rx="11.5" stroke="#737791" />
+                                <rect x="0.5" y="1.42017" width="23" height="23" rx="11.5" stroke="#333540" />
                                 <path
                                     d="M6.27748 17.3029C5.90751 17.6729 5.90751 18.2727 6.27748 18.6427C6.64745 19.0127 7.24729 19.0127 7.61726 18.6427L12 14.2599L16.3827 18.6427C16.7527 19.0127 17.3525 19.0127 17.7225 18.6427C18.0925 18.2727 18.0925 17.6729 17.7225 17.3029L13.3398 12.9202L17.7225 8.53743C18.0925 8.16746 18.0925 7.56761 17.7225 7.19764C17.3525 6.82767 16.7527 6.82767 16.3827 7.19764L12 11.5804L7.61726 7.19765C7.24729 6.82767 6.64745 6.82767 6.27748 7.19765C5.90751 7.56762 5.90751 8.16746 6.27748 8.53743L10.6602 12.9202L6.27748 17.3029Z"
-                                    fill="#737791" />
+                                    fill="#333540" />
                             </svg>
                         </div>
                     </div>

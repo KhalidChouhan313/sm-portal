@@ -74,7 +74,7 @@
     border-radius: 5px;
     background: #FFF;
     padding: .5rem 1rem;
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     font-size: .8rem;
     font-style: normal;
@@ -126,7 +126,7 @@
 }
 
 .ic_top h4 {
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     text-transform: capitalize;
     font-size: 1.25rem;

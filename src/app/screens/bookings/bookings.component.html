@@ -45,6 +45,9 @@
                 <div class="th_item">
                     Status
                 </div>
+                <div class="th_item">
+                    <span style="opacity: 0;">view</span>
+                </div>
             </div>
             <div *ngIf="loading"
                 style="height: 100px; width: 100%; display: flex; align-items: center; justify-content: center;">
@@ -56,7 +59,7 @@
                         <input type="checkbox" [checked]="booking.selected">
                     </div>
                     <div class="th_item">
-                        {{booking.createdAt | date }}, {{booking.createdAt | date:'hh:mm' }}
+                        {{booking.createdAt | date }}, {{booking.createdAt | date:'hh:mm a' }}
                     </div>
                     <div class="th_item">
                         {{booking.booking_id}}
@@ -80,9 +83,11 @@
                     <div class="th_item">
                         <div class="badge">Completed</div>
                     </div>
-                    <button class="toggle_more" (click)="selectBooking(booking)">
-                        {{selectedBooking === booking._id ? "Hide":"View"}}
-                    </button>
+                    <div class="th_item">
+                        <button class="toggle_more" (click)="selectBooking(booking)">
+                            {{selectedBooking === booking._id ? "Hide":"View"}}
+                        </button>
+                    </div>
                 </div>
                 <div *ngIf="currentBookingDetails" class="booking_dets_wrapper"
                     [class.active]="selectedBooking === booking._id">

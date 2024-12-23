@@ -33,7 +33,7 @@
 }
 
 .top .left span {
-    color: var(--Greys-Blue-Grey-700, #737791);
+    color: var(--Greys-Blue-Grey-700, #333540);
     font-family: "Plus Jakarta Sans";
     font-size: 1rem;
     font-style: normal;
@@ -201,7 +201,7 @@
 }
 
 .bl-total p {
-    color: var(--bold-text, #737791);
+    color: var(--bold-text, #333540);
     font-family: Nunito;
     font-size: 1.1rem;
     font-style: normal;

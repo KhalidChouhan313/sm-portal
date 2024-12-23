@@ -43,7 +43,7 @@
   }
 
   .item span {
-      color: #737791;
+      color: #333540;
       font-family: Poppins;
       font-size: 1.1rem;
       font-style: normal;
@@ -52,7 +52,7 @@
   }
 
   .top {
-      color: #737791;
+      color: #333540;
       font-family: Poppins;
       font-size: 1.2rem;
       font-style: normal;
@@ -64,7 +64,7 @@
       margin-top: 2rem;
       background: #FAFBFB;
       padding: 1rem;
-      color: #737791;
+      color: #333540;
       font-family: Poppins;
       font-size: 1.25rem;
       font-style: normal;

@@ -323,7 +323,7 @@
     outline: none;
     padding: .7rem 1rem;
     cursor: pointer;
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     font-size: 1rem;
     font-style: normal;
@@ -355,7 +355,7 @@
     outline: none;
     background-color: transparent;
     padding-left: 0;
-    color: var(--Greys-Blue-Grey-700, #737791);
+    color: var(--Greys-Blue-Grey-700, #333540);
     font-family: Poppins;
     font-size: 1rem;
     font-style: normal;

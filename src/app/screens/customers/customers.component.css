@@ -18,7 +18,7 @@
 .kanban {
     font-size: 1rem;
     font-weight: 500;
-    color: #737791;
+    color: #333540;
 }
 
 .header_more {
@@ -40,7 +40,7 @@
     outline: none;
     cursor: pointer;
     font-family: Poppins;
-    color: #737791;
+    color: #333540;
     font-size: .88rem;
     font-weight: 400;
     line-height: 27px;
@@ -77,7 +77,7 @@
     outline: none;
     cursor: pointer;
     font-family: Poppins;
-    color: #737791;
+    color: #333540;
     font-size: .88rem;
     font-weight: 400;
     line-height: 27px;
@@ -96,7 +96,7 @@
     border: none;
     outline: none;
     background-color: transparent;
-    color: #737791;
+    color: #333540;
     font-size: 1rem;
     font-weight: 300;
     cursor: pointer;
@@ -118,7 +118,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    min-width: 900px;
+    min-width: 1000px;
 }
 
 .table_header,
@@ -135,14 +135,14 @@
     padding: 1.5rem 1rem;
     white-space: nowrap;
     flex: 1;
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
     text-align: center;
     font-weight: 600;
 }
 
 .table_body .th_item {
-    color: #737791;
+    color: #333540;
     font-weight: 400;
     font-size: 1rem;
 }
@@ -152,10 +152,10 @@
 }
 
 .toggle_more {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 1rem;
+    right: 1rem; */
     padding: .6rem 1rem;
     display: flex;
     justify-content: center;
@@ -165,15 +165,15 @@
     background-color: white;
     box-shadow: 0 0 10px #B3B3B380;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
+    /* opacity: 0; */
+    /* pointer-events: none; */
     transition: 225ms;
 }
 
-.table_body:hover .toggle_more {
+/* .table_body:hover .toggle_more {
     opacity: 1;
     pointer-events: all;
-}
+} */
 
 .customer-details {
     display: flex;

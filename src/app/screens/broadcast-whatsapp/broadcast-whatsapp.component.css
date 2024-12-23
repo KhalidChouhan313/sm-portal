@@ -18,7 +18,7 @@
 .kanban {
     font-size: 1rem;
     font-weight: 500;
-    color: #737791;
+    color: #333540;
 }
 
 .header button {
@@ -52,7 +52,7 @@
 .g-bg-head {
     background: #F9FAFA;
     padding: .8rem 1.2rem;
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     font-size: 1.6rem;
     font-style: normal;
@@ -116,7 +116,7 @@
 }
 
 .t-item-h .ti-item {
-    color: #737791;
+    color: #333540;
     text-align: center;
     font-family: "Plus Jakarta Sans";
     font-size: 1.1rem;
@@ -363,7 +363,7 @@
 }
 
 .mhd-btns span {
-    color: #737791;
+    color: #333540;
     font-family: Poppins;
     font-size: 1.1rem;
     font-style: normal;
@@ -418,7 +418,7 @@
 }
 
 .mbl-inp label {
-    color: #737791;
+    color: #333540;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 600;

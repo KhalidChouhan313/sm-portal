@@ -75,7 +75,7 @@
 }
 
 .menu_item span {
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
 }
 
@@ -97,7 +97,7 @@
     padding-left: .5rem;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #737791;
+    border-left: 1px solid #333540;
 }
 
 .sidebar.toggled .sub_menu {
@@ -110,14 +110,14 @@
     padding: 1rem;
     cursor: pointer;
     border-radius: .8rem;
-    color: #737791;
+    color: #333540;
     display: flex;
     align-items: center;
     gap: .6rem;
 }
 
 .sub_menu_item span {
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
 }
 

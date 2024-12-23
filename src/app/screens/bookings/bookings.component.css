@@ -18,7 +18,7 @@
 .kanban {
     font-size: 1rem;
     font-weight: 500;
-    color: #737791;
+    color: #333540;
 }
 
 .header_more {
@@ -47,7 +47,7 @@
 
 .menu_item span {
     font-family: Poppins;
-    color: #737791;
+    color: #333540;
     font-size: .88rem;
     font-weight: 400;
     line-height: 27px;
@@ -100,7 +100,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    min-width: 1500px;
+    min-width: 1700px;
 }
 
 .table_header,
@@ -117,14 +117,14 @@
     padding: 1.5rem 1rem;
     white-space: nowrap;
     flex: 1;
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
     text-align: center;
     font-weight: 600;
 }
 
 .table_body .th_item {
-    color: #737791;
+    color: #333540;
     font-weight: 400;
 }
 
@@ -160,10 +160,10 @@
 }
 
 .toggle_more {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 1rem;
+    /* position: absolute; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* right: 1rem; */
     padding: .6rem 1rem;
     display: flex;
     justify-content: center;
@@ -173,15 +173,15 @@
     background-color: white;
     box-shadow: 0 0 10px #B3B3B380;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
+    /* opacity: 0; */
+    /* pointer-events: none; */
     transition: 225ms;
 }
 
-.table_body:hover .toggle_more {
+/* .table_body:hover .toggle_more {
     opacity: 1;
     pointer-events: all;
-}
+} */
 
 .booking_dets {
     display: flex;
@@ -224,7 +224,7 @@
 }
 
 .total div span {
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
     font-weight: 400;
 }
@@ -253,7 +253,7 @@
 
 .bd_dets div span {
     font-size: .88rem;
-    color: #737791;
+    color: #333540;
 }
 
 .bd_dets div span:nth-child(1) {
@@ -294,13 +294,13 @@
 .other_dets span {
     font-size: .7rem;
     font-weight: 300;
-    color: #737791;
+    color: #333540;
 }
 
 .other_dets strong {
     font-weight: 600;
     font-size: 1.2rem;
-    color: #737791;
+    color: #333540;
 }
 
 .bd_right {
@@ -327,14 +327,14 @@
 
 .bdr_item strong {
     flex: .6;
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
     font-weight: 600;
 }
 
 .bdr_item span {
     flex: 1;
-    color: #737791;
+    color: #333540;
     font-size: .9rem;
     font-weight: 400;
 }
