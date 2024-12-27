@@ -99,7 +99,8 @@
                                         <span>Total Amount</span>
                                         <div class="badge">Completed</div>
                                     </div>
-                                    <h3>£{{currentBookingDetails.payment.total}}</h3>
+                                    <h3>£{{currentBookingDetails.payment.total?.tolocaleString("en-US",
+                                        {minimumFractionDigits:2, maximumFractionDigits:2})}}</h3>
                                 </div>
                                 <div class="bd_dets">
                                     <div>
@@ -116,7 +117,7 @@
                                     </div>
                                     <div>
                                         <span>Estimated Price</span>
-                                        <span>{{booking.estimated_fare}}</span>
+                                        <span>£{{booking.estimated_fare}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +142,7 @@
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking Creation Date</strong>
-                                <span>{{booking.createdAt | date}}</span>
+                                <span>{{booking.createdAt | date }}, {{booking.createdAt | date:'HH:mm a' }}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking ID</strong>
