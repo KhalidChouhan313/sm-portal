@@ -99,8 +99,7 @@
                                         <span>Total Amount</span>
                                         <div class="badge">Completed</div>
                                     </div>
-                                    <h3>£{{currentBookingDetails.payment.total?.tolocaleString("en-US",
-                                        {minimumFractionDigits:2, maximumFractionDigits:2})}}</h3>
+                                    <h3>£{{currentBookingDetails.payment.total | number: '1.2-2'}}</h3>
                                 </div>
                                 <div class="bd_dets">
                                     <div>
@@ -142,7 +141,7 @@
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking Creation Date</strong>
-                                <span>{{booking.createdAt | date }}, {{booking.createdAt | date:'HH:mm a' }}</span>
+                                <span>{{booking.createdAt | date }}, {{booking.createdAt | date:'HH:mm' }}</span>
                             </div>
                             <div class="bdr_item">
                                 <strong>Booking ID</strong>
@@ -150,7 +149,7 @@
                             </div>
                             <div class="bdr_item">
                                 <strong>Pickup Date/Time</strong>
-                                <span *ngIf="booking.time != 'ASAP'">{{booking.date}}, {{booking.time}}</span>
+                                <span *ngIf="booking.time != 'ASAP'">{{booking.date | date}}, {{booking.time}}</span>
                                 <span *ngIf="booking.time == 'ASAP'">ASAP</span>
                             </div>
                             <div class="bdr_item">
