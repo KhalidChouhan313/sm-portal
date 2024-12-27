@@ -71,9 +71,7 @@
 }
 
 .tab {
-    border-radius: 5px;
     background: #FFF;
-    padding: .5rem 1rem;
     color: #333540;
     font-family: Poppins;
     font-size: .8rem;
@@ -90,11 +88,10 @@
     line-height: normal;
     letter-spacing: 0.54px;
     margin-top: -.5rem;
-    padding: 1rem;
+    padding: 1rem 2rem;
 }
 
 .tab.active {
-    border-radius: 12px;
     background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
     color: white;
 }

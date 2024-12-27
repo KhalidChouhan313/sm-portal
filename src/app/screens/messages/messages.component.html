@@ -36,7 +36,7 @@
                             <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
                                 {{instance.value.length}} / {{instance.limit}} characters
                             </span>
-                            <button *ngIf="currentMessageList[i].isEditable" class="edit"
+                            <button *ngIf="!currentMessageList[i].isEditable" class="edit"
                                 (click)="toggleEdit(instance.id)">
                                 <img src="../../assets/icons/edit.svg" alt="e">
                                 <span>{{instance.isEditable ? "Save": "Edit"}}</span>
@@ -46,8 +46,8 @@
                     <!-- <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
                         (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea> -->
                     <textarea value="instance" placeholder="Type here..."
-                        [readonly]="currentMessageList[i].isEditable"></textarea>
-                    <button class="update">
+                        [readonly]="!currentMessageList[i].isEditable"></textarea>
+                    <button class="update" *ngIf="currentMessageList[i].isEditable">
                         Update
                     </button>
                 </div>
@@ -75,7 +75,7 @@
                 </div>
                 <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
                     (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
-                <button class="update">
+                <button class="update" *ngIf="instance.isEditable">
                     Update
                 </button>
             </div>
