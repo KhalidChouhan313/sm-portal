@@ -1,5 +1,13 @@
 <div class="container">
-    <div *ngIf="showBanner" class="top" (click)="this.showBanner = false">
+    <div *ngIf="showBanner" class="top">
+        <div class="top_t">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                    d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+                    fill="#636364" />
+            </svg>
+            <span>Import Message</span>
+        </div>
         <p>
             Please note that “not sent” , might be because target is not valid mobile or international number or your
             settings are configured not be send this Message type by SMS.
@@ -7,15 +15,23 @@
             <br>
             Device sending is limited to avoid bans , these limits are gradually reduced to mitigate that risk.
         </p>
-        <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                    d="M2.93934 18.9393C2.35355 19.5251 2.35355 20.4749 2.93934 21.0607C3.52513 21.6464 4.47487 21.6464 5.06066 21.0607L12 14.1213L18.9393 21.0607C19.5251 21.6464 20.4749 21.6464 21.0607 21.0607C21.6464 20.4749 21.6464 19.5251 21.0607 18.9393L14.1213 12L21.0607 5.06066C21.6464 4.47487 21.6464 3.52513 21.0607 2.93934C20.4749 2.35355 19.5251 2.35355 18.9393 2.93934L12 9.87868L5.06066 2.93934C4.47487 2.35355 3.52513 2.35355 2.93934 2.93934C2.35355 3.52513 2.35355 4.47487 2.93934 5.06066L9.87868 12L2.93934 18.9393Z"
-                    fill="white" />
-            </svg></button>
-        <img src="../../../assets/img/block-warn.png" alt="">
+        <button (click)="this.showBanner = false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M9.9751 9.675L0.892618 1.32498M9.9751 1.32498L0.892618 9.675" stroke="#2EBC96"
+                    stroke-width="1.2975" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
     </div>
     <div class="table-top">
         <div class="tt-left">
+            <button (click)="this.showBanner = true"
+                style="width: fit-content; height: fit-content; display: flex; justify-content: center; align-items: center; padding: 0; align-self: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+                        fill="#636364" />
+                </svg>
+            </button>
             <button *ngFor="let t  of tabs" [class.active]="t === tab" (click)="this.tab = t">
                 {{t}}
             </button>
@@ -27,7 +43,7 @@
                         d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
                         fill="#5C5E64" />
                 </svg>
-                <input type="search" placeholder="Search number here..">
+                <input type="number" placeholder="Search number here..">
             </div>
             <button (click)="this.showAddCon=true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

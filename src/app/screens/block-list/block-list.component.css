@@ -261,10 +261,10 @@
 }
 
 .top {
-    background: url(../../../assets/img/block.png);
+    /* background: url(../../../assets/img/block.png);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     position: relative;
     border-radius: .6rem;
     padding: 2rem;
@@ -272,6 +272,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 20px;
+    border: 1px solid rgba(46, 188, 150, 0.50);
+    background: rgba(46, 188, 150, 0.20);
 }
 
 .top img {
@@ -289,12 +292,20 @@
     background-color: transparent;
     border: none;
     outline: none;
+    border-radius: 4.325px;
+    background: #FFF;
+    box-shadow: 0px 0px 4.325px 0px rgba(0, 0, 0, 0.10);
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
 .top p {
     max-width: 87ch;
-    color: #FFF;
+    color: #737791;
     text-align: center;
     font-family: Poppins;
     font-size: 1rem;
@@ -302,6 +313,28 @@
     font-weight: 400;
     line-height: 130%;
     letter-spacing: 0.36px;
+    margin-top: 2rem;
+}
+
+.top_t {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.top_t span {
+    color: var(--dark-color, #181818);
+
+    /* Texi */
+    font-family: Nunito;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.54px;
 }
 
 .table-top {
@@ -346,6 +379,15 @@
     background: #FFF;
     box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
     padding: 0 1rem;
+
+    border-radius: 148px;
+    border: 1px solid rgba(46, 188, 150, 0.20);
+    background-color: rgba(46, 188, 150, 0.20);
+}
+
+.search svg {
+    height: 20px;
+    width: 20px;
 }
 
 .search input {
@@ -357,7 +399,7 @@
     padding-left: 0;
     color: var(--Greys-Blue-Grey-700, #333540);
     font-family: Poppins;
-    font-size: 1rem;
+    font-size: .9rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
