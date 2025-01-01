@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ChatFlowComponent implements OnInit {
   selectedCard: any = null;
+  fixedMenuToggled: boolean = false;
   selectedButton: any = null
   selectCard = (item: any) => {
     this.selectedCard = item;

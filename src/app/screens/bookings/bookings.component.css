@@ -186,6 +186,8 @@
 .booking_dets {
     display: flex;
     gap: 1rem;
+    background-color: #eee;
+    padding: 1.5rem;
 }
 
 .bd_left {
@@ -208,7 +210,7 @@
     flex-direction: column;
     gap: .5rem;
     padding: 1rem;
-    background-color: #EEEEEE;
+    background-color: #2EBC9633;
     border-radius: .3rem;
 }
 
@@ -239,7 +241,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: #eee;
+    background-color: #2EBC9633;
     padding: 1rem;
     border-radius: .3rem;
 }
@@ -268,7 +270,7 @@
 
 .company_dets {
     padding: 1rem;
-    background-color: #eee;
+    background-color: #2EBC9633;
     border-radius: .3rem;
     display: flex;
     gap: 1rem;
@@ -353,7 +355,7 @@
     border: none;
     outline: none;
     border-radius: .6rem;
-    background-color: #eee;
+    background-color: #2EBC9633;
     padding: 1rem;
 }
 
@@ -367,4 +369,115 @@
 .booking_dets_wrapper.active {
     grid-template-rows: 1fr;
     margin: 0;
+}
+
+.top {
+    /* background: url(../../../assets/img/block.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    position: relative;
+    border-radius: .6rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid rgba(46, 188, 150, 0.50);
+    background: rgba(46, 188, 150, 0.20);
+}
+
+.top img {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 1rem;
+}
+
+.top button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 4.325px;
+    background: #FFF;
+    box-shadow: 0px 0px 4.325px 0px rgba(0, 0, 0, 0.10);
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.top p {
+    max-width: 87ch;
+    color: #737791;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 0.36px;
+    margin-top: 2rem;
+}
+
+.top_t {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.top_t span {
+    color: var(--dark-color, #181818);
+
+    /* Texi */
+    font-family: Nunito;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.54px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
+    padding: 0 1rem;
+
+    border-radius: 148px;
+    border: 1px solid rgba(46, 188, 150, 0.20);
+    background-color: rgba(46, 188, 150, 0.20);
+}
+
+.search svg {
+    height: 20px;
+    width: 20px;
+}
+
+.search input {
+    padding: .7rem 1rem;
+    margin-right: -1rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-left: 0;
+    color: var(--Greys-Blue-Grey-700, #333540);
+    font-family: Poppins;
+    font-size: .9rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

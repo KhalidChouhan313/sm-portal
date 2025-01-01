@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class BookingsComponent implements OnInit {
-
+  showBanner = false;
   menuItems = [
     {
       name: "All Bookings",
