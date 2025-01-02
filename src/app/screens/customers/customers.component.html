@@ -1,8 +1,8 @@
 <div class="container">
     <div class="header">
-        <div class="kanban">Chatbot <strong> / Customers</strong></div>
+        <!-- <div class="kanban">Chatbot <strong> / Customers</strong></div> -->
         <div class="header_more">
-            <button class="filter">
+            <button class="filter" style="opacity: 0; cursor: none; pointer-events: none;">
                 Filters
             </button>
             <div class="hm_right">
@@ -29,14 +29,46 @@
                 <div class="th_item">
                     <input type="checkbox">
                 </div>
-                <div class="th_item">
-                    Joined At
+                <div class="th_item searchable" *ngIf="!searchByJoin">
+                    <span>
+                        Joined At
+                    </span>
+                    <img src="../../../assets/icons/sort.svg" style="height: 21px; width: 12px; margin-right: -.25rem;">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;"
+                        (click)="searchByJoin = true">
                 </div>
-                <div class="th_item">
-                    WhatsApp Profile Name
+                <div class="th_item searchable active" *ngIf="searchByJoin">
+                    <input type="text">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;"
+                        (click)="searchByJoin = false">
                 </div>
-                <div class="th_item">
-                    WhatsApp Number
+                <div class="th_item searchable" *ngIf="!searchByWP">
+                    <span>
+                        WhatsApp Profile Name
+                    </span>
+                    <img src="../../../assets/icons/sort.svg" style="height: 21px; width: 12px; margin-right: -.25rem;">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;"
+                        (click)="searchByWP = true">
+                </div>
+                <div class="th_item searchable active" *ngIf="searchByWP">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;" class="tsa_search"
+                        (click)="searchByWP = false">
+                    <input type="text" placeholder="WhatsApp Profile Name">
+                    <img src="../../../assets/icons/sort.svg" style="height: 21px; width: 12px; margin-right: -.25rem;">
+                </div>
+                <div class="th_item searchable" *ngIf="!searchByWN">
+                    <span>
+                        WhatsApp Number
+                    </span>
+                    <img src="../../../assets/icons/sort.svg" style="height: 21px; width: 12px; margin-right: -.25rem;">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;"
+                        (click)="searchByWN = true">
+                </div>
+                <div class="th_item searchable active" *ngIf="searchByWN">
+                    <img src="../../../assets/icons/search.svg" style="height: 25px; width: 25px;" class="tsa_search"
+                        (click)="searchByWN = false">
+                    <input type="text" placeholder="WhatsApp Number">
+                    <img src="../../../assets/icons/sort.svg" style="height: 21px; width: 12px; margin-right: -.25rem;">
                 </div>
                 <div class="th_item">
                     Total Bookings

@@ -17,6 +17,9 @@ export class CustomersComponent implements OnInit {
   totalCustomers: number = 0;
   selectedCustomer: string = "";
   loading = true;
+  searchByJoin = false;
+  searchByWP = false;
+  searchByWN = false;
 
   ngOnInit(): void {
     this.loading = true
