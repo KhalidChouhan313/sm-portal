@@ -557,8 +557,7 @@
 }
 
 .fixed_menu {
-    background-color: red;
-    z-index: 99999999999;
+    z-index: 9999;
     position: absolute;
     top: 2rem;
     right: 2rem;
