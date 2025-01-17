@@ -31,6 +31,13 @@ import { BroadcastSmsComponent } from './screens/broadcast-sms/broadcast-sms.com
 import { BroadcastWhatsappComponent } from './screens/broadcast-whatsapp/broadcast-whatsapp.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { ChatbotAnalyticsComponent } from './screens/chatbot-analytics/chatbot-analytics.component';
+import { OverviewCardsComponent } from './components/overview-cards/overview-cards.component';
+import { BookingDetailsComponent } from './components/booking-details/booking-details.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { TotalTtvComponent } from './components/total-ttv/total-ttv.component';
+import { VehicleInsightsComponent } from './components/vehicle-insights/vehicle-insights.component';
+import { TotalBookingsComponent } from './components/total-bookings/total-bookings.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +64,13 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     BroadcastWhatsappComponent,
     ModalComponent,
     PieChartComponent,
+    ChatbotAnalyticsComponent,
+    OverviewCardsComponent,
+    BookingDetailsComponent,
+    CustomerDetailsComponent,
+    TotalTtvComponent,
+    VehicleInsightsComponent,
+    TotalBookingsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,29 @@
+<div class="customer-details-container">
+    <div class="search-bar">
+        <h2>Customer details</h2>
+        <input type="text" placeholder="Search User" />
+        <button>See all</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Date & Time</th>
+                <th>Bookings</th>
+                <th>Drop-off Point</th>
+                <th>Vehicle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers">
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.date }}</td>
+                <td>{{ customer.bookings }}</td>
+                <td>{{ customer.dropOff }}</td>
+                <td>{{ customer.vehicle }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

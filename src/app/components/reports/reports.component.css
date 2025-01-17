@@ -1,4 +1,4 @@
-.container {
+.container-own {
     padding: 1.25rem;
     height: 100%;
     border-radius: 10px;
@@ -92,12 +92,12 @@
 } */
 
 /* @media screen and (max-width: 1500px) {
-    .container {
+    .container-own {
         height: 350px;
         padding: .75rem;
         }
         
-        .container>h4 {
+        .container-own>h4 {
         font-size: 1.25rem;
     }
 } */

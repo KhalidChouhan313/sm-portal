@@ -55,3 +55,35 @@ button:disabled {
     opacity: .7;
     cursor: not-allowed;
 }
+
+
+@media (max-width: 768px) {
+  .overview-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .card p {
+    font-size: 1.2rem;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+}

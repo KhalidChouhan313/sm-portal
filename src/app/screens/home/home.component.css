@@ -1,4 +1,4 @@
-.container {
+.container-own {
     display: flex;
     gap: 1.5rem;
     flex-direction: column;
@@ -458,7 +458,7 @@
 
 
 @media screen and (max-width: 1500px) {
-    .container {
+    .container-own {
         gap: 1rem;
         padding: 1rem;
     }
@@ -477,7 +477,7 @@
 }
 
 @media screen and (max-width: 976px) {
-    .container {
+    .container-own {
         display: none;
     }
 

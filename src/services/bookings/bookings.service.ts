@@ -45,4 +45,8 @@ export class BookingsService {
   public getBotMessages(id) {
     return this.http.get(`${environment.apiUrl}/api/waba/messages/${id}`);
   }
+
+  public getChatbotDashboardDetails(id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/chatbot-dashboard-data/${id}`);
+  }
 }
