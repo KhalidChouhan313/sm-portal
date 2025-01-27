@@ -24,6 +24,7 @@ export class BotSettingsComponent {
   adminDetails: any;
   siteId = 0;
   userQuery = [];
+  userQueryString = ""
   botQuery = "";
   outcode = "";
   sector = "";
@@ -139,37 +140,52 @@ export class BotSettingsComponent {
   }
 
   updateAirport() {
-    let obj = {
-      user_query: this.userQuery.map(uq => uq.value.toLowerCase()),
-      bot_query: this.botQuery.toLowerCase(),
-    };
-    this.queryList[this.queryIndex] = obj.user_query;
-    this.queryList[this.queryIndex] = obj.bot_query;
-    let editObj = {
-      _id: this.adminDetails._id,
-      query: this.queryList,
-    };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
-      this.isEditQuery = false;
-      this.userQuery = [];
-      this.botQuery = "";
-    });
+    // Update the selected query object
+  let updatedObj = {
+    user_query: this.userQuery.map((uq) => uq.toLowerCase()),
+    bot_query: this.botQuery.toLowerCase(),
+    isAirport: this.isAirport,
+  };
+
+  // Update the specific index in the query list
+  this.queryList[this.queryIndex] = updatedObj;
+
+  // Prepare the object to send to the backend
+  let editObj = {
+    _id: this.adminDetails._id,
+    query: this.queryList,
+  };
+
+  // Call the update method on your service
+  this.AS.updateBotAdmin(editObj).subscribe(
+    (res) => {
+      this.isEditQuery = false; // Exit edit mode
+      this.userQuery = []; // Reset userQuery
+      this.botQuery = ''; // Reset botQuery
+      this.isAirport = false; // Reset isAirport checkbox
+    },
+    (error) => {
+      console.error('Error updating bot query:', error);
+    }
+  );
   }
 
   addAirport() {
     let obj = {
-      user_query: this.userQuery.map(uq => uq.value.toLowerCase()),
+      user_query: this.userQuery.map(uq => uq.toLowerCase()),
       bot_query: this.botQuery.toLowerCase(),
       isAirport: this.isAirport
     };
 
     this.queryList.push(obj);
+    console.log(this.queryList)
     let editObj = {
       _id: this.adminDetails._id,
       query: this.queryList,
     };
     this.AS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditQuery = false;
+      this.userQueryString = ""
       this.userQuery = [];
       this.botQuery = "";
       this.isAirport = false;
@@ -187,6 +203,29 @@ export class BotSettingsComponent {
       this.userQuery = [];
       this.botQuery = "";
     });
+  }
+
+  cancelEdit() {
+    this.isEditQuery = false;
+    this.userQuery = [];
+    this.botQuery = '';
+    this.isAirport = false;
+  }
+
+  clearText() {
+    this.userQueryString = '';
+  }
+
+  removeTag(index) {
+    this.userQuery.splice(index, 1);
+  }
+
+  addToQuery() {
+    if (this.userQueryString.trim()) {
+      this.userQuery.push(this.userQueryString.trim());
+      console.log(this.userQuery)
+      this.userQueryString = ''; 
+    }
   }
 
   updateCenterPoint() {
