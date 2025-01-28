@@ -1,84 +1,198 @@
-<main class="content">
-    <!-- <app-messages-sidebar></app-messages-sidebar> -->
-    <div>
-        <div class="tabs">
-            <div class="heading">
-                Message Types
-            </div>
-            <div class="tab" [class.active]="tab === 'booking'" (click)="openMessageList('booking')">Booking</div>
-            <div class="tab" [class.active]="tab === 'tracking'" (click)="openMessageList('tracking')">Tracking</div>
-            <div class="tab" [class.active]="tab === 'arrived'" (click)="openMessageList('arrived')">Arrived</div>
-            <div class="tab" [class.active]="tab === 'paylink'" (click)="openMessageList('paylink')">Paylink</div>
-            <div class="tab" [class.active]="tab === 'prepay'" (click)="openMessageList('prepay')">PrePay</div>
-            <div class="tab" [class.active]="tab === 'review'" (click)="openMessageList('review')">Review</div>
-            <div class="tab" [class.active]="tab === 'dreview'" (click)="openMessageList('dreview')">Driver</div>
-            <div class="tab" [class.active]="tab === 'noshow'" (click)="openMessageList('noshow')">No Show</div>
-            <div class="tab" [class.active]="tab === 'preauth'" (click)="openMessageList('preauth')">Pre Auth</div>
-            <div class="tab" [class.active]="tab === 'custom1'" (click)="openMessageList('custom1')">Custom 1</div>
-            <div class="tab" [class.active]="tab === 'custom2'" (click)="openMessageList('custom2')">Custom 2</div>
-            <div class="tab" [class.active]="tab === 'chatbot'" (click)="openMessageList('chatbot')">Chatbot</div>
-            <div class="tab" [class.active]="tab === 'missedcall'" (click)="openMessageList('missedcall')">Missed Calls
-            </div>
-            <div class="tab" [class.active]="tab === 'late'" (click)="openMessageList('late')">Late</div>
-        </div>
+<main class="content d-flex">
+  <!-- Left Section -->
+  <div class="tabs-container" style="width: 15%">
+    <div class="tabs" style="min-width: fit-content">
+      <div class="heading fs-6">Message Types</div>
+      <div
+        class="tab"
+        [class.active]="tab === 'booking'"
+        (click)="openMessageList('booking')"
+      >
+        Booking
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'tracking'"
+        (click)="openMessageList('tracking')"
+      >
+        Tracking
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'arrived'"
+        (click)="openMessageList('arrived')"
+      >
+        Arrived
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'paylink'"
+        (click)="openMessageList('paylink')"
+      >
+        Paylink
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'prepay'"
+        (click)="openMessageList('prepay')"
+      >
+        PrePay
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'review'"
+        (click)="openMessageList('review')"
+      >
+        Review
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'dreview'"
+        (click)="openMessageList('dreview')"
+      >
+        Driver
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'noshow'"
+        (click)="openMessageList('noshow')"
+      >
+        No Show
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'preauth'"
+        (click)="openMessageList('preauth')"
+      >
+        Pre Auth
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'custom1'"
+        (click)="openMessageList('custom1')"
+      >
+        Custom 1
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'custom2'"
+        (click)="openMessageList('custom2')"
+      >
+        Custom 2
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'chatbot'"
+        (click)="openMessageList('chatbot')"
+      >
+        Chatbot
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'missedcall'"
+        (click)="openMessageList('missedcall')"
+      >
+        Missed Calls
+      </div>
+      <div
+        class="tab"
+        [class.active]="tab === 'late'"
+        (click)="openMessageList('late')"
+      >
+        Late
+      </div>
     </div>
-    <div class="right">
-        <div class="top" style="margin-top: 0;">
-            <h1><span style="text-transform: capitalize;">{{currentList}}</span> Messages For WhatsApp</h1>
-        </div>
-        <div class="instance_grid">
-            <div class="instance_card"
-                *ngFor="let instance of currentMessageList.slice(0, currentMessageList.length-1);let i = index;">
-                <div style="width: 100%; display: flex;flex-direction: column;">
-                    <div class="ic_top">
-                        <h4>{{currentList}} Message {{i+1}}</h4>
-                        <div class="ict_right">
-                            <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
-                                {{instance.value.length}} / {{instance.limit}} characters
-                            </span>
-                            <button *ngIf="!currentMessageList[i].isEditable" class="edit"
-                                (click)="toggleEdit(instance.id)">
-                                <img src="../../assets/icons/edit.svg" alt="e">
-                                <span>{{instance.isEditable ? "Save": "Edit"}}</span>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
-                        (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea> -->
-                    <textarea value="instance" placeholder="Type here..."
-                        [readonly]="!currentMessageList[i].isEditable"></textarea>
-                    <button class="update" *ngIf="currentMessageList[i].isEditable">
-                        Update
-                    </button>
-                </div>
-            </div>
-        </div>
+  </div>
 
-        <div class="top">
-            <h1>
-                <span style="text-transform: capitalize;">{{currentList}}</span> Messages For SMS
-            </h1>
-        </div>
-        <div class="instance_grid">
-            <div class="instance_card" *ngFor="let instance of instanceData.slice(3, instanceData.length)">
-                <div class="ic_top">
-                    <h4>{{instance.name}}</h4>
-                    <div class="ict_right">
-                        <span class="limit_text" *ngIf="instance.limit > 0 && instance.isEditable">
-                            {{instance.value.length}} / {{instance.limit}} characters
-                        </span>
-                        <button *ngIf="!instance.isEditable" class="edit" (click)="toggleEdit(instance.id)">
-                            <img src="../../assets/icons/edit.svg" alt="e">
-                            <span>{{instance.isEditable ? "Save": "Edit"}}</span>
-                        </button>
-                    </div>
-                </div>
-                <textarea [disabled]="!instance.isEditable" [(ngModel)]="instance.value"
-                    (ngModelChange)="onTextAreaChange(instance, $event)" placeholder="Type here..."></textarea>
-                <button class="update" *ngIf="instance.isEditable">
-                    Update
-                </button>
-            </div>
-        </div>
+  <!-- Right Section -->
+  <div class="right" style="width: 85%">
+    <div class="top" style="margin-top: 0">
+      <h1>
+        <span style="text-transform: capitalize">{{ currentList }}</span>
+        Messages For WhatsApp
+      </h1>
     </div>
+    <div class="instance_grid">
+      <div
+        class="instance_card"
+        *ngFor="
+          let instance of currentMessageList.slice(
+            0,
+            currentMessageList.length - 1
+          );
+          let i = index
+        "
+      >
+        <div style="width: 100%; display: flex; flex-direction: column">
+          <div class="ic_top">
+            <h4>{{ currentList }} Message {{ i + 1 }}</h4>
+            <div class="ict_right">
+              <span
+                class="limit_text"
+                *ngIf="instance.limit > 0 && instance.isEditable"
+              >
+                {{ instance.value.length }} / {{ instance.limit }} characters
+              </span>
+              <button
+                *ngIf="!currentMessageList[i].isEditable"
+                class="edit"
+                (click)="toggleEdit(instance.id)"
+              >
+                <img src="../../assets/icons/edit.svg" alt="e" />
+                <span>{{ instance.isEditable ? "Save" : "Edit" }}</span>
+              </button>
+            </div>
+          </div>
+          <textarea
+            value="instance"
+            placeholder="Type here..."
+            [readonly]="!currentMessageList[i].isEditable"
+          ></textarea>
+          <button class="update" *ngIf="currentMessageList[i].isEditable">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="top">
+      <h1>
+        <span style="text-transform: capitalize">{{ currentList }}</span>
+        Messages For SMS
+      </h1>
+    </div>
+    <div class="instance_grid">
+      <div
+        class="instance_card"
+        *ngFor="let instance of instanceData.slice(3, instanceData.length)"
+      >
+        <div class="ic_top">
+          <h4>{{ instance.name }}</h4>
+          <div class="ict_right">
+            <span
+              class="limit_text"
+              *ngIf="instance.limit > 0 && instance.isEditable"
+            >
+              {{ instance.value.length }} / {{ instance.limit }} characters
+            </span>
+            <button
+              *ngIf="!instance.isEditable"
+              class="edit"
+              (click)="toggleEdit(instance.id)"
+            >
+              <img src="../../assets/icons/edit.svg" alt="e" />
+              <span>{{ instance.isEditable ? "Save" : "Edit" }}</span>
+            </button>
+          </div>
+        </div>
+        <textarea
+          [disabled]="!instance.isEditable"
+          [(ngModel)]="instance.value"
+          (ngModelChange)="onTextAreaChange(instance, $event)"
+          placeholder="Type here..."
+        ></textarea>
+        <button class="update" *ngIf="instance.isEditable">Update</button>
+      </div>
+    </div>
+  </div>
 </main>

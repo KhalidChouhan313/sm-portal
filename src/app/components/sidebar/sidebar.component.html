@@ -1,137 +1,346 @@
 <div class="sidebar-wrapper">
-    <nav class="sidebar" [class.toggled]="isToggled">
-        <div class="logo">
-            <img src="../../../assets/logo.png" alt="">
-            <h1>Taxi Messages</h1>
-        </div>
-        <ul class="menu">
-            <a [routerLink]="'/'">
-                <li (click)="setCurrentItem('Home')" [class.active]="currentItem === 'Home'" class="menu_item">
-                    <img src="../../../assets/icons/home.svg" style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Home</span>
-                </li>
-            </a>
-            <a [routerLink]="'/messages'">
-                <li (click)="setCurrentItem('Messages')" [class.active]="currentItem === 'Messages'" class="menu_item">
-                    <img src="../../../assets/icons/messages.png"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Messages</span>
-                </li>
-            </a>
-            <a [routerLink]="'/block-list'">
-                <li (click)="setCurrentItem('Blocked')" [class.active]="currentItem === 'Blocked'" class="menu_item">
-                    <img src="../../../assets/icons/blocked-list.svg"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Blocked List</span>
-                </li>
-            </a>
-            <a [routerLink]="'/devices'">
-                <li (click)="setCurrentItem('Devices')" [class.active]="currentItem === 'Devices'" class="menu_item">
-                    <img src="../../../assets/icons/devices.svg"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Devices</span>
-                </li>
-            </a>
-            <a [routerLink]="'/chatbot/analytics'" (click)="setCurrentSubItem('Analytics')">
-                <li (click)="setCurrentItem('Chatbots')" [class.active]="currentItem === 'Chatbots'" class="menu_item">
-                    <img src="../../../assets/icons/chatbots.png"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Chatbots</span>
-                </li>
-            </a>
-            <ul *ngIf="currentItem === 'Chatbots'" class="sub_menu">
-                <a [routerLink]="'/chatbot/analytics'">
-                    <li (click)="setCurrentSubItem('Analytics')" [class.active]="currentSubItem === 'Analytics'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/analytics.svg"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>Analytics</span>
-                    </li>
-                </a>
-                <a [routerLink]="'/chatbot/chat-flow'">
-                    <li (click)="setCurrentSubItem('Chat')" [class.active]="currentSubItem === 'Chat'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/chat-flow.png"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>Chat Flow</span>
-                    </li>
-                </a>
-                <a [routerLink]="'/chatbot/bookings'">
-                    <li (click)="setCurrentSubItem('Bookings')" [class.active]="currentSubItem === 'Bookings'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/bookings.svg"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>Bookings</span>
-                    </li>
-                </a>
-                <a [routerLink]="'/chatbot/customers'">
-                    <li (click)="setCurrentSubItem('Customers')" [class.active]="currentSubItem === 'Customers'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/customers.png"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>Customers</span>
-                    </li>
-                </a>
-                <a [routerLink]="'/chatbot/bot-settings'">
-                    <li (click)="setCurrentSubItem('Bot Settings')" [class.active]="currentSubItem === 'Bot Settings'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/bot-settings.svg"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>Bot Settings</span>
-                    </li>
-                </a>
-            </ul>
-            <a [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')">
-                <li (click)="setCurrentItem('Broadcast')" [class.active]="currentItem === 'Broadcast'"
-                    class="menu_item">
-                    <img src="../../../assets/icons/broadcast.svg"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Broadcast</span>
-                </li>
-            </a>
-            <ul *ngIf="currentItem === 'Broadcast'" class="sub_menu">
-                <a [routerLink]="'/broadcast-sms'">
-                    <li (click)="setCurrentSubItem('SMS')" [class.active]="currentSubItem === 'SMS'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/broadcast-sms.svg"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>SMS</span>
-                    </li>
-                </a>
-                <a [routerLink]="'/broadcast-whatsapp'">
-                    <li (click)="setCurrentSubItem('WhatsApp')" [class.active]="currentSubItem === 'WhatsApp'"
-                        class="sub_menu_item">
-                        <img src="../../../assets/icons/broadcast-w.svg"
-                            style="height: 30px; width: 30px; object-fit: contain;">
-                        <span>WhatsApp</span>
-                    </li>
-                </a>
-            </ul>
-            <a [routerLink]="'/app-settings'">
-                <li (click)="setCurrentItem('App')" [class.active]="currentItem === 'App'" class="menu_item">
-                    <img src="../../../assets/icons/app-settings.png"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>App Settings</span>
-                </li>
-            </a>
-            <a [routerLink]="'/profile'">
-                <li (click)="setCurrentItem('Profile')" [class.active]="currentItem === 'Profile'" class="menu_item">
-                    <img src="../../../assets/icons/profile.png"
-                        style="height: 30px; width: 30px; object-fit: contain;">
-                    <span>Profile</span>
-                </li>
-            </a>
-        </ul>
+  <nav class="sidebar" [class.toggled]="isToggled">
+    <div class="logo">
+      <img src="../../../assets/logo.png" alt="" />
+      <h1>Taxi Messages</h1>
+    </div>
+    <ul class="menu">
+      <a [routerLink]="'/'">
+        <li
+          (click)="setCurrentItem('Home')"
+          [class.active]="currentItem === 'Home'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M86.9107 155.289C120.181 155.289 147.152 129.089 147.152 96.7695H86.9107L86.9111
+                        38.2503C53.6409 38.2501 26.6699 64.4502 26.6699 96.7695C26.6699 129.089 53.6406 155.289 86.9107
+                        155.289Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M113.266 27.2769V70.6035H154.682V67.5088C154.682 45.2893 136.139 27.2769 113.266
+                        27.2769Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Home</span>
+        </li>
+      </a>
+      <a [routerLink]="'/messages'">
+        <li
+          (click)="setCurrentItem('Messages')"
+          [class.active]="currentItem === 'Messages'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M58.6728 75.9239V75.3223M90.6758 75.9239V75.3223M122.679 75.9239V75.3223M88.5886
+            121.935L55.1943 155.33V121.935H42.6714C33.834 121.935 26.6699 114.771 26.6699
+            105.934V43.3194C26.6699 34.482 33.834 27.3179 42.6714 27.3179H138.68C147.518 27.3179 154.682 34.482
+            154.682 43.3194V105.934C154.682 114.771 147.518 121.935 138.68 121.935H88.5886Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Messages</span>
+        </li>
+      </a>
+      <a [routerLink]="'/block-list'">
+        <li
+          (click)="setCurrentItem('Blocked')"
+          [class.active]="currentItem === 'Blocked'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M53.339 53.3383L90.6758 90.675L128.013 128.012M154.682 90.675C154.682 126.024 126.025
+            154.681 90.6758 154.681C55.3263 154.681 26.6699 126.024 26.6699 90.675C26.6699 55.3256 55.3263
+            26.6692 90.6758 26.6692C126.025 26.6692 154.682 55.3256 154.682 90.675Z"
+              stroke="#636364"
+              stroke-
+              width="8.00073"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Blocked List</span>
+        </li>
+      </a>
+      <a [routerLink]="'/devices'">
+        <li
+          (click)="setCurrentItem('Devices')"
+          [class.active]="currentItem === 'Devices'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M66.8961 50.6715H109.122M37.3379 42.6706V138.679C37.3379 147.517 44.9 154.681 54.2283
+            154.681H121.79C131.118 154.681 138.68 147.517 138.68 138.679V42.6707C138.68 33.8334 131.118 26.6693
+            121.79 26.6693L54.2283 26.6692C44.9 26.6692 37.3379 33.8333 37.3379 42.6706ZM88.0092
+            122.678H88.6074V123.191H88.0092V122.678Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+              stroke-
+              linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Devices</span>
+        </li>
+      </a>
+      <a
+        [routerLink]="'/chatbot/analytics'"
+        (click)="setCurrentSubItem('Analytics')"
+      >
+        <li
+          (click)="setCurrentItem('Chatbots')"
+          [class.active]="currentItem === 'Chatbots'"
+          class="menu_item"
+        >
+          <img
+            src="../../../assets/icons/chatbots.png"
+            style="height: 30px; width: 30px; object-fit: contain"
+          />
+          <span>Chatbots</span>
+        </li>
+      </a>
+      <ul *ngIf="currentItem === 'Chatbots'" class="sub_menu">
+        <a [routerLink]="'/chatbot/analytics'">
+          <li
+            (click)="setCurrentSubItem('Analytics')"
+            [class.active]="currentSubItem === 'Analytics'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/analytics.svg"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>Analytics</span>
+          </li>
+        </a>
+        <a [routerLink]="'/chatbot/chat-flow'">
+          <li
+            (click)="setCurrentSubItem('Chat')"
+            [class.active]="currentSubItem === 'Chat'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/chat-flow.png"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>Chat Flow</span>
+          </li>
+        </a>
+        <a [routerLink]="'/chatbot/bookings'">
+          <li
+            (click)="setCurrentSubItem('Bookings')"
+            [class.active]="currentSubItem === 'Bookings'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/bookings.svg"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>Bookings</span>
+          </li>
+        </a>
+        <a [routerLink]="'/chatbot/customers'">
+          <li
+            (click)="setCurrentSubItem('Customers')"
+            [class.active]="currentSubItem === 'Customers'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/customers.png"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>Customers</span>
+          </li>
+        </a>
+        <a [routerLink]="'/chatbot/bot-settings'">
+          <li
+            (click)="setCurrentSubItem('Bot Settings')"
+            [class.active]="currentSubItem === 'Bot Settings'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/bot-settings.svg"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>Bot Settings</span>
+          </li>
+        </a>
+      </ul>
+      <a [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')">
+        <li
+          (click)="setCurrentItem('Broadcast')"
+          [class.active]="currentItem === 'Broadcast'"
+          class="menu_item"
+        >
+          <img
+            src="../../../assets/icons/broadcast.svg"
+            style="height: 30px; width: 30px; object-fit: contain"
+          />
+          <span>Broadcast</span>
+        </li>
+      </a>
+      <ul *ngIf="currentItem === 'Broadcast'" class="sub_menu">
+        <a [routerLink]="'/broadcast-sms'">
+          <li
+            (click)="setCurrentSubItem('SMS')"
+            [class.active]="currentSubItem === 'SMS'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/broadcast-sms.svg"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>SMS</span>
+          </li>
+        </a>
+        <a [routerLink]="'/broadcast-whatsapp'">
+          <li
+            (click)="setCurrentSubItem('WhatsApp')"
+            [class.active]="currentSubItem === 'WhatsApp'"
+            class="sub_menu_item"
+          >
+            <img
+              src="../../../assets/icons/broadcast-w.svg"
+              style="height: 30px; width: 30px; object-fit: contain"
+            />
+            <span>WhatsApp</span>
+          </li>
+        </a>
+      </ul>
+      <a [routerLink]="'/app-settings'">
+        <li
+          (click)="setCurrentItem('App')"
+          [class.active]="currentItem === 'App'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M72.4251 41.1053L80.4102 29.0564C81.3982 27.5655 83.0677 26.6691 84.8563
+            26.6691H96.4992C98.2813 26.6691 99.9457 27.5591 100.935 29.0413L108.839 40.8804M72.4251
+            41.1053C70.3107 44.2727 66.7963 45.8247 63.066 45.548M72.4251 41.1053C70.3005 44.2651 66.7963
+            45.8375 63.066 45.548M63.066 45.548L49.0571 44.6245C47.2955 44.5084 45.5905 45.2715 44.5034
+            46.6626L36.9107 56.379C35.8353 57.7552 35.5018 59.5706 36.0177 61.2391L40.2218 74.8337M40.2218
+            74.8337C40.7638 76.6792 40.8332 78.6563 40.4453 80.5236M40.2218 74.8337C40.7716 76.676 40.8384
+            78.6491 40.4427 80.5427M40.4453 80.5236C40.0522 82.3688 39.2096 84.1111 37.9584 85.5219M40.4453
+            80.5236L40.4427 80.5427M37.9584 85.5219L28.4899 96.2148C27.3478 97.5045 26.8989 99.2665 27.2848
+            100.945L30.0218 112.855C30.419 114.583 31.6493 116.001 33.3044 116.638L46.1666 121.588C47.9033
+            122.293 49.4036 123.44 50.5392 124.885M37.9584 85.5219C39.2173 84.1226 40.0522 82.386 40.4427
+            80.5427M50.5392 124.885C51.667 126.334 52.4351 128.083 52.7332 129.977M50.5392 124.885C51.6773
+            126.334 52.448 128.079 52.7332 129.977M50.5392 124.885L50.5212 124.864C50.4467 124.77 50.367 124.671
+            50.29 124.579M52.7332 129.977L54.9444 144.239C55.212 145.965 56.3078 147.45 57.8779 148.216L68.4787
+            153.384C70.0851 154.167 71.9768 154.093 73.5177 153.188L85.4349 146.188M85.4349 146.188C87.0508
+            145.235 88.8543 144.757 90.6578 144.754M85.4349 146.188C86.0746 145.805 86.7451 145.5 87.4336
+            145.272C88.4792 144.924 89.5685 144.752 90.6578 144.754M90.6578 144.754C91.5955 144.756 92.5332
+            144.887 93.4478 145.144C94.2982 145.383 95.1254 145.732 95.909 146.188M90.6578 144.754C92.469
+            144.752 94.2828 145.23 95.909 146.188M95.909 146.188L108.372 153.272C109.921 154.152 111.807 154.201
+            113.399 153.403L123.953 148.11C125.516 147.326 126.595 145.827 126.842 144.097L128.826
+            130.218M128.826 130.218C129.112 128.313 129.87 126.551 130.995 125.09M128.826 130.218C129.101
+            128.309 129.864 126.55 130.995 125.09M130.995 125.09C132.112 123.643 133.595 122.49 135.321
+            121.778M130.995 125.09C132.11 123.637 133.587 122.481 135.321 121.778M135.321 121.778L148.31
+            116.432C149.93 115.766 151.12 114.346 151.492 112.634L154.109 100.605C154.469 98.9492 154.021
+            97.2208 152.902 95.9485L143.388 85.1318M143.388 85.1318C142.114 83.716 141.225 82.0248 140.793
+            80.2275M143.388 85.1318C142.789 84.4706 142.276 83.7477 141.857 82.9812C141.379 82.1109 141.022
+            81.1845 140.793 80.2275M140.793 80.2275C140.369 78.443 140.395 76.552 140.932 74.7216L145.07
+            60.7944C145.562 59.1385 145.222 57.3469 144.157 55.9869L136.738 46.5122C135.638 45.1074 133.908
+            44.3456 132.129 44.4824L118.275 45.548M118.275 45.548C116.42 45.6855 114.596 45.3145 112.973
+            44.5164M118.275 45.548C116.418 45.6934 114.596 45.3194 112.973 44.5164M112.973 44.5164C111.339
+            43.7081 109.905 42.4651 108.839 40.8804M112.973 44.5164C111.336 43.711 109.9 42.4713 108.839
+            40.8804M40.4427 80.5427L40.4479 80.5147M111.316 90.7429C111.316 102.68 101.892 112.356 90.2699
+            112.356C78.6474 112.356 69.224 102.68 69.224 90.7429C69.224 78.8061 78.6474 69.1297 90.2699
+            69.1297C101.892 69.1297 111.316 78.8061 111.316 90.7429Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+            />
+          </svg>
+          <span>App Settings</span>
+        </li>
+      </a>
+      <a [routerLink]="'/profile'">
+        <li
+          (click)="setCurrentItem('Profile')"
+          [class.active]="currentItem === 'Profile'"
+          class="menu_item"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 182 182"
+            fill="none"
+          >
+            <path
+              d="M26.6699 147.43C26.6699 122.257 47.7004 101.851 90.6758 101.851C133.651 101.851 154.682
+            122.257 154.682 147.43C154.682 151.434 151.76 154.681 148.156 154.681H33.196C29.5918 154.681 26.6699
+            151.434 26.6699 147.43Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+            />
+            <path
+              d="M114.678 50.6714C114.678 63.9274 103.932 74.6736 90.6758 74.6736C77.4197 74.6736 66.6736
+            63.9274 66.6736 50.6714C66.6736 37.4153 77.4197 26.6692 90.6758 26.6692C103.932 26.6692 114.678
+            37.4153 114.678 50.6714Z"
+              stroke="#636364"
+              stroke-width="8.00073"
+            />
+          </svg>
+          <span>Profile</span>
+        </li>
+      </a>
+    </ul>
 
-        <!-- <div class="pro">
+    <!-- <div class="pro">
             <img src="../../../assets/img/pro.png" alt="">
             <h2>Taxi Messages</h2>
             <p>Get access to all features on tetumbas</p>
             <button><span>Get Pro</span></button>
         </div> -->
 
-        <button (click)="toggleNavbar()" class="toggle">
-            <img src="../../../assets/img/toggle.png" alt="toggle">
-        </button>
-    </nav>
+    <button (click)="toggleNavbar()" class="toggle">
+      <img src="../../../assets/img/toggle.png" alt="toggle" />
+    </button>
+  </nav>
 </div>
