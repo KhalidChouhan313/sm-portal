@@ -221,12 +221,14 @@ export class BotSettingsComponent {
   }
 
   addToQuery() {
-    if (this.userQueryString.trim()) {
-      this.userQuery.push(this.userQueryString.trim());
-      console.log(this.userQuery)
-      this.userQueryString = '';
+    const trimmedQuery = this.userQueryString.trim();
+    if (trimmedQuery && !this.userQuery.includes(trimmedQuery)) {
+      this.userQuery.push(trimmedQuery);
+      console.log(this.userQuery);
+      this.userQueryString = ''; // Clear only if added
     }
   }
+  
 
   updateCenterPoint() {
     this.isLoad = true;
