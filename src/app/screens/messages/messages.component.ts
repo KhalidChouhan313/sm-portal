@@ -66,7 +66,9 @@ export class MessagesComponent implements OnInit{
   ]
 
   toggleEdit = (id: Number) => {
+
     this.instanceData.forEach(i => i.id === id ? i.isEditable = !i.isEditable : i)
+    console.log(id)
   }
 
   onTextAreaChange(instance: any, newValue: string) {
