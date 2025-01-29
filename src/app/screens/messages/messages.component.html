@@ -112,9 +112,9 @@
         Messages For WhatsApp
       </h1>
     </div>
-    <div class="instance_grid">
+    <div class="instance_grid d-flex">
       <div
-        class="instance_card"
+        class="instance_card col-md-4 d-flex flex-column"
         *ngFor="
           let instance of currentMessageList.slice(
             0,
@@ -123,9 +123,16 @@
           let i = index
         "
       >
-        <div style="width: 100%; display: flex; flex-direction: column">
-          <div class="ic_top">
-            <h4>{{ currentList }} Message {{ i + 1 }}</h4>
+        <div
+          style="
+            width: 100%;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <div class="ic_top d-flex justify-content-between align-items-center">
+            <h4 class="fw-semibold">{{ currentList }} Message {{ i + 1 }}</h4>
             <div class="ict_right">
               <span
                 class="limit_text"
@@ -134,21 +141,27 @@
                 {{ instance.value.length }} / {{ instance.limit }} characters
               </span>
               <button
-                *ngIf="!currentMessageList[i].isEditable"
-                class="edit"
-                (click)="toggleEdit(instance.id)"
+                *ngIf="!instanceData[i].isEditable"
+                class="edit btn btn-primary btn-sm"
+                (click)="toggleEdit(i)"
               >
                 <img src="../../assets/icons/edit.svg" alt="e" />
-                <span>{{ instance.isEditable ? "Save" : "Edit" }}</span>
               </button>
             </div>
           </div>
           <textarea
-            value="instance"
+            class="form-control"
             placeholder="Type here..."
-            [readonly]="!currentMessageList[i].isEditable"
+            disabled="!instanceData[i].isEditable"
+            [(ngModel)]="currentMessageList[i]"
           ></textarea>
-          <button class="update" *ngIf="currentMessageList[i].isEditable">
+          <!-- <textarea
+            class="form-control"
+            placeholder="Type here..."
+            *ngIf="instance.isEditable"
+            [(ngModel)]="currentMessageList[i]"
+          ></textarea> -->
+          <button class="btn btn-success mt-2" *ngIf="instance.isEditable">
             Update
           </button>
         </div>
@@ -164,7 +177,10 @@
     <div class="instance_grid">
       <div
         class="instance_card"
-        *ngFor="let instance of instanceData.slice(3, instanceData.length)"
+        style="height: 220px"
+        *ngFor="
+          let instance of currentMessageList.slice(3, currentMessageList.length)
+        "
       >
         <div class="ic_top">
           <h4 class="fw-semibold fs-4">{{ instance.name }}</h4>
@@ -187,7 +203,7 @@
         </div>
         <textarea
           [disabled]="!instance.isEditable"
-          [(ngModel)]="instance.value"
+          [(ngModel)]="currentMessageList[3]"
           (ngModelChange)="onTextAreaChange(instance, $event)"
           placeholder="Type here..."
         ></textarea>

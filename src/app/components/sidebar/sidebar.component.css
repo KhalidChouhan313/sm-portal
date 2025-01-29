@@ -4,6 +4,7 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     background-color: #fff;
     z-index: 100;
+    overflow: hidden;
 }
 
 .sidebar {
@@ -18,8 +19,8 @@
 }
 
 .sidebar.toggled {
-    width: 90px;
-    padding: 1rem;
+    width: 50px !important;
+    padding-left: 6rem !important;
     align-items: center;
 }
 
@@ -27,11 +28,12 @@
     display: flex;
     align-items: center;
     gap: .5rem;
+    width: 100px !important;
 }
 
 .logo img {
-    width: 62.727px;
-    height: 60px;
+    width: 30px;
+    /* height: 60px; */
     object-fit: contain;
 }
 
@@ -55,12 +57,19 @@
 }
 
 .menu_item {
-    padding: 1rem;
+    height: 45px ;
+    width: 150px;
+    padding-left: 15px;
     display: flex;
     align-items: center;
+    justify-items: left;
     gap: 1rem;
     cursor: pointer;
     border-radius: 1rem;
+}
+
+a {
+    text-decoration: none;
 }
 
 .icon {
