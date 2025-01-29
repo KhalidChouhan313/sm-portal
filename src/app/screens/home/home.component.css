@@ -6,11 +6,15 @@
 
 .top {
     display: flex;
+    justify-content: end;
     gap: 1.5rem;
+    height: 300px;
+    width: 100%;
 }
 
 .reports {
     flex: 1;
+    /* max-width: 700px;     */
 }
 
 .bottom {
@@ -32,6 +36,7 @@
 
 .activity {
     flex: 1;
+    max-width: calc(100% - 411px - 2rem);
 }
 
 .d_header {
@@ -203,8 +208,8 @@
 }
 
 .chart {
-    max-width: 300px;
-    margin: 0 auto;
+    height: 150px;
+    min-width: 450px;
 }
 
 .labels {
