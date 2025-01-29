@@ -93,7 +93,7 @@ export class BotSettingsComponent {
       _id: this.adminDetails._id,
       zip_codes: this.zipcodeList,
     };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
+    this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditCode = false;
       this.outcode = "";
       this.sector = "";
@@ -112,7 +112,7 @@ export class BotSettingsComponent {
       _id: this.adminDetails._id,
       zip_codes: this.zipcodeList,
     };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
+    this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.outcode = "";
       this.sector = "";
       this.unit = "";
@@ -125,7 +125,7 @@ export class BotSettingsComponent {
       _id: this.adminDetails._id,
       zip_codes: this.zipcodeList,
     };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
+    this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.outcode = "";
       this.sector = "";
       this.unit = "";
@@ -141,33 +141,33 @@ export class BotSettingsComponent {
 
   updateAirport() {
     // Update the selected query object
-  let updatedObj = {
-    user_query: this.userQuery.map((uq) => uq.toLowerCase()),
-    bot_query: this.botQuery.toLowerCase(),
-    isAirport: this.isAirport,
-  };
+    let updatedObj = {
+      user_query: this.userQuery.map((uq) => uq.toLowerCase()),
+      bot_query: this.botQuery.toLowerCase(),
+      isAirport: this.isAirport,
+    };
 
-  // Update the specific index in the query list
-  this.queryList[this.queryIndex] = updatedObj;
+    // Update the specific index in the query list
+    this.queryList[this.queryIndex] = updatedObj;
 
-  // Prepare the object to send to the backend
-  let editObj = {
-    _id: this.adminDetails._id,
-    query: this.queryList,
-  };
+    // Prepare the object to send to the backend
+    let editObj = {
+      _id: this.adminDetails._id,
+      query: this.queryList,
+    };
 
-  // Call the update method on your service
-  this.AS.updateBotAdmin(editObj).subscribe(
-    (res) => {
-      this.isEditQuery = false; // Exit edit mode
-      this.userQuery = []; // Reset userQuery
-      this.botQuery = ''; // Reset botQuery
-      this.isAirport = false; // Reset isAirport checkbox
-    },
-    (error) => {
-      console.error('Error updating bot query:', error);
-    }
-  );
+    // Call the update method on your service
+    this.BS.updateBotAdmin(editObj).subscribe(
+      (res) => {
+        this.isEditQuery = false; // Exit edit mode
+        this.userQuery = []; // Reset userQuery
+        this.botQuery = ''; // Reset botQuery
+        this.isAirport = false; // Reset isAirport checkbox
+      },
+      (error) => {
+        console.error('Error updating bot query:', error);
+      }
+    );
   }
 
   addAirport() {
@@ -183,7 +183,7 @@ export class BotSettingsComponent {
       _id: this.adminDetails._id,
       query: this.queryList,
     };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
+    this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditQuery = false;
       this.userQueryString = ""
       this.userQuery = [];
@@ -198,7 +198,7 @@ export class BotSettingsComponent {
       _id: this.adminDetails._id,
       query: this.queryList,
     };
-    this.AS.updateBotAdmin(editObj).subscribe((res) => {
+    this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditQuery = false;
       this.userQuery = [];
       this.botQuery = "";
@@ -224,7 +224,7 @@ export class BotSettingsComponent {
     if (this.userQueryString.trim()) {
       this.userQuery.push(this.userQueryString.trim());
       console.log(this.userQuery)
-      this.userQueryString = ''; 
+      this.userQueryString = '';
     }
   }
 
@@ -242,7 +242,7 @@ export class BotSettingsComponent {
 
     console.log(obj);
 
-    this.AS.updateBotAdmin(obj).subscribe(res => {
+    this.BS.updateBotAdmin(obj).subscribe(res => {
       this.isLoad = false;
       // console.log(res);
     })
@@ -258,7 +258,7 @@ export class BotSettingsComponent {
 
     // console.log(obj);
 
-    this.AS.updateBotAdmin(obj).subscribe(res => {
+    this.BS.updateBotAdmin(obj).subscribe(res => {
       this.isLoad = false;
       // console.log(res);
     })
