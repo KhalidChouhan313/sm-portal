@@ -1,37 +1,43 @@
 <div class="container-own">
-    <div class="left">
-        <img src="../../assets/img/login-content.png" alt="taxi-message">
-    </div>
-    <div class="right">
-        <form class="form" (ngSubmit)="handleSubmit($event)">
-            <h1>WELCOME BACK</h1>
-            <h2>Welcome Back! Please enter your details.</h2>
+  <div class="left">
+    <img src="../../assets/img/login-content.png" alt="taxi-message" />
+  </div>
+  <div class="right">
+    <form class="form" (ngSubmit)="handleSubmit($event)">
+      <h1>WELCOME BACK</h1>
+      <h2>Welcome Back! Please enter your details.</h2>
 
-            <div class="inp_con">
-                <label for="username">Username</label>
-                <input type="text" placeholder="Enter your username" id="username" name="username">
-            </div>
-            <div class="inp_con">
-                <label for="password">
-                    Password
-                    <button type="button" (click)="togglePasswordType()">Hide</button>
-                </label>
-                <input [type]="passwordType" placeholder="Enter your password" id="password" name="password">
-            </div>
-            <div class="rem_res">
-                <div class="remember">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-                <div class="reset">
-                    Forgot Password?
-                </div>
-            </div>
-            <button [disabled]="disabled" type="submit">
-                Sign In
-            </button>
-            <div *ngIf="error" class="error">{{error}}</div>
-            <p class="dha">Don't have an account? <a href="/">Sign up for free</a></p>
-        </form>
-    </div>
+      <div class="inp_con">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          placeholder="Enter your username"
+          id="username"
+          name="username"
+        />
+      </div>
+      <div class="inp_con">
+        <label for="password">
+          Password
+          <button type="button" (click)="togglePasswordType()">Hide</button>
+        </label>
+        <input
+          [type]="passwordType"
+          placeholder="Enter your password"
+          id="password"
+          name="password"
+        />
+      </div>
+      <div class="rem_res">
+        <div class="remember">
+          <input type="checkbox" name="remember" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+        <div class="reset">Forgot Password?</div>
+      </div>
+      <p class="dha">Don't have an account? <a href="/">Sign up for free</a></p>
+      <button [disabled]="disabled" type="submit">Sign In</button>
+      <div *ngIf="error" class="error">{{ error }}</div>
+    </form>
+  </div>
 </div>

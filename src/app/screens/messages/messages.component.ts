@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule,OnInit } from '@angular/core';
 import { BotService, AdminService } from 'src/services';
 import { Router } from '@angular/router';
 // import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./messages.component.css']
 })
 
-export class MessagesComponent {
+export class MessagesComponent implements OnInit{
 
   tab = ""
   tabs = [
@@ -121,13 +121,18 @@ export class MessagesComponent {
     this.currentMsg = '';
     this.currentIndex = 0;
 
-    let currentUser = JSON.parse(localStorage.getItem('SMS'));
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
+    console.log('here',currentUser);
+    
     this.AS.getUser(currentUser._id).subscribe(admin => {
       this.adminDetails = admin;
-      // console.log(admin);
+      console.log(admin);
+      this.currentMessageList = admin.messages.booking
+      this.tab = 'booking'
+      console.log(this.currentMessageList)
 
       this.currentMsg = admin.messages.booking[0];
       if (admin.messages.booking.length) { this.booking_msg = admin.messages.booking; }

@@ -173,7 +173,11 @@
             <span>Enter a new tag</span>
           </button>
           <div class="q-l-t-tag">
-            <input type="text" [(ngModel)]="userQueryString" />
+            <input
+              type="text"
+              [(ngModel)]="userQueryString"
+              (keydown.enter)="addToQuery()"
+            />
 
             <button
               type="button"
