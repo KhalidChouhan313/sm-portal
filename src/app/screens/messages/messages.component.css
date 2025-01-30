@@ -240,3 +240,16 @@
         height: 400px;
     }
 }
+
+.msg-btn-container {
+    display: flex;
+    justify-content: end;
+    gap: 30px;
+}
+
+.msg-btn {
+    background: transparent;
+    color: gray;
+    font-weight: light;
+    border: none;
+}

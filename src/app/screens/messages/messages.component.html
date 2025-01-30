@@ -143,9 +143,14 @@
               <button
                 *ngIf="!instanceData[i].isEditable"
                 class="edit btn btn-primary btn-sm"
+                style="background-color: transparent; box-shadow: none"
                 (click)="toggleEdit(instance, i)"
               >
-                <img src="../../assets/icons/edit.svg" alt="e" />
+                <img
+                  src="../../assets/icons/edit.svg"
+                  style="height: 20px"
+                  alt="e"
+                />
               </button>
             </div>
           </div>
@@ -162,12 +167,10 @@
             *ngIf="!instance.isEditable"
             disabled
           ></textarea>
-          <button
-            class="btn btn-success mt-2"
-            *ngIf="instanceData[i].isEditable"
-          >
-            Update
-          </button>
+          <div class="msg-btn-container" *ngIf="instanceData[i].isEditable">
+            <button class="msg-btn">Cancel</button>
+            <button class="msg-btn">Update</button>
+          </div>
         </div>
       </div>
     </div>
