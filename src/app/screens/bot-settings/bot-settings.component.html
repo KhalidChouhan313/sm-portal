@@ -173,28 +173,6 @@
     </button>
     <button class="danger">Cancel</button>
   </div>
-  <div class="p-c-l-keywords">
-    <div *ngFor="let code of zipcodeList; let i = index" class="code">
-      <span (click)="selectCode(i)"
-        >{{ code.outcode }}{{ code.sector }}{{ code.unit }}</span
-      >
-      <svg
-        (click)="deleteCode(i)"
-        style="cursor: pointer"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="25"
-        viewBox="0 0 24 25"
-        fill="none"
-      >
-        <rect x="0.5" y="1" width="23" height="23" rx="11.5" stroke="white" />
-        <path
-          d="M6.27748 16.8827C5.90751 17.2527 5.90751 17.8526 6.27748 18.2225C6.64745 18.5925 7.24729 18.5925 7.61726 18.2225L12 13.8398L16.3827 18.2225C16.7527 18.5925 17.3525 18.5925 17.7225 18.2225C18.0925 17.8526 18.0925 17.2527 17.7225 16.8827L13.3398 12.5L17.7225 8.11726C18.0925 7.74729 18.0925 7.14745 17.7225 6.77748C17.3525 6.40751 16.7527 6.40751 16.3827 6.77748L12 11.1602L7.61726 6.77748C7.24729 6.40751 6.64745 6.40751 6.27748 6.77748C5.90751 7.14745 5.90751 7.74729 6.27748 8.11726L10.6602 12.5L6.27748 16.8827Z"
-          fill="white"
-        />
-      </svg>
-    </div>
-  </div>
 </div>
 <div class="c-bg-heading">Query list</div>
 <div class="q-l">
