@@ -143,7 +143,7 @@
               <button
                 *ngIf="!instanceData[i].isEditable"
                 class="edit btn btn-primary btn-sm"
-                (click)="toggleEdit(i)"
+                (click)="toggleEdit(instance, i)"
               >
                 <img src="../../assets/icons/edit.svg" alt="e" />
               </button>
@@ -152,16 +152,20 @@
           <textarea
             class="form-control"
             placeholder="Type here..."
-            [disabled]="!instanceData[i].isEditable"
-            [(ngModel)]="currentMessageList[i]"
+            [(ngModel)]="currentMsg"
+            *ngIf="instance.isEditable"
           ></textarea>
-          <!-- <textarea
+          <textarea
             class="form-control"
             placeholder="Type here..."
-            *ngIf="instance.isEditable"
-            [(ngModel)]="currentMessageList[i]"
-          ></textarea> -->
-          <button class="btn btn-success mt-2" *ngIf="instance.isEditable">
+            [(ngModel)]="instanceData[i]"
+            *ngIf="!instance.isEditable"
+            disabled
+          ></textarea>
+          <button
+            class="btn btn-success mt-2"
+            *ngIf="instanceData[i].isEditable"
+          >
             Update
           </button>
         </div>
@@ -179,7 +183,10 @@
         class="instance_card"
         style="height: 220px"
         *ngFor="
-          let instance of currentMessageList.slice(3, currentMessageList.length)
+          let instance of currentMessageList.slice(
+            currentMessageList.length - 1,
+            currentMessageList.length
+          )
         "
       >
         <div class="ic_top">
@@ -194,7 +201,7 @@
             <button
               *ngIf="!instance.isEditable"
               class="edit"
-              (click)="toggleEdit(instance.id)"
+              (click)="toggleEdit(instance, 3)"
             >
               <img src="../../assets/icons/edit.svg" alt="e" />
               <span>{{ instance.isEditable ? "Save" : "Edit" }}</span>

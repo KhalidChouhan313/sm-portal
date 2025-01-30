@@ -65,19 +65,13 @@ export class MessagesComponent implements OnInit{
     },
   ]
 
-  toggleEdit = (id) => {
-    this.instanceData.forEach((item, index) => {
-      item.isEditable = index === id; // Enable only the clicked one
-    });
-  };
   
-
   onTextAreaChange(instance: any, newValue: string) {
     instance.value = newValue;
   }
-
+  
   // private serviceModal: NgbModalRef;
-
+  
   adminDetails: any;
   isLoad: boolean = true;
   isCallResponse: boolean = false;
@@ -109,7 +103,7 @@ export class MessagesComponent implements OnInit{
   preauth_msg = ['message text', 'message text', 'message text', 'message text'];
   custom1_msg = ['message text', 'message text', 'message text', 'message text'];
   custom2_msg = ['message text', 'message text', 'message text', 'message text'];
-
+  
   constructor(
     private BS: BotService,
     private AS: AdminService,
@@ -136,7 +130,7 @@ export class MessagesComponent implements OnInit{
       this.currentMessageList = admin.messages.booking
       this.tab = 'booking'
       console.log(this.currentMessageList)
-
+      
       this.currentMsg = admin.messages.booking[0];
       if (admin.messages.booking.length) { this.booking_msg = admin.messages.booking; }
       if (admin.messages.late.length) { this.late_msg = admin.messages.late; }
@@ -164,10 +158,18 @@ export class MessagesComponent implements OnInit{
       this.isCallResponse = this.adminDetails.call_response;
       this.isLoad = false;
       // console.log(this.chatbot_msg);
-
+      
     })
   }
-
+  
+  toggleEdit = (instance,index) => {
+    this.instanceData.forEach((item, i) => {
+      item.isEditable = i === index; // Enable only the clicked one
+    });
+    // this.currentMsg = this.currentMessageList[id]
+    console.log(instance)
+  };
+  
   textChange() {
     this.isEdit = true;
   }
