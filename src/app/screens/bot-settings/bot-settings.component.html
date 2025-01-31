@@ -144,6 +144,34 @@
         </div>
       </div>
     </div>
+    <div class="p-c-l-i-con">
+      <label for="">Unit:</label>
+      <input [(ngModel)]="unit" type="text" />
+    </div>
+  </div>
+  <div class="p-c-l-btns">
+    <button
+      class="new"
+      [disabled]="isEditCode || !outcode"
+      (click)="addZipcode()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0 1.22294L0.877727 0.345215H7.89955L8.77727 1.22294V8.24476L7.89955 9.12249H0.877727L0 8.24476V1.22294ZM1.75545 2.10067V7.36703H7.02182V2.10067H1.75545ZM11.4105 0.345215L10.5327 1.22294V8.24476L11.4105 9.12249H18.4323L19.31 8.24476V1.22294L18.4323 0.345215H11.4105ZM12.2882 7.36703V2.10067H17.5545V7.36703H12.2882ZM15.7991 19.6552H14.0436V16.1443H10.5327V14.3889H14.0436V10.8779H15.7991V14.3889H19.31V16.1443H15.7991V19.6552ZM0.877727 10.8779L0 11.7557V18.7775L0.877727 19.6552H7.89955L8.77727 18.7775V11.7557L7.89955 10.8779H0.877727ZM1.75545 17.8998V12.6334H7.02182V17.8998H1.75545Z"
+          fill="white"
+        />
+      </svg>
+      <span> Add New </span>
+    </button>
+    <button class="danger">Cancel</button>
   </div>
 </div>
 <div class="c-bg-heading">Query list</div>
