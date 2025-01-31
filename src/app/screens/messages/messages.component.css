@@ -54,20 +54,19 @@
     gap: 1rem;
     border-radius: 1.2rem;
     background: #FFF;
-    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
-    overflow-y: auto;
 }
 
 .heading {
-    border-bottom: 1px solid #E0E0E0;
-    padding: 1.6rem 1rem;
+    padding: 15px 1rem;
     color: var(--dark-color, #181818);
     font-family: Raleway;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    background: var(--surface-default-white, #FFF);
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    border-radius: 10px;
+    text-align: center;
 }
 
 .tab {
@@ -89,11 +88,13 @@
     letter-spacing: 0.54px;
     margin-top: -.5rem;
     padding: 1rem 2rem;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    border-radius: 10px;
+    text-align: center;
 }
 
 .tab.active {
-    background: linear-gradient(0deg, #2EBC96 0%, #1A9096 100%);
-    color: white;
+    color: #1ec01e;
 }
 
 .instance_grid {
@@ -132,6 +133,15 @@
     line-height: normal;
     ;
     /* padding-bottom: .34rem; */
+}
+
+.top {
+    background-color: transparent;
+}
+
+.right {
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    border-radius: 10px;
 }
 
 .ict_right {
@@ -229,4 +239,17 @@
         min-width: 300px;
         height: 400px;
     }
+}
+
+.msg-btn-container {
+    display: flex;
+    justify-content: end;
+    gap: 30px;
+}
+
+.msg-btn {
+    background: transparent;
+    color: gray;
+    font-weight: light;
+    border: none;
 }

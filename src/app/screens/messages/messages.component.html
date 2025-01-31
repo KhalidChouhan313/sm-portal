@@ -143,27 +143,34 @@
               <button
                 *ngIf="!instanceData[i].isEditable"
                 class="edit btn btn-primary btn-sm"
-                (click)="toggleEdit(i)"
+                style="background-color: transparent; box-shadow: none"
+                (click)="toggleEdit(instance, i)"
               >
-                <img src="../../assets/icons/edit.svg" alt="e" />
+                <img
+                  src="../../assets/icons/edit.svg"
+                  style="height: 20px"
+                  alt="e"
+                />
               </button>
             </div>
           </div>
           <textarea
             class="form-control"
             placeholder="Type here..."
-            [disabled]="!instanceData[i].isEditable"
-            [(ngModel)]="currentMessageList[i]"
+            [(ngModel)]="currentMsg"
+            *ngIf="instance.isEditable"
           ></textarea>
-          <!-- <textarea
+          <textarea
             class="form-control"
             placeholder="Type here..."
-            *ngIf="instance.isEditable"
-            [(ngModel)]="currentMessageList[i]"
-          ></textarea> -->
-          <button class="btn btn-success mt-2" *ngIf="instance.isEditable">
-            Update
-          </button>
+            [(ngModel)]="instanceData[i]"
+            *ngIf="!instance.isEditable"
+            disabled
+          ></textarea>
+          <div class="msg-btn-container" *ngIf="instanceData[i].isEditable">
+            <button class="msg-btn">Cancel</button>
+            <button class="msg-btn">Update</button>
+          </div>
         </div>
       </div>
     </div>
@@ -179,7 +186,10 @@
         class="instance_card"
         style="height: 220px"
         *ngFor="
-          let instance of currentMessageList.slice(3, currentMessageList.length)
+          let instance of currentMessageList.slice(
+            currentMessageList.length - 1,
+            currentMessageList.length
+          )
         "
       >
         <div class="ic_top">
@@ -194,7 +204,7 @@
             <button
               *ngIf="!instance.isEditable"
               class="edit"
-              (click)="toggleEdit(instance.id)"
+              (click)="toggleEdit(instance, 3)"
             >
               <img src="../../assets/icons/edit.svg" alt="e" />
               <span>{{ instance.isEditable ? "Save" : "Edit" }}</span>
