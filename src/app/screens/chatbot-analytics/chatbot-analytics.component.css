@@ -107,3 +107,7 @@ h1 {
   background-color: #467a5c;
   color: white;
 }
+
+p {
+  margin-bottom: 0;
+}

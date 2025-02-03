@@ -66,7 +66,7 @@
 }
 
 .logo h1 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     white-space: nowrap;
     transition: 100ms;
@@ -85,7 +85,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0;
+    /* padding: 10px 0; */
 }
 
 .menu {
@@ -94,6 +94,8 @@
     gap: 1rem;
     overflow-y: auto;
     padding: 15px;
+    
+    margin-top: 10px;
 }
 
 .menu_item {
@@ -153,6 +155,7 @@ a {
 }
 
 .sub_menu {
+    margin-top: 5px;
     margin-left: 1.5rem;
     padding-left: .5rem;
     display: flex;
@@ -167,13 +170,19 @@ a {
 }
 
 .sub_menu_item {
-    padding: 1rem;
-    cursor: pointer;
-    border-radius: .8rem;
-    color: #333540;
+    height: 45px ;
+    width: 125px;
+    padding-left: 15px;
     display: flex;
     align-items: center;
-    gap: .6rem;
+    justify-items: left;
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.sub_menu_item img {
+    height: 20px;
 }
 
 .sub_menu_item span {
@@ -244,7 +253,7 @@ a {
 
 .toggle {
     position: absolute;
-    top: 43px;
+    top: 65px;
     left: 100%;
     transform: translateX(-50%);
     border: none;

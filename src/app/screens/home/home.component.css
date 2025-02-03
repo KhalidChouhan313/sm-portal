@@ -2,18 +2,19 @@
     display: flex;
     gap: 1.5rem;
     flex-direction: column;
+    overflow: hidden !important;
 }
 
 .top {
     display: flex;
     gap: 1.5rem;
-    height: 300px;
+    height: 350px;
 }
 
 .top .reports {
     max-width: calc(100% - 311px - 2rem);
     flex: 1;
-    overflow: scroll;
+    overflow: hidden;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
     border-radius: 20px;
     /* max-width: 700px;     */
@@ -46,7 +47,7 @@
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1rem 1.5rem;
-    min-width: 350px;
+    width: 350px;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
@@ -198,6 +199,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    white-space: nowrap;
 }
 
 .bc-top a {
