@@ -6,15 +6,28 @@
 
 .top {
     display: flex;
-    justify-content: end;
     gap: 1.5rem;
     height: 300px;
-    width: 100%;
 }
 
-.reports {
+.top .reports {
+    max-width: calc(100% - 311px - 2rem);
     flex: 1;
+    overflow: scroll;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    border-radius: 20px;
     /* max-width: 700px;     */
+}
+
+.top .bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    padding: 2rem;
+    width: 350px;
 }
 
 .bottom {
@@ -22,22 +35,24 @@
     gap: 1.5rem;
 }
 
-.devices {
+.bottom .activity {
+    flex: 1;
+    max-width: calc(100% - 342px - 2rem);
+    border-radius: 20px;
+}
+
+.bottom .devices {
     border-radius: 10px;
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
     padding: 1rem 1.5rem;
-    margin-top: .7rem;
-    min-width: 450px;
+    min-width: 350px;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
 }
 
-.activity {
-    flex: 1;
-    max-width: calc(100% - 411px - 2rem);
-}
+
 
 .d_header {
     display: flex;
@@ -167,23 +182,13 @@
     display: none;
 }
 
-.bar-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border-radius: 21.292px;
-    background: #FFF;
-    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
-    padding: 2rem;
-    min-width: 450px;
-}
+
 
 .bc-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
 }
 
 .bc-top h3 {
@@ -209,8 +214,11 @@
 
 .chart {
     height: 150px;
-    min-width: 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
 
 .labels {
     border-radius: 15.969px;
@@ -227,6 +235,7 @@
 .label div {
     display: flex;
     flex-direction: column;
+    height: fit-content;
 }
 
 .labels label {
@@ -260,6 +269,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-bottom: 0;
 }
 
 /* .bc-table {
