@@ -396,6 +396,10 @@
     text-transform: capitalize;
 }
 
+.h-item strong {
+    width: 90px;
+}
+
 .h-item span {
     font-weight: 400;
 }
@@ -407,7 +411,7 @@
 }
 
 .reports {
-    height: 680px;
+    height: 458px;
 }
 
 .analytics {
