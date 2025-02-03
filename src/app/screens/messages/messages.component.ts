@@ -1,4 +1,4 @@
-import { Component, NgModule,OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { BotService, AdminService } from 'src/services';
 import { Router } from '@angular/router';
 // import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./messages.component.css']
 })
 
-export class MessagesComponent implements OnInit{
+export class MessagesComponent implements OnInit {
 
   tab = ""
   tabs = [
@@ -65,13 +65,13 @@ export class MessagesComponent implements OnInit{
     },
   ]
 
-  
+
   onTextAreaChange(instance: any, newValue: string) {
     instance.value = newValue;
   }
-  
+
   // private serviceModal: NgbModalRef;
-  
+
   adminDetails: any;
   isLoad: boolean = true;
   isCallResponse: boolean = false;
@@ -103,7 +103,7 @@ export class MessagesComponent implements OnInit{
   preauth_msg = ['message text', 'message text', 'message text', 'message text'];
   custom1_msg = ['message text', 'message text', 'message text', 'message text'];
   custom2_msg = ['message text', 'message text', 'message text', 'message text'];
-  
+
   constructor(
     private BS: BotService,
     private AS: AdminService,
@@ -122,15 +122,15 @@ export class MessagesComponent implements OnInit{
     if (!currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
-    console.log('here',currentUser);
-    
+    console.log('here', currentUser);
+
     this.AS.getUser(currentUser._id).subscribe(admin => {
       this.adminDetails = admin;
       console.log(admin);
       this.currentMessageList = admin.messages.booking
       this.tab = 'booking'
       console.log(this.currentMessageList)
-      
+
       this.currentMsg = admin.messages.booking[0];
       if (admin.messages.booking.length) { this.booking_msg = admin.messages.booking; }
       if (admin.messages.late.length) { this.late_msg = admin.messages.late; }
@@ -158,18 +158,18 @@ export class MessagesComponent implements OnInit{
       this.isCallResponse = this.adminDetails.call_response;
       this.isLoad = false;
       // console.log(this.chatbot_msg);
-      
+
     })
   }
-  
-  toggleEdit = (instance,index) => {
+
+  toggleEdit = (instance, index) => {
     this.instanceData.forEach((item, i) => {
       item.isEditable = i === index; // Enable only the clicked one
     });
     // this.currentMsg = this.currentMessageList[id]
     console.log(instance)
   };
-  
+
   textChange() {
     this.isEdit = true;
   }
