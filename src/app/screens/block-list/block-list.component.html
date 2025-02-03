@@ -1,131 +1,206 @@
 <div class="container-own">
-    <div *ngIf="showBanner" class="top">
-        <div class="top_t">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                    d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                    fill="#636364" />
-            </svg>
-            <span>Import Message</span>
-        </div>
-        <p>
-            Please note that “not sent” , might be because target is not valid mobile or international number or your
-            settings are configured not be send this Message type by SMS.
-            <br>
-            <br>
-            Device sending is limited to avoid bans , these limits are gradually reduced to mitigate that risk.
-        </p>
-        <button (click)="this.showBanner = false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-                <path d="M9.9751 9.675L0.892618 1.32498M9.9751 1.32498L0.892618 9.675" stroke="#2EBC96"
-                    stroke-width="1.2975" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </button>
+  <div *ngIf="showBanner" class="top">
+    <div class="top_t">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+      >
+        <path
+          d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+          fill="#636364"
+        />
+      </svg>
+      <span>Import Message</span>
     </div>
-    <div class="table-top">
-        <div class="tt-left">
-            <button (click)="this.showBanner = true"
-                style="width: fit-content; height: fit-content; display: flex; justify-content: center; align-items: center; padding: 0; align-self: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path
-                        d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                        fill="#636364" />
-                </svg>
-            </button>
-            <button *ngFor="let t  of tabs" [class.active]="t === tab" (click)="this.tab = t">
-                {{t}}
-            </button>
-        </div>
-        <div class="tt-right">
-            <div class="search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                        d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
-                        fill="#5C5E64" />
-                </svg>
-                <input type="number" placeholder="Search number here..">
-            </div>
-            <button (click)="this.showAddCon=true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
-                        fill="white" />
-                </svg>
-                <span>Add New</span>
-            </button>
-        </div>
+    <p>
+      Please note that “not sent” , might be because target is not valid mobile
+      or international number or your settings are configured not be send this
+      Message type by SMS.
+      <br />
+      <br />
+      Device sending is limited to avoid bans , these limits are gradually
+      reduced to mitigate that risk.
+    </p>
+    <button (click)="this.showBanner = false">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="11"
+        height="11"
+        viewBox="0 0 11 11"
+        fill="none"
+      >
+        <path
+          d="M9.9751 9.675L0.892618 1.32498M9.9751 1.32498L0.892618 9.675"
+          stroke="#2EBC96"
+          stroke-width="1.2975"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </div>
+  <div class="table-top">
+    <div class="tt-left">
+      <button
+        (click)="this.showBanner = true"
+        style="
+          width: fit-content;
+          height: fit-content;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+          align-self: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+            fill="#636364"
+          />
+        </svg>
+      </button>
+      <button
+        *ngFor="let t of tabs"
+        [class.active]="t === tab"
+        (click)="this.tab = t"
+      >
+        {{ t }}
+      </button>
     </div>
-    <div *ngIf="showAddCon" class="add-con">
-        <button (click)="this.showAddCon=false" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="13"
-                height="13" viewBox="0 0 13 13" fill="none">
-                <path d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573" stroke="#2EBC96"
-                    stroke-width="1.60279" stroke-linecap="round" stroke-linejoin="round" />
-            </svg></button>
-        <div class="left">
-            <div class="inp_con">
-                <label for="">Phone</label>
-                <input type="tel" [(ngModel)]="phone">
-            </div>
-            <div class="inp_con">
-                <label for="">Target</label>
-                <select [(ngModel)]="type">
-                    <option value="">Select Target</option>
-                    <option value="both">Both</option>
-                    <option value="sms">SMS</option>
-                    <option value="whatsapp">WhatsApp</option>
-                </select>
-            </div>
-            <button [disabled]="!phone || isLoad || !type" (click)="addBlacklistUser()">
-                Save
-            </button>
-        </div>
+    <div class="tt-right">
+      <div class="search">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          fill="none"
+        >
+          <path
+            d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
+            fill="#5C5E64"
+          />
+        </svg>
+        <input type="number" placeholder="Search number here.." />
+      </div>
+      <button (click)="this.showAddCon = true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
+            fill="white"
+          />
+        </svg>
+        <span>Add New</span>
+      </button>
     </div>
-    <div class="table-wrapper">
-        <div class="table">
-            <div class="t-item">
-                <div class="ti-item">No</div>
-                <div class="ti-item">User Mobile Number</div>
-                <div class="ti-item">WhatsApp</div>
-                <div class="ti-item">SMS</div>
-                <div class="ti-item">Actions</div>
-            </div>
-            <div *ngIf="isLoad" style="padding: 2rem; width: 100%; display: flex; justify-content: center;">
-                <app-loader></app-loader>
-            </div>
-            <ng-container *ngIf="!isLoad">
-                <div *ngFor="let it of blacklist; let i = index" class="t-item">
-                    <div class="ti-item">{{i+ 1}}</div>
-                    <div class="ti-item">{{it?.phone}}</div>
-                    <div class="ti-item">
-                        <div class="switch_box" [class.active]="it?.whatsapp"
-                            (click)="blockWhatsApp(!it.whatsapp, it._id, i)">
-                        </div>
-                    </div>
-                    <div class="ti-item">
-                        <div class="switch_box" [class.active]="it?.sms" (click)="blockSms(!it.sms, it._id, i)">
-                        </div>
-                    </div>
-                    <div class="ti-item actions">
-                        <button style="--content: 'Delete';" (click)="deleteBlacklistUser(it._id, i)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22"
-                                fill="none">
-                                <path
-                                    d="M18.0038 21.0541H6.15764C5.70881 21.0541 5.27837 20.8758 4.961 20.5585C4.64363 20.2411 4.46533 19.8106 4.46533 19.3618V4.13104H19.6961V19.3618C19.6961 19.8106 19.5178 20.2411 19.2004 20.5585C18.8831 20.8758 18.4526 21.0541 18.0038 21.0541Z"
-                                    stroke="#615E83" stroke-width="1.3" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M9.5415 15.9764V9.20718" stroke="#615E83" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M14.6191 15.9764V9.20718" stroke="#615E83" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M1.08008 4.13104H23.0801" stroke="#615E83" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M14.6184 0.745972H9.54143C9.0926 0.745972 8.66216 0.924268 8.34479 1.24164C8.02742 1.55901 7.84912 1.98945 7.84912 2.43828V4.13059H16.3107V2.43828C16.3107 1.98945 16.1324 1.55901 15.815 1.24164C15.4976 0.924268 15.0672 0.745972 14.6184 0.745972Z"
-                                    stroke="#615E83" stroke-width="1.3" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <!-- <button style="--content: 'Edit';">
+  </div>
+  <div *ngIf="showAddCon" class="add-con">
+    <button (click)="this.showAddCon = false" class="close">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="13"
+        height="13"
+        viewBox="0 0 13 13"
+        fill="none"
+      >
+        <path
+          d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
+          stroke="#2EBC96"
+          stroke-width="1.60279"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+    <div class="left">
+      <div class="inp_con">
+        <label for="">Phone</label>
+        <input type="tel" [(ngModel)]="phone" />
+      </div>
+      <div class="inp_con">
+        <label for="">Target</label>
+        <select [(ngModel)]="type">
+          <option value="">Select Target</option>
+          <option value="both">Both</option>
+          <option value="sms">SMS</option>
+          <option value="whatsapp">WhatsApp</option>
+        </select>
+      </div>
+      <button
+        [disabled]="!phone || isLoad || !type"
+        (click)="addBlacklistUser()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  <div class="table-wrapper">
+    <div class="table">
+      <div class="t-item">
+        <div class="ti-item">No</div>
+        <div class="ti-item">User Mobile Number</div>
+        <div class="ti-item">WhatsApp</div>
+        <div class="ti-item">SMS</div>
+        <div class="ti-item">Actions</div>
+      </div>
+      <div
+        *ngIf="isLoad"
+        style="
+          padding: 2rem;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        "
+      >
+        <app-loader></app-loader>
+      </div>
+      <ng-container *ngIf="!isLoad">
+        <div *ngFor="let it of blacklist; let i = index" class="t-item">
+          <div class="ti-item">{{ i + 1 }}</div>
+          <div class="ti-item">{{ it?.phone }}</div>
+          <div class="ti-item">
+            <div
+              class="switch_box"
+              [class.active]="it?.whatsapp"
+              (click)="blockWhatsApp(!it.whatsapp, it._id, i)"
+            ></div>
+          </div>
+          <div class="ti-item">
+            <div
+              class="switch_box"
+              [class.active]="it?.sms"
+              (click)="blockSms(!it.sms, it._id, i)"
+            ></div>
+          </div>
+          <div class="ti-item actions">
+            <button
+              style="--content: 'Delete'"
+              (click)="deleteBlacklistUser(it._id, i)"
+            >
+              <img src="assets/Bin.png" />
+            </button>
+            <button>
+              <img src="assets/Pencil.png" />
+            </button>
+            <!-- <button style="--content: 'Edit';">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"
                                 fill="none">
                                 <path
@@ -134,9 +209,9 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </button> -->
-                    </div>
-                </div>
-            </ng-container>
+          </div>
         </div>
+      </ng-container>
     </div>
+  </div>
 </div>
