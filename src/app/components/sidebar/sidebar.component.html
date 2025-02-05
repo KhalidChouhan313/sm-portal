@@ -215,6 +215,22 @@
           </li>
         </a>
       </ul>
+      <ul class="sidebar-borders menu">
+        <a [routerLink]="'/'">
+          <li
+            (click)="setCurrentItem('Home')"
+            [class.active]="currentItem === 'Home'"
+            class="menu_item"
+          >
+            <div>
+              <img src="../../../assets/homeicon.png" />
+              <img src="../../../assets/homeiconw.png" />
+            </div>
+
+            <span>Logout</span>
+          </li>
+        </a>
+      </ul>
     </div>
 
     <!-- <div class="pro">

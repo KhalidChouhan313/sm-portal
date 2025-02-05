@@ -84,12 +84,14 @@
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+    white-space: nowrap;
 }
 
 .pagination {
     display: flex;
     margin-left: 1rem;
     gap: .3rem;
+    width: 10;
 }
 
 .pagination button {
