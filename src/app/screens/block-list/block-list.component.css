@@ -453,7 +453,7 @@
 }
 
 .ti-item:nth-child(2) {
-    flex: 1;
+    flex: .5;
 }
 
 .ti-item:nth-child(3){
