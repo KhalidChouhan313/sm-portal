@@ -173,7 +173,7 @@ a {
 
 .sub_menu_item {
     height: 45px ;
-    width: 125px;
+    width: 142px;
     padding-left: 15px;
     padding-right: 15px;
     white-space: nowrap;
@@ -192,6 +192,11 @@ a {
 .sub_menu_item span {
     color: #333540;
     font-size: .9rem;
+}
+
+.sub_menu_item a {
+    width: fit-content;
+    padding-right: 15px;
 }
 
 .sidebar.toggled .sub_menu span {
