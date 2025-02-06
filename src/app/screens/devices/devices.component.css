@@ -458,64 +458,72 @@ strong {
 
 .analytics {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
 }
 
 .card {
-    flex: 1;
-    padding: 1.5rem;
-    border-radius: 23.176px;
-    background: #FFF;
-    box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.50);
-    gap: .8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card .icon {
-    width: 57.94px;
-    height: 57.94px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-}
-
-.card:nth-child(1) .icon {
-    background-color: #FA5A7D;
-}
-
-.card:nth-child(2) .icon {
-    background-color: #FF947A;
-}
-
-.card h1 {
-    color: var(--Greys-Blue-Grey-900, #151D48);
-    font-family: Poppins;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 600;
+   border: none;
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+   align-items: center;
 }
 
 .card p {
-    color: #425166;
-    font-family: Poppins;
-    font-size: 1.3rem;
-    font-style: normal;
-    max-width: 14ch;
-    font-weight: 500;
+    margin-bottom: 0;
 }
 
-.card span {
-    color: var(--Primary-800, #4079ED);
-    font-family: Poppins;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 23.176px;
-    /* 133.333% */
+.card p:nth-child(1) {
+    color: #636364;
+    font-size: 15px;
+    font-weight: 600;
+}
+.card p:nth-child(2) {
+    color: #333333;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.card p:nth-child(3) {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.card p span {
+    color: #00AC4F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card p span img {
+    height: 15px;
+}
+
+.card .icon {
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D3FFE7;
+    border-radius: 50%;
+}
+
+.card .icon img {
+    width: 100%;
+}
+
+.card:nth-child(4) img{
+    height: 100px;
 }
 
 .card-full {
