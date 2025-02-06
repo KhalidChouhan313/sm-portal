@@ -7,6 +7,21 @@
     /* overflow: hidden; */
 }
 
+.sidebar-wrapper,
+.sidebar-wrapper * {
+    ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        display: none;
+      }
+      
+      /* For Firefox */
+     
+        scrollbar-width: none;
+        -ms-overflow-style: none; /* For Internet Explorer and Edge */
+      
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;
