@@ -110,7 +110,8 @@
     padding: .8rem 1.25rem;
     border-radius: 15px;
     background: var(--Secondary-Primary-White, #FFF);
-    box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.12);
+    
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .ic_top {
@@ -263,7 +264,7 @@
 }
 
 .msg-box {
-    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 0 10px;
     min-width: 250px;
