@@ -807,7 +807,12 @@ strong {
 
 .a_top {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
+}
+
+.a_top h4 {
+    font-weight: 600;
 }
 
 .a_top button {
