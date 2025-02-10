@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "axios": "^1.7.9",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.4.7",
     "google-libphonenumber": "^3.2.34",

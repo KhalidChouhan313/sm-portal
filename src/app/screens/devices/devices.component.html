@@ -120,8 +120,8 @@
 
 <div class="container-own">
   <ul class="menu">
-    <li
-      *ngFor="let item of devices"
+    <!-- <li
+      *ngFor="let item of deviceList"
       (click)="setCurrent(item.id)"
       [class.active]="current?.id === item.id"
     >
@@ -131,6 +131,19 @@
       <div>
         <p>{{ item.connection }}</p>
         <p>{{ item.name }}</p>
+      </div>
+    </li> -->
+    <li
+      *ngFor="let item of deviceList"
+      (click)="setCurrent(item.id)"
+      [class.active]="currentDevice?.id === item.id"
+    >
+      <div class="icon">
+        <img src="../../../assets/androidlogo.png" alt="a" />
+      </div>
+      <div>
+        <p>{{ item.active ? "Active" : "Unactive" }}</p>
+        <p>{{ item.device_name }}</p>
       </div>
     </li>
   </ul>
@@ -150,29 +163,133 @@
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
     </div>
-    <div class="h-item">
-      <strong>Device Name</strong>
-      :
-      <span>{{ current?.name }}</span>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      "
+    >
+      <div class="h-item">
+        <strong>Device Name</strong>
+        :
+        <span>{{ currentDevice?.device_name }}</span>
+      </div>
+      <div class="h-item">
+        <strong>Auth Status</strong>
+        :
+        <span>{{
+          currentDevice?.status ? "Authenticated" : "Unauthenticated"
+        }}</span>
+      </div>
+      <div class="h-item">
+        <strong>Connection</strong>
+        :
+        <span>{{ currentDevice?.active ? "Active" : "Inactive" }}</span>
+      </div>
     </div>
-    <div class="h-item">
-      <strong>Auth Status</strong>
-      :
-      <span>{{ current?.auth_status }}</span>
+    <div>
+      <div
+        (click)="openGreenApi(currentDevice, 0)"
+        class="device-btn-container"
+      >
+        <button><img src="../../../assets/d-reboot.png" /></button>
+        <button (click)="logoutGreenApi(currentDevice, 0)">
+          <img src="../../../assets/d-logout.png" />
+        </button>
+        <button (click)="rebootGreenApi(currentDevice, 0)">
+          <img src="../../../assets/d-refresh.png" />
+        </button>
+      </div>
+
+      <div *ngIf="currentDevice?.status == false" class="qr-banner-container">
+        <img
+          src="../../../assets/qr-banner.png"
+          alt="banner"
+          class="banner_img"
+        />
+        <img [src]="qrSrc" />
+      </div>
+      <img
+        *ngIf="currentDevice?.status"
+        src="../../../assets/banner.svg"
+        alt="banner"
+        class="banner_img"
+      />
     </div>
-    <div class="h-item">
-      <strong>Connection</strong>
-      :
-      <span>{{ current?.connection }}</span>
-    </div>
-    <img src="../../../assets/banner.svg" alt="banner" class="banner_img" />
   </div>
 
-  <div class="reports">
-    <app-reports></app-reports>
+  <div style="display: flex; gap: 10px">
+    <div class="reports">
+      <app-reports></app-reports>
+    </div>
+    <div class="msg-details">
+      <div class="msg-details-sec">
+        <p class="heading">WhatsApp</p>
+        <div>
+          Today
+          <span>{{ waToday }}</span>
+        </div>
+        <div>
+          15 Minutes
+          <span>{{ wa15Min }}</span>
+        </div>
+        <div>
+          30 Minutes
+          <span>{{ wa30Min }}</span>
+        </div>
+        <div>
+          60 Minutes
+          <span>{{ wa60Min }}</span>
+        </div>
+        <div>
+          06 Hours
+          <span>{{ wa60Min }}</span>
+        </div>
+        <div>
+          12 Hours
+          <span>{{ wa12Hr }}</span>
+        </div>
+        <div>
+          24 Hours
+          <span>{{ wa24Hr }}</span>
+        </div>
+      </div>
+      <div class="msg-details-sec">
+        <p class="heading">SMS</p>
+        <div>
+          Today
+          <span>{{ smsToday }}</span>
+        </div>
+        <div>
+          15 Minutes
+          <span>{{ sms15Min }}</span>
+        </div>
+        <div>
+          30 Minutes
+          <span>{{ sms30Min }}</span>
+        </div>
+        <div>
+          60 Minutes
+          <span>{{ sms60Min }}</span>
+        </div>
+        <div>
+          06 Hours
+          <span>{{ sms60Min }}</span>
+        </div>
+        <div>
+          12 Hours
+          <span>{{ sms12Hr }}</span>
+        </div>
+        <div>
+          24 Hours
+          <span>{{ sms24Hr }}</span>
+        </div>
+      </div>
+    </div>
   </div>
-
   <div class="analytics">
+    <img class="analytics-bg-img" src="../../../assets/Earning.png" />
     <div class="card">
       <div class="icon"><img src="../../../assets/an-sms.png" /></div>
       <div>
@@ -194,20 +311,6 @@
           <span><img src="../../../assets/an-arrow.png" /> 16%</span> this month
         </p>
       </div>
-    </div>
-    <div class="card">
-      <div class="icon"><img src="../../../assets/an-send.png" /></div>
-      <div>
-        <p>Total Sent</p>
-        <p>10,423</p>
-
-        <p>
-          <span><img src="../../../assets/an-arrow.png" /> 16%</span> this month
-        </p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="../../../assets/an-chart.png" />
     </div>
   </div>
 
@@ -242,7 +345,7 @@
     <div class="a_top">
       <h4>All Messages</h4>
 
-      <button class="filter" (click)="showFilters = true">
+      <!-- <button class="filter" (click)="showFilters = true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -259,9 +362,9 @@
           />
         </svg>
         <span>Filters</span>
-      </button>
+      </button> -->
     </div>
-    <div *ngIf="showFilters" class="filters">
+    <!-- <div *ngIf="showFilters" class="filters">
       <button (click)="showFilters = false" class="close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -297,8 +400,7 @@
           <select name="" id=""></select>
         </div>
       </div>
-      <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
-    </div>
+    </div> -->
     <div class="a_table_wrapper">
       <div class="a_table">
         <div class="at_item">

@@ -33,6 +33,11 @@ const routes: Routes = [
       import('./screens/bookings/bookings.module').then((m) => m.BookingsModule),
   },
   {
+    path: 'chatbot/qr-code',
+    loadChildren: () =>
+      import('./screens/qr-code/qr-code.module').then((m) => m.QrCodeModule),
+  },
+  {
     path: 'chatbot/customers',
     loadChildren: () =>
       import('./screens/customers/customers.module').then((m) => m.CustomersModule),

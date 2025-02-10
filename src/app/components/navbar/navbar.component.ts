@@ -9,7 +9,11 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) { }
+  currentUrl: string = '';
+  constructor(private authService: AuthService, private router: Router) { 
+    this.currentUrl = this.router.url;
+    console.log("url", this.currentUrl)
+  }
 
   user: any = null;
   title: string = 'Home';

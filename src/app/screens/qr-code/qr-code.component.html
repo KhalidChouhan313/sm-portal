@@ -1,0 +1,81 @@
+<main>
+  <div class="nav">
+    <img src="../../../assets/info-icon.png" />
+    <button
+      (click)="setActive('universal')"
+      [class.active]="activeButton === 'universal'"
+    >
+      Universal QR
+    </button>
+    <button
+      (click)="setActive('smart')"
+      [class.active]="activeButton === 'smart'"
+    >
+      Smart Locations QR
+    </button>
+  </div>
+
+  <!-- Content for Universal QR -->
+  <div *ngIf="activeButton === 'universal'">
+    <h2 class="qr-sec">Universal QR</h2>
+    <div class="main">
+      <div class="main-left">
+        <h3>Create QR Code</h3>
+        <div>
+          <p>Title Name</p>
+          <input placeholder="Type here" />
+        </div>
+        <div>
+          <p>Prefilled Text</p>
+          <input placeholder="Type here" />
+        </div>
+        <button>Generate QR Code</button>
+      </div>
+      <div class="main-right">
+        <div>
+          <button>
+            <img src="../../../assets/refresh-white.png" />
+            Refresh
+          </button>
+        </div>
+        <img class="qr-code" src="../../../assets/dummy-qr.png" />
+        <button>
+          <img src="../../../assets/download-white.png" />
+          Download QR Code
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content for Smart Locations QR -->
+  <div *ngIf="activeButton === 'smart'">
+    <h2 class="qr-sec">Smart Location QR</h2>
+    <div class="main">
+      <div class="main-left">
+        <h3>Create QR Code</h3>
+        <div>
+          <p>Title Name</p>
+          <input placeholder="Type here" />
+        </div>
+        <div>
+          <p>Pickup Location</p>
+          <input placeholder="Type here" />
+        </div>
+        <button>Generate QR Code</button>
+      </div>
+      <div class="main-right">
+        <div>
+          <button>
+            <img src="../../../assets/refresh-white.png" />
+            Refresh
+          </button>
+        </div>
+        <img class="qr-code" src="../../../assets/dummy-qr.png" />
+        <button>
+          <img src="../../../assets/download-white.png" />
+          Download QR Code
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
