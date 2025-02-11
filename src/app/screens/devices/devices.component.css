@@ -1024,8 +1024,48 @@ strong {
     background: #FFF;
 }
 
-.at_item div {
+/* .at_item div {
     padding: 1rem;
+} */
+
+.at_item div:nth-child(1) {
+    width: 220px;
+    text-align: center;
+}
+
+.at_item div:nth-child(2) {
+    width: 100px;
+    text-align: center;
+}
+
+.at_item div:nth-child(3) {
+    width: 100px;
+    text-align: center;
+}
+
+.at_item div:nth-child(4) {
+    width: 120px;
+    text-align: center;
+}
+
+.at_item div:nth-child(5) {
+    width: 70px;
+    text-align: center;
+}
+
+.at_item div:nth-child(6) {
+    width: 60px;
+    text-align: center;
+}
+
+
+
+.at_item div:last-child {
+    width: 150px;
+    white-space: nowrap;        /* Prevents text from wrapping */
+  overflow: hidden;           /* Hides text that overflows */
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .msg-details {

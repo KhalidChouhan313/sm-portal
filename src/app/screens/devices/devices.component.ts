@@ -104,6 +104,8 @@ export class DevicesComponent implements OnInit{
 
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
+  
+
 // barChartLabels: Label[] = [];
 
   barChartData: ChartDataset[] = [
@@ -125,6 +127,7 @@ export class DevicesComponent implements OnInit{
   ngOnInit(): void {
     let user_id = this.activatedRoute.params['value'].id
 
+//     
 
     // this.AS.getCurrentUserFromBack().subscribe(() => {
       this.currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -157,11 +160,15 @@ export class DevicesComponent implements OnInit{
     // })
   }
 
-  setCurrent = (id: number) => {
-    this.currentDevice = this.deviceList.find(i => i.id === id)
-    console.log(this.currentDevice)
-  }
+  currentDeviceIndex: number = 0;
 
+  setCurrent = (id: number, index: number) => {
+    this.currentDevice = this.deviceList[index]; 
+    this.currentDeviceIndex = index;
+    console.log("current",this.currentDevice);
+    this.openGreenApi(this.deviceList[index], index)
+  }
+  
   openDevice(device, index) {
     if (device.wa_api_platform == 'chatapi') {
       this.creatGraph(device, index);
@@ -184,7 +191,7 @@ export class DevicesComponent implements OnInit{
       this.AS.getMessageList(obj).subscribe(ml => {
         this.messageList = ml
         this.isMsgLoad = false;
-        console.log("list", ml, obj)
+        console.log("msgs", ml)
       })
     } else if (device.wa_api_platform == 'maytapi') {
       this.openMaytApi(device, index)
@@ -307,7 +314,7 @@ export class DevicesComponent implements OnInit{
     }
     this.AS.getMessageList(obj).subscribe(ml => {
       this.messageList = ml
-      console.log("list", obj);
+      console.log("list", ml);
       this.isMsgLoad = false;
     })
   }

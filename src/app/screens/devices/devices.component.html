@@ -134,9 +134,9 @@
       </div>
     </li> -->
     <li
-      *ngFor="let item of deviceList"
-      (click)="setCurrent(item.id)"
-      [class.active]="currentDevice?.id === item.id"
+      *ngFor="let item of deviceList; let i = index"
+      (click)="setCurrent(item.id, i)"
+      [class.active]="currentDeviceIndex === i"
     >
       <div class="icon">
         <img src="../../../assets/androidlogo.png" alt="a" />
@@ -202,7 +202,7 @@
         </button>
       </div>
 
-      <div *ngIf="currentDevice?.status == false" class="qr-banner-container">
+      <div *ngIf="!currentDevice?.status" class="qr-banner-container">
         <img
           src="../../../assets/qr-banner.png"
           alt="banner"
@@ -398,32 +398,16 @@
           <div>Status</div>
           <div>Messages</div>
         </div>
-        <div class="at_item">
-          <div>Created At</div>
-          <div>Target Type</div>
-          <div>Target</div>
-          <div>Message Type</div>
-          <div>Sent Via</div>
-          <div>Status</div>
-          <div>Messages</div>
-        </div>
-        <div class="at_item">
-          <div>Created At</div>
-          <div>Target Type</div>
-          <div>Target</div>
-          <div>Message Type</div>
-          <div>Sent Via</div>
-          <div>Status</div>
-          <div>Messages</div>
-        </div>
-        <div class="at_item">
-          <div>Created At</div>
-          <div>Target Type</div>
-          <div>Target</div>
-          <div>Message Type</div>
-          <div>Sent Via</div>
-          <div>Status</div>
-          <div>Messages</div>
+        <div class="a_table">
+          <div class="at_item" *ngFor="let item of messageList">
+            <div>{{ item.createdAt | date : "MMM d, y, h:mm:ss a" }}</div>
+            <div>{{ item.target_type }}</div>
+            <div>{{ item.to_number }}</div>
+            <div>{{ item.msg_type }}</div>
+            <div>{{ item.sent_by }}</div>
+            <div>{{ item.status }}</div>
+            <div>{{ item.message_text }}</div>
+          </div>
         </div>
       </div>
     </div>
