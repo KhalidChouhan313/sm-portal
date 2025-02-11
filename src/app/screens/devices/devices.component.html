@@ -315,57 +315,31 @@
   </div>
 
   <div class="note-banner">
+    <div>
+      <p><img src="../../../assets/note-icon.png" /> Importent Note:</p>
+      <button><img src="../../../assets/close-icon.png" /></button>
+    </div>
     <p>
       Please note that “not sent” , might be because target is not valid mobile
-      or international number or your settings are configured not be send this
-      Message type by SMS.
-      <br />
-      <br />
+      or international number or your settings are configured not be send <br />
+      this Message type by SMS.
+    </p>
+    <p>
       Device sending is limited to avoid bans , these limits are gradually
       reduced to mitigate that risk.
     </p>
-    <button>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M2.93934 18.9393C2.35355 19.5251 2.35355 20.4749 2.93934 21.0607C3.52513 21.6464 4.47487 21.6464 5.06066 21.0607L12 14.1213L18.9393 21.0607C19.5251 21.6464 20.4749 21.6464 21.0607 21.0607C21.6464 20.4749 21.6464 19.5251 21.0607 18.9393L14.1213 12L21.0607 5.06066C21.6464 4.47487 21.6464 3.52513 21.0607 2.93934C20.4749 2.35355 19.5251 2.35355 18.9393 2.93934L12 9.87868L5.06066 2.93934C4.47487 2.35355 3.52513 2.35355 2.93934 2.93934C2.35355 3.52513 2.35355 4.47487 2.93934 5.06066L9.87868 12L2.93934 18.9393Z"
-          fill="white"
-        />
-      </svg>
-    </button>
-    <img src="../../../assets/img/block-warn.png" alt="" />
   </div>
 
   <div class="activity">
     <div class="a_top">
       <h4>All Messages</h4>
 
-      <!-- <button class="filter" (click)="showFilters = true">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="21"
-          height="14"
-          viewBox="0 0 21 14"
-          fill="none"
-        >
-          <path
-            d="M2 1.79053H18.67M5.12556 6.9999H15.5443M9.29302 12.2093H11.3768"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span>Filters</span>
-      </button> -->
+      <button (click)="filters()">
+        <img src="../../../assets/filter-icon.png" /> Filters
+      </button>
     </div>
-    <!-- <div *ngIf="showFilters" class="filters">
-      <button (click)="showFilters = false" class="close">
+    <div *ngIf="showFilter" class="filters">
+      <button class="close" (click)="filters()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="13"
@@ -382,25 +356,37 @@
           />
         </svg>
       </button>
-      <div class="left">
-        <div class="inp_con">
-          <label for="">Target</label>
-          <select name="" id=""></select>
+      <div class="filter-inputs">
+        <div class="filter-inputs-line">
+          <div class="inp_con">
+            <label for="">Target</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">Target Type</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">Status</label>
+            <select name="" id=""></select>
+          </div>
         </div>
-        <div class="inp_con">
-          <label for="">Target Type</label>
-          <select name="" id=""></select>
-        </div>
-        <div class="inp_con">
-          <label for="">Status</label>
-          <select name="" id=""></select>
-        </div>
-        <div class="inp_con">
-          <label for="">Send Via</label>
-          <select name="" id=""></select>
+        <div class="filter-inputs-line">
+          <div class="inp_con">
+            <label for="">Send Via</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">From</label>
+            <input type="date" />
+          </div>
+          <div class="inp_con">
+            <label for="">To</label>
+            <input type="date" />
+          </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <div class="a_table_wrapper">
       <div class="a_table">
         <div class="at_item">

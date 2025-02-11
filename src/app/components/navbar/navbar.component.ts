@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   }
 
   user: any = null;
-  title: string = 'Home';
+  title: string = 'dashboard';
   loading = true;
   showLogoutOptions = false;
 
@@ -27,6 +27,26 @@ export class NavbarComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.checkAuthentication();
+      });
+
+      this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+
+        
+
+        this.currentUrl = event.urlAfterRedirects || event.url;
+        this.currentUrl = `home${this.currentUrl.replace(/\//g, ' / ')}`;
+        
+        // Trim any leading or trailing spaces for more reliable comparison
+        if (this.currentUrl.trim() === 'home /') {
+          this.currentUrl = 'home / dashboard';
+        }
+        
+        const urlParts = this.currentUrl.split(' / '); // Split by spaces around "/"
+        this.title = urlParts[urlParts.length - 1];
+
+        this.title = this.title.replace(/-/g, ' ');
       });
   }
 
