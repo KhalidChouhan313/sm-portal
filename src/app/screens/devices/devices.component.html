@@ -360,21 +360,40 @@
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Target</label>
-            <select name="" id=""></select>
+            <select name="" id="">
+              <option *ngFor="let target of targetList" [value]="target.id">
+                {{ target }}
+              </option>
+            </select>
           </div>
           <div class="inp_con">
             <label for="">Target Type</label>
-            <select name="" id=""></select>
+            <select name="" id="">
+              <option
+                *ngFor="let targetType of targetTypeList"
+                [value]="targetType.id"
+              >
+                {{ targetType }}
+              </option>
+            </select>
           </div>
           <div class="inp_con">
             <label for="">Status</label>
-            <select name="" id=""></select>
+            <select name="" id="">
+              <option *ngFor="let status of statusList" [value]="status.id">
+                {{ status }}
+              </option>
+            </select>
           </div>
         </div>
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Send Via</label>
-            <select name="" id=""></select>
+            <select name="" id="">
+              <option *ngFor="let sentVia of sentViaList" [value]="sentVia.id">
+                {{ sentVia }}
+              </option>
+            </select>
           </div>
           <div class="inp_con">
             <label for="">From</label>

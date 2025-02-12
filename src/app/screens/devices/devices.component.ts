@@ -95,6 +95,10 @@ export class DevicesComponent implements OnInit{
   page = 1;
   target_type = ''
   target = ''
+  targetList = []
+  targetTypeList = []
+  statusList = []
+  sentViaList = []
   status = ''
   sent_by = ''
   f_date = ''
@@ -316,6 +320,11 @@ export class DevicesComponent implements OnInit{
       this.messageList = ml
       console.log("list", ml);
       this.isMsgLoad = false;
+      this.targetList = [...new Set(this.messageList.map(item => item.to_number))];
+      this.targetTypeList = [...new Set(this.messageList.map(item => item.target_type))];
+      this.statusList = [...new Set(this.messageList.map(item => item.status))];
+      this.statusList = [...new Set(this.messageList.map(item => item.status))];
+      this.sentViaList = [...new Set(this.messageList.map(item => item.sent_by))];
     })
   }
 

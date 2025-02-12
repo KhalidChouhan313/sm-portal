@@ -994,6 +994,10 @@ strong {
     color: white;
 }
 
+.inp_con option {
+    color: black;
+}
+
 .inp_con input {
     border-radius: 9.418px;
     border: 0.856px solid #D9D9D9;
