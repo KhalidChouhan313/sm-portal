@@ -4,6 +4,7 @@ import { AdminService, BotService } from 'src/services';
 // import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
 // import { Label, Color } from 'ng2-charts';
+import { FormBuilder, FormGroup } from '@angular/forms';
 const PRODUCT_ID = '3055fd3a-661b-467e-8a25-16cd0c76b1fb'
 
 @Component({
@@ -12,6 +13,7 @@ const PRODUCT_ID = '3055fd3a-661b-467e-8a25-16cd0c76b1fb'
   styleUrls: ['./devices.component.css']
 })
 export class DevicesComponent implements OnInit{
+  
   // deviceList = [
     // {
     //   id: 1,
@@ -95,10 +97,11 @@ export class DevicesComponent implements OnInit{
   page = 1;
   target_type = ''
   target = ''
-  targetList = []
-  targetTypeList = []
-  statusList = []
-  sentViaList = []
+  filterForm: FormGroup;
+  // targetList = []
+  // targetTypeList = []
+  // statusList = []
+  // sentViaList = []
   status = ''
   sent_by = ''
   f_date = ''
@@ -124,8 +127,18 @@ export class DevicesComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     // private _serviceModal: NgbModal,
     private AS: AdminService,
-    private BS: BotService
-  ) {}
+    private BS: BotService,
+    private fb: FormBuilder
+  ) {
+    this.filterForm = this.fb.group({
+      f_date: [''],
+      t_date: [''],
+      target: [''],
+      target_type: [''],
+      sent_by: [''],
+      status: ['']
+    });
+  }
 
 
   ngOnInit(): void {
@@ -153,7 +166,9 @@ export class DevicesComponent implements OnInit{
             setTimeout(() => { this.refreshingMaytApi() }, 10000)
           }
           if (this.deviceList[0].wa_api_platform == 'greenapi') {
+            this.currentDevice = this.deviceList[0]; 
             this.openGreenApi(this.deviceList[0], 0);
+            this.creatGraph(this.deviceList[0], 0)
             // setTimeout(() => { this.refreshingMaytApi() }, 10000)
           }
         }
@@ -162,6 +177,7 @@ export class DevicesComponent implements OnInit{
         }
       })
     // })
+
   }
 
   currentDeviceIndex: number = 0;
@@ -320,128 +336,128 @@ export class DevicesComponent implements OnInit{
       this.messageList = ml
       console.log("list", ml);
       this.isMsgLoad = false;
-      this.targetList = [...new Set(this.messageList.map(item => item.to_number))];
-      this.targetTypeList = [...new Set(this.messageList.map(item => item.target_type))];
-      this.statusList = [...new Set(this.messageList.map(item => item.status))];
-      this.statusList = [...new Set(this.messageList.map(item => item.status))];
-      this.sentViaList = [...new Set(this.messageList.map(item => item.sent_by))];
+      // this.targetList = [...new Set(this.messageList.map(item => item.to_number))];
+      // this.targetTypeList = [...new Set(this.messageList.map(item => item.target_type))];
+      // this.statusList = [...new Set(this.messageList.map(item => item.status))];
+      // this.statusList = [...new Set(this.messageList.map(item => item.status))];
+      // this.sentViaList = [...new Set(this.messageList.map(item => item.sent_by))];
     })
   }
 
   creatGraph(device, index) {
-    // this.waToday = 0;
-    // this.wa15Min = 0;
-    // this.wa30Min = 0;
-    // this.wa60Min = 0;
-    // this.wa6Hr = 0;
-    // this.wa12Hr = 0;
-    // this.wa24Hr = 0;
-    // this.smsToday = 0;
-    // this.sms15Min = 0;
-    // this.sms30Min = 0;
-    // this.sms60Min = 0;
-    // this.sms6Hr = 0;
-    // this.sms12Hr = 0;
-    // this.sms24Hr = 0;
-    // this.totalBooking = 0;
-    // this.cancelledBooking = 0;
-    // this.trackDriverTotalMsg = 0;
-    // this.trackDriverYesMsg = 0;
-    // this.arrivedDriverTotalMsg = 0;
-    // this.arrivedDriverYesMsg = 0;
-    // this.isGraphLoad = false;
-    // this.barChartData = [
-    //   { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
-    //   { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
-    //   { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
-    //   { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' }
-    // ];
-    // let endDate = new Date();
-    // let startDate = new Date();
-    // startDate.setDate(startDate.getDate() - 6);
+    this.waToday = 0;
+    this.wa15Min = 0;
+    this.wa30Min = 0;
+    this.wa60Min = 0;
+    this.wa6Hr = 0;
+    this.wa12Hr = 0;
+    this.wa24Hr = 0;
+    this.smsToday = 0;
+    this.sms15Min = 0;
+    this.sms30Min = 0;
+    this.sms60Min = 0;
+    this.sms6Hr = 0;
+    this.sms12Hr = 0;
+    this.sms24Hr = 0;
+    this.totalBooking = 0;
+    this.cancelledBooking = 0;
+    this.trackDriverTotalMsg = 0;
+    this.trackDriverYesMsg = 0;
+    this.arrivedDriverTotalMsg = 0;
+    this.arrivedDriverYesMsg = 0;
+    this.isGraphLoad = false;
+    this.barChartData = [
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' }
+    ];
+    let endDate = new Date();
+    let startDate = new Date();
+    startDate.setDate(startDate.getDate() - 6);
 
-    // let t = endDate
-    // let fd = startDate
-    // let tz = t.getTimezoneOffset() / 60
-    // fd.setDate(fd.getDate() - 1)
-    // let fh = 24 + tz;
-    // let m = (fd.getMonth() + 1).toString()
-    // let d = fd.getDate().toString()
-    // if (parseInt(m) < 10) { m = '0' + m }
-    // if (parseInt(d) < 10) { d = '0' + d }
-    // let startDateStr = fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
+    let t = endDate
+    let fd = startDate
+    let tz = t.getTimezoneOffset() / 60
+    fd.setDate(fd.getDate() - 1)
+    let fh = 24 + tz;
+    let m = (fd.getMonth() + 1).toString()
+    let d = fd.getDate().toString()
+    if (parseInt(m) < 10) { m = '0' + m }
+    if (parseInt(d) < 10) { d = '0' + d }
+    let startDateStr = fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
 
-    // let th = 23 + tz;
-    // let em = (t.getMonth() + 1).toString()
-    // let dm = (t.getDate() + 1).toString()
+    let th = 23 + tz;
+    let em = (t.getMonth() + 1).toString()
+    let dm = (t.getDate() + 1).toString()
 
-    // if (parseInt(em) < 10) { em = '0' + em }
-    // if (parseInt(dm) < 10) { dm = '0' + dm }
+    if (parseInt(em) < 10) { em = '0' + em }
+    if (parseInt(dm) < 10) { dm = '0' + dm }
 
-    // let endDateStr = t.getFullYear() + '-' + em + '-' + dm + 'T' + th + ':59:59.999Z';
+    let endDateStr = t.getFullYear() + '-' + em + '-' + dm + 'T' + th + ':59:59.999Z';
 
-    // let obj = {
-    //   device_id: device.device_id,
-    //   company_id: this.currentUser._id,
-    //   startDate: startDateStr,
-    //   endDate: endDateStr
-    // }
+    let obj = {
+      device_id: device.device_id,
+      company_id: this.currentUser._id,
+      startDate: startDateStr,
+      endDate: endDateStr
+    }
 
-    // this.AS.getMessageGraphValue(obj).subscribe(ml => {
-    //   // console.log(ml.length);
+    this.AS.getMessageGraphValue(obj).subscribe(ml => {
+      // console.log(ml.length);
 
-    //   let tday = ml[ml.length - 1].day;
-    //   let today = ml[ml.length - 1].day;
-    //   let x = 0;
-    //   while (x < 7) {
-    //     today++;
-    //     if (today > 6) { today = 0; }
-    //     this.barChartLabels[x] = this.days[today];
-    //     x++;
-    //   }
-    //   ml.map((gv, j) => {
-    //     let td = new Date();
-    //     let d = new Date(gv.createdAt);
-    //     let t = td.getTime() - d.getTime();
-    //     t = t / (1000 * 60)
-    //     let i = parseInt(gv.day)
-    //     let ind = this.barChartLabels.findIndex(bcl => bcl == this.days[i])
-    //     if (gv.sent_by == 0) {
-    //       let v = this.barChartData[0]['data'][ind];
-    //       this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
-    //       if (tday == gv.day) { this.smsToday++; }
-    //       if (t <= 15) { this.sms15Min++; }
-    //       if (t <= 30) { this.sms30Min++; }
-    //       if (t <= 60) { this.sms60Min++; }
-    //       if (t <= 360) { this.sms6Hr++; }
-    //       if (t <= 720) { this.sms12Hr++; }
-    //       if (t <= 1440) { this.sms24Hr++; }
-    //     } else if (gv.sent_by == 1) {
-    //       let v = this.barChartData[1]['data'][ind];
-    //       this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
-    //       if (tday == gv.day) { this.waToday++; }
-    //       if (t <= 15) { this.wa15Min++; }
-    //       if (t <= 30) { this.wa30Min++; }
-    //       if (t <= 60) { this.wa60Min++; }
-    //       if (t <= 360) { this.wa6Hr++; }
-    //       if (t <= 720) { this.wa12Hr++; }
-    //       if (t <= 1440) { this.wa24Hr++; }
-    //     } else {
-    //       let v = this.barChartData[2]['data'][ind];
-    //       this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
-    //     }
-    //     let v = this.barChartData[3]['data'][ind];
-    //     this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
+      let tday = ml[ml.length - 1].day;
+      let today = ml[ml.length - 1].day;
+      let x = 0;
+      while (x < 7) {
+        today++;
+        if (today > 6) { today = 0; }
+        // this.barChartLabels[x] = this.days[today];
+        x++;
+      }
+      ml.map((gv, j) => {
+        let td = new Date();
+        let d = new Date(gv.createdAt);
+        let t = td.getTime() - d.getTime();
+        t = t / (1000 * 60)
+        let i = parseInt(gv.day)
+        // let ind = this.barChartLabels.findIndex(bcl => bcl == this.days[i])
+        if (gv.sent_by == 0) {
+          // let v = this.barChartData[0]['data'][ind];
+          // this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
+          if (tday == gv.day) { this.smsToday++; }
+          if (t <= 15) { this.sms15Min++; }
+          if (t <= 30) { this.sms30Min++; }
+          if (t <= 60) { this.sms60Min++; }
+          if (t <= 360) { this.sms6Hr++; }
+          if (t <= 720) { this.sms12Hr++; }
+          if (t <= 1440) { this.sms24Hr++; }
+        } else if (gv.sent_by == 1) {
+          // let v = this.barChartData[1]['data'][ind];
+          // this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
+          if (tday == gv.day) { this.waToday++; }
+          if (t <= 15) { this.wa15Min++; }
+          if (t <= 30) { this.wa30Min++; }
+          if (t <= 60) { this.wa60Min++; }
+          if (t <= 360) { this.wa6Hr++; }
+          if (t <= 720) { this.wa12Hr++; }
+          if (t <= 1440) { this.wa24Hr++; }
+        } else {
+          // let v = this.barChartData[2]['data'][ind];
+          // this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
+        }
+        // let v = this.barChartData[3]['data'][ind];
+        // this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
 
-    //     if (gv.msg_type == 'booking') { this.totalBooking++; if (gv.is_booking_cancel) { this.cancelledBooking++; } }
-    //     if (gv.driver_id && gv.msg_type == 'track') { this.trackDriverTotalMsg++; if (gv.is_driver_msg) { this.trackDriverYesMsg++; } }
-    //     if (gv.driver_id && gv.msg_type == 'arrived') { this.arrivedDriverTotalMsg++; if (gv.is_driver_msg) { this.arrivedDriverYesMsg++; } }
+        if (gv.msg_type == 'booking') { this.totalBooking++; if (gv.is_booking_cancel) { this.cancelledBooking++; } }
+        if (gv.driver_id && gv.msg_type == 'track') { this.trackDriverTotalMsg++; if (gv.is_driver_msg) { this.trackDriverYesMsg++; } }
+        if (gv.driver_id && gv.msg_type == 'arrived') { this.arrivedDriverTotalMsg++; if (gv.is_driver_msg) { this.arrivedDriverYesMsg++; } }
 
-    //     if (j == ml.length - 1) {
-    //       this.isGraphLoad = true;
-    //     }
-    //   })
-    // })
+        if (j == ml.length - 1) {
+          this.isGraphLoad = true;
+        }
+      })
+    })
   }
 
   public getDeviceStatus(device, index) {
@@ -508,6 +524,7 @@ export class DevicesComponent implements OnInit{
   }
 
   clean() {
+    // this.refreshingGreenApi()
     this.target_type = ''
     this.target = ''
     this.status = ''
@@ -620,41 +637,43 @@ export class DevicesComponent implements OnInit{
   search() {
     this.page = 0;
     this.isMsgLoad = true;
-    this.currentPageLimit = 0
-    let obj = {
+    this.currentPageLimit = 0;
+
+    let formValues = this.filterForm.value;
+    let obj: any = {
       device_id: this.currentDevice.device_id,
       company_id: this.currentUser._id,
       skip: this.currentPageLimit
-    }
+    };
 
-    let t = new Date()
-    let fd = new Date(this.f_date)
-    let tz = t.getTimezoneOffset() / 60
-    if (this.f_date != '' && this.t_date != '') {
-      fd.setDate(fd.getDate() - 1)
+    let t = new Date();
+    let fd = new Date(formValues.f_date);
+    let tz = t.getTimezoneOffset() / 60;
+
+    if (formValues.f_date && formValues.t_date) {
+      fd.setDate(fd.getDate() - 1);
       let fh = 24 + tz;
-      let m = (fd.getMonth() + 1).toString()
-      let d = fd.getDate().toString()
-      if (parseInt(m) < 10) { m = '0' + m }
-      if (parseInt(d) < 10) { d = '0' + d }
-      this.fDate = fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
+      let m = (fd.getMonth() + 1).toString().padStart(2, '0');
+      let d = fd.getDate().toString().padStart(2, '0');
+      this.fDate = `${fd.getFullYear()}-${m}-${d}T${fh}:00:00.000Z`;
 
       let th = 23 + tz;
-      this.tDate = this.t_date + 'T' + th + ':59:59.999Z';
+      this.tDate = `${formValues.t_date}T${th}:59:59.999Z`;
 
-      // let qry = { createdAt: { $gte: new Date("2021-09-30T19:00:00.000Z"), $lte: new Date("2021-10-03T18:59:59.999Z") } }
-      obj['fDate'] = this.fDate;
-      obj['tDate'] = this.tDate;
+      obj.fDate = this.fDate;
+      obj.tDate = this.tDate;
     }
-    if (this.target != '') { obj['target'] = this.target; }
-    if (this.target_type != '') { obj['target_type'] = this.target_type; }
-    if (this.sent_by != '') { obj['sent_by'] = parseInt(this.sent_by); }
-    if (this.status != '') { obj['status'] = this.status; }
+
+    if (formValues.target) obj.target = formValues.target;
+    if (formValues.target_type) obj.target_type = formValues.target_type;
+    if (formValues.sent_by) obj.sent_by = parseInt(formValues.sent_by);
+    if (formValues.status) obj.status = formValues.status;
+
     this.AS.getMessageList(obj).subscribe(ml => {
-      this.messageList = ml
-      // this.currentPageLimit += 50
+      this.messageList = ml;
       this.isMsgLoad = false;
-    })
+    });
+  
 
   }
 

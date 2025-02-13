@@ -249,3 +249,27 @@
       right: 1rem;
       cursor: pointer;
   }
+
+  .imp-banner {
+    background: rgba(46, 188, 150, 0.2);
+    border: 1px solid rgba(46, 188, 150, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+
+  .imp-banner div:first-child {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .imp-banner img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .imp-banner p {
+    color: #737791;
+    text-align: center;
+  }
+

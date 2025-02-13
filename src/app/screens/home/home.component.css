@@ -1,22 +1,27 @@
 .container-own {
     display: flex;
-    gap: 1.5rem;
+    gap: 10px;
     flex-direction: column;
     overflow: hidden !important;
 }
 
+.main {
+    padding: 10px !important;
+}
+
 .top {
     display: flex;
-    gap: 1.5rem;
-    height: 350px;
+    gap: 10px;
+    justify-content: space-between;
 }
 
 .top .reports {
-    max-width: calc(100% - 311px - 2rem);
+    /* max-width: calc(100% - 311px - 2rem); */
+    width: 100%;
     flex: 1;
     overflow: hidden;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
-    border-radius: 20px;
+    border-radius: 10px;
     /* max-width: 700px;     */
 }
 
@@ -24,36 +29,43 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
-    padding: 2rem;
-    width: 350px;
+    padding: 10px;
+    width: 30%;
 }
 
 .bottom {
     display: flex;
-    gap: 1.5rem;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .bottom .activity {
+    max-width: auto !important;
+    width: 100%;
     flex: 1;
-    max-width: calc(100% - 342px - 2rem);
-    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .bottom .devices {
     border-radius: 10px;
     background: #FFF;
     box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    padding: 1rem 1.5rem;
-    width: 350px;
-    border-radius: 20px;
+    padding: 10px;
+    width: 30%;
+    border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
 }
 
-
+.activity .a_top h1 {
+    font-size: 15px;
+}
 
 .d_header {
     display: flex;
@@ -66,7 +78,7 @@
 
     /* Heading */
     font-family: Raleway;
-    font-size: 2rem;
+    font-size:15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -94,21 +106,22 @@
     gap: .7rem;
     max-height: 300px;
     overflow-y: auto;
+    box-shadow: 0px 2px 40px 0px rgba(112, 144, 176, 0.12);
 }
 
 .d_card {
     border-radius: 20px;
     background: var(--Secondary-Primary-White, #FFF);
-    box-shadow: 0px 2px 40px 0px rgba(112, 144, 176, 0.12);
-    padding: 1.25rem;
+    padding: 10px 5px;
     display: flex;
     align-items: center;
-    gap: .75rem;
+    justify-content: space-around;
+    gap: 5px;
 }
 
 .icon {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     border-radius: 12px;
     background: #FFF;
     box-shadow: 0px 0px 9px 0px #EEE;
@@ -130,7 +143,7 @@
 .name {
     color: var(--dark-color, #181818);
     font-family: Nunito;
-    font-size: 1.1rem;
+    font-size: 10px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -140,7 +153,7 @@
 .d_details span {
     color: var(--text, #636364);
     font-family: Nunito;
-    font-size: .9rem;
+    font-size: 8px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -155,28 +168,48 @@
 .percentage {
     display: flex;
     align-items: center;
-    gap: .4rem;
+    gap: 2px;
     color: var(--bold-text, #333540);
     text-align: center;
     font-family: Nunito;
-    font-size: 1.1rem;
+    font-size: 8px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
+.percentage svg {
+    width: 10px;
+}
+
 .d_badge {
-    padding: .5rem .75rem;
+    padding: 4px ;
     color: #3CD856;
     text-align: center;
     font-family: Nunito;
-    font-size: .6rem;
+    font-size: 7px;
     border-radius: 70px;
     background: rgba(60, 216, 86, 0.20);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.3px;
+    width: 40px;
+}
+
+.d_badge-f {
+    padding: 4px ;
+    color: #d83c3c;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 7px;
+    border-radius: 70px;
+    background: rgba(216, 60, 60, 0.2);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    width: 40px;
 }
 
 .mobile {
@@ -195,7 +228,7 @@
 .bc-top h3 {
     color: var(--dark-color, #181818);
     font-family: Nunito;
-    font-size: 1.5rem;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -318,7 +351,7 @@
     border-radius: 15px;
 } */
 
-.activity {
+/* .activity {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -327,7 +360,7 @@
     border-radius: 1.25rem;
     background: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.20);
-}
+} */
 
 .a_top {
     display: flex;
@@ -348,7 +381,7 @@
 }
 
 .a_top button {
-    padding: .75rem 1rem;
+    padding: 10px;
     border-radius: 8px;
     background: #FFF;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
@@ -360,10 +393,15 @@
     gap: 1rem;
 }
 
+.a_top button svg {
+    height: 15px;
+    width: 15px;
+}
+
 .a_top button span {
     color: #333540;
     font-family: Poppins;
-    font-size: .95rem;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -386,10 +424,9 @@
     gap: 1rem;
     border-radius: 12px;
     background: linear-gradient(273deg, #2EBC96 2.11%, #1A9096 121.12%);
-    padding: 1.5rem 3rem;
+    padding: 10px;
     position: relative;
 }
-
 .close {
     position: absolute;
     border-radius: 5.343px;
@@ -455,10 +492,10 @@
 }
 
 .a_table {
-    min-width: 1100px;
     display: flex;
     flex-direction: column;
     gap: .9rem;
+    font-size: 10px;
 }
 
 .at_item {

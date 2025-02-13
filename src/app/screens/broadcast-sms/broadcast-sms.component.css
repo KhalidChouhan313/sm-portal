@@ -10,7 +10,7 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     gap: 1.5rem;
     align-items: center;
 }
@@ -124,7 +124,6 @@
 .no-history {
     border: 1px solid #EEE;
     display: flex;
-    width: 1397px;
     padding: 19px;
     justify-content: center;
     align-items: center;
@@ -455,7 +454,6 @@
 .no-history {
     border: 1px solid #EEE;
     display: flex;
-    width: 1397px;
     padding: 19px;
     justify-content: center;
     align-items: center;

@@ -142,7 +142,7 @@
         <img src="../../../assets/androidlogo.png" alt="a" />
       </div>
       <div>
-        <p>{{ item.active ? "Active" : "Unactive" }}</p>
+        <p>{{ item.active ? "Active" : "Inactive" }}</p>
         <p>{{ item.device_name }}</p>
       </div>
     </li>
@@ -178,9 +178,14 @@
       <div class="h-item">
         <strong>Auth Status</strong>
         :
-        <span>{{
-          currentDevice?.status ? "Authenticated" : "Unauthenticated"
-        }}</span>
+        <span
+          ><img
+            *ngIf="currentDevice.status"
+            src="../../../assets/auth-sign.png"
+          />{{
+            currentDevice?.status ? " Authenticated" : "Unauthenticated"
+          }}</span
+        >
       </div>
       <div class="h-item">
         <strong>Connection</strong>
@@ -210,18 +215,24 @@
         />
         <img [src]="qrSrc" />
       </div>
-      <img
-        *ngIf="currentDevice?.status"
-        src="../../../assets/banner.svg"
-        alt="banner"
-        class="banner_img"
-      />
+      <div class="whatsapp-banner-con">
+        <div class="whatsapp-banner" *ngIf="currentDevice?.status">
+          <img src="../../../assets/whatsappbanner.png" />
+          <div class="">
+            <p>Keep your phone connected</p>
+            <span
+              >WhatsApp connects to your phone to sync messages. To reduce data
+              usage, connect your phone to Wi-Fi.</span
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div style="display: flex; gap: 10px">
     <div class="reports">
-      <app-reports></app-reports>
+      <app-reports-device></app-reports-device>
     </div>
     <div class="msg-details">
       <div class="msg-details-sec">
@@ -356,79 +367,119 @@
           />
         </svg>
       </button>
-      <div class="filter-inputs">
+      <form
+        [formGroup]="filterForm"
+        (ngSubmit)="search()"
+        class="filter-inputs"
+      >
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Target</label>
-            <select name="" id="">
+            <!-- <select name="" id="">
               <option *ngFor="let target of targetList" [value]="target.id">
                 {{ target }}
               </option>
-            </select>
+            </select> -->
+            <input
+              type="text"
+              formControlName="target"
+              placeholder="Enter target"
+            />
           </div>
           <div class="inp_con">
             <label for="">Target Type</label>
-            <select name="" id="">
+            <!-- <select name="" id="">
               <option
                 *ngFor="let targetType of targetTypeList"
                 [value]="targetType.id"
               >
                 {{ targetType }}
               </option>
-            </select>
+            </select> -->
+            <input
+              type="text"
+              formControlName="target_type"
+              placeholder="Enter target type"
+            />
           </div>
           <div class="inp_con">
             <label for="">Status</label>
-            <select name="" id="">
+            <!-- <select name="" id="">
               <option *ngFor="let status of statusList" [value]="status.id">
                 {{ status }}
               </option>
+            </select> -->
+            <select formControlName="status">
+              <option value="">All</option>
+              <option value="">Sent</option>
+              <option value="">Failed</option>
+              <option value="">Delivered</option>
             </select>
           </div>
         </div>
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Send Via</label>
-            <select name="" id="">
+            <!-- <select name="" id="">
               <option *ngFor="let sentVia of sentViaList" [value]="sentVia.id">
                 {{ sentVia }}
               </option>
-            </select>
+            </select> -->
+            <input
+              type="number"
+              formControlName="sent_by"
+              placeholder="Enter sender ID"
+            />
           </div>
           <div class="inp_con">
             <label for="">From</label>
-            <input type="date" />
+            <input type="date" formControlName="f_date" />
           </div>
           <div class="inp_con">
             <label for="">To</label>
-            <input type="date" />
+            <input type="date" formControlName="t_date" />
           </div>
         </div>
-      </div>
+
+        <div class="filter-btn-con">
+          <button type="submit" [disabled]="isMsgLoad">Search</button>
+          <button type="button" (click)="clean()">Clear</button>
+        </div>
+      </form>
     </div>
     <div class="a_table_wrapper">
-      <div class="a_table">
-        <div class="at_item">
-          <div>Created At</div>
-          <div>Target Type</div>
-          <div>Target</div>
-          <div>Message Type</div>
-          <div>Sent Via</div>
-          <div>Status</div>
-          <div>Messages</div>
-        </div>
-        <div class="a_table">
-          <div class="at_item" *ngFor="let item of messageList">
-            <div>{{ item.createdAt | date : "MMM d, y, h:mm:ss a" }}</div>
-            <div>{{ item.target_type }}</div>
-            <div>{{ item.to_number }}</div>
-            <div>{{ item.msg_type }}</div>
-            <div>{{ item.sent_by }}</div>
-            <div>{{ item.status }}</div>
-            <div>{{ item.message_text }}</div>
-          </div>
-        </div>
-      </div>
+      <table class="a_table">
+        <!-- Table Head -->
+        <thead>
+          <tr>
+            <th>Created Date</th>
+            <th>Target Type</th>
+            <th>Target</th>
+            <th>Message Type</th>
+            <th>Sent Via</th>
+            <th>Status</th>
+            <th>Messages</th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody>
+          <tr *ngFor="let item of messageList">
+            <td>{{ item.createdAt | date : "MMM d, y, h:mm:ss a" }}</td>
+            <td>{{ item.target_type }}</td>
+            <td>{{ item.to_number }}</td>
+            <td>{{ item.msg_type }}</td>
+            <td>
+              <div *ngIf="item.sent_by === 0">WhatsApp</div>
+              <div *ngIf="item.sent_by === 1">SMS</div>
+              <div *ngIf="item.sent_by === 2">None</div>
+            </td>
+
+            <td>{{ item.status }}</td>
+            <td>{{ item.message_text }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

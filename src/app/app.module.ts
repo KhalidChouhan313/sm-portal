@@ -39,6 +39,7 @@ import { TotalTtvComponent } from './components/total-ttv/total-ttv.component';
 import { VehicleInsightsComponent } from './components/vehicle-insights/vehicle-insights.component';
 import { TotalBookingsComponent } from './components/total-bookings/total-bookings.component';
 import { QrCodeComponent } from './screens/qr-code/qr-code.component';
+import { ReportsDeviceComponent } from './components/reports-device/reports-device.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { QrCodeComponent } from './screens/qr-code/qr-code.component';
     VehicleInsightsComponent,
     TotalBookingsComponent,
     QrCodeComponent,
+    ReportsDeviceComponent,
   ],
   imports: [
     BrowserModule,

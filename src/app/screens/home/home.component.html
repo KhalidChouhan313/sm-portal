@@ -1,41 +1,51 @@
 <div class="container-own">
-    <div class="top">
-        <div class="reports">
-            <app-reports></app-reports>
-        </div>
-        <div class="bar-container">
-            <div class="bc-top">
-                <h3>Message Average</h3>
-                <a href="#">
-                    <span>
-                        monthly
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                        <path d="M14.3274 8.57154L10.1134 12.7856L5.89931 8.57154L14.3274 8.57154Z" fill="#2EBC96" />
-                    </svg>
-                </a>
-            </div>
-            <div class="chart">
-                <!-- <app-doughnut-chart [colors]="['#FF515C','#2EBC96', '#3B82F6']"
+  <div class="top">
+    <div class="reports">
+      <app-reports></app-reports>
+    </div>
+    <div class="bar-container">
+      <div class="bc-top">
+        <h3>Message Average</h3>
+        <a href="#">
+          <span> monthly </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+          >
+            <path
+              d="M14.3274 8.57154L10.1134 12.7856L5.89931 8.57154L14.3274 8.57154Z"
+              fill="#2EBC96"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="chart">
+        <!-- <app-doughnut-chart [colors]="['#FF515C','#2EBC96', '#3B82F6']"
                     [data]="[55, 30, 15]"></app-doughnut-chart> -->
-                <app-pie-chart [colors]="['#FF515C','#2EBC96', '#3B82F6']" [data]="[55, 30, 15]"></app-pie-chart>
-            </div>
+        <app-pie-chart
+          [colors]="['#FF515C', '#2EBC96', '#3B82F6']"
+          [data]="[55, 30, 15]"
+        ></app-pie-chart>
+      </div>
 
-            <div class="labels">
-                <div>
-                    <label style="--color: #ff515c">Total Sent</label>
-                    <p>55</p>
-                </div>
-                <div>
-                    <label style="--color: #2EBC96">WhatsApp</label>
-                    <p>30</p>
-                </div>
-                <div>
-                    <label style="--color: #3B82f6">SMS</label>
-                    <p>15</p>
-                </div>
-            </div>
-            <!-- <div class="bc-table">
+      <div class="labels">
+        <div>
+          <label style="--color: #ff515c">Total Sent</label>
+          <p>55</p>
+        </div>
+        <div>
+          <label style="--color: #2ebc96">WhatsApp</label>
+          <p>30</p>
+        </div>
+        <div>
+          <label style="--color: #3b82f6">SMS</label>
+          <p>15</p>
+        </div>
+      </div>
+      <!-- <div class="bc-table">
                 <div class="bct-item">
                     <div class="dot" style="color: white;">.</div>
                     <div>Status</div>
@@ -61,119 +71,150 @@
                     <div style="color:black;">15%</div>
                 </div>
             </div> -->
-        </div>
     </div>
-    <!-- <app-stats></app-stats> -->
-    <div class="bottom">
-        <div class="activity">
-            <div class="a_top">
-                <!-- <button> -->
-                <h1>All Messages</h1>
-                <!-- </button> -->
-                <button class="filter" (click)="showFilters = true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" viewBox="0 0 21 14" fill="none">
-                        <path d="M2 1.79053H18.67M5.12556 6.9999H15.5443M9.29302 12.2093H11.3768" stroke="white"
-                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span>Filters</span>
-                </button>
-            </div>
-            <div *ngIf="showFilters" class="filters">
-                <button (click)="showFilters = false" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="13"
-                        height="13" viewBox="0 0 13 13" fill="none">
-                        <path d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573" stroke="#2EBC96"
-                            stroke-width="1.60279" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
-                <div class="left">
-                    <div class="inp_con">
-                        <label for="">Target</label>
-                        <select name="" id=""></select>
-                    </div>
-                    <div class="inp_con">
-                        <label for="">Target Type</label>
-                        <select name="" id=""></select>
-                    </div>
-                    <div class="inp_con">
-                        <label for="">Status</label>
-                        <select name="" id=""></select>
-                    </div>
-                    <div class="inp_con">
-                        <label for="">Send Via</label>
-                        <select name="" id=""></select>
-                    </div>
-                </div>
-                <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
-            </div>
-            <div class="a_table_wrapper">
-                <div class="a_table">
-                    <div class="at_item">
-                        <div>Created At</div>
-                        <div>Target Type</div>
-                        <div>Target</div>
-                        <div>Message Type</div>
-                        <div>Sent Via</div>
-                        <div>Status</div>
-                        <div>Messages</div>
-                    </div>
-                    <div class="at_item">
-                        <div>Created At</div>
-                        <div>Target Type</div>
-                        <div>Target</div>
-                        <div>Message Type</div>
-                        <div>Sent Via</div>
-                        <div>Status</div>
-                        <div>Messages</div>
-                    </div>
-                    <div class="at_item">
-                        <div>Created At</div>
-                        <div>Target Type</div>
-                        <div>Target</div>
-                        <div>Message Type</div>
-                        <div>Sent Via</div>
-                        <div>Status</div>
-                        <div>Messages</div>
-                    </div>
-                    <div class="at_item">
-                        <div>Created At</div>
-                        <div>Target Type</div>
-                        <div>Target</div>
-                        <div>Message Type</div>
-                        <div>Sent Via</div>
-                        <div>Status</div>
-                        <div>Messages</div>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <!-- <app-stats></app-stats> -->
+  <div class="bottom">
+    <div class="activity">
+      <div class="a_top">
+        <!-- <button> -->
+        <h1>All Messages</h1>
+        <!-- </button> -->
+        <button class="filter" (click)="showFilters = true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="14"
+            viewBox="0 0 21 14"
+            fill="none"
+          >
+            <path
+              d="M2 1.79053H18.67M5.12556 6.9999H15.5443M9.29302 12.2093H11.3768"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Filters</span>
+        </button>
+      </div>
+      <div *ngIf="showFilters" class="filters">
+        <button (click)="showFilters = false" class="close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+          >
+            <path
+              d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
+              stroke="#2EBC96"
+              stroke-width="1.60279"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div class="left">
+          <div class="inp_con">
+            <label for="">Target</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">Target Type</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">Status</label>
+            <select name="" id=""></select>
+          </div>
+          <div class="inp_con">
+            <label for="">Send Via</label>
+            <select name="" id=""></select>
+          </div>
         </div>
-        <div class="devices">
-            <div class="d_header">
-                <h4>Devices</h4>
-                <a routerLink="/devices">View all</a>
-            </div>
-            <div class="d_body">
-                <div class="d_card">
-                    <div class="icon">
-                        <img src="../../assets/icons/android.svg" alt="android">
-                    </div>
-                    <div class="d_details">
-                        <div class="name">Motorola Edge 30</div>
-                        <span>Total Sent Messages: <span>300</span></span>
-                    </div>
-                    <div class="percentage">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none">
-                            <path
-                                d="M5.45709 0.742473C6.25706 -0.227435 7.74294 -0.227435 8.54291 0.742473L12.9611 6.09923C14.037 7.40371 13.1091 9.3718 11.4182 9.3718H2.58183C0.890891 9.3718 -0.0370021 7.40371 1.03892 6.09923L5.45709 0.742473Z"
-                                fill="#3CD856" />
-                        </svg>
-                        <span>23%</span>
-                    </div>
-                    <div class="d_badge">Active</div>
-                </div>
-            </div>
+        <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
+      </div>
+      <div class="a_table_wrapper">
+        <div class="a_table">
+          <div class="at_item">
+            <div>Created At</div>
+            <div>Target Type</div>
+            <div>Target</div>
+            <div>Message Type</div>
+            <div>Sent Via</div>
+            <div>Status</div>
+            <div>Messages</div>
+          </div>
+          <div class="at_item">
+            <div>Created At</div>
+            <div>Target Type</div>
+            <div>Target</div>
+            <div>Message Type</div>
+            <div>Sent Via</div>
+            <div>Status</div>
+            <div>Messages</div>
+          </div>
+          <div class="at_item">
+            <div>Created At</div>
+            <div>Target Type</div>
+            <div>Target</div>
+            <div>Message Type</div>
+            <div>Sent Via</div>
+            <div>Status</div>
+            <div>Messages</div>
+          </div>
+          <div class="at_item">
+            <div>Created At</div>
+            <div>Target Type</div>
+            <div>Target</div>
+            <div>Message Type</div>
+            <div>Sent Via</div>
+            <div>Status</div>
+            <div>Messages</div>
+          </div>
         </div>
-
+      </div>
     </div>
-
+    <div class="devices">
+      <div class="d_header">
+        <h4>Devices</h4>
+        <a routerLink="/devices">See All</a>
+      </div>
+      <div class="d_body">
+        <div class="d_card" *ngFor="let device of deviceList">
+          <div class="icon">
+            <img src="../../assets/icons/android.svg" alt="android" />
+          </div>
+          <div class="d_details">
+            <div class="name">{{ device.device_name }}</div>
+            <span
+              >Total Sent Messages: <span>{{ device.total_calls }}</span></span
+            >
+          </div>
+          <div class="percentage">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="10"
+              viewBox="0 0 14 10"
+              fill="none"
+            >
+              <path
+                d="M5.45709 0.742473C6.25706 -0.227435 7.74294 -0.227435 8.54291 0.742473L12.9611 6.09923C14.037 7.40371 13.1091 9.3718 11.4182 9.3718H2.58183C0.890891 9.3718 -0.0370021 7.40371 1.03892 6.09923L5.45709 0.742473Z"
+                fill="#3CD856"
+              />
+            </svg>
+            <span>23%</span>
+          </div>
+          <div *ngIf="device?.active" class="d_badge">Active</div>
+          <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <div class="mobile" *ngIf="!isPcView">
