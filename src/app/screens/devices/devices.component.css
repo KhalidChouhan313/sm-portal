@@ -454,7 +454,7 @@ strong {
     position: absolute;
     top: 45%;
     right: 1rem;
-    height: 150px;
+    height: 166px;
 }
 
 .reports {
@@ -1149,7 +1149,7 @@ strong {
 
 .qr-banner-container img:nth-child(2) {
     position: absolute;
-    width: 120px;
+    width: 138px;
     right: 25px;
     top: 15px;
 }
@@ -1196,4 +1196,21 @@ strong {
     color: white;
     border-radius: 10px;
     border: 1px solid white;
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+}
+
+.pagination a{
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    background: #2EBC96;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
 }

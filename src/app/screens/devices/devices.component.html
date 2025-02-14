@@ -142,7 +142,8 @@
         <img src="../../../assets/androidlogo.png" alt="a" />
       </div>
       <div>
-        <p>{{ item.active ? "Active" : "Inactive" }}</p>
+        <p>{{ deviceConnections[item.device_id] }}</p>
+        <!-- Display connection status for each device -->
         <p>{{ item.device_name }}</p>
       </div>
     </li>
@@ -238,7 +239,9 @@
 
   <div style="display: flex; gap: 10px">
     <div class="reports">
-      <app-reports-device></app-reports-device>
+      <app-reports-device
+        [trackDriverTotalMsg]="trackDriverTotalMsg"
+      ></app-reports-device>
     </div>
     <div class="msg-details">
       <div class="msg-details-sec">
@@ -331,10 +334,12 @@
     </div>
   </div>
 
-  <div class="note-banner">
+  <div *ngIf="isBannerVisible" class="note-banner">
     <div>
       <p><img src="../../../assets/note-icon.png" /> Importent Note:</p>
-      <button><img src="../../../assets/close-icon.png" /></button>
+      <button (click)="closeBanner()">
+        <img src="../../../assets/close-icon.png" />
+      </button>
     </div>
     <p>
       Please note that “not sent” , might be because target is not valid mobile
@@ -464,7 +469,14 @@
         <tbody>
           <tr *ngFor="let item of messageList">
             <td>{{ item.createdAt | date : "MMM d, y, h:mm:ss a" }}</td>
-            <td>{{ item.target_type }}</td>
+            <td>
+              <ng-container
+                *ngIf="item.target_type === 'whatsapp'; else smsText"
+              >
+                WhatsApp
+              </ng-container>
+              <ng-template #smsText>SMS</ng-template>
+            </td>
             <td>{{ item.to_number }}</td>
             <td>{{ item.msg_type }}</td>
             <td>
@@ -478,6 +490,14 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div *ngIf="!isMsgLoad" class="pagination">
+      <a class="active" *ngIf="page > 1" (click)="previousPage()"
+        >&laquo; Prev
+      </a>
+      <a *ngIf="messageList.length > 0" class="active" (click)="nextPage()"
+        >Next &raquo;</a
+      >
     </div>
   </div>
 </div>

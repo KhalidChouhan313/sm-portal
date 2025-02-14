@@ -109,6 +109,9 @@ export class DevicesComponent implements OnInit{
   fDate = '';
   tDate = '';
 
+  deviceConnections = {};
+  isBannerVisible: boolean = true;
+
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
   
@@ -133,43 +136,50 @@ export class DevicesComponent implements OnInit{
 
 
   ngOnInit(): void {
-    let user_id = this.activatedRoute.params['value'].id
-
-//     
-
+    let user_id = this.activatedRoute.params['value'].id;
+  
     // this.AS.getCurrentUserFromBack().subscribe(() => {
-      this.currentUser = JSON.parse(localStorage.getItem('user_details'));
-      console.log(this.currentUser)
-      if (!this.currentUser) {
-        this.router.navigateByUrl('/sessions/signin');
+    this.currentUser = JSON.parse(localStorage.getItem('user_details'));
+    console.log(this.currentUser);
+  
+    if (!this.currentUser) {
+      this.router.navigateByUrl('/sessions/signin');
+    }
+  
+    this.AS.getUser(this.currentUser._id).subscribe(usr => {
+      this.currentUser = usr;
+      this.deviceList = usr.wa_api.filter(d => d.status && 
+        (d.wa_api_platform == 'chatapi' || d.wa_api_platform == 'maytapi' || d.wa_api_platform == 'greenapi'));
+      console.log(this.deviceList);
+  
+      // Initialize device connection statuses
+      this.deviceConnections = {}; // Reset deviceConnections before fetching new statuses
+  
+      if (this.deviceList.length) {
+        this.deviceList.forEach((device, index) => {
+          // Fetch connection status for each device
+          if (device.wa_api_platform == 'greenapi') {
+            this.currentDevice = device; 
+            this.openGreenApi(device, index); // Open the Green API for each device
+            this.creatGraph(device, index); // Create a graph (if necessary)
+          }
+          else if (device.wa_api_platform == 'chatapi') {
+            // Handle chatapi device status (if needed)
+          }
+          else if (device.wa_api_platform == 'maytapi') {
+            // Handle maytapi device status (if needed)
+          }
+        });
+  
+        // If there are devices, set a timeout to refresh their status after 10 seconds
+        setTimeout(() => { this.refreshingDevice() }, 10000);
+      } else {
+        this.isLoad = false;
       }
-      this.AS.getUser(this.currentUser._id).subscribe(usr => {
-        this.currentUser = usr;
-        this.deviceList = usr.wa_api.filter(d => d.status && (d.wa_api_platform == 'chatapi' || d.wa_api_platform == 'maytapi' || d.wa_api_platform == 'greenapi'))
-        console.log(this.deviceList)
-        if (this.deviceList.length) {
-          if (this.deviceList[0].wa_api_platform == 'chatapi') {
-            this.openDevice(this.deviceList[0], 0);
-            setTimeout(() => { this.refreshingDevice() }, 10000)
-          }
-          if (this.deviceList[0].wa_api_platform == 'maytapi') {
-            this.openMaytApi(this.deviceList[0], 0);
-            setTimeout(() => { this.refreshingMaytApi() }, 10000)
-          }
-          if (this.deviceList[0].wa_api_platform == 'greenapi') {
-            this.currentDevice = this.deviceList[0]; 
-            this.openGreenApi(this.deviceList[0], 0);
-            this.creatGraph(this.deviceList[0], 0)
-            // setTimeout(() => { this.refreshingMaytApi() }, 10000)
-          }
-        }
-        else {
-          this.isLoad = false;
-        }
-      })
-    // })
-
+    });
+    // });
   }
+  
 
   currentDeviceIndex: number = 0;
 
@@ -180,6 +190,10 @@ export class DevicesComponent implements OnInit{
     this.openGreenApi(this.deviceList[index], index)
   }
   
+  closeBanner() {
+    this.isBannerVisible = false;  // Hide the banner
+  }
+
   openDevice(device, index) {
     if (device.wa_api_platform == 'chatapi') {
       this.creatGraph(device, index);
@@ -541,9 +555,12 @@ export class DevicesComponent implements OnInit{
   getGreenApiStatus(device, index) {
     this.AS.getGreenApiStatus(device).subscribe(res => {
       this.isLoad = false;
+      let deviceId = device.device_id;
+
       if (res.statusInstance == 'online') {
         this.authStatus = 'Authenticated'
         this.connection = 'Active'
+        this.deviceConnections[deviceId] = 'Active'
       } 
       else {
         let url = `https://api.green-api.com/waInstance${device.device_id}/qr/${device.token}`
@@ -554,9 +571,11 @@ export class DevicesComponent implements OnInit{
             this.authStatus = 'Scan QR code'
             this.connection = 'Inactive'
             this.qrShow = true;
+            this.deviceConnections[deviceId] = 'Inactive';
           } else if (qrRes.type == 'alreadyLogged') {
             this.authStatus = 'Authenticated'
             this.connection = 'Inactive'
+            this.deviceConnections[deviceId] = 'Inactive';
             setTimeout(() => { this.refreshingGreenApi() }, 10000)
           }
         })

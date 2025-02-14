@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 
 @Component({
@@ -7,7 +7,9 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./reports-device.component.css']
 })
 export class ReportsDeviceComponent {
-ngOnInit(): void {
+
+  @Input() trackDriverTotalMsg: number
+  ngOnInit(): void {
 
     Chart.register(...registerables);
 
