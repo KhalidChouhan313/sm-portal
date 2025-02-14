@@ -180,34 +180,32 @@
         :
         <span
           ><img
-            *ngIf="currentDevice.status"
+            *ngIf="authStatus == 'Authenticated'"
             src="../../../assets/auth-sign.png"
-          />{{
-            currentDevice?.status ? " Authenticated" : "Unauthenticated"
-          }}</span
+          />{{ authStatus }}</span
         >
       </div>
       <div class="h-item">
         <strong>Connection</strong>
         :
-        <span>{{ currentDevice?.active ? "Active" : "Inactive" }}</span>
+        <span>{{ connection }}</span>
       </div>
     </div>
     <div>
       <div
-        (click)="openGreenApi(currentDevice, 0)"
+        (click)="openGreenApi(currentDevice, currentIndex)"
         class="device-btn-container"
       >
         <button><img src="../../../assets/d-reboot.png" /></button>
-        <button (click)="logoutGreenApi(currentDevice, 0)">
+        <button (click)="logoutGreenApi(currentDevice, currentIndex)">
           <img src="../../../assets/d-logout.png" />
         </button>
-        <button (click)="rebootGreenApi(currentDevice, 0)">
+        <button (click)="rebootGreenApi(currentDevice, currentIndex)">
           <img src="../../../assets/d-refresh.png" />
         </button>
       </div>
 
-      <div *ngIf="!currentDevice?.status" class="qr-banner-container">
+      <div *ngIf="qrShow && !isLoad" class="qr-banner-container">
         <img
           src="../../../assets/qr-banner.png"
           alt="banner"
@@ -216,7 +214,15 @@
         <img [src]="qrSrc" />
       </div>
       <div class="whatsapp-banner-con">
-        <div class="whatsapp-banner" *ngIf="currentDevice?.status">
+        <div
+          class="whatsapp-banner"
+          *ngIf="
+            !qrShow &&
+            !isLoad &&
+            authStatus == 'Authenticated' &&
+            connection == 'Active'
+          "
+        >
           <img src="../../../assets/whatsappbanner.png" />
           <div class="">
             <p>Keep your phone connected</p>
@@ -305,7 +311,7 @@
       <div class="icon"><img src="../../../assets/an-sms.png" /></div>
       <div>
         <p>Total SMS</p>
-        <p>5,423</p>
+        <p>{{ trackDriverTotalMsg }}</p>
 
         <p>
           <span><img src="../../../assets/an-arrow.png" /> 16%</span> this month
