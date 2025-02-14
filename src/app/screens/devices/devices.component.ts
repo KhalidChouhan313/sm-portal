@@ -129,16 +129,7 @@ export class DevicesComponent implements OnInit{
     private AS: AdminService,
     private BS: BotService,
     private fb: FormBuilder
-  ) {
-    this.filterForm = this.fb.group({
-      f_date: [''],
-      t_date: [''],
-      target: [''],
-      target_type: [''],
-      sent_by: [''],
-      status: ['']
-    });
-  }
+  ) {}
 
 
   ngOnInit(): void {
@@ -637,43 +628,41 @@ export class DevicesComponent implements OnInit{
   search() {
     this.page = 0;
     this.isMsgLoad = true;
-    this.currentPageLimit = 0;
-
-    let formValues = this.filterForm.value;
-    let obj: any = {
+    this.currentPageLimit = 0
+    let obj = {
       device_id: this.currentDevice.device_id,
       company_id: this.currentUser._id,
       skip: this.currentPageLimit
-    };
-
-    let t = new Date();
-    let fd = new Date(formValues.f_date);
-    let tz = t.getTimezoneOffset() / 60;
-
-    if (formValues.f_date && formValues.t_date) {
-      fd.setDate(fd.getDate() - 1);
-      let fh = 24 + tz;
-      let m = (fd.getMonth() + 1).toString().padStart(2, '0');
-      let d = fd.getDate().toString().padStart(2, '0');
-      this.fDate = `${fd.getFullYear()}-${m}-${d}T${fh}:00:00.000Z`;
-
-      let th = 23 + tz;
-      this.tDate = `${formValues.t_date}T${th}:59:59.999Z`;
-
-      obj.fDate = this.fDate;
-      obj.tDate = this.tDate;
     }
 
-    if (formValues.target) obj.target = formValues.target;
-    if (formValues.target_type) obj.target_type = formValues.target_type;
-    if (formValues.sent_by) obj.sent_by = parseInt(formValues.sent_by);
-    if (formValues.status) obj.status = formValues.status;
+    let t = new Date()
+    let fd = new Date(this.f_date)
+    let tz = t.getTimezoneOffset() / 60
+    if (this.f_date != '' && this.t_date != '') {
+      fd.setDate(fd.getDate() - 1)
+      let fh = 24 + tz;
+      let m = (fd.getMonth() + 1).toString()
+      let d = fd.getDate().toString()
+      if (parseInt(m) < 10) { m = '0' + m }
+      if (parseInt(d) < 10) { d = '0' + d }
+      this.fDate = fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
 
+      let th = 23 + tz;
+      this.tDate = this.t_date + 'T' + th + ':59:59.999Z';
+
+      // let qry = { createdAt: { $gte: new Date("2021-09-30T19:00:00.000Z"), $lte: new Date("2021-10-03T18:59:59.999Z") } }
+      obj['fDate'] = this.fDate;
+      obj['tDate'] = this.tDate;
+    }
+    if (this.target != '') { obj['target'] = this.target; }
+    if (this.target_type != '') { obj['target_type'] = this.target_type; }
+    if (this.sent_by != '') { obj['sent_by'] = parseInt(this.sent_by); }
+    if (this.status != '') { obj['status'] = this.status; }
     this.AS.getMessageList(obj).subscribe(ml => {
-      this.messageList = ml;
+      this.messageList = ml
+      // this.currentPageLimit += 50
       this.isMsgLoad = false;
-    });
-  
+    })
 
   }
 

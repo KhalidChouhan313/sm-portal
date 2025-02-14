@@ -373,11 +373,7 @@
           />
         </svg>
       </button>
-      <form
-        [formGroup]="filterForm"
-        (ngSubmit)="search()"
-        class="filter-inputs"
-      >
+      <div class="filter-inputs">
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Target</label>
@@ -386,27 +382,25 @@
                 {{ target }}
               </option>
             </select> -->
-            <input
+            <!-- <input
               type="text"
               formControlName="target"
               placeholder="Enter target"
-            />
+              
+            /> -->
+            <input class="form-control" [(ngModel)]="target" type="number" />
           </div>
           <div class="inp_con">
             <label for="">Target Type</label>
-            <!-- <select name="" id="">
-              <option
-                *ngFor="let targetType of targetTypeList"
-                [value]="targetType.id"
-              >
-                {{ targetType }}
-              </option>
-            </select> -->
-            <input
+            <select name="" id="" [(ngModel)]="target_type">
+              <option value="whatsapp">WhatsApp</option>
+              <option value="non_whatsapp">Sms</option>
+            </select>
+            <!-- <input
               type="text"
               formControlName="target_type"
               placeholder="Enter target type"
-            />
+            /> -->
           </div>
           <div class="inp_con">
             <label for="">Status</label>
@@ -415,43 +409,41 @@
                 {{ status }}
               </option>
             </select> -->
-            <select formControlName="status">
-              <option value="">All</option>
-              <option value="">Sent</option>
-              <option value="">Failed</option>
-              <option value="">Delivered</option>
+            <select [(ngModel)]="status">
+              <option value="Sent">Sent</option>
+              <option value="Failed">Failed</option>
             </select>
           </div>
         </div>
         <div class="filter-inputs-line">
           <div class="inp_con">
             <label for="">Send Via</label>
-            <!-- <select name="" id="">
-              <option *ngFor="let sentVia of sentViaList" [value]="sentVia.id">
-                {{ sentVia }}
-              </option>
-            </select> -->
-            <input
+            <select name="" id="" [(ngModel)]="sent_by">
+              <option value="1">WhatsApp</option>
+              <option value="0">Sms</option>
+              <option value="2">None</option>
+            </select>
+            <!-- <input
               type="number"
-              formControlName="sent_by"
+              [(ngModel)]="sent_by"
               placeholder="Enter sender ID"
-            />
+            /> -->
           </div>
           <div class="inp_con">
             <label for="">From</label>
-            <input type="date" formControlName="f_date" />
+            <input type="date" [(ngModel)]="f_date" />
           </div>
           <div class="inp_con">
             <label for="">To</label>
-            <input type="date" formControlName="t_date" />
+            <input type="date" [(ngModel)]="t_date" />
           </div>
         </div>
 
         <div class="filter-btn-con">
-          <button type="submit" [disabled]="isMsgLoad">Search</button>
-          <button type="button" (click)="clean()">Clear</button>
+          <button (click)="search()">Search</button>
+          <button (click)="clean()">Clear</button>
         </div>
-      </form>
+      </div>
     </div>
     <div class="a_table_wrapper">
       <table class="a_table">
@@ -476,8 +468,8 @@
             <td>{{ item.to_number }}</td>
             <td>{{ item.msg_type }}</td>
             <td>
-              <div *ngIf="item.sent_by === 0">WhatsApp</div>
-              <div *ngIf="item.sent_by === 1">SMS</div>
+              <div *ngIf="item.sent_by === 0">SMS</div>
+              <div *ngIf="item.sent_by === 1">WhatsApp</div>
               <div *ngIf="item.sent_by === 2">None</div>
             </td>
 
