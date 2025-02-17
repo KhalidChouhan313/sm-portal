@@ -161,7 +161,7 @@ export class DevicesComponent implements OnInit{
           if (device.wa_api_platform == 'greenapi') {
             this.currentDevice = device; 
             this.openGreenApi(device, index); // Open the Green API for each device
-            this.creatGraph(device, index); // Create a graph (if necessary)
+            // this.creatGraph(device, index); // Create a graph (if necessary)
           }
           else if (device.wa_api_platform == 'chatapi') {
             // Handle chatapi device status (if needed)
@@ -428,8 +428,8 @@ export class DevicesComponent implements OnInit{
         let i = parseInt(gv.day)
         // let ind = this.barChartLabels.findIndex(bcl => bcl == this.days[i])
         if (gv.sent_by == 0) {
-          // let v = this.barChartData[0]['data'][ind];
-          // this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
+          let v = this.barChartData[0]['data'][index];
+          this.barChartData[0]['data'][index] = parseInt(v.toString()) + 1;
           if (tday == gv.day) { this.smsToday++; }
           if (t <= 15) { this.sms15Min++; }
           if (t <= 30) { this.sms30Min++; }
@@ -438,8 +438,8 @@ export class DevicesComponent implements OnInit{
           if (t <= 720) { this.sms12Hr++; }
           if (t <= 1440) { this.sms24Hr++; }
         } else if (gv.sent_by == 1) {
-          // let v = this.barChartData[1]['data'][ind];
-          // this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
+          let v = this.barChartData[1]['data'][index];
+          this.barChartData[1]['data'][index] = parseInt(v.toString()) + 1;
           if (tday == gv.day) { this.waToday++; }
           if (t <= 15) { this.wa15Min++; }
           if (t <= 30) { this.wa30Min++; }
@@ -448,11 +448,11 @@ export class DevicesComponent implements OnInit{
           if (t <= 720) { this.wa12Hr++; }
           if (t <= 1440) { this.wa24Hr++; }
         } else {
-          // let v = this.barChartData[2]['data'][ind];
-          // this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
+          let v = this.barChartData[2]['data'][index];
+          this.barChartData[2]['data'][index] = parseInt(v.toString()) + 1;
         }
-        // let v = this.barChartData[3]['data'][ind];
-        // this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
+        let v = this.barChartData[3]['data'][index];
+        this.barChartData[3]['data'][index] = parseInt(v.toString()) + 1;
 
         if (gv.msg_type == 'booking') { this.totalBooking++; if (gv.is_booking_cancel) { this.cancelledBooking++; } }
         if (gv.driver_id && gv.msg_type == 'track') { this.trackDriverTotalMsg++; if (gv.is_driver_msg) { this.trackDriverYesMsg++; } }
@@ -463,6 +463,7 @@ export class DevicesComponent implements OnInit{
         }
       })
     })
+    console.log(this.barChartData)
   }
 
   public getDeviceStatus(device, index) {

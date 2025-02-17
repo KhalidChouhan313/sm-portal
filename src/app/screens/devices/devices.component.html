@@ -241,6 +241,7 @@
     <div class="reports">
       <app-reports-device
         [trackDriverTotalMsg]="trackDriverTotalMsg"
+        [graphData]="barChartData"
       ></app-reports-device>
     </div>
     <div class="msg-details">
@@ -468,8 +469,15 @@
         <!-- Table Body -->
         <tbody>
           <tr *ngFor="let item of messageList">
-            <td>{{ item.createdAt | date : "MMM d, y, h:mm:ss a" }}</td>
-            <td>
+            <td style="text-transform: uppercase">
+              {{ item.createdAt | date : "MMM, dd/MM/y, h:mma" }}
+            </td>
+
+            <td
+              [ngStyle]="{
+                color: item.target_type === 'whatsapp' ? '#2EBC96' : '#3981F7'
+              }"
+            >
               <ng-container
                 *ngIf="item.target_type === 'whatsapp'; else smsText"
               >
@@ -477,15 +485,22 @@
               </ng-container>
               <ng-template #smsText>SMS</ng-template>
             </td>
+
             <td>{{ item.to_number }}</td>
             <td>{{ item.msg_type }}</td>
             <td>
-              <div *ngIf="item.sent_by === 0">SMS</div>
-              <div *ngIf="item.sent_by === 1">WhatsApp</div>
+              <div style="color: #3981f7" *ngIf="item.sent_by === 0">SMS</div>
+              <div style="color: #2ebc96" *ngIf="item.sent_by === 1">
+                WhatsApp
+              </div>
               <div *ngIf="item.sent_by === 2">None</div>
             </td>
 
-            <td>{{ item.status }}</td>
+            <td>
+              <p [ngClass]="item.status === 'sent' ? 's_dot_r' : 's_dot_g'"></p>
+              {{ item.status }}
+            </td>
+
             <td>{{ item.message_text }}</td>
           </tr>
         </tbody>

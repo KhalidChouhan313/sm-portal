@@ -1033,34 +1033,50 @@ strong {
     border-radius: 6.201px;
     border-bottom: 1px solid rgba(238, 238, 238, 0.93);
     background: #FFF;
+
 }
 
 /* .at_item div {
     padding: 1rem;
 } */
 
+.a_table th {
+
+    color:#A3AED0;
+}
+
 .a_table th,
 .a_table td {
   padding: 8px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   text-align: center;
+}
+
+.a_table * {
+    font-size: 12px;
+}
+
+tr {
+    border-bottom: 2px solid lightgrey;
 }
 
 /* Set specific column widths */
 .a_table th:nth-child(1),
-.a_table td:nth-child(1) { width: 210px; min-width: 210px;} /* Created At */
+.a_table td:nth-child(1) { width: 270px; min-width: 270px;} /* Created At */
 .a_table th:nth-child(2),
-.a_table td:nth-child(2) { width: 120px; min-width: 120px;} /* Target Type */
+.a_table td:nth-child(2) { width: 180px; min-width: 180px;} /* Target Type */
 .a_table th:nth-child(3),
-.a_table td:nth-child(3) { width: 180px; min-width: 180px;} /* Target */
+.a_table td:nth-child(3) { width: 170px; min-width: 170px;} /* Target */
 .a_table th:nth-child(4),
-.a_table td:nth-child(4) { width: 130px; min-width: 130px;} /* Message Type */
+.a_table td:nth-child(4) { width: 200px; min-width: 200px;} /* Message Type */
 .a_table th:nth-child(5),
-.a_table td:nth-child(5) { width: 120px; min-width: 120px;} /* Sent Via */
+.a_table td:nth-child(5) { width: 160px; min-width: 160px;} /* Sent Via */
 .a_table th:nth-child(6),
-.a_table td:nth-child(6) { width: 100px; min-width: 100px;} /* Status */
+.a_table td:nth-child(6) { width: 150px; min-width: 150px;} /* Status */
 .a_table th:nth-child(7),
-.a_table td:nth-child(7) { width: 300px;         /* Set a fixed width */
-    max-width: 300px;     /* Ensure it doesn't exceed this width */
+.a_table td:nth-child(7) { width: 350px;         /* Set a fixed width */
+    max-width: 350px;     /* Ensure it doesn't exceed this width */
     overflow: hidden;     /* Hide overflowing text */
     text-overflow: ellipsis; /* Show "..." at the end */
     white-space: nowrap;  /* Keep text on one line */
@@ -1214,3 +1230,33 @@ strong {
     font-weight: 600;
     cursor: pointer;
 }
+
+.s_dot_r {
+    background-color: #FF515C;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.s_dot_g {
+    background-color: #2EBC96;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hides up and down arrows in number input fields */
+input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  

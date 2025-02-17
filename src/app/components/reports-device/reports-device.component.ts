@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,  SimpleChanges, } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 
 @Component({
@@ -8,9 +8,11 @@ import { Chart, registerables } from 'chart.js';
 })
 export class ReportsDeviceComponent {
 
-  @Input() trackDriverTotalMsg: number
-  ngOnInit(): void {
-
+  @Input() trackDriverTotalMsg: number 
+  @Input() graphData: any
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("data", this.graphData)
+    console.log( "data",this.graphData[0].data)
     Chart.register(...registerables);
 
     const ctx = document.getElementById('lineChart') as HTMLCanvasElement;
@@ -24,11 +26,11 @@ export class ReportsDeviceComponent {
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
+        labels: ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon" ],
         datasets: [
           {
-            label: 'Total Sent',
-            data: [8, 12, 10, 14, 9, 14, 10],
+            label: this.graphData[0].label,
+            data: this.graphData[0].data,
             borderColor: '#FF515C',
             pointBorderColor: '#FF515C',
             pointBackgroundColor: '#FF515C',
@@ -37,8 +39,8 @@ export class ReportsDeviceComponent {
             pointBorderWidth: 0,
           },
           {
-            label: 'Whatsapp',
-            data: [8 - 2, 12 + 2, 10 - 2, 14 - 4, 9 - 2, 14 + 2, 10 - 2],
+            label: this.graphData[1].label,
+            data: this.graphData[1].data,
             borderColor: '#2EBC96',
             pointBorderColor: '#2EBC96',
             pointBackgroundColor: '#2EBC96',
@@ -47,8 +49,18 @@ export class ReportsDeviceComponent {
             pointBorderWidth: 0,
           },
           {
-            label: 'SMS',
-            data: [8 + 2, 12 - 2, 10 + 2, 14 - 4, 9 + 2, 14 - 2, 10 + 2],
+            label: this.graphData[2].label,
+            data: this.graphData[2].data,
+            borderColor: '#3B82F6',
+            pointBorderColor: '#3B82F6',
+            pointBackgroundColor: '#3B82F6',
+            tension: .4,
+            borderWidth: 7,
+            pointBorderWidth: 0,
+          },
+          {
+            label: this.graphData[3].label,
+            data: this.graphData[3].data,
             borderColor: '#3B82F6',
             pointBorderColor: '#3B82F6',
             pointBackgroundColor: '#3B82F6',
