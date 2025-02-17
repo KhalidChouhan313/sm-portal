@@ -177,7 +177,7 @@ p {
 }
 
 .b-left {
-    width: 110px;
+    width: 120px;
 }
 
 .bl-top {
@@ -236,6 +236,7 @@ p {
     align-items: center;
     gap: .5rem;
     margin-top: 2.5rem;
+    white-space: nowrap;
 }
 
 .check {

@@ -89,13 +89,13 @@ export class MessagesComponent implements OnInit {
   isBookingConfirmation = false;
   trackDriverMessage = '';
   arrivedDriverMessage = '';
-  chatbot_msg = ['message text', 'message text', 'message text'];
+  chatbot_msg = ['message text', 'message text', 'message text', 'message text'];
   booking_msg = ['message text', 'message text', 'message text', 'message text'];
   late_msg = ['message text', 'message text', 'message text', 'message text'];
   tracking_msg = ['message text', 'message text', 'message text', 'message text'];
   arrived_msg = ['message text', 'message text', 'message text', 'message text'];
-  missedcall_msg = ['message text', 'message text'];
-  noshow_msg = ['message text', 'message text'];
+  missedcall_msg = ['message text', 'message text', 'message text', 'message text'];
+  noshow_msg = ['message text', 'message text', 'message text', 'message text'];
   paylink_msg = ['message text', 'message text', 'message text', 'message text'];
   prepay_msg = ['message text', 'message text', 'message text', 'message text'];
   review_msg = ['message text', 'message text', 'message text', 'message text'];
@@ -129,9 +129,9 @@ export class MessagesComponent implements OnInit {
       console.log(admin);
       this.currentMessageList = admin.messages.booking
       this.tab = 'booking'
-      console.log(this.currentMessageList)
-
-      this.currentMsg = admin.messages.booking[0];
+      console.log("msgs", this.currentMessageList)
+      
+      this.currentMsg = admin.messages.booking[0]
       if (admin.messages.booking.length) { this.booking_msg = admin.messages.booking; }
       if (admin.messages.late.length) { this.late_msg = admin.messages.late; }
       if (admin.messages.tracking.length) { this.tracking_msg = admin.messages.tracking; }
@@ -160,24 +160,36 @@ export class MessagesComponent implements OnInit {
       // console.log(this.chatbot_msg);
 
     })
+    console.log(this.currentMsg)
+    
   }
 
-  toggleEdit = (instance, index) => {
+  toggleEdit(instance, index) {
+    // Set the current message and its index for editing
     this.instanceData.forEach((item, i) => {
       item.isEditable = i === index; // Enable only the clicked one
     });
-    // this.currentMsg = this.currentMessageList[id]
+    this.currentMsg = this.currentMessageList[index]
     console.log(instance)
-  };
+  }
+  
+  
+  
 
   textChange() {
     this.isEdit = true;
   }
 
-  setMessage() {
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+
+  setMessage(index) {
     this.isEdit = true;
     // console.log(this.currentMsg);
 
+    this.currentMsg = this.currentMessageList[index]
+    
     if (this.currentList == 'chatbot') { this.chatbot_msg[this.currentIndex] = this.currentMsg }
     if (this.currentList == 'booking') { this.booking_msg[this.currentIndex] = this.currentMsg }
     if (this.currentList == 'late') { this.late_msg[this.currentIndex] = this.currentMsg }
@@ -216,10 +228,14 @@ export class MessagesComponent implements OnInit {
         custom2: this.custom2_msg
       }
     }
-    // console.log(obj);
+    console.log(this.currentMsg);
+
+
     this.AS.updateUser(obj).subscribe(res => {
 
     })
+
+    
   }
 
   openMessageList(name) {

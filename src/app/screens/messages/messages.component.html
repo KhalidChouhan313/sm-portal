@@ -120,7 +120,8 @@
             0,
             currentMessageList.length - 1
           );
-          let i = index
+          let i = index;
+          trackBy: trackByIndex
         "
       >
         <div
@@ -157,19 +158,21 @@
           <textarea
             class="form-control"
             placeholder="Type here..."
-            [(ngModel)]="currentMsg"
-            *ngIf="instance.isEditable"
+            [(ngModel)]="currentMessageList[i]"
+            *ngIf="instanceData[i].isEditable"
           ></textarea>
           <textarea
             class="form-control"
             placeholder="Type here..."
-            [(ngModel)]="instanceData[i]"
-            *ngIf="!instance.isEditable"
+            [(ngModel)]="currentMessageList[i]"
+            *ngIf="!instanceData[i].isEditable"
             disabled
           ></textarea>
           <div class="msg-btn-container" *ngIf="instanceData[i].isEditable">
-            <button class="msg-btn">Cancel</button>
-            <button class="msg-btn">Update</button>
+            <button class="msg-btn" (click)="toggleEdit(instance, i)">
+              Cancel
+            </button>
+            <button class="msg-btn" (click)="setMessage(i)">Update</button>
           </div>
         </div>
       </div>
@@ -189,7 +192,8 @@
           let instance of currentMessageList.slice(
             currentMessageList.length - 1,
             currentMessageList.length
-          )
+          );
+          trackBy: trackByIndex
         "
       >
         <div class="ic_top">
@@ -211,14 +215,26 @@
             </button>
           </div>
         </div>
+
         <textarea
-          [disabled]="!instance.isEditable"
+          *ngIf="instanceData[3].isEditable"
           [(ngModel)]="currentMessageList[3]"
+          placeholder="Type here..."
+          style="box-shadow: 0px 18px 40px 0px rgba(112, 144,  176,  0.12)"
           (ngModelChange)="onTextAreaChange(instance, $event)"
+        ></textarea>
+        <textarea
+          *ngIf="!instanceData[3].isEditable"
+          [(ngModel)]="currentMessageList[3]"
           placeholder="Type here..."
           style="box-shadow: 0px 18px 40px 0px rgba(112, 144,  176,  0.12)"
         ></textarea>
-        <button class="update" *ngIf="instance.isEditable">Update</button>
+        <div class="msg-btn-container" *ngIf="instanceData[3].isEditable">
+          <button class="msg-btn" (click)="toggleEdit(instance, 3)">
+            Cancel
+          </button>
+          <button class="msg-btn" (click)="setMessage(3)">Update</button>
+        </div>
       </div>
     </div>
   </div>
