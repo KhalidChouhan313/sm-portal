@@ -220,14 +220,12 @@
           *ngIf="instanceData[3].isEditable"
           [(ngModel)]="currentMessageList[3]"
           placeholder="Type here..."
-          style="box-shadow: 0px 18px 40px 0px rgba(112, 144,  176,  0.12)"
           (ngModelChange)="onTextAreaChange(instance, $event)"
         ></textarea>
         <textarea
           *ngIf="!instanceData[3].isEditable"
           [(ngModel)]="currentMessageList[3]"
           placeholder="Type here..."
-          style="box-shadow: 0px 18px 40px 0px rgba(112, 144,  176,  0.12)"
         ></textarea>
         <div class="msg-btn-container" *ngIf="instanceData[3].isEditable">
           <button class="msg-btn" (click)="toggleEdit(instance, 3)">

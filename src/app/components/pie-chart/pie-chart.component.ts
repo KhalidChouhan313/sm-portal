@@ -1,36 +1,47 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartOptions, ChartData, ChartType } from 'chart.js';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  Chart,
+  ChartOptions,
+  ChartData,
+  ChartType,
+  registerables,
+} from 'chart.js';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.css']
+  styleUrls: ['./pie-chart.component.css'],
 })
-export class PieChartComponent implements OnInit {
-
+export class PieChartComponent implements OnInit, OnChanges {
   @Input() colors: string[] = [];
-  @Input() data: any[] = [];
+  @Input() data: number[] = [];
 
-  // Pie chart options
-  public pieChartOptions: ChartOptions = {
+  public pieChartOptions: ChartOptions<'doughnut'> = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        // position: 'top',
-        display: false
+        display: false,
       },
     },
+    cutout: '60%', // Defines the thickness of the doughnut
+    rotation: -90, // Starts from the top
+    circumference: 180, // Displays only half of the doughnut
   };
 
-  // Pie chart labels
-  public pieChartLabels: string[] = this.colors;
+  public pieChartLabels: string[] = ['Whatsapp', 'SMS'];
 
-  // Pie chart data
-  public pieChartData: ChartData<'pie'> = {
+  public pieChartData: ChartData<'doughnut'> = {
     labels: this.pieChartLabels,
     datasets: [
       {
-        data: [],
+        data: [0, 0], // ✅ Fix: Only two values needed, not [0,0,0]
         backgroundColor: [],
         hoverBackgroundColor: [],
         borderWidth: 0,
@@ -38,12 +49,39 @@ export class PieChartComponent implements OnInit {
     ],
   };
 
-  ngOnInit(): void {
-    this.pieChartData.datasets[0].data = this.data;
-    this.pieChartData.datasets[0].backgroundColor = this.colors;
-    this.pieChartData.datasets[0].hoverBackgroundColor = this.colors.map(item => `${item}7e`);
+  public pieChartType: ChartType = 'doughnut';
+
+  constructor() {
+    Chart.register(...registerables); // ✅ Ensure Chart.js is registered
   }
 
-  // Pie chart type
-  public pieChartType: ChartType = 'pie';
+  ngOnInit(): void {
+    this.updateChartData();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] || changes['colors']) {
+      this.updateChartData();
+    }
+    console.log('Updated Data:', this.data);
+  }
+
+  private updateChartData(): void {
+    if (!this.data || this.data.length === 0) return; // ✅ Fix: Ensure data is not empty
+
+    this.pieChartData = {
+      // ✅ Fix: Reassign the entire object for Angular change detection
+      labels: this.pieChartLabels,
+      datasets: [
+        {
+          data: [...this.data], // ✅ Fix: Spread operator to ensure reference change
+          backgroundColor: [...(this.colors || [])],
+          hoverBackgroundColor: (this.colors || []).map(
+            (color) => `${color}7e`
+          ),
+          borderWidth: 0,
+        },
+      ],
+    };
+  }
 }

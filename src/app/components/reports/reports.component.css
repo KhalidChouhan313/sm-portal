@@ -106,7 +106,7 @@ p {
     border-bottom: 1px solid #E0E0E0;
     padding-bottom: .5rem;
     position: relative;
-    height: 180px;
+    height: 100%;
     min-width: 400px;
 }
 
@@ -118,7 +118,7 @@ p {
     background: linear-gradient(to left, white, transparent);
    
 }
-
+/* 
 .top {
     display: flex;
     justify-content: space-between;
@@ -163,7 +163,7 @@ p {
 .top-r svg {
     height: 15px;
     width: 15px;
-}
+} */
 
 .bot {
     display: flex;
@@ -259,4 +259,41 @@ p {
     font-weight: 700;
     line-height: 35.918px;
     letter-spacing: -0.41px;
+}
+
+.btn-con {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-con button {
+    width: 100px;
+    padding: 10px 15px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-con button.active {
+    background: linear-gradient(to right, #2EBC96, #1A9096);
+    color: white;
+    border: 1px solid white;
+}
+
+.message-count {
+    position: absolute;
+    /* top: 20px; */
+    left: 20px;
+}
+
+.message-count h5 {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.message-count p {
+    font-size: 24px;
+    font-weight: 600;
 }

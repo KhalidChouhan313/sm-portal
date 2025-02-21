@@ -23,7 +23,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookingsComponent } from './screens/bookings/bookings.component';
 import { CustomersComponent } from './screens/customers/customers.component';
 import { ChatFlowComponent } from './screens/chat-flow/chat-flow.component';
-import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+
 import { AppSettingsComponent } from './screens/app-settings/app-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BotSettingsComponent } from './screens/bot-settings/bot-settings.component';
@@ -39,7 +39,7 @@ import { TotalTtvComponent } from './components/total-ttv/total-ttv.component';
 import { VehicleInsightsComponent } from './components/vehicle-insights/vehicle-insights.component';
 import { TotalBookingsComponent } from './components/total-bookings/total-bookings.component';
 import { QrCodeComponent } from './screens/qr-code/qr-code.component';
-import { ReportsDeviceComponent } from './components/reports-device/reports-device.component';
+// import { ReportsDeviceComponent } from './components/reports-device/reports-device.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { ReportsDeviceComponent } from './components/reports-device/reports-devi
     BookingsComponent,
     CustomersComponent,
     ChatFlowComponent,
-    DoughnutChartComponent,
+
     AppSettingsComponent,
     LoaderComponent,
     BotSettingsComponent,
@@ -74,7 +74,7 @@ import { ReportsDeviceComponent } from './components/reports-device/reports-devi
     VehicleInsightsComponent,
     TotalBookingsComponent,
     QrCodeComponent,
-    ReportsDeviceComponent,
+    // ReportsDeviceComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,9 +85,9 @@ import { ReportsDeviceComponent } from './components/reports-device/reports-devi
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

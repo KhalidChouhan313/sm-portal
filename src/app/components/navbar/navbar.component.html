@@ -1,9 +1,9 @@
 <header class="navbar">
   <div class="left">
-    <h1 style="text-transform: capitalize">{{ title }}</h1>
     <div class="kanban" style="text-transform: capitalize">
       {{ currentUrl }}
     </div>
+    <h1 style="text-transform: capitalize">{{ title }}</h1>
   </div>
   <!-- <div class="middle">
         <div class="search">
@@ -25,10 +25,10 @@
   <div *ngIf="loading" style="margin-left: auto">
     <app-loader></app-loader>
   </div>
-  <div class="search-bar">
+  <!-- <div class="search-bar">
     <img src="assets/searchicon.png" alt="" />
     <input placeholder="Search here..." />
-  </div>
+  </div> -->
   <div class="right" *ngIf="!loading">
     <div class="dp">
       <svg

@@ -440,8 +440,13 @@
 .t-item {
     display: flex;
     border-radius: 5px;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 3px solid #EEE;
     background: #FFF;
+}
+
+.t-item:first-child {
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .ti-item {

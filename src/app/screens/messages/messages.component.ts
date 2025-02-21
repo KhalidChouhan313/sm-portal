@@ -10,61 +10,59 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  styleUrls: ['./messages.component.css'],
 })
-
 export class MessagesComponent implements OnInit {
-
-  tab = ""
+  tab = '';
   tabs = [
-    { name: "Booking" },
-    { name: "Tracking" },
-    { name: "Arrived" },
-    { name: "Paylink" },
-    { name: "PrePay" },
-    { name: "Review" },
-    { name: "Driver" },
-    { name: "Pre Auth" },
-    { name: "Custom 1" },
-    { name: "Custom 2" },
-    { name: "ChatBot" },
-    { name: "Missed Calls" },
-  ]
+    { name: 'Booking' },
+    { name: 'Tracking' },
+    { name: 'Arrived' },
+    { name: 'Paylink' },
+    { name: 'PrePay' },
+    { name: 'Review' },
+    { name: 'Driver' },
+    { name: 'Pre Auth' },
+    { name: 'Custom 1' },
+    { name: 'Custom 2' },
+    { name: 'ChatBot' },
+    { name: 'Missed Calls' },
+  ];
 
   selectTab = (t) => {
-    this.tab = t
-  }
+    this.tab = t;
+  };
 
   instanceData = [
     {
       id: 1,
-      name: "Booking Message 1",
-      value: "",
+      name: 'Booking Message 1',
+      value: '',
       isEditable: false,
-      limit: 0
+      limit: 0,
     },
     {
       id: 2,
-      name: "Booking Message 2",
-      value: "",
+      name: 'Booking Message 2',
+      value: '',
       isEditable: false,
-      limit: 0
+      limit: 0,
     },
     {
-      id: 3, name: "Booking Message 3",
-      value: "",
+      id: 3,
+      name: 'Booking Message 3',
+      value: '',
       isEditable: false,
-      limit: 0
+      limit: 0,
     },
     {
       id: 4,
-      name: "Booking Message 1",
-      value: "",
+      name: 'Booking Message 1',
+      value: '',
       isEditable: false,
-      limit: 128
+      limit: 128,
     },
-  ]
-
+  ];
 
   onTextAreaChange(instance: any, newValue: string) {
     instance.value = newValue;
@@ -89,27 +87,77 @@ export class MessagesComponent implements OnInit {
   isBookingConfirmation = false;
   trackDriverMessage = '';
   arrivedDriverMessage = '';
-  chatbot_msg = ['message text', 'message text', 'message text', 'message text'];
-  booking_msg = ['message text', 'message text', 'message text', 'message text'];
+  chatbot_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  booking_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
   late_msg = ['message text', 'message text', 'message text', 'message text'];
-  tracking_msg = ['message text', 'message text', 'message text', 'message text'];
-  arrived_msg = ['message text', 'message text', 'message text', 'message text'];
-  missedcall_msg = ['message text', 'message text', 'message text', 'message text'];
+  tracking_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  arrived_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  missedcall_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
   noshow_msg = ['message text', 'message text', 'message text', 'message text'];
-  paylink_msg = ['message text', 'message text', 'message text', 'message text'];
+  paylink_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
   prepay_msg = ['message text', 'message text', 'message text', 'message text'];
   review_msg = ['message text', 'message text', 'message text', 'message text'];
-  dreview_msg = ['message text', 'message text', 'message text', 'message text'];
-  preauth_msg = ['message text', 'message text', 'message text', 'message text'];
-  custom1_msg = ['message text', 'message text', 'message text', 'message text'];
-  custom2_msg = ['message text', 'message text', 'message text', 'message text'];
+  dreview_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  preauth_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  custom1_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
+  custom2_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
 
   constructor(
     private BS: BotService,
     private AS: AdminService,
     // private _serviceModal: NgbModal,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.isLoad = true;
@@ -124,57 +172,89 @@ export class MessagesComponent implements OnInit {
     }
     console.log('here', currentUser);
 
-    this.AS.getUser(currentUser._id).subscribe(admin => {
+    this.AS.getUser(currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
       console.log(admin);
-      this.currentMessageList = admin.messages.booking
-      this.tab = 'booking'
-      console.log("msgs", this.currentMessageList)
-      
-      this.currentMsg = admin.messages.booking[0]
-      if (admin.messages.booking.length) { this.booking_msg = admin.messages.booking; }
-      if (admin.messages.late.length) { this.late_msg = admin.messages.late; }
-      if (admin.messages.tracking.length) { this.tracking_msg = admin.messages.tracking; }
-      if (admin.messages.arrived.length) { this.arrived_msg = admin.messages.arrived; }
-      if (admin.messages.paylink.length) { this.paylink_msg = admin.messages.paylink; }
-      if (admin.messages.prepay.length) { this.prepay_msg = admin.messages.prepay; }
-      if (admin.messages.review.length) { this.review_msg = admin.messages.review; }
-      if (admin.messages.preAuth.length) { this.preauth_msg = admin.messages.preAuth; }
-      if (admin.messages.custom1.length) { this.custom1_msg = admin.messages.custom1; }
-      if (admin.messages.custom2.length) { this.custom2_msg = admin.messages.custom2; }
-      if (admin.messages.noshow.length) { this.noshow_msg = admin.messages.noshow; }
-      if (admin.messages.missedcall.length) { this.missedcall_msg = admin.messages.missedcall; }
-      if (admin.messages.chatbot.length) { this.chatbot_msg = admin.messages.chatbot; }
+      this.currentMessageList = admin.messages.booking;
+      this.tab = 'booking';
+      console.log('msgs', this.currentMessageList);
+
+      this.currentMsg = admin.messages.booking[0];
+      if (admin.messages.booking.length) {
+        this.booking_msg = admin.messages.booking;
+      }
+      if (admin.messages.late.length) {
+        this.late_msg = admin.messages.late;
+      }
+      if (admin.messages.tracking.length) {
+        this.tracking_msg = admin.messages.tracking;
+      }
+      if (admin.messages.arrived.length) {
+        this.arrived_msg = admin.messages.arrived;
+      }
+      if (admin.messages.paylink.length) {
+        this.paylink_msg = admin.messages.paylink;
+      }
+      if (admin.messages.prepay.length) {
+        this.prepay_msg = admin.messages.prepay;
+      }
+      if (admin.messages.review.length) {
+        this.review_msg = admin.messages.review;
+      }
+      if (admin.messages.preAuth.length) {
+        this.preauth_msg = admin.messages.preAuth;
+      }
+      if (admin.messages.custom1.length) {
+        this.custom1_msg = admin.messages.custom1;
+      }
+      if (admin.messages.custom2.length) {
+        this.custom2_msg = admin.messages.custom2;
+      }
+      if (admin.messages.noshow.length) {
+        this.noshow_msg = admin.messages.noshow;
+      }
+      if (admin.messages.missedcall.length) {
+        this.missedcall_msg = admin.messages.missedcall;
+      }
+      if (admin.messages.chatbot.length) {
+        this.chatbot_msg = admin.messages.chatbot;
+      }
       // if (admin.track_driver_message) { this.trackDriverMessage = admin.track_driver_message; }
       // if (admin.arrived_driver_message) { this.arrivedDriverMessage = admin.arrived_driver_message; }
-      if (admin.track_driver_msg) { this.isTrackDriverMsg = admin.track_driver_msg; }
-      if (admin.arrived_driver_msg) { this.isArrivedDriverMsg = admin.arrived_driver_msg; }
+      if (admin.track_driver_msg) {
+        this.isTrackDriverMsg = admin.track_driver_msg;
+      }
+      if (admin.arrived_driver_msg) {
+        this.isArrivedDriverMsg = admin.arrived_driver_msg;
+      }
       this.isBookingConfirmation = admin.booking_confirmation;
       this.review_limit = admin.review_limit;
       this.preAuth_limit = admin.preAuth_limit;
       this.custom1_limit = admin.custom1_limit;
       this.custom2_limit = admin.custom2_limit;
-      if (admin.messages.dreview) { this.dreview_msg = admin.messages.dreview }
+      if (admin.messages.dreview) {
+        this.dreview_msg = admin.messages.dreview;
+      }
       this.isCallResponse = this.adminDetails.call_response;
       this.isLoad = false;
       // console.log(this.chatbot_msg);
-
-    })
-    console.log(this.currentMsg)
-    
+    });
+    console.log(this.currentMsg);
   }
 
   toggleEdit(instance, index) {
-    // Set the current message and its index for editing
-    this.instanceData.forEach((item, i) => {
-      item.isEditable = i === index; // Enable only the clicked one
-    });
-    this.currentMsg = this.currentMessageList[index]
-    console.log(instance)
+    // Toggle the isEditable property for the clicked item
+    this.instanceData[index].isEditable = !this.instanceData[index].isEditable;
+
+    // Set the current message only if the item is now editable
+    if (this.instanceData[index].isEditable) {
+      this.currentMsg = this.currentMessageList[index];
+    } else {
+      this.currentMsg = null; // Reset if toggled off
+    }
+
+    console.log(instance);
   }
-  
-  
-  
 
   textChange() {
     this.isEdit = true;
@@ -188,22 +268,50 @@ export class MessagesComponent implements OnInit {
     this.isEdit = true;
     // console.log(this.currentMsg);
 
-    this.currentMsg = this.currentMessageList[index]
-    
-    if (this.currentList == 'chatbot') { this.chatbot_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'booking') { this.booking_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'late') { this.late_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'tracking') { this.tracking_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'arrived') { this.arrived_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'paylink') { this.paylink_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'prepay') { this.prepay_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'review') { this.review_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'missedcall') { this.missedcall_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'noshow') { this.noshow_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'dreview') { this.dreview_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'preauth') { this.preauth_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'custom1') { this.custom1_msg[this.currentIndex] = this.currentMsg }
-    if (this.currentList == 'custom2') { this.custom2_msg[this.currentIndex] = this.currentMsg }
+    this.currentMsg = this.currentMessageList[index];
+
+    if (this.currentList == 'chatbot') {
+      this.chatbot_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'booking') {
+      this.booking_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'late') {
+      this.late_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'tracking') {
+      this.tracking_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'arrived') {
+      this.arrived_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'paylink') {
+      this.paylink_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'prepay') {
+      this.prepay_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'review') {
+      this.review_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'missedcall') {
+      this.missedcall_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'noshow') {
+      this.noshow_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'dreview') {
+      this.dreview_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'preauth') {
+      this.preauth_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'custom1') {
+      this.custom1_msg[this.currentIndex] = this.currentMsg;
+    }
+    if (this.currentList == 'custom2') {
+      this.custom2_msg[this.currentIndex] = this.currentMsg;
+    }
 
     let obj = {
       _id: this.adminDetails._id,
@@ -225,36 +333,66 @@ export class MessagesComponent implements OnInit {
         dreview: this.dreview_msg,
         preAuth: this.preauth_msg,
         custom1: this.custom1_msg,
-        custom2: this.custom2_msg
-      }
-    }
+        custom2: this.custom2_msg,
+      },
+    };
     console.log(this.currentMsg);
 
-
-    this.AS.updateUser(obj).subscribe(res => {
-
-    })
-
-    
+    this.AS.updateUser(obj).subscribe((res) => {
+      if (res) {
+        this.isEdit = false;
+        this.currentMsg = null;
+        this.instanceData[index].isEditable =
+          !this.instanceData[index].isEditable;
+      }
+    });
   }
 
   openMessageList(name) {
     this.currentList = name;
     this.tab = name;
-    if (this.currentList == 'chatbot') { this.currentMessageList = this.chatbot_msg; }
-    if (this.currentList == 'booking') { this.currentMessageList = this.booking_msg; }
-    if (this.currentList == 'late') { this.currentMessageList = this.late_msg; }
-    if (this.currentList == 'tracking') { this.currentMessageList = this.tracking_msg; }
-    if (this.currentList == 'arrived') { this.currentMessageList = this.arrived_msg; }
-    if (this.currentList == 'paylink') { this.currentMessageList = this.paylink_msg; }
-    if (this.currentList == 'prepay') { this.currentMessageList = this.prepay_msg; }
-    if (this.currentList == 'review') { this.currentMessageList = this.review_msg; }
-    if (this.currentList == 'missedcall') { this.currentMessageList = this.missedcall_msg; }
-    if (this.currentList == 'noshow') { this.currentMessageList = this.noshow_msg; }
-    if (this.currentList == 'dreview') { this.currentMessageList = this.dreview_msg; }
-    if (this.currentList == 'preauth') { this.currentMessageList = this.preauth_msg; }
-    if (this.currentList == 'custom1') { this.currentMessageList = this.custom1_msg; }
-    if (this.currentList == 'custom2') { this.currentMessageList = this.custom2_msg; }
+    if (this.currentList == 'chatbot') {
+      this.currentMessageList = this.chatbot_msg;
+    }
+    if (this.currentList == 'booking') {
+      this.currentMessageList = this.booking_msg;
+    }
+    if (this.currentList == 'late') {
+      this.currentMessageList = this.late_msg;
+    }
+    if (this.currentList == 'tracking') {
+      this.currentMessageList = this.tracking_msg;
+    }
+    if (this.currentList == 'arrived') {
+      this.currentMessageList = this.arrived_msg;
+    }
+    if (this.currentList == 'paylink') {
+      this.currentMessageList = this.paylink_msg;
+    }
+    if (this.currentList == 'prepay') {
+      this.currentMessageList = this.prepay_msg;
+    }
+    if (this.currentList == 'review') {
+      this.currentMessageList = this.review_msg;
+    }
+    if (this.currentList == 'missedcall') {
+      this.currentMessageList = this.missedcall_msg;
+    }
+    if (this.currentList == 'noshow') {
+      this.currentMessageList = this.noshow_msg;
+    }
+    if (this.currentList == 'dreview') {
+      this.currentMessageList = this.dreview_msg;
+    }
+    if (this.currentList == 'preauth') {
+      this.currentMessageList = this.preauth_msg;
+    }
+    if (this.currentList == 'custom1') {
+      this.currentMessageList = this.custom1_msg;
+    }
+    if (this.currentList == 'custom2') {
+      this.currentMessageList = this.custom2_msg;
+    }
     // console.log(this.currentList, this.currentMessageList);
   }
 
@@ -286,26 +424,24 @@ export class MessagesComponent implements OnInit {
     let obj = {
       _id: this.adminDetails._id,
       call_response: this.isCallResponse,
-      call_response_msg: this.currentMsg
-    }
+      call_response_msg: this.currentMsg,
+    };
 
-    this.AS.updateUser(obj).subscribe(res => {
+    this.AS.updateUser(obj).subscribe((res) => {
       this.ngOnInit();
-    })
-
+    });
   }
 
   setTrackDriverMsg() {
     this.isLoad = true;
     let obj = {
       _id: this.adminDetails._id,
-      track_driver_msg: this.isTrackDriverMsg
-    }
+      track_driver_msg: this.isTrackDriverMsg,
+    };
 
-    this.AS.updateUser(obj).subscribe(res => {
+    this.AS.updateUser(obj).subscribe((res) => {
       this.isLoad = false;
-    })
-
+    });
   }
 
   setArrivedDriverMsg() {
@@ -313,26 +449,25 @@ export class MessagesComponent implements OnInit {
     let obj = {
       _id: this.adminDetails._id,
       arrived_driver_msg: this.isArrivedDriverMsg,
-      track_driver_msg: this.isArrivedDriverMsg
-    }
+      track_driver_msg: this.isArrivedDriverMsg,
+    };
     // console.log(obj);
 
-    this.AS.updateUser(obj).subscribe(res => {
+    this.AS.updateUser(obj).subscribe((res) => {
       this.isLoad = false;
-    })
-
+    });
   }
 
   setBookingConfirmation() {
     this.isLoad = true;
     let obj = {
       _id: this.adminDetails._id,
-      booking_confirmation: this.isBookingConfirmation
-    }
+      booking_confirmation: this.isBookingConfirmation,
+    };
 
-    this.AS.updateUser(obj).subscribe(res => {
+    this.AS.updateUser(obj).subscribe((res) => {
       this.isLoad = false;
-    })
+    });
   }
 
   // setBookingConfirmationDetails() {
@@ -463,5 +598,4 @@ export class MessagesComponent implements OnInit {
   editMessage() {
     this.isEdit = false;
   }
-
 }
