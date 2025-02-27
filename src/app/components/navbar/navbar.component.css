@@ -12,6 +12,12 @@
   /* z-index: ; */
 }
 
+.navbar,
+.navbar * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
 .left {
   display: flex;
   flex-direction: column;
@@ -28,7 +34,7 @@
 .kanban {
   color: var(--bold-text, #333540);
   font-family: Nunito;
-  font-size: 1rem;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;

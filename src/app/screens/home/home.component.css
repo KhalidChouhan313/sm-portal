@@ -1,8 +1,27 @@
+/* For Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Makes the icon white */
+}
+
+* {
+  font-family: "DM Sans";
+}
+
 .container-own {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  overflow: hidden !important;
 }
 
 h6 {
@@ -24,7 +43,7 @@ h6 {
   width: 100%;
   flex: 1;
   overflow: hidden;
-  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
   border-radius: 10px;
   /* max-width: 700px;     */
 }
@@ -35,7 +54,7 @@ h6 {
   gap: 1rem;
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
   padding: 10px;
   width: 30%;
 }
@@ -51,19 +70,21 @@ h6 {
   width: 100%;
   flex: 1;
   overflow: hidden;
-  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
   border-radius: 10px;
   padding: 10px;
-  height: 300px;
+  height: 400px;
   overflow-y: scroll;
 }
 
 .bottom .devices {
   border-radius: 10px;
   background: #fff;
-  box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
   padding: 10px;
   width: 30%;
+  height: 400px;
+  overflow-y: scroll;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
@@ -71,12 +92,16 @@ h6 {
 
 .activity .a_top h1 {
   font-size: 15px;
+  font-weight: 700;
+  color: #151d48;
+  font-family: Raleway;
 }
 
 .d_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .d_header h4 {
@@ -109,7 +134,6 @@ h6 {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
   max-height: 300px;
   overflow-y: auto;
   box-shadow: 0px 2px 40px 0px rgba(112, 144, 176, 0.12);
@@ -126,9 +150,9 @@ h6 {
 }
 
 .icon {
-  height: 30px;
-  width: 30px;
-  border-radius: 12px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
   background: #fff;
   box-shadow: 0px 0px 9px 0px #eee;
   display: flex;
@@ -149,7 +173,7 @@ h6 {
 .name {
   color: var(--dark-color, #181818);
   font-family: Nunito;
-  font-size: 10px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -159,7 +183,7 @@ h6 {
 .d_details span {
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 8px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -193,7 +217,7 @@ h6 {
   color: white;
   text-align: center;
   font-family: Nunito;
-  font-size: 7px;
+  font-size: 10px;
   border-radius: 70px;
   background: #27a080;
   font-style: normal;
@@ -368,6 +392,7 @@ h6 {
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 2px;
 }
 
 .a_top h1 {
@@ -375,7 +400,7 @@ h6 {
 
   /* Heading */
   font-family: Raleway;
-  font-size: 2rem;
+  font-size: 15px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
@@ -532,10 +557,9 @@ h6 {
 
 .at_item {
   display: flex;
-  justify-content: left;
-  gap: 30px;
+  justify-content: space-between;
   border-radius: 6.201px;
-  border-bottom: 1px solid rgba(238, 238, 238, 0.93);
+  border-bottom: 3px solid rgba(238, 238, 238, 0.93);
   background: #fff;
   font-size: 13px;
 }
@@ -548,6 +572,7 @@ h6 {
 .at_item_head {
   color: #a3aed0;
   font-size: 11px;
+  border: 1px solid lightgray;
 }
 
 .at_item div {
@@ -586,10 +611,6 @@ h6 {
   .container-own {
     gap: 1rem;
     padding: 1rem;
-  }
-
-  .d_header {
-    padding: 0.6rem 1rem;
   }
 
   .d_header h4 {
@@ -739,24 +760,28 @@ h6 {
 .filter-btn-con button {
   padding: 10px;
   background: transparent;
-  color: white;
+  color: black;
+  font-weight: 600;
   border-radius: 10px;
+  width: 150px;
+  background: white;
   border: 1px solid white;
 }
 
 .banner-bg {
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 15px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  aspect-ratio: 374/89;
   gap: 5px;
 }
 
 .banner-bg h4 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   position: relative;
   color: white;
@@ -768,11 +793,42 @@ h6 {
   color: white;
   position: relative;
   margin-bottom: 0;
-  padding: 12px 0 0 12px;
+  padding: 12px 12px 0 12px;
   font-size: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .banner-bg img {
   width: 100%;
   position: absolute;
+}
+
+.banner-bg p img {
+  position: relative;
+  width: 20px;
+  cursor: pointer;
+}
+
+.banner-options {
+  background-color: white;
+  height: 70px;
+  width: 150px;
+  position: absolute;
+  right: 12px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: #1b2559;
+}
+
+.banner-options div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  cursor: pointer;
+}
+
+.banner-options div:first-child {
+  border-bottom: 1px solid lightgray;
 }

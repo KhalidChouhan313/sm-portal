@@ -201,7 +201,7 @@
         </ul>
       </ul>
       <ul class="sidebar-borders menu">
-        <a [routerLink]="'/app-settings'">
+        <a [routerLink]="'/settings'" [queryParams]="{ tab: 'SMS Settings' }">
           <li
             (click)="setCurrentItem('App')"
             [class.active]="currentItem === 'App'"
@@ -214,7 +214,7 @@
             <span>App Settings</span>
           </li>
         </a>
-        <a [routerLink]="'/profile'">
+        <a [routerLink]="'/settings'" [queryParams]="{ tab: 'Profile' }">
           <li
             (click)="setCurrentItem('Profile')"
             [class.active]="currentItem === 'Profile'"

@@ -10,9 +10,9 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
   currentUrl: string = '';
-  constructor(private authService: AuthService, private router: Router) { 
+  constructor(private authService: AuthService, private router: Router) {
     this.currentUrl = this.router.url;
-    console.log("url", this.currentUrl)
+    console.log('url', this.currentUrl);
   }
 
   user: any = null;
@@ -29,20 +29,19 @@ export class NavbarComponent implements OnInit {
         this.checkAuthentication();
       });
 
-      this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-
-        
-
         this.currentUrl = event.urlAfterRedirects || event.url;
-        this.currentUrl = `home${this.currentUrl.replace(/\//g, ' / ')}`;
-        
+        this.currentUrl = `home${
+          this.currentUrl.replace(/\//g, ' / ').split('?')[0]
+        }`;
+
         // Trim any leading or trailing spaces for more reliable comparison
         if (this.currentUrl.trim() === 'home /') {
           this.currentUrl = 'home / dashboard';
         }
-        
+
         const urlParts = this.currentUrl.split(' / '); // Split by spaces around "/"
         this.title = urlParts[urlParts.length - 1];
 
@@ -60,7 +59,7 @@ export class NavbarComponent implements OnInit {
         localStorage.setItem('user_details', JSON.stringify(res));
       },
       (err) => {
-        this.logoutHandler()
+        this.logoutHandler();
       }
     );
   }
@@ -69,5 +68,5 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user_details');
     this.router.navigateByUrl('/login');
-  }
+  };
 }

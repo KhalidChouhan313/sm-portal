@@ -6,9 +6,6 @@
                 Filters
             </button> -->
       <div class="hm_right">
-        <button>Total: {{ totalCustomers }}</button>
-        <button (click)="ngOnInit()">Refresh</button>
-
         <div class="pagination">
           <button (click)="previousPage()" *ngIf="currentPage !== 1">
             &larr;
@@ -27,6 +24,8 @@
             &rarr;
           </button>
         </div>
+        <button>Total: {{ totalCustomers }}</button>
+        <button (click)="ngOnInit()">Refresh</button>
       </div>
     </div>
   </div>
@@ -205,7 +204,7 @@
           </div>
           <div class="th_item">
             <button class="toggle_more" (click)="selectCustomer(customer)">
-              {{ selectedCustomer === customer.user_name ? "Hide" : "Show" }}
+              {{ selectedCustomer === customer.user_name ? "˄" : "˅" }}
             </button>
           </div>
         </div>

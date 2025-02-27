@@ -32,17 +32,35 @@
     <div class="btn-con">
       <button
         *ngFor="let btn of buttons; let i = index"
-        [class.active]="activeIndex === i"
+        [ngClass]="{ active: activeIndex === i }"
         (click)="setActive(i)"
+        style="white-space: nowrap; padding-left: 10px; padding-right: 10px"
       >
         {{ btn }}
       </button>
     </div>
     <div class="chart_con">
       <div class="message-count">
-        <h5>Total Messages</h5>
-        <p>{{ totalMsg }}</p>
+        <h5>
+          {{
+            activeIndex === 0
+              ? "Total Messages"
+              : activeIndex === 1
+              ? "Total WhatsApp"
+              : "Total SMS"
+          }}
+        </h5>
+        <p>
+          {{
+            activeIndex === 0
+              ? totalMsg
+              : activeIndex === 1
+              ? totalWhatsapp
+              : totalSms
+          }}
+        </p>
       </div>
+
       <canvas id="lineChart"></canvas>
     </div>
   </div>

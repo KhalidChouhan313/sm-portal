@@ -47,7 +47,7 @@
     <div class="add-top">
       <h1>WhatsApp Create Template</h1>
       <div class="btns">
-        <button>Send After Approval</button>
+        <button>Send</button>
         <button (click)="showDateAndTimeModal = true">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -132,6 +132,9 @@
                   hidden
                   accept=".pdf, .txt, .docx"
                 />
+                <div style="width: 130px">
+                  <img src="../../../assets/hover-1.png" />
+                </div>
               </label>
               <label class="icon" for="video">
                 <img src="../../../assets/broadcast-icons/video.svg" alt="" />
@@ -142,6 +145,9 @@
                   hidden
                   accept=".mp4"
                 />
+                <div style="width: 150px">
+                  <img src="../../../assets/hover-2.png" />
+                </div>
               </label>
               <label class="icon" for="attachment">
                 <img
@@ -155,6 +161,9 @@
                   hidden
                   accept=""
                 />
+                <div style="width: 145px">
+                  <img src="../../../assets/hover-3.png" />
+                </div>
               </label>
               <label class="icon" for="img">
                 <img src="../../../assets/broadcast-icons/img.svg" alt="" />
@@ -165,15 +174,30 @@
                   hidden
                   accept=".jpg, .png"
                 />
+                <div style="width: 140px">
+                  <img src="../../../assets/hover-4.png" />
+                </div>
               </label>
             </div>
           </div>
-          <div class="inp-con message">
+          <div class="inp-con message" style="position: relative">
             <label for="">Message</label>
             <textarea
               [(ngModel)]="newBroadcastDesc"
               placeholder="Type message here"
             ></textarea>
+            <div
+              style="
+                display: none;
+                position: absolute;
+                left: -10%;
+                top: -100px;
+                color: white;
+                z-index: 10;
+              "
+            >
+              <img src="../../../assets/hover-5.png" />
+            </div>
           </div>
           <div class="inp-con">
             <label>Footer <span>Optional</span></label>

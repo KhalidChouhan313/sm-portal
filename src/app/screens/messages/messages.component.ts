@@ -249,6 +249,7 @@ export class MessagesComponent implements OnInit {
     // Set the current message only if the item is now editable
     if (this.instanceData[index].isEditable) {
       this.currentMsg = this.currentMessageList[index];
+      console.log(this.currentMsg);
     } else {
       this.currentMsg = null; // Reset if toggled off
     }
@@ -266,6 +267,7 @@ export class MessagesComponent implements OnInit {
 
   setMessage(index) {
     this.isEdit = true;
+    this.currentIndex = index;
     // console.log(this.currentMsg);
 
     this.currentMsg = this.currentMessageList[index];

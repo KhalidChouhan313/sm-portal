@@ -1,16 +1,16 @@
 .container-own {
-    padding: 10px;
-    height: 100%;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
-    display: flex;
-    flex-direction: column;
-    background: #FFF;
+  padding: 10px;
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
 }
 
 p {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 /* .top {
@@ -71,7 +71,6 @@ p {
     letter-spacing: -0.24px;
 } */
 
-
 /* .top button {
     border: none;
     background-color: white;
@@ -101,22 +100,21 @@ p {
 } */
 
 .chart_con {
-    flex: 1;
-    border-left: 1px solid #E0E0E0;
-    border-bottom: 1px solid #E0E0E0;
-    padding-bottom: .5rem;
-    position: relative;
-    height: 100%;
-    min-width: 400px;
+  flex: 1;
+  border-left: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+  position: relative;
+  height: 100%;
+  min-width: 400px;
 }
 
 .chart_con::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: linear-gradient(to left, white, transparent);
-   
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
 }
 /* 
 .top {
@@ -166,134 +164,193 @@ p {
 } */
 
 .bot {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    height: 100%;
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  height: 100%;
 }
 
 .bot-left {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .b-left {
-    width: 120px;
+  width: 120px;
 }
 
 .bl-top {
-    display: flex;
-    gap: 5px;
-    align-items: first baseline;
+  display: flex;
+  gap: 5px;
+  align-items: first baseline;
 }
 
 .bl-top h1 {
-    color: var(--dark-color, #181818);
-    font-family: "DM Sans";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.872px;
+  color: var(--dark-color, #181818);
+  font-family: "DM Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.872px;
 }
 
 .bl-top span {
-    color: var(--dark-color, #181818);
-    font-family: "DM Sans";
-    font-size: .75rem;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.24px;
+  color: var(--dark-color, #181818);
+  font-family: "DM Sans";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.24px;
 }
 
 .bl-total {
-    display: flex;
-    align-items: flex-end;
-    gap: 5px;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
 }
 
 .bl-total p {
-    color: var(--bold-text, #333540);
-    font-family: Nunito;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 600;
-    margin-bottom: 0;
+  color: var(--bold-text, #333540);
+  font-family: Nunito;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  margin-bottom: 0;
 }
 
 .bl-total span {
-    display: flex;
-    align-items: flex-end;
-    color: #2EBC96;
-    text-align: center;
-    font-family: "DM Sans";
-    font-size: .9rem;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.308px;
+  display: flex;
+  align-items: flex-end;
+  color: #2ebc96;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.308px;
 }
 
 .bl-status {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    margin-top: 2.5rem;
-    white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  white-space: nowrap;
 }
 
 .check {
-    display: flex;
-    width: 20.525px;
-    height: 20.525px;
-    padding: 2.981px 2.956px 3.433px 3.458px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 59.009px;
-    background: #05CD99;
+  display: flex;
+  width: 20.525px;
+  height: 20.525px;
+  padding: 2.981px 2.956px 3.433px 3.458px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 59.009px;
+  background: #05cd99;
 }
 
 .bl-status span {
-    color: #2EBC96;
-    font-family: "DM Sans";
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 35.918px;
-    letter-spacing: -0.41px;
+  color: #2ebc96;
+  font-family: "DM Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 35.918px;
+  letter-spacing: -0.41px;
 }
 
 .btn-con {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .btn-con button {
-    width: 100px;
-    padding: 10px 15px;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    font-weight: 600;
+  width: 100px;
+  padding: 10px 15px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-weight: 600;
 }
 
 .btn-con button.active {
-    background: linear-gradient(to right, #2EBC96, #1A9096);
-    color: white;
-    border: 1px solid white;
+  background: linear-gradient(to right, #2ebc96, #1a9096);
+  color: white;
+  border: 1px solid white;
 }
 
 .message-count {
-    position: absolute;
-    /* top: 20px; */
-    left: 20px;
+  position: absolute;
+  /* top: 20px; */
+  left: 20px;
 }
 
 .message-count h5 {
-    font-size: 13px;
-    font-weight: 600;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .message-count p {
-    font-size: 24px;
-    font-weight: 600;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.tooltip-container {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.custom-tooltip {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-container {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.tooltip-header {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.tooltip-content {
+  display: flex;
+  align-items: center;
+}
+
+.tooltip-label {
+  font-weight: 500;
+  color: #666;
+  margin-right: 5px;
+}
+
+.tooltip-value {
+  font-weight: bold;
+  color: #000;
 }

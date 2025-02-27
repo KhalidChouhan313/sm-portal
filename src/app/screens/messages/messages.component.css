@@ -56,6 +56,10 @@
   background: #fff;
 }
 
+.tabs-container {
+  height: fit-content;
+}
+
 .heading {
   padding: 15px 1rem;
   color: var(--dark-color, #181818);
@@ -141,7 +145,7 @@
 
 .right {
   border-radius: 10px;
-  border: 1px solid lightgray;
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
 }
 
 .ict_right {
@@ -284,4 +288,29 @@
   border: none;
   height: 100%;
   resize: none;
+}
+
+.imp-banner {
+  background: rgba(46, 188, 150, 0.2);
+  border: 1px solid rgba(46, 188, 150, 0.5);
+  padding: 20px;
+  border-radius: 20px;
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.imp-banner div:first-child {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.imp-banner img {
+  width: 15px;
+  height: 15px;
+}
+
+.imp-banner p {
+  color: #737791;
+  text-align: center;
 }

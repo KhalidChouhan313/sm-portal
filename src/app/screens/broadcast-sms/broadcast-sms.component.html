@@ -158,9 +158,10 @@
           <div class="ti-item">{{ draft.delay }}</div>
           <div class="ti-item message">{{ draft.messages }}</div>
           <div class="ti-item">
-            <div class="badge" [class]="draft.status.toLowerCase()">
-              {{ draft.status }}
-            </div>
+            <p
+              [ngClass]="draft.status === 'completed' ? 's_dot_r' : 's_dot_g'"
+            ></p>
+            {{ draft.status }}
           </div>
           <div class="ti-item">
             <button>

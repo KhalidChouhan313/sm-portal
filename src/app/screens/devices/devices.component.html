@@ -149,7 +149,10 @@
     </li>
   </ul>
 
-  <div class="header">
+  <div
+    class="header"
+    [ngStyle]="qrShow && !isLoad ? { height: '300px' } : { height: '200px' }"
+  >
     <div class="grid-img">
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
@@ -169,6 +172,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        height: 100px;
       "
     >
       <div class="h-item">
@@ -196,6 +200,7 @@
       <div
         (click)="openGreenApi(currentDevice, currentIndex)"
         class="device-btn-container"
+        style="position: relative; z-index: 100"
       >
         <button><img src="../../../assets/d-reboot.png" /></button>
         <button (click)="logoutGreenApi(currentDevice, currentIndex)">
@@ -242,6 +247,8 @@
       <app-reports
         [graphData]="barChartData"
         [totalMsg]="totalMsg"
+        [totalSms]="totalSms"
+        [totalWhatsapp]="totalWhatsapp"
       ></app-reports>
     </div>
     <div class="msg-details">
@@ -357,11 +364,17 @@
     <div class="a_top">
       <h4>All Messages</h4>
 
-      <button (click)="filters()">
-        <img src="../../../assets/filter-icon.png" /> Filters
+      <button
+        class="filter"
+        [ngClass]="{ active: showFilters }"
+        (click)="filters()"
+      >
+        <img src="../../../assets/filter-icon-black.png" />
+        <img src="../../../assets/filter-icon.png" />
+        <span>Filters</span>
       </button>
     </div>
-    <div *ngIf="showFilter" class="filters">
+    <div *ngIf="showFilter == true" class="filters">
       <button class="close" (click)="filters()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -468,7 +481,11 @@
 
         <!-- Table Body -->
         <tbody>
+          <tr *ngIf="messageList.length === 0">
+            <td colspan="3">No data found</td>
+          </tr>
           <tr *ngFor="let item of messageList">
+            <div *ngIf="!messageList">No data</div>
             <td style="text-transform: uppercase">
               {{ item.createdAt | date : "MMM, dd/MM/y, h:mma" }}
             </td>

@@ -70,6 +70,7 @@
         </svg>
       </button>
       <button
+        style="border: 1px solid lightgray"
         *ngFor="let t of tabs"
         [class.active]="t === tab"
         (click)="this.tab = t"
@@ -93,43 +94,9 @@
         </svg>
         <input type="number" placeholder="Search number here.." />
       </div>
-      <button (click)="this.showAddCon = true">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
-            fill="white"
-          />
-        </svg>
-        <span>Add New</span>
-      </button>
     </div>
   </div>
-  <div *ngIf="showAddCon" class="add-con">
-    <button (click)="this.showAddCon = false" class="close">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="13"
-        height="13"
-        viewBox="0 0 13 13"
-        fill="none"
-      >
-        <path
-          d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
-          stroke="#2EBC96"
-          stroke-width="1.60279"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </button>
+  <div class="add-con">
     <div class="left">
       <div class="inp_con">
         <label for="">Phone</label>
@@ -217,9 +184,9 @@
             >
               <img src="assets/Bin.png" />
             </button>
-            <button>
+            <!-- <button>
               <img src="assets/Pencil.png" />
-            </button>
+            </button> -->
             <!-- <button style="--content: 'Edit';">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"
                                 fill="none">

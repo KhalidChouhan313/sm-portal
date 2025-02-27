@@ -1,34 +1,126 @@
 <div class="container-own">
-  <div class="top">
-    <div></div>
-    <div class="reports">
+  <div class="top" style="position: relative">
+    <div class="reports" style="position: relative">
+      <div
+        style="
+          position: absolute;
+          right: 40px;
+          top: 100px;
+          color: #a3aed0;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 12px;
+          z-index: 10;
+        "
+      >
+        <span
+          style="
+            color: #0aaf60;
+            background: #cff1e0;
+            padding: 5px 10px;
+            border-radius: 15px;
+          "
+        >
+          {{ percentChange }}%
+        </span>
+        vs yesterday
+      </div>
+      <div
+        style="
+          position: absolute;
+          left: 490px;
+          top: 37px;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 15px;
+          font-size: 12px;
+        "
+      >
+        <span style="white-space: nowrap">
+          <img style="width: 18px" src="../../../assets/l1.png" />
+          Total Messages
+        </span>
+        <span style="white-space: nowrap">
+          <img style="width: 18px" src="../../../assets/l2.png" />
+          WhatsApp
+        </span>
+        <span style="white-space: nowrap">
+          <img style="width: 18px" src="../../../assets/l3.png" />
+          SMS
+        </span>
+        <span style="white-space: nowrap">
+          <img style="width: 18px" src="../../../assets/l4.png" />
+          Not Send
+        </span>
+      </div>
+      <!-- <p>{{ percentChange }}%</p> -->
       <app-reports
         [graphData]="barChartData"
         [totalMsg]="totalMsg"
+        [totalSms]="totalSms"
+        [totalWhatsapp]="totalWhatsapp"
       ></app-reports>
       <!-- <app-reports></app-reports> -->
     </div>
     <div class="bar-container">
-      <div class="banner-bg">
+      <div class="banner-bg" style="position: relative">
         <img src="../../../assets/banner-bg.png" />
-        <P>From 1-31 March, 2022</P>
+        <P
+          >{{ firstMsgDate }} - {{ lastMsgDate }}
+          <img
+            src="../../../assets/More.png"
+            (click)="toggleOptions(0, $event)"
+        /></P>
         <h4>Messages Average</h4>
       </div>
-      <div class="labels">
-        <div style="border-left: 2px solid #ff515c; padding-left: 10px">
-          <h6 style="color: #a3aed0; font-size: 10px">WhatsApp</h6>
-          <p style="font-size: 18px">{{ totalWhatsapp }}</p>
+      <div
+        class="banner-options"
+        *ngIf="showOptions[0]"
+        style="top: 50px; right: 30px"
+      >
+        <div>
+          <a style="text-decoration: none; color: black" href="/messages"
+            >View Page</a
+          >
         </div>
-        <div style="border-left: 2px solid #2ebc96; padding-left: 10px">
-          <h6 style="color: #a3aed0; font-size: 10px">SMS</h6>
-          <p style="font-size: 18px">{{ totalSms }}</p>
+        <div>Download Reports</div>
+      </div>
+      <div class="labels">
+        <div style="display: flex; gap: 10px">
+          <div
+            style="
+              height: 45px;
+              width: 4px;
+              background: #2ebc96;
+              border-radius: 2px;
+            "
+          ></div>
+          <div>
+            <h6 style="color: #a3aed0; font-size: 10px">WhatsApp</h6>
+            <p style="font-size: 18px">{{ totalWhatsapp }}</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px">
+          <div
+            style="
+              height: 45px;
+              width: 4px;
+              background: #3981f7;
+              border-radius: 2px;
+            "
+          ></div>
+          <div>
+            <h6 style="color: #a3aed0; font-size: 10px">SMS</h6>
+            <p style="font-size: 18px">{{ totalSms }}</p>
+          </div>
         </div>
       </div>
       <div class="chart" style="position: relative">
         <!-- <app-doughnut-chart [colors]="['#FF515C','#2EBC96', '#3B82F6']"
                     [data]="[55, 30, 15]"></app-doughnut-chart> -->
         <app-pie-chart
-          [colors]="['#FF515C', '#2EBC96', '#3B82F6']"
+          [colors]="['#2EBC96', '#3981F7']"
           [data]="pieData"
         ></app-pie-chart>
         <div style="text-align: center; position: absolute; bottom: 0">
@@ -119,7 +211,11 @@
                 <input
                   class="form-control"
                   [(ngModel)]="target"
-                  type="number"
+                  type="text"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                  maxlength="9"
+                  (keypress)="onlyNumber($event)"
                 />
               </div>
               <div class="inp_con">
@@ -162,11 +258,21 @@
               </div>
               <div class="inp_con">
                 <label for="">From</label>
-                <input type="date" [(ngModel)]="f_date" />
+                <input
+                  style="text-transform: uppercase"
+                  type="date"
+                  [(ngModel)]="f_date"
+                  [max]="'3000-12-31'"
+                />
               </div>
               <div class="inp_con">
                 <label for="">To</label>
-                <input type="date" [(ngModel)]="t_date" />
+                <input
+                  style="text-transform: uppercase"
+                  type="date"
+                  [(ngModel)]="t_date"
+                  [max]="'3000-12-31'"
+                />
               </div>
             </div>
 
@@ -179,7 +285,7 @@
         <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
       </div>
       <div class="a_table_wrapper">
-        <div class="a_table" style="width: fit-content">
+        <div class="a_table">
           <div class="at_item at_item_head">
             <div>Created Date</div>
             <div>Target Type</div>
@@ -187,9 +293,20 @@
             <div>Message Type</div>
             <div>Sent Via</div>
             <div>Status</div>
-            <div>Messages</div>
+            <div style="width: 250px">Messages</div>
           </div>
           <div>
+            <div
+              *ngIf="messageList.length == 0"
+              style="
+                font-size: 12px;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+              "
+            >
+              No data found.
+            </div>
             <div class="at_item" *ngFor="let item of messageList">
               <div>{{ item.createdAt | date : "MMM, dd/MM/y, h:mma" }}</div>
               <div
@@ -200,7 +317,7 @@
                 <ng-container
                   *ngIf="item.target_type === 'whatsapp'; else smsText"
                 >
-                  WhatsApp
+                  whatsApp
                 </ng-container>
                 <ng-template #smsText>SMS</ng-template>
               </div>
@@ -211,7 +328,7 @@
                   >SMS</span
                 >
                 <span style="color: #2ebc96" *ngIf="item.sent_by === 1">
-                  WhatsApp
+                  whatsApp
                 </span>
                 <span *ngIf="item.sent_by === 2">None</span>
               </div>
@@ -240,20 +357,45 @@
       <div class="d_header">
         <div class="banner-bg">
           <img src="../../../assets/banner-bg.png" />
-          <p>Total Devices</p>
+          <p>
+            Total Devices
+            <img
+              src="../../../assets/More.png"
+              (click)="toggleOptions(1, $event)"
+            />
+          </p>
           <h4>Devices</h4>
+        </div>
+        <div class="banner-options" *ngIf="showOptions[1]" style="top: 40px">
+          <div>
+            <a
+              style="
+                text-decoration: none;
+                color: black;
+                background: transparent;
+                font-weight: normal;
+                font-family: sans-serif;
+              "
+              href="/devices"
+              >View Page</a
+            >
+          </div>
+          <div>More Options</div>
         </div>
       </div>
       <div class="d_body">
+        <span style="font-size: 12px; color: #a3aed0; padding: 10px"
+          >Recent</span
+        >
         <div class="d_card" *ngFor="let device of deviceList">
-          <div class="icon">
-            <img src="../../assets/icons/android.svg" alt="android" />
-          </div>
-          <div class="d_details">
-            <div class="name">{{ device.device_name }}</div>
-            <span
-              >Total Sent Messages: <span>{{ device.total_calls }}</span></span
-            >
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div class="icon">
+              <img src="../../assets/icons/android.svg" alt="android" />
+            </div>
+            <div class="d_details">
+              <div class="name">{{ device.device_name }}</div>
+              <span>Recent activity , 12min ago</span>
+            </div>
           </div>
 
           <div *ngIf="device?.active" class="d_badge">Active</div>

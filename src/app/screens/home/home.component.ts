@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AdminService } from 'src/services';
 import { AuthService } from 'src/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChartDataset } from 'chart.js';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +12,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private AS: AdminService,
-    private router: Router
+    private router: Router,
+    private eRef: ElementRef
   ) {}
 
   currentUser: any;
@@ -45,6 +45,12 @@ export class HomeComponent implements OnInit {
     { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' },
   ];
   days = [0, 1, 2, 3, 4, 5, 6];
+  showOptions: boolean[] = [false, false]; // Track multiple banners
+  lastMsgDate: any;
+  firstMsgDate: any;
+  percentChange: any;
+  thisDay = 1880;
+  yesterday = 3412;
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -78,7 +84,6 @@ export class HomeComponent implements OnInit {
         this.AS.getMessageList(objMsg).subscribe((ml) => {
           this.messageList = ml;
           this.isMsgLoad = false;
-          console.log('msgs', ml);
         });
 
         let endDate = new Date();
@@ -130,10 +135,30 @@ export class HomeComponent implements OnInit {
           { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
           { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' },
         ];
+        this.percentChange = 0;
+        this.thisDay = 0;
+        this.yesterday = 0;
 
         this.AS.getMessageGraphValue(objVals).subscribe((ml) => {
           let tday = ml[ml.length - 1].day;
           let today = ml[ml.length - 1].day;
+
+          const fDate = new Date(ml[ml.length - 1].createdAt);
+
+          this.firstMsgDate = fDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          });
+
+          const lDate = new Date(ml[0].createdAt);
+
+          this.lastMsgDate = lDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          });
+
           let x = 0;
           while (x < 7) {
             today++;
@@ -143,6 +168,7 @@ export class HomeComponent implements OnInit {
             // this.barChartLabels[x] = this.days[today];
             x++;
           }
+          console.log(ml);
           ml.map((gv, j) => {
             this.totalMsg++;
             if (gv.sent_by == 0) {
@@ -157,8 +183,9 @@ export class HomeComponent implements OnInit {
             let t = td.getTime() - d.getTime();
             t = t / (1000 * 60);
             let i = parseInt(gv.day);
-            let dayIndex = parseInt(gv.day); // Ensure this is a valid index (0-6)
+            let dayIndex = parseInt(gv.day);
             let ind = this.days.findIndex((day) => day === this.days[dayIndex]);
+            console.log(ind); // Ensure it stays within 0-6
 
             if (gv.sent_by == 0) {
               let v = this.barChartData[0]['data'][ind];
@@ -173,16 +200,89 @@ export class HomeComponent implements OnInit {
             let v = this.barChartData[3]['data'][ind];
             this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
           });
+
+          // this.barChartData[0]['data'] = [
+          //   this.barChartData[0]['data'][3],
+          //   this.barChartData[0]['data'][4],
+          //   this.barChartData[0]['data'][5],
+          //   this.barChartData[0]['data'][6],
+          //   this.barChartData[0]['data'][0],
+          //   this.barChartData[0]['data'][1],
+          //   this.barChartData[0]['data'][2],
+          // ];
+          // this.barChartData[1]['data'] = [
+          //   this.barChartData[1]['data'][3],
+          //   this.barChartData[1]['data'][4],
+          //   this.barChartData[1]['data'][5],
+          //   this.barChartData[1]['data'][6],
+          //   this.barChartData[1]['data'][0],
+          //   this.barChartData[1]['data'][1],
+          //   this.barChartData[1]['data'][2],
+          // ];
+          // this.barChartData[2]['data'] = [
+          //   this.barChartData[2]['data'][3],
+          //   this.barChartData[2]['data'][4],
+          //   this.barChartData[2]['data'][5],
+          //   this.barChartData[2]['data'][6],
+          //   this.barChartData[2]['data'][0],
+          //   this.barChartData[2]['data'][1],
+          //   this.barChartData[2]['data'][2],
+          // ];
+          // this.barChartData[3]['data'] = [
+          //   this.barChartData[3]['data'][3],
+          //   this.barChartData[3]['data'][4],
+          //   this.barChartData[3]['data'][5],
+          //   this.barChartData[3]['data'][6],
+          //   this.barChartData[3]['data'][0],
+          //   this.barChartData[3]['data'][1],
+          //   this.barChartData[3]['data'][2],
+          // ];
+
+          this.percentChange = Math.round(((1880 - 1500) / 1500) * 10);
+
+          this.percentChange =
+            this.percentChange >= 0
+              ? `+${this.percentChange}`
+              : `${this.percentChange}`;
+
+          // this.percentChange = `${this.percentChange.includes()}`
+          console.log({
+            today: this.thisDay,
+            yesterday: this.yesterday,
+            per: this.percentChange,
+          });
           this.pieData = [this.totalWhatsapp, this.totalSms];
           console.log({
             total: this.totalMsg,
             whatsapp: this.totalWhatsapp,
             sms: this.totalSms,
           });
+
           console.log(this.barChartData);
         });
       });
     });
+  }
+
+  onlyNumber(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
+  toggleOptions(index: number, event: Event) {
+    event.stopPropagation(); // Prevents immediate closing when clicking the button
+    this.showOptions = this.showOptions.map((_, i) =>
+      i === index ? !this.showOptions[i] : false
+    );
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeOptions(event: Event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.showOptions = [false, false]; // Close all options
+    }
   }
 
   search() {
@@ -190,8 +290,8 @@ export class HomeComponent implements OnInit {
     this.isMsgLoad = true;
     this.currentPageLimit = 0;
     let obj = {
-      device_id: this.currentDevice.device_id,
-      company_id: this.currentUser._id,
+      device_id: this.deviceList[0].device_id,
+      company_id: this.deviceList[0]._id,
       skip: 0,
     };
 
@@ -233,6 +333,8 @@ export class HomeComponent implements OnInit {
     }
     this.AS.getMessageList(obj).subscribe((ml) => {
       this.messageList = ml;
+      console.log(ml);
+      console.log('sm', ml);
       // this.currentPageLimit += 50
       this.isMsgLoad = false;
     });

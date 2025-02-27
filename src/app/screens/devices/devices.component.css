@@ -401,7 +401,6 @@ strong {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   padding: 20px;
   position: relative;
-  margin-bottom: 80px;
   height: 164px;
   display: flex;
   justify-content: space-between;
@@ -409,15 +408,16 @@ strong {
 
 .grid-img {
   position: absolute;
-  height: 112px;
+  height: 200px;
   width: 100%;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .grid-img img {
@@ -454,7 +454,7 @@ strong {
   position: absolute;
   top: 45%;
   right: 1rem;
-  height: 166px;
+  height: 200px;
 }
 
 .reports {
@@ -903,12 +903,13 @@ strong {
 
 .a_top button.filter {
   border-radius: 8px;
-  background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+  background: white;
   box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+  color: black;
 }
 
 .a_top button.filter span {
-  color: white;
+  color: black;
 }
 
 .filters {
@@ -1106,8 +1107,8 @@ tr {
   height: 364px;
   width: 600px;
 
-  border-radius: 20px;
-  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.1);
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 0px rgba(165, 165, 165, 0.34);
 
   display: flex;
   justify-content: center;
@@ -1185,7 +1186,7 @@ tr {
 
 .qr-banner-container img:nth-child(2) {
   position: absolute;
-  width: 138px;
+  width: 160px;
   right: 25px;
   top: 15px;
 }
@@ -1229,8 +1230,11 @@ tr {
 .filter-btn-con button {
   padding: 10px;
   background: transparent;
-  color: white;
+  color: black;
+  font-weight: 600;
   border-radius: 10px;
+  width: 150px;
+  background: white;
   border: 1px solid white;
 }
 
@@ -1278,4 +1282,73 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Hides up and down arrows in number input fields */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.a_top button {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff !important;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.a_top button.active {
+  border: none !important;
+  background: linear-gradient(to right, #2ebc96, #1a9096);
+}
+
+.a_top button.active span {
+  color: white;
+}
+
+.a_top button.active img:first-child {
+  display: none;
+}
+
+.a_top button.active img:nth-child(2) {
+  display: block;
+}
+
+.a_top button:hover {
+  border: none !important;
+  background: linear-gradient(to right, #2ebc96, #1a9096);
+}
+
+.a_top button img:nth-child(2) {
+  display: none;
+}
+
+.a_top button:hover img:first-child {
+  display: none;
+}
+
+.a_top button:hover img:nth-child(2) {
+  display: block;
+}
+
+.a_top button:hover span {
+  color: white;
+}
+
+.a_top button img {
+  /* height: 15px; */
+  width: 15px;
+  color: black;
+}
+
+.a_top button span {
+  color: #333540;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.a_top button.filter {
+  border-radius: 8px;
+  border: 1px solid black;
 }

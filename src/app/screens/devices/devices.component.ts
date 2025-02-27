@@ -111,11 +111,21 @@ export class DevicesComponent implements OnInit {
   totalMsg = 0;
   totalSms = 0;
   totalWhatsapp = 0;
+  totalFailed = 0;
+  showFilters = false;
 
   deviceConnections = {};
   isBannerVisible: boolean = true;
 
-  days = [0, 1, 2, 3, 4, 5, 6];
+  days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
 
   // barChartLabels: Label[] = [];
 
@@ -145,7 +155,6 @@ export class DevicesComponent implements OnInit {
     if (!this.currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
-
     this.AS.getUser(this.currentUser._id).subscribe((usr) => {
       this.currentUser = usr;
       this.deviceList = usr.wa_api.filter(
@@ -156,7 +165,6 @@ export class DevicesComponent implements OnInit {
             d.wa_api_platform == 'greenapi')
       );
       console.log(this.deviceList);
-
       // Initialize device connection statuses
       this.deviceConnections = {}; // Reset deviceConnections before fetching new statuses
 
@@ -164,8 +172,8 @@ export class DevicesComponent implements OnInit {
         this.deviceList.forEach((device, index) => {
           // Fetch connection status for each device
           if (device.wa_api_platform == 'greenapi') {
-            this.currentDevice = device;
-            this.openGreenApi(device, index); // Open the Green API for each device
+            // this.currentDevice = device;
+            this.getGreenApiStatus(device, index); // Open the Green API for each device
             // this.creatGraph(device, index); // Create a graph (if necessary)
           } else if (device.wa_api_platform == 'chatapi') {
             // Handle chatapi device status (if needed)
@@ -173,14 +181,14 @@ export class DevicesComponent implements OnInit {
             // Handle maytapi device status (if needed)
           }
         });
-
         // If there are devices, set a timeout to refresh their status after 10 seconds
         setTimeout(() => {
-          this.refreshingDevice();
+          this.refreshingGreenApi();
         }, 10000);
       } else {
         this.isLoad = false;
       }
+      this.setCurrent(0, 0);
     });
     // });
   }
@@ -393,6 +401,7 @@ export class DevicesComponent implements OnInit {
     this.totalMsg = 0;
     this.totalSms = 0;
     this.totalWhatsapp = 0;
+    this.totalFailed = 0;
     let endDate = new Date();
     let startDate = new Date();
     startDate.setDate(startDate.getDate() - 6);
@@ -449,6 +458,7 @@ export class DevicesComponent implements OnInit {
         x++;
       }
       ml.map((gv, j) => {
+        console.log(ml.day);
         this.totalMsg++;
         if (gv.sent_by == 0) {
           this.totalSms++;
@@ -456,10 +466,14 @@ export class DevicesComponent implements OnInit {
         if (gv.sent_by == 1) {
           this.totalWhatsapp++;
         }
+        if (gv.send_by == 3) {
+          this.totalFailed++;
+        }
         let td = new Date();
         let d = new Date(gv.createdAt);
         let t = td.getTime() - d.getTime();
         t = t / (1000 * 60);
+        console.log(gv.day);
         let i = parseInt(gv.day);
         let dayIndex = parseInt(gv.day);
         let ind = this.days.findIndex((day) => day === this.days[dayIndex]);
@@ -541,6 +555,43 @@ export class DevicesComponent implements OnInit {
           this.isGraphLoad = true;
         }
       });
+      console.log(this.barChartData);
+      // this.barChartData[0]['data'] = [
+      //   this.barChartData[0]['data'][3],
+      //   this.barChartData[0]['data'][4],
+      //   this.barChartData[0]['data'][5],
+      //   this.barChartData[0]['data'][6],
+      //   this.barChartData[0]['data'][0],
+      //   this.barChartData[0]['data'][1],
+      //   this.barChartData[0]['data'][2],
+      // ];
+      // this.barChartData[1]['data'] = [
+      //   this.barChartData[1]['data'][3],
+      //   this.barChartData[1]['data'][4],
+      //   this.barChartData[1]['data'][5],
+      //   this.barChartData[1]['data'][6],
+      //   this.barChartData[1]['data'][0],
+      //   this.barChartData[1]['data'][1],
+      //   this.barChartData[1]['data'][2],
+      // ];
+      // this.barChartData[2]['data'] = [
+      //   this.barChartData[2]['data'][3],
+      //   this.barChartData[2]['data'][4],
+      //   this.barChartData[2]['data'][5],
+      //   this.barChartData[2]['data'][6],
+      //   this.barChartData[2]['data'][0],
+      //   this.barChartData[2]['data'][1],
+      //   this.barChartData[2]['data'][2],
+      // ];
+      // this.barChartData[3]['data'] = [
+      //   this.barChartData[3]['data'][3],
+      //   this.barChartData[3]['data'][4],
+      //   this.barChartData[3]['data'][5],
+      //   this.barChartData[3]['data'][6],
+      //   this.barChartData[3]['data'][0],
+      //   this.barChartData[3]['data'][1],
+      //   this.barChartData[3]['data'][2],
+      // ];
       console.log({
         total: this.totalMsg,
         whatsapp: this.totalWhatsapp,
@@ -683,6 +734,7 @@ export class DevicesComponent implements OnInit {
       this.deviceActive = false;
       this.qrShow = false;
       let obj = this.currentDevice;
+      console.log(obj);
       obj['user_id'] = this.currentUser._id;
       this.AS.getGreenApiStatus(obj).subscribe(
         (res) => {
@@ -692,6 +744,7 @@ export class DevicesComponent implements OnInit {
             this.connection = 'Active';
           } else {
             let url = `https://api.green-api.com/waInstance${obj.device_id}/qr/${obj.token}`;
+            console.log(url);
             this.AS.getGreenApiQrCode(url).subscribe((qrRes) => {
               if (qrRes.type == 'qrCode') {
                 this.qrSrc = `data:image/png;base64,${qrRes['message']}`;
@@ -701,9 +754,9 @@ export class DevicesComponent implements OnInit {
               } else if (qrRes.type == 'alreadyLogged') {
                 this.authStatus = 'Authenticated';
                 this.connection = 'Inactive';
-                setTimeout(() => {
-                  this.refreshingGreenApi();
-                }, 10000);
+                // setTimeout(() => {
+                //   this.refreshingGreenApi();
+                // }, 10000);
               }
             });
           }

@@ -20,11 +20,23 @@
     <ng-container *ngIf="currentTab.name === 'SMS Settings'">
       <div class="h">Outgoing SMS Settings</div>
       <div class="toggles">
-        <div class="toggle" *ngFor="let toggle of togglesData">
+        <div class="toggle" *ngFor="let toggle of togglesData; let i = index">
           <span>{{ toggle.label }}</span>
-          <div class="switch_box" [class.active]="toggle.enabled"></div>
+          <label
+            [class.active]="toggle.enabled"
+            (click)="toggleColor(i)"
+            class="switch_box"
+          >
+            <input
+              type="checkbox"
+              (change)="changeSettings($event, toggle.type)"
+              [checked]="toggle.enabled"
+            />
+            <span class="slider"></span>
+          </label>
         </div>
       </div>
+
       <div class="h">Outgoing SMS Settings</div>
       <div class="credentials_tabs">
         <label>
