@@ -1,65 +1,13 @@
 <div class="container-own">
   <div class="top" style="position: relative">
     <div class="reports" style="position: relative">
-      <div
-        style="
-          position: absolute;
-          right: 40px;
-          top: 100px;
-          color: #a3aed0;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          font-size: 12px;
-          z-index: 10;
-        "
-      >
-        <span
-          style="
-            color: #0aaf60;
-            background: #cff1e0;
-            padding: 5px 10px;
-            border-radius: 15px;
-          "
-        >
-          {{ percentChange }}%
-        </span>
-        vs yesterday
-      </div>
-      <div
-        style="
-          position: absolute;
-          left: 490px;
-          top: 37px;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 15px;
-          font-size: 12px;
-        "
-      >
-        <span style="white-space: nowrap">
-          <img style="width: 18px" src="../../../assets/l1.png" />
-          Total Messages
-        </span>
-        <span style="white-space: nowrap">
-          <img style="width: 18px" src="../../../assets/l2.png" />
-          WhatsApp
-        </span>
-        <span style="white-space: nowrap">
-          <img style="width: 18px" src="../../../assets/l3.png" />
-          SMS
-        </span>
-        <span style="white-space: nowrap">
-          <img style="width: 18px" src="../../../assets/l4.png" />
-          Not Send
-        </span>
-      </div>
       <!-- <p>{{ percentChange }}%</p> -->
       <app-reports
         [graphData]="barChartData"
         [totalMsg]="totalMsg"
         [totalSms]="totalSms"
         [totalWhatsapp]="totalWhatsapp"
+        [percentChange]="percentChange"
       ></app-reports>
       <!-- <app-reports></app-reports> -->
     </div>
@@ -67,7 +15,7 @@
       <div class="banner-bg" style="position: relative">
         <img src="../../../assets/banner-bg.png" />
         <P
-          >{{ firstMsgDate }} - {{ lastMsgDate }}
+          >{{ lastMsgDate }} - {{ firstMsgDate }}
           <img
             src="../../../assets/More.png"
             (click)="toggleOptions(0, $event)"
@@ -211,10 +159,11 @@
                 <input
                   class="form-control"
                   [(ngModel)]="target"
+                  placeholder="+44 123456789"
                   type="text"
                   pattern="[0-9]*"
                   inputmode="numeric"
-                  maxlength="9"
+                  maxlength="12"
                   (keypress)="onlyNumber($event)"
                 />
               </div>
@@ -308,7 +257,7 @@
               No data found.
             </div>
             <div class="at_item" *ngFor="let item of messageList">
-              <div>{{ item.createdAt | date : "MMM, dd/MM/y, h:mma" }}</div>
+              <div>{{ item.createdAt | date : "dd/MM/y, h:mma" }}</div>
               <div
                 [ngStyle]="{
                   color: item.target_type === 'whatsapp' ? '#2EBC96' : '#3981F7'
@@ -387,6 +336,36 @@
         <span style="font-size: 12px; color: #a3aed0; padding: 10px"
           >Recent</span
         >
+        <div class="d_card" *ngFor="let device of deviceList">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div class="icon">
+              <img src="../../assets/icons/android.svg" alt="android" />
+            </div>
+            <div class="d_details">
+              <div class="name">{{ device.device_name }}</div>
+              <span>Recent activity , 12min ago</span>
+            </div>
+          </div>
+
+          <div *ngIf="device?.active" class="d_badge">Active</div>
+          <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
+        </div>
+
+        <div class="d_card" *ngFor="let device of deviceList">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div class="icon">
+              <img src="../../assets/icons/android.svg" alt="android" />
+            </div>
+            <div class="d_details">
+              <div class="name">{{ device.device_name }}</div>
+              <span>Recent activity , 12min ago</span>
+            </div>
+          </div>
+
+          <div *ngIf="device?.active" class="d_badge">Active</div>
+          <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
+        </div>
+
         <div class="d_card" *ngFor="let device of deviceList">
           <div style="display: flex; align-items: center; gap: 10px">
             <div class="icon">

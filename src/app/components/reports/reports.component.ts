@@ -17,6 +17,7 @@ export class ReportsComponent implements OnInit, OnChanges {
   @Input() graphData: any;
   @Input() totalMsg: any;
   @Input() totalSms: any;
+  @Input() percentChange: any;
   @Input() totalWhatsapp: any;
   activeIndex: number = 0; // Default to "Total"
   buttons = ['Total', 'WhatsApp', 'SMS', 'Not Send'];

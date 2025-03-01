@@ -14,8 +14,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1); /* Makes the icon white */
 }
 
+::placeholder {
+  color: lightgray; /* Change this to any color */
+  opacity: 1; /* Adjust if needed */
+}
+
+/* For better browser support */
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: lightgray;
+}
+
 * {
   font-family: "DM Sans";
+}
+
+select {
+  font-family: "DM Sans";
+  appearance: none; /* Removes default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+option {
+  font-family: "DM Sans";
+  padding: 15px !important;
 }
 
 .container-own {
@@ -55,7 +82,7 @@ h6 {
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
-  padding: 10px;
+  padding: 25px 24px;
   width: 30%;
 }
 
@@ -72,26 +99,26 @@ h6 {
   overflow: hidden;
   box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
   border-radius: 10px;
-  padding: 10px;
+  padding: 25px 24px;
   height: 400px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .bottom .devices {
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
-  padding: 10px;
-  width: 30%;
+  padding: 25px 24px;
+  width: 28%;
   height: 400px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
 }
 
 .activity .a_top h1 {
-  font-size: 15px;
+  font-size: 28px;
   font-weight: 700;
   color: #151d48;
   font-family: Raleway;
@@ -150,8 +177,8 @@ h6 {
 }
 
 .icon {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0px 0px 9px 0px #eee;
@@ -392,7 +419,7 @@ h6 {
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2px;
+  padding-bottom: 24px;
 }
 
 .a_top h1 {
@@ -400,7 +427,7 @@ h6 {
 
   /* Heading */
   font-family: Raleway;
-  font-size: 15px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
@@ -472,7 +499,8 @@ h6 {
 
 .a_top button.filter {
   border-radius: 8px;
-  border: 1px solid black;
+  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.12);
+  border: none;
 }
 
 .filters {
@@ -543,7 +571,8 @@ h6 {
 }
 
 .a_table_wrapper {
-  overflow-x: auto;
+  overflow-x: scroll;
+  height: 100%;
   background: #fff;
   box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.25);
 }
@@ -558,10 +587,10 @@ h6 {
 .at_item {
   display: flex;
   justify-content: space-between;
-  border-radius: 6.201px;
-  border-bottom: 3px solid rgba(238, 238, 238, 0.93);
+  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.12);
   background: #fff;
   font-size: 13px;
+  margin-bottom: 5px;
 }
 
 .at_item * {
@@ -572,7 +601,9 @@ h6 {
 .at_item_head {
   color: #a3aed0;
   font-size: 11px;
-  border: 1px solid lightgray;
+  border-radius: 0;
+  border-top: 1px solid lightgray;
+  border-bottom: 3px solid lightgray;
 }
 
 .at_item div {
