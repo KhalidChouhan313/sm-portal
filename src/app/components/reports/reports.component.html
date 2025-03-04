@@ -30,12 +30,8 @@
 
   <div class="bot">
     <div class="btn-con">
-      <button
-        *ngFor="let btn of buttons; let i = index"
-        [ngClass]="{ active: activeIndex === i }"
-        (click)="setActive(i)"
-        style="white-space: nowrap; padding-left: 10px; padding-right: 10px"
-      >
+      <button *ngFor="let btn of buttons; let i = index" [ngClass]="{ active: activeIndex === i }"
+        (click)="setActive(i)" style="white-space: nowrap; padding-left: 10px; padding-right: 10px">
         {{ btn }}
       </button>
     </div>
@@ -43,26 +39,25 @@
       <div class="message-count">
         <h5>
           {{
-            activeIndex === 0
-              ? "Total Messages"
-              : activeIndex === 1
-              ? "Total WhatsApp"
-              : "Total SMS"
+          activeIndex === 0
+          ? "Total Messages"
+          : activeIndex === 1
+          ? "Total WhatsApp"
+          : "Total SMS"
           }}
         </h5>
         <p>
           {{
-            activeIndex === 0
-              ? totalMsg
-              : activeIndex === 1
-              ? totalWhatsapp
-              : totalSms
+          activeIndex === 0
+          ? totalMsg
+          : activeIndex === 1
+          ? totalWhatsapp
+          : totalSms
           }}
         </p>
       </div>
 
-      <div
-        style="
+      <div style="
           position: absolute;
           right: 20px;
           top: 50px;
@@ -72,23 +67,19 @@
           gap: 5px;
           font-size: 12px;
           z-index: 10;
-        "
-      >
-        <span
-          style="
+        ">
+        <span style="
             color: #0aaf60;
             background: #cff1e0;
             padding: 5px 10px;
             border-radius: 15px;
-          "
-        >
+          ">
           {{ percentChange }}%
         </span>
         vs yesterday
       </div>
 
-      <div
-        style="
+      <div style="
           position: absolute;
           left: 320px;
           top: 20px;
@@ -96,8 +87,7 @@
           display: flex;
           gap: 15px;
           font-size: 12px;
-        "
-      >
+        ">
         <span style="white-space: nowrap">
           <img style="width: 18px" src="../../../assets/l1.png" />
           Total Messages
@@ -112,7 +102,7 @@
         </span>
         <span style="white-space: nowrap">
           <img style="width: 18px" src="../../../assets/l4.png" />
-          Not Send
+          Not Sent
         </span>
       </div>
 

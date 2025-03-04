@@ -591,6 +591,7 @@ h6 {
   background: #fff;
   font-size: 13px;
   margin-bottom: 5px;
+gap:1rem;
 }
 
 .at_item * {
@@ -607,35 +608,48 @@ h6 {
 }
 
 .at_item div {
-  padding: 1rem 0;
+  padding: 1rem;
 }
 
 .at_item div:nth-child(1) {
   width: 144px;
+  max-width: 144px;
+  min-width: 144px;
 }
 
 .at_item div:nth-child(2) {
-  width: 56px;
+  width: 90px;
+  max-width: 90px;
+  min-width: 90px;
 }
 
 .at_item div:nth-child(3) {
-  width: 93px;
+  width: 124px;
+  max-width: 124px;
+  min-width: 124px;
 }
 
 .at_item div:nth-child(4) {
-  width: 70px;
+  width: 130px;
+  max-width: 130px;
+  min-width: 130px;
 }
 
 .at_item div:nth-child(5) {
-  width: 56px;
+  width: 90px;
+  max-width: 90px;
+  min-width: 90px;
 }
 
 .at_item div:nth-child(6) {
   width: 68px;
+  max-width: 68px;
+  min-width: 68px;
 }
 
 .at_item div:nth-child(7) {
-  width: 68px;
+  width: 250px;
+  /* max-width: 250px; */
 }
 
 @media screen and (max-width: 1500px) {

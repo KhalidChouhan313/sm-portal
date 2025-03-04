@@ -20,7 +20,7 @@ export class ReportsComponent implements OnInit, OnChanges {
   @Input() percentChange: any;
   @Input() totalWhatsapp: any;
   activeIndex: number = 0; // Default to "Total"
-  buttons = ['Total', 'WhatsApp', 'SMS', 'Not Send'];
+  buttons = ['Total', 'WhatsApp', 'SMS', 'Not Sent'];
   chart: any; // Store chart instance
 
   constructor(private cdr: ChangeDetectorRef) {
@@ -143,28 +143,28 @@ export class ReportsComponent implements OnInit, OnChanges {
         this.activeIndex === 3
           ? this.graphData[2] // Fix for "Not Send"
           : this.activeIndex === 2
-          ? this.graphData[0]
-          : this.activeIndex === 1
-          ? this.graphData[1]
-          : this.graphData[3];
+            ? this.graphData[0]
+            : this.activeIndex === 1
+              ? this.graphData[1]
+              : this.graphData[3];
 
       let selectedColor =
         this.activeIndex === 3
           ? '#FF0606' // Color fix for "Not Send"
           : this.activeIndex === 1
-          ? '#2EBC96'
-          : this.activeIndex === 2
-          ? '#3981F7'
-          : '#EAB054';
+            ? '#2EBC96'
+            : this.activeIndex === 2
+              ? '#3981F7'
+              : '#EAB054';
 
       let selectedBackgroundColor =
         this.activeIndex === 3
           ? createGradient('rgba(255, 6, 6, 0.5)')
           : this.activeIndex === 1
-          ? createGradient('rgba(46, 188, 150, 0.5)')
-          : this.activeIndex === 2
-          ? createGradient('rgba(57, 130, 247, 0.5)')
-          : createGradient('rgba(234, 177, 84, 0.5)');
+            ? createGradient('rgba(46, 188, 150, 0.5)')
+            : this.activeIndex === 2
+              ? createGradient('rgba(57, 130, 247, 0.5)')
+              : createGradient('rgba(234, 177, 84, 0.5)');
       // : 'rgba(57, 130, 247, 0.3)';
 
       datasets = [
