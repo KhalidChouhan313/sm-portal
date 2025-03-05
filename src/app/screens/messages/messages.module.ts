@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MessagesComponent } from './messages.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 const messagesRoutes: Routes = [
   {
@@ -10,7 +11,7 @@ const messagesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(messagesRoutes)],
+  imports: [RouterModule.forChild(messagesRoutes), PickerModule],
   exports: [RouterModule],
 })
 export class MessagesModule {}

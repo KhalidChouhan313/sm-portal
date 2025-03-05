@@ -13,6 +13,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
+  textValues: string[] = ['', '', '']; // Array to store text for multiple textareas
+  activeIndex: number | null = null; // Track which textarea is active
+  isExpanded: boolean = false;
+
+  toggleEmojiTab(index: number) {
+    this.isExpanded = !this.isExpanded;
+
+    this.activeIndex = this.activeIndex === index ? null : index;
+  }
+
+  addEmoji(event: any) {
+    if (this.activeIndex !== null) {
+      this.currentMessageList[this.activeIndex] += event.emoji.native;
+    }
+  }
+
   tab = '';
   tabs = [
     { name: 'Booking' },

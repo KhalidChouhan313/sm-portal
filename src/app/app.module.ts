@@ -41,6 +41,8 @@ import { TotalBookingsComponent } from './components/total-bookings/total-bookin
 import { QrCodeComponent } from './screens/qr-code/qr-code.component';
 // import { ReportsDeviceComponent } from './components/reports-device/reports-device.component';
 
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +88,7 @@ import { QrCodeComponent } from './screens/qr-code/qr-code.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    PickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
