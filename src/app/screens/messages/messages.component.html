@@ -145,7 +145,7 @@
         <div
           style="
             width: 100%;
-            height: 550px;
+            height: 500px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -155,7 +155,7 @@
             <h4 class="fw-semibold">{{ currentList }} Message {{ i + 1 }}</h4>
             <div class="ict_right">
               <span class="limit_text" *ngIf="instanceData[i].isEditable">
-                {{ currentMessageList[i].length }} / 1024
+                {{ currentMessageList[i]?.length }} / 1024
               </span>
               <button
                 *ngIf="!instanceData[i].isEditable"
@@ -164,7 +164,7 @@
                 (click)="toggleEdit(instance, i)"
               >
                 <img
-                  src="../../assets/icons/edit.svg"
+                  src="../../assets/edit-pen.png"
                   style="height: 20px"
                   alt="e"
                 />
@@ -205,7 +205,7 @@
             (click)="toggleEmojiTab(i)"
             [ngClass]="{ 'active-tab': activeIndex === i }"
           >
-            Add 😀
+            Add 😀 :
             <div>&#123;.&#125;</div>
           </button>
 
@@ -260,7 +260,7 @@
           <h4 class="fw-semibold">{{ instance.name }}Messages</h4>
           <div class="ict_right">
             <span class="limit_text" *ngIf="instanceData[3].isEditable">
-              {{ currentMessageList[3].length }} / 1024
+              {{ currentMessageList[3].length }} / 160
             </span>
             <button
               *ngIf="!instance.isEditable"
@@ -268,7 +268,7 @@
               (click)="toggleEdit(instance, 3)"
               style="box-shadow: none"
             >
-              <img src="../../assets/icons/edit.svg" alt="e" />
+              <img src="../../assets/edit-pen.png" alt="e" />
             </button>
           </div>
         </div>
@@ -278,7 +278,7 @@
           [(ngModel)]="currentMessageList[3]"
           *ngIf="instanceData[3].isEditable"
           placeholder="Type here..."
-          maxlength="1024"
+          maxlength="160"
         ></textarea>
         <textarea
           disabled

@@ -709,7 +709,7 @@ h6 {
   border-radius: 12px;
   background: linear-gradient(273deg, #2ebc96 2.11%, #1a9096 121.12%);
   position: relative;
-  top: -30px;
+  top: 0 !important;
   margin-top: 10px;
 }
 
@@ -718,11 +718,6 @@ h6 {
   flex-direction: column;
   gap: 10px;
   width: 100%;
-}
-
-.filter-inputs input,
-.filter-inputs select {
-  height: 40px;
 }
 
 .filter-inputs-line {

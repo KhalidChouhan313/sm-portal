@@ -90,7 +90,7 @@ export class ReportsComponent implements OnInit, OnChanges {
     if (this.activeIndex === 0) {
       datasets = [
         {
-          label: 'Total',
+          label: 'Total Sent',
           data: this.graphData[3]?.data || [],
           borderColor: '#EAB054',
           pointBackgroundColor: '#EAB054',
@@ -126,7 +126,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointHoverRadius: 4,
         },
         {
-          label: 'Not Send',
+          label: 'Not Sent',
           data: this.graphData[2]?.data || [],
           borderColor: '#FF0606',
           pointBackgroundColor: '#FF0606',
@@ -143,28 +143,28 @@ export class ReportsComponent implements OnInit, OnChanges {
         this.activeIndex === 3
           ? this.graphData[2] // Fix for "Not Send"
           : this.activeIndex === 2
-            ? this.graphData[0]
-            : this.activeIndex === 1
-              ? this.graphData[1]
-              : this.graphData[3];
+          ? this.graphData[0]
+          : this.activeIndex === 1
+          ? this.graphData[1]
+          : this.graphData[3];
 
       let selectedColor =
         this.activeIndex === 3
           ? '#FF0606' // Color fix for "Not Send"
           : this.activeIndex === 1
-            ? '#2EBC96'
-            : this.activeIndex === 2
-              ? '#3981F7'
-              : '#EAB054';
+          ? '#2EBC96'
+          : this.activeIndex === 2
+          ? '#3981F7'
+          : '#EAB054';
 
       let selectedBackgroundColor =
         this.activeIndex === 3
           ? createGradient('rgba(255, 6, 6, 0.5)')
           : this.activeIndex === 1
-            ? createGradient('rgba(46, 188, 150, 0.5)')
-            : this.activeIndex === 2
-              ? createGradient('rgba(57, 130, 247, 0.5)')
-              : createGradient('rgba(234, 177, 84, 0.5)');
+          ? createGradient('rgba(46, 188, 150, 0.5)')
+          : this.activeIndex === 2
+          ? createGradient('rgba(57, 130, 247, 0.5)')
+          : createGradient('rgba(234, 177, 84, 0.5)');
       // : 'rgba(57, 130, 247, 0.3)';
 
       datasets = [

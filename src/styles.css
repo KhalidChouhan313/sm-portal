@@ -99,7 +99,7 @@ button:disabled {
 ::ng-deep emoji-mart {
   position: absolute;
   width: 240px;
-  top: 480px;
+  top: 435px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -112,7 +112,7 @@ button:disabled {
 
 emoji-mart {
   position: absolute !important;
-  top: 480px !important;
+  top: 435px !important;
   left: 50% !important;
   transform: translateX(-50%);
   z-index: 1000 !important;
@@ -129,5 +129,9 @@ emoji-mart {
 }
 
 .emoji-mart-preview {
+  display: none !important;
+}
+
+.emoji-mart-search {
   display: none !important;
 }

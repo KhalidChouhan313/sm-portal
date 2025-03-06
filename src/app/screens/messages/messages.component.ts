@@ -267,6 +267,8 @@ export class MessagesComponent implements OnInit {
       this.currentMsg = this.currentMessageList[index];
       console.log(this.currentMsg);
     } else {
+      console.log(this.currentMsg);
+      this.currentMessageList[index] = this.currentMsg;
       this.currentMsg = null; // Reset if toggled off
     }
 
@@ -367,6 +369,14 @@ export class MessagesComponent implements OnInit {
   }
 
   openMessageList(name) {
+    this.instanceData[0].isEditable = false;
+    this.instanceData[1].isEditable = false;
+    this.instanceData[2].isEditable = false;
+    this.instanceData[3].isEditable = false;
+
+    this.isExpanded = !this.isExpanded;
+    this.activeIndex = null;
+
     this.currentList = name;
     this.tab = name;
     if (this.currentList == 'chatbot') {

@@ -123,118 +123,119 @@
           <span>Filters</span>
         </button>
       </div>
-      <div *ngIf="showFilters" class="filters">
-        <button (click)="showFilters = false" class="close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
-            viewBox="0 0 13 13"
-            fill="black"
-          >
-            <path
-              d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
-              stroke="#2EBC96"
-              stroke-width="1.60279"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <div class="left">
-          <div class="filter-inputs">
-            <div class="filter-inputs-line">
-              <div class="inp_con">
-                <label for="">Target</label>
-                <!-- <select name="" id="">
-                  <option *ngFor="let target of targetList" [value]="target.id">
-                    {{ target }}
-                  </option>
-                </select> -->
-                <!-- <input
-                  type="text"
-                  formControlName="target"
-                  placeholder="Enter target"
-                  
-                /> -->
-                <input
-                  class="form-control"
-                  [(ngModel)]="target"
-                  placeholder="+44 123456789"
-                  type="text"
-                  pattern="[0-9]*"
-                  inputmode="numeric"
-                  maxlength="12"
-                  (keypress)="onlyNumber($event)"
-                />
-              </div>
-              <div class="inp_con">
-                <label for="">Target Type</label>
-                <select name="" id="" [(ngModel)]="target_type">
-                  <option value="whatsapp">WhatsApp</option>
-                  <option value="non_whatsapp">Sms</option>
-                </select>
-                <!-- <input
-                  type="text"
-                  formControlName="target_type"
-                  placeholder="Enter target type"
-                /> -->
-              </div>
-              <div class="inp_con">
-                <label for="">Status</label>
-                <!-- <select name="" id="">
-                  <option *ngFor="let status of statusList" [value]="status.id">
-                    {{ status }}
-                  </option>
-                </select> -->
-                <select [(ngModel)]="status">
-                  <option value="Sent">Sent</option>
-                  <option value="Failed">Failed</option>
-                </select>
+
+      <div class="a_table_wrapper">
+        <div *ngIf="showFilters" class="filters">
+          <button (click)="showFilters = false" class="close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="black"
+            >
+              <path
+                d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
+                stroke="#2EBC96"
+                stroke-width="1.60279"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div class="left">
+            <div class="filter-inputs">
+              <div class="filter-inputs-line">
+                <div class="inp_con">
+                  <label for="">Target</label>
+                  <!-- <select name="" id="">
+                    <option *ngFor="let target of targetList" [value]="target.id">
+                      {{ target }}
+                    </option>
+                  </select> -->
+                  <!-- <input
+                    type="text"
+                    formControlName="target"
+                    placeholder="Enter target"
+                    
+                  /> -->
+                  <input
+                    class="form-control"
+                    [(ngModel)]="target"
+                    placeholder="+44 123456789"
+                    type="text"
+                    pattern="[0-9]*"
+                    inputmode="numeric"
+                    maxlength="12"
+                    (keypress)="onlyNumber($event)"
+                  />
+                </div>
+                <div class="inp_con">
+                  <label for="">Target Type</label>
+                  <select name="" id="" [(ngModel)]="target_type">
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="non_whatsapp">Sms</option>
+                  </select>
+                  <!-- <input
+                    type="text"
+                    formControlName="target_type"
+                    placeholder="Enter target type"
+                  /> -->
+                </div>
+                <div class="inp_con">
+                  <label for="">Status</label>
+                  <!-- <select name="" id="">
+                    <option *ngFor="let status of statusList" [value]="status.id">
+                      {{ status }}
+                    </option>
+                  </select> -->
+                  <select [(ngModel)]="status">
+                    <option value="Sent">Sent</option>
+                    <option value="Failed">Failed</option>
+                  </select>
+                </div>
+
+                <div class="inp_con">
+                  <label for="">Send Via</label>
+                  <select name="" id="" [(ngModel)]="sent_by">
+                    <option value="1">WhatsApp</option>
+                    <option value="0">Sms</option>
+                    <option value="2">None</option>
+                  </select>
+                  <!-- <input
+                    type="number"
+                    [(ngModel)]="sent_by"
+                    placeholder="Enter sender ID"
+                  /> -->
+                </div>
+                <div class="inp_con">
+                  <label for="">From</label>
+                  <input
+                    style="text-transform: uppercase"
+                    type="date"
+                    [(ngModel)]="f_date"
+                    [max]="'3000-12-31'"
+                  />
+                </div>
+                <div class="inp_con">
+                  <label for="">To</label>
+                  <input
+                    style="text-transform: uppercase"
+                    type="date"
+                    [(ngModel)]="t_date"
+                    [max]="'3000-12-31'"
+                  />
+                </div>
               </div>
 
-              <div class="inp_con">
-                <label for="">Send Via</label>
-                <select name="" id="" [(ngModel)]="sent_by">
-                  <option value="1">WhatsApp</option>
-                  <option value="0">Sms</option>
-                  <option value="2">None</option>
-                </select>
-                <!-- <input
-                  type="number"
-                  [(ngModel)]="sent_by"
-                  placeholder="Enter sender ID"
-                /> -->
+              <div class="filter-btn-con">
+                <button (click)="search()">Search</button>
+                <button (click)="clean()">Clear</button>
               </div>
-              <div class="inp_con">
-                <label for="">From</label>
-                <input
-                  style="text-transform: uppercase"
-                  type="date"
-                  [(ngModel)]="f_date"
-                  [max]="'3000-12-31'"
-                />
-              </div>
-              <div class="inp_con">
-                <label for="">To</label>
-                <input
-                  style="text-transform: uppercase"
-                  type="date"
-                  [(ngModel)]="t_date"
-                  [max]="'3000-12-31'"
-                />
-              </div>
-            </div>
-
-            <div class="filter-btn-con">
-              <button (click)="search()">Search</button>
-              <button (click)="clean()">Clear</button>
             </div>
           </div>
+          <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
         </div>
-        <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
-      </div>
-      <div class="a_table_wrapper">
         <div class="a_table">
           <div class="at_item at_item_head">
             <div>Created Date</div>
@@ -339,39 +340,6 @@
         </div>
       </div>
       <div class="d_body">
-        <span style="font-size: 12px; color: #a3aed0; padding: 10px"
-          >Recent</span
-        >
-        <div class="d_card" *ngFor="let device of deviceList">
-          <div style="display: flex; align-items: center; gap: 10px">
-            <div class="icon">
-              <img src="../../assets/icons/android.svg" alt="android" />
-            </div>
-            <div class="d_details">
-              <div class="name">{{ device.device_name }}</div>
-              <span>Recent activity , 12min ago</span>
-            </div>
-          </div>
-
-          <div *ngIf="device?.active" class="d_badge">Active</div>
-          <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
-        </div>
-
-        <div class="d_card" *ngFor="let device of deviceList">
-          <div style="display: flex; align-items: center; gap: 10px">
-            <div class="icon">
-              <img src="../../assets/icons/android.svg" alt="android" />
-            </div>
-            <div class="d_details">
-              <div class="name">{{ device.device_name }}</div>
-              <span>Recent activity , 12min ago</span>
-            </div>
-          </div>
-
-          <div *ngIf="device?.active" class="d_badge">Active</div>
-          <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
-        </div>
-
         <div class="d_card" *ngFor="let device of deviceList">
           <div style="display: flex; align-items: center; gap: 10px">
             <div class="icon">
