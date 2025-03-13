@@ -151,7 +151,7 @@
 
   <div
     class="header"
-    [ngStyle]="qrShow && !isLoad ? { height: '300px' } : { height: '200px' }"
+    [ngStyle]="qrShow && !isLoad ? { height: '300px' } : { height: '166px' }"
   >
     <div class="grid-img">
       <img src="../../../assets/bg-grid.png" />
@@ -202,12 +202,17 @@
         class="device-btn-container"
         style="position: relative; z-index: 100"
       >
-        <button><img src="../../../assets/d-reboot.png" /></button>
+        <button>
+          <img src="../../../assets/d-reboot.png" />
+          <img src="../../../assets/device-tt-1.png" />
+        </button>
         <button (click)="logoutGreenApi(currentDevice, currentIndex)">
           <img src="../../../assets/d-logout.png" />
+          <img src="../../../assets/device-tt-2.png" />
         </button>
         <button (click)="rebootGreenApi(currentDevice, currentIndex)">
           <img src="../../../assets/d-refresh.png" />
+          <img src="../../../assets/device-tt-3.png" />
         </button>
       </div>
 
@@ -242,7 +247,7 @@
     </div>
   </div>
 
-  <div style="display: flex; gap: 10px">
+  <div style="display: flex; gap: 10px; margin-top: 20px">
     <div class="reports">
       <app-reports
         [graphData]="barChartData"
@@ -345,7 +350,7 @@
   <div *ngIf="isBannerVisible" class="note-banner">
     <div>
       <p><img src="../../../assets/note-icon.png" /> Importent Note:</p>
-      <button (click)="closeBanner()">
+      <button (click)="toggleBanner()">
         <img src="../../../assets/close-icon.png" />
       </button>
     </div>
@@ -362,7 +367,14 @@
 
   <div class="activity">
     <div class="a_top">
-      <h4>All Messages</h4>
+      <div style="display: flex; align-items: center; gap: 5px">
+        <img
+          style="cursor: pointer"
+          (click)="toggleBanner()"
+          src="../../../assets/note-icon.png"
+        />
+        <h4>All Messages</h4>
+      </div>
 
       <button
         class="filter"
@@ -371,7 +383,7 @@
       >
         <img src="../../../assets/filter-icon-black.png" />
         <img src="../../../assets/filter-icon.png" />
-        <span>Filters</span>
+        <span>Search</span>
       </button>
     </div>
     <div *ngIf="showFilter == true" class="filters">
@@ -412,6 +424,7 @@
           <div class="inp_con">
             <label for="">Target Type</label>
             <select name="" id="" [(ngModel)]="target_type">
+              <option value="">All</option>
               <option value="whatsapp">WhatsApp</option>
               <option value="non_whatsapp">Sms</option>
             </select>
@@ -518,9 +531,15 @@
               {{ item.status }}
             </td>
 
-            <td>
-              {{ item.message_text }}
-            </td>
+            <div class="msg_cell">
+              <td>
+                {{ item.message_text }}
+              </td>
+              <div>
+                <img src="../../../assets/Polygon.png" />
+                <p>{{ item.message_text }}</p>
+              </div>
+            </div>
           </tr>
         </tbody>
       </table>

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     private AS: AdminService,
     private router: Router,
     private eRef: ElementRef
-  ) { }
+  ) {}
 
   currentUser: any;
   deviceList = [];
@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
   percentChange: any;
   thisDay = 1880;
   yesterday = 3412;
+  isBannerVisible = true;
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -183,7 +184,9 @@ export class HomeComponent implements OnInit {
               t = t / (1000 * 60);
               let i = parseInt(gv.day);
               let dayIndex = parseInt(gv.day);
-              let ind = this.days.findIndex((day) => day === this.days[dayIndex]);
+              let ind = this.days.findIndex(
+                (day) => day === this.days[dayIndex]
+              );
               console.log(ind); // Ensure it stays within 0-6
 
               if (gv.sent_by == 0) {
@@ -259,10 +262,13 @@ export class HomeComponent implements OnInit {
 
             console.log(this.barChartData);
           });
-
         });
       });
     });
+  }
+
+  toggleBanner() {
+    this.isBannerVisible = !this.isBannerVisible;
   }
 
   onlyNumber(event: KeyboardEvent) {

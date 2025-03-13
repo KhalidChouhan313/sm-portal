@@ -111,17 +111,39 @@
     <div class="activity">
       <div class="a_top">
         <!-- <button> -->
-        <h1>All Messages</h1>
-        <!-- </button> -->
-        <button
-          class="filter"
-          [ngClass]="{ active: showFilters }"
-          (click)="showFilters = true"
-        >
-          <img src="../../../assets/filter-icon-black.png" />
-          <img src="../../../assets/filter-icon.png" />
-          <span>Filters</span>
-        </button>
+        <div class="a_top_1">
+          <h1>
+            <img
+              style="height: 15px; width: 15px"
+              (click)="toggleBanner()"
+              src="../../../assets/info-icon.png"
+            />
+            All Messages
+          </h1>
+          <!-- </button> -->
+          <button
+            class="filter"
+            [ngClass]="{ active: showFilters }"
+            (click)="showFilters = true"
+          >
+            <img src="../../../assets/filter-icon-black.png" />
+            <img src="../../../assets/filter-icon.png" />
+            <span>Search</span>
+          </button>
+        </div>
+        <div *ngIf="isBannerVisible" class="a_top_2">
+          <div>
+            <img src="../../../assets/info-icon.png" />
+            <p>
+              <span>Important Note:</span>
+              After seven days, all sent message data will be permanently
+              deleted.
+            </p>
+          </div>
+          <button (click)="toggleBanner()">
+            <img src="../../../assets/close-icon.png" />
+          </button>
+        </div>
       </div>
 
       <div class="a_table_wrapper">
@@ -173,6 +195,7 @@
                 <div class="inp_con">
                   <label for="">Target Type</label>
                   <select name="" id="" [(ngModel)]="target_type">
+                    <option value="">All</option>
                     <option value="whatsapp">WhatsApp</option>
                     <option value="non_whatsapp">Sms</option>
                   </select>
@@ -289,15 +312,14 @@
                 ></p>
                 {{ item.status }}
               </div>
-              <div
-                style="
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-                  width: 250px;
-                "
-              >
-                {{ item.message_text }}
+              <div class="msg_cell">
+                <td>
+                  {{ item.message_text }}
+                </td>
+                <div>
+                  <img src="../../../assets/Polygon.png" />
+                  <p>{{ item.message_text }}</p>
+                </div>
               </div>
             </div>
           </div>

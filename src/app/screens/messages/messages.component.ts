@@ -258,18 +258,23 @@ export class MessagesComponent implements OnInit {
     console.log(this.currentMsg);
   }
 
+  tempMessages: any;
+
   toggleEdit(instance, index) {
     // Toggle the isEditable property for the clicked item
     this.instanceData[index].isEditable = !this.instanceData[index].isEditable;
 
-    // Set the current message only if the item is now editable
+    if (!this.tempMessages) {
+      this.tempMessages = {}; // Initialize tempMessages object if not already
+    }
+
     if (this.instanceData[index].isEditable) {
-      this.currentMsg = this.currentMessageList[index];
-      console.log(this.currentMsg);
+      // Store original message before editing
+      this.tempMessages[index] = this.currentMessageList[index];
     } else {
-      console.log(this.currentMsg);
-      this.currentMessageList[index] = this.currentMsg;
-      this.currentMsg = null; // Reset if toggled off
+      // If canceled, reset to original message
+      this.currentMessageList[index] = this.tempMessages[index];
+      delete this.tempMessages[index]; // Remove temp data after resetting
     }
 
     console.log(instance);
@@ -369,6 +374,10 @@ export class MessagesComponent implements OnInit {
   }
 
   openMessageList(name) {
+    this.toggleEdit(0, 0);
+    this.toggleEdit(0, 1);
+    this.toggleEdit(0, 2);
+    this.toggleEdit(0, 3);
     this.instanceData[0].isEditable = false;
     this.instanceData[1].isEditable = false;
     this.instanceData[2].isEditable = false;

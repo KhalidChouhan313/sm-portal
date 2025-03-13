@@ -202,8 +202,8 @@ export class DevicesComponent implements OnInit {
     this.openGreenApi(this.deviceList[index], index);
   };
 
-  closeBanner() {
-    this.isBannerVisible = false; // Hide the banner
+  toggleBanner() {
+    this.isBannerVisible = !this.isBannerVisible; // Hide the banner
   }
 
   openDevice(device, index) {

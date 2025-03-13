@@ -258,6 +258,9 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 20px;
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
+  border-radius: 20px;
 }
 
 .top {
@@ -267,11 +270,11 @@
     background-repeat: no-repeat; */
   position: relative;
   border-radius: 0.6rem;
-  padding: 2rem;
+  padding: 20px;
   margin-top: 2rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: space-between;
   border-radius: 20px;
   border: 1px solid rgba(46, 188, 150, 0.5);
   background: rgba(46, 188, 150, 0.2);
@@ -286,9 +289,9 @@
 }
 
 .top button {
-  position: absolute;
+  /* position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 1rem; */
   background-color: transparent;
   border: none;
   outline: none;
@@ -304,7 +307,6 @@
 }
 
 .top p {
-  max-width: 87ch;
   color: #737791;
   text-align: center;
   font-family: Poppins;
@@ -313,13 +315,13 @@
   font-weight: 400;
   line-height: 130%;
   letter-spacing: 0.36px;
-  margin-top: 2rem;
+  margin-bottom: 0;
 }
 
 .top_t {
-  position: absolute;
+  /* position: absolute;
   top: 1rem;
-  left: 1rem;
+  left: 1rem; */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -383,6 +385,8 @@
   border-radius: 148px;
   border: 1px solid rgba(46, 188, 150, 0.2);
   background-color: rgba(46, 188, 150, 0.2);
+
+  width: 400px;
 }
 
 .search svg {
@@ -403,6 +407,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  width: 100%;
 }
 
 .tt-right button {
@@ -529,8 +534,7 @@
 
 .add-con {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
   border-radius: 12px;
   background: linear-gradient(273deg, #2ebc96 2.11%, #1a9096 121.12%);
@@ -568,6 +572,10 @@
   flex-direction: column;
 }
 
+.inp_con input::placeholder {
+  color: lightgrey;
+}
+
 .inp_con label {
   color: #fff;
   font-size: 0.8rem;
@@ -575,6 +583,25 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: 0.2rem;
+}
+
+.inp_con_target_type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  height: 46.133px;
+  width: 250px;
+  background: rgba(217, 217, 217, 0.1);
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+}
+
+.inp_con_target_type:hover {
+  background: rgba(217, 217, 217, 0.3);
 }
 
 .inp_con select,
@@ -585,6 +612,10 @@
   outline: none;
   padding: 1rem;
   color: white;
+}
+
+.inp_con input:hover {
+  background: rgba(217, 217, 217, 0.3);
 }
 
 .inp_con select option {
