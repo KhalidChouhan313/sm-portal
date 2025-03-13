@@ -427,6 +427,7 @@ h6 {
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .a_top_1 h1 {
