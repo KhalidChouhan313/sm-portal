@@ -27,8 +27,10 @@
             <span>Export</span>
         </button>
     </div> -->
-
-  <div class="bot">
+  <div style="height: 100%; width: 100%" *ngIf="!isUpdated">
+    <app-loader></app-loader>
+  </div>
+  <div class="bot" *ngIf="isUpdated">
     <div class="btn-con">
       <button
         *ngFor="let btn of buttons; let i = index"
@@ -47,7 +49,9 @@
               ? "Total Messages"
               : activeIndex === 1
               ? "Total WhatsApp"
-              : "Total SMS"
+              : activeIndex === 2
+              ? "Total SMS"
+              : "Not Sent"
           }}
         </h5>
         <p>
@@ -56,7 +60,9 @@
               ? totalMsg
               : activeIndex === 1
               ? totalWhatsapp
-              : totalSms
+              : activeIndex === 2
+              ? totalSms
+              : notSent
           }}
         </p>
       </div>

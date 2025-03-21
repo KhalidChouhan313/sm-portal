@@ -13,7 +13,7 @@
           fill="#636364"
         />
       </svg>
-      <span>Import Message:</span>
+      <span>Important Message:</span>
     </div>
     <p>
       Adding phone numbers to blocked list will prevent that number from
@@ -71,7 +71,7 @@
         style="border: 1px solid lightgray"
         *ngFor="let t of tabs"
         [class.active]="t === tab"
-        (click)="this.tab = t"
+        (click)="onTabChange(t)"
       >
         {{ t }}
       </button>
@@ -95,6 +95,7 @@
           [formControl]="numberControl"
           maxlength="12"
           (keypress)="restrictInput($event)"
+          (keyup.enter)="showPhoneNumber()"
           placeholder="+44 090481937"
         />
       </div>
@@ -192,20 +193,28 @@
           for=""
           >Target Type</label
         >
+        <!-- <select [(ngModel)]="type">
+      <option value="">Select Target</option>
+      <option value="both">Both</option>
+      <option value="sms">SMS</option>
+      <option value="whatsapp">WhatsApp</option>
+    </select> -->
         <div class="inp_con_target_type">
           <div style="display: flex; gap: 5px">
             <label for="">WhatsApp</label>
-            <!-- <select [(ngModel)]="type">
-          <option value="">Select Target</option>
-          <option value="both">Both</option>
-          <option value="sms">SMS</option>
-          <option value="whatsapp">WhatsApp</option>
-        </select> -->
-            <div class="switch_box" [class.active]="true"></div>
+            <div
+              class="switch_box"
+              [class.active]="isWhatsApp"
+              (click)="updateType('whatsapp')"
+            ></div>
           </div>
           <div style="display: flex; gap: 5px">
             <label for="">SMS</label>
-            <div class="switch_box" [class.active]="false"></div>
+            <div
+              class="switch_box"
+              [class.active]="isSMS"
+              (click)="updateType('sms')"
+            ></div>
           </div>
         </div>
       </div>
@@ -222,13 +231,8 @@
       <div class="t-item">
         <div class="ti-item">No</div>
         <div class="ti-item">User Mobile Number</div>
-        <div class="ti-item">
-          <img style="height: 24px" src="../../../assets/Pencil.png" />
-          WhatsApp
-        </div>
-        <div class="ti-item">
-          <img style="height: 24px" src="../../../assets/Pencil.png" /> SMS
-        </div>
+        <div class="ti-item">WhatsApp</div>
+        <div class="ti-item">SMS</div>
         <div class="ti-item">Actions</div>
       </div>
       <div
@@ -243,7 +247,10 @@
         <app-loader></app-loader>
       </div>
       <ng-container *ngIf="!isLoad">
-        <div *ngFor="let it of blacklist; let i = index" class="t-item">
+        <div *ngIf="filteredBlacklist.length == 0" style="text-align: center">
+          No data found
+        </div>
+        <div *ngFor="let it of filteredBlacklist; let i = index" class="t-item">
           <div class="ti-item" style="height: fit-content">
             <p
               style="

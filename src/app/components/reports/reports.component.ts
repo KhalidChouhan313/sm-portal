@@ -19,6 +19,7 @@ export class ReportsComponent implements OnInit, OnChanges {
   @Input() totalSms: any;
   @Input() percentChange: any;
   @Input() totalWhatsapp: any;
+  @Input() notSent: any;
   activeIndex: number = 0; // Default to "Total"
   buttons = ['Total', 'WhatsApp', 'SMS', 'Not Sent'];
   chart: any; // Store chart instance
@@ -32,13 +33,15 @@ export class ReportsComponent implements OnInit, OnChanges {
       setTimeout(() => this.updateChart(), 200);
     }
   }
-
+  isUpdated = false;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['graphData'] && changes['graphData'].currentValue) {
+      console.log(this.notSent);
       this.activeIndex = 0;
       this.updateChart();
       setTimeout(() => {
         this.activeIndex = 0;
+        this.isUpdated = true;
         this.updateChart();
       }, 5000);
     }
@@ -51,13 +54,21 @@ export class ReportsComponent implements OnInit, OnChanges {
   }
 
   updateChart(): void {
-    if (!this.graphData || this.graphData.length === 0) return;
+    if (!this.graphData || this.graphData.length === 0) {
+      return;
+    }
+
     console.log(this.graphData);
 
     this.graphData[0]['data'] = this.rotateZeros(this.graphData[0]['data']);
     this.graphData[1]['data'] = this.rotateZeros(this.graphData[1]['data']);
     this.graphData[2]['data'] = this.rotateZeros(this.graphData[2]['data']);
     this.graphData[3]['data'] = this.rotateZeros(this.graphData[3]['data']);
+
+    // // Check if any data array has non-zero values
+    // this.isUpdated = this.graphData.some((item) =>
+    //   item.data.some((value) => value !== 0)
+    // );
 
     const canvas = document.getElementById('lineChart') as HTMLCanvasElement;
     if (!canvas) return;
@@ -77,13 +88,13 @@ export class ReportsComponent implements OnInit, OnChanges {
         day: 'numeric',
       });
     });
-
     let datasets = [];
 
     const createGradient = (color: string) => {
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
       gradient.addColorStop(0, color); // Start with full color
       gradient.addColorStop(1, color.replace(/[\d.]+\)$/g, '0.1)')); // End with 0 opacity
+
       return gradient;
     };
 

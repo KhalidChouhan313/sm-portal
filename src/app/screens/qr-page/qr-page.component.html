@@ -1,0 +1,1028 @@
+<main>
+  <div class="nav">
+    <img src="../../../assets/info-icon.png" />
+    <button
+      (click)="setActive('universal')"
+      [class.active]="activeButton === 'universal'"
+    >
+      Universal QR
+    </button>
+    <button
+      (click)="setActive('smart')"
+      [class.active]="activeButton === 'smart'"
+    >
+      Smart Locations QR
+    </button>
+  </div>
+
+  <div class="qr-banner">
+    <div>
+      <h3>Universal QR Code – Instant Taxi Bookings!</h3>
+      <p>
+        Generate a Universal QR Code to let anyone book a ride instantly! When
+        scanned, users are redirected to the Taxi Messages WhatsApp chatbot,
+        where they can enter their location and request a ride. 
+      </p>
+      <p>
+        Perfect for: Taxi stands, public places, hotels, and businesses that
+        want to offer easy ride access.
+      </p>
+    </div>
+    <img src="../../../assets/qr-banner-img.png" />
+    <img src="../../../assets/qr-banner-gradient.png" />
+  </div>
+
+  <!-- Content for Universal QR -->
+  <div *ngIf="activeButton === 'universal'">
+    <h2 class="qr-sec">
+      <img height="15px" width="15px" src="../../../assets/info-icon.png" /> Set
+      Up Your Universal QR Code
+    </h2>
+    <div class="note-banner">
+      <strong
+        ><img src="../../../assets/info-icon.png" /> Important Note:
+      </strong>
+      <p>
+        Create a Universal QR Code for instant taxi bookings, allowing users to
+        scan and access the Taxi Messages chatbot seamlessly. Easily customize
+        your QR, update details anytime, and download it in PDF, PNG, or JPG
+        formats for easy sharing. Perfect for taxi stands, hotels, offices, and
+        public spaces, this QR code ensures quick and hassle-free ride access in
+        just one scan.
+      </p>
+      <button>
+        <img src="../../../assets/close-icon.png" />
+      </button>
+    </div>
+    <div class="main">
+      <div class="main-left">
+        <div>
+          <p style="width: 100%; display: flex; justify-content: space-between">
+            Title Name
+            <img
+              style="width: 10px; height: 10px"
+              src="../../../assets/edit-pen.png"
+            />
+          </p>
+          <input
+            [(ngModel)]="inputUniversalTitleName"
+            placeholder="Type here"
+          />
+        </div>
+        <div class="left-textarea">
+          <p style="width: 100%; display: flex; justify-content: space-between">
+            Preference Text
+            <span>
+              {{ inputUniversalPreferenceText?.length || 0 }}/200
+              <img
+                style="width: 10px; height: 10px"
+                src="../../../assets/edit-pen.png"
+              />
+            </span>
+          </p>
+          <textarea
+            [(ngModel)]="inputUniversalPreferenceText"
+            placeholder="Type here"
+          ></textarea>
+        </div>
+        <div class="left-btn-con">
+          <button *ngIf="!universalQrData" (click)="generateUniversalQRCode()">
+            Generate QR Code
+          </button>
+          <button *ngIf="universalQrData">Save & View Stats</button>
+          <button
+            *ngIf="universalQrData"
+            (click)="generateUniversalQRCode()"
+            style="width: 150px"
+          >
+            Edit Details
+          </button>
+        </div>
+      </div>
+      <div class="main-right">
+        <!-- <div>
+          <button *ngIf="!universalQrData">
+            <img src="../../../assets/refresh-white.png" />
+          </button>
+          <button *ngIf="universalQrData" (click)="downloadUniversalQRCode()">
+            <img src="../../../assets/download-icon.png" />
+          </button>
+        </div> -->
+        <div class="qr-con">
+          <img
+            *ngIf="!universalQrData"
+            class="qr-gif"
+            src="../../../assets/qr-gif.gif"
+          />
+          <img
+            *ngIf="!universalQrData"
+            class="qr-code"
+            src="../../../assets/empty-qr-area.png"
+          />
+          <qrcode
+            class="qr-code"
+            *ngIf="universalQrData"
+            [qrdata]="universalQrData"
+            [errorCorrectionLevel]="'M'"
+            [width]="300"
+          ></qrcode>
+        </div>
+        <p class="main-right-info-text" *ngIf="!universalQrData">
+          Click the "Generate" button to create a QR code
+        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+          "
+        >
+          <div
+            *ngIf="universalQrData"
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 10px;
+              width: 450px;
+            "
+          >
+            <button
+              style="
+                display: flex;
+                width: 60%;
+                height: 41px;
+                align-items: center;
+                gap: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+                background: white;
+                color: var(--dark-color, #181818);
+                text-align: center;
+                font-family: Nunito;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
+              "
+            >
+              <svg
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.59998 13.7199L1.59998 17.4257C1.59998 17.9874 1.82123 18.526 2.21505 18.9231C2.60888 19.3203 3.14302 19.5434 3.69998 19.5434H16.3C16.8569 19.5434 17.3911 19.3203 17.7849 18.9231C18.1787 18.526 18.4 17.9874 18.4 17.4257V13.7199M10.0011 1.45667V13.4567M10.0011 13.4567L14.8011 8.87151M10.0011 13.4567L5.20115 8.87151"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Download QR Code
+            </button>
+            <button
+              style="
+                display: flex;
+                width: 40%;
+                height: 41px;
+                align-items: center;
+                gap: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+                background: white;
+                color: var(--dark-color, #181818);
+                text-align: center;
+                font-family: Nunito;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
+              "
+            >
+              <svg
+                width="18"
+                height="19"
+                viewBox="0 0 18 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.1625 7.47502H16.1875C16.7467 7.47502 17.2 7.92834 17.2 8.48752L17.2 15.6C17.2 16.7046 16.3046 17.6 15.2 17.6L8.0875 17.6C7.52831 17.6 7.075 17.1467 7.075 16.5875V14.5625M9.1 1.40002L3.025 1.40002C1.90662 1.40002 1 2.30665 1 3.42502L1 9.50002C1 10.6184 1.90662 11.525 3.025 11.525L9.1 11.525C10.2184 11.525 11.125 10.6184 11.125 9.50002L11.125 3.42502C11.125 2.30665 10.2184 1.40003 9.1 1.40002Z"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Copy Link
+            </button>
+          </div>
+        </div>
+        <button
+          style="width: 450px; height: 50px; display: flex; align-items: center"
+          *ngIf="universalQrData"
+        >
+          Customize QR Code
+        </button>
+        <!-- <button>
+            <img src="../../../assets/download-white.png" />
+            Download QR Code
+          </button> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Content for Smart Locations QR -->
+  <div *ngIf="activeButton === 'smart'">
+    <h2 class="qr-sec">
+      <img height="15px" width="15px" src="../../../assets/info-icon.png" /> Set
+      Up Your Smart Location QR
+    </h2>
+    <div class="note-banner">
+      <strong
+        ><img src="../../../assets/info-icon.png" /> Important Note:
+      </strong>
+      <p>
+        Create a Universal QR Code for instant taxi bookings, allowing users to
+        scan and access the Taxi Messages chatbot seamlessly. Easily customize
+        your QR, update details anytime, and download it in PDF, PNG, or JPG
+        formats for easy sharing. Perfect for taxi stands, hotels, offices, and
+        public spaces, this QR code ensures quick and hassle-free ride access in
+        just one scan.
+      </p>
+      <button>
+        <img src="../../../assets/close-icon.png" />
+      </button>
+    </div>
+    <div class="main">
+      <div class="main-left">
+        <div>
+          <p style="width: 100%; display: flex; justify-content: space-between">
+            Title Name
+            <img
+              style="width: 10px; height: 10px"
+              src="../../../assets/edit-pen.png"
+            />
+          </p>
+          <input [(ngModel)]="inputSmartTitleName" placeholder="Type here" />
+        </div>
+        <div class="left-textarea">
+          <p style="width: 100%; display: flex; justify-content: space-between">
+            Pickup Location
+            <span>
+              {{ inputSmartPickup.length || 0 }}/200
+              <img
+                style="width: 10px; height: 10px"
+                src="../../../assets/edit-pen.png"
+              />
+            </span>
+          </p>
+          <textarea
+            [(ngModel)]="inputSmartPickup"
+            placeholder="Type here"
+          ></textarea>
+        </div>
+        <div class="left-btn-con">
+          <button *ngIf="!smartQrData" (click)="generateSmartQRCode()">
+            Generate QR Code
+          </button>
+          <button *ngIf="smartQrData">Save & View Stats</button>
+          <button
+            *ngIf="smartQrData"
+            (click)="generateSmartQRCode()"
+            style="width: 150px"
+          >
+            Edit Details
+          </button>
+        </div>
+      </div>
+      <div class="main-right">
+        <!-- <div>
+          <button *ngIf="!smartQrData">
+            <img src="../../../assets/refresh-white.png" />
+          </button>
+          <button *ngIf="smartQrData" (click)="downloadSmartQRCode()">
+            <img src="../../../assets/download-icon.png" />
+          </button>
+        </div> -->
+        <div class="qr-con">
+          <img
+            *ngIf="!smartQrData"
+            class="qr-gif"
+            src="../../../assets/qr-gif.gif"
+          />
+          <img
+            *ngIf="!smartQrData"
+            class="qr-code"
+            src="../../../assets/empty-qr-area.png"
+          />
+          <qrcode
+            class="qr-code"
+            *ngIf="smartQrData"
+            [qrdata]="smartQrData"
+            [errorCorrectionLevel]="'M'"
+            [width]="200"
+          ></qrcode>
+        </div>
+
+        <p class="main-right-info-text" *ngIf="!smartQrData">
+          Click the "Generate" button to create a QR code
+        </p>
+
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+          "
+        >
+          <p class="main-right-info-text" *ngIf="smartQrData">
+            Download QR Code
+          </p>
+        </div>
+        <button *ngIf="smartQrData">Customize QR Code</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<main>
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <h2 class="qr-sec">
+      <img height="15px" width="15px" src="../../../assets/info-icon.png" />
+
+      Set QR Code List
+    </h2>
+    <button
+      style="
+        border-radius: 8px;
+        background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+        color: #fff;
+        font-family: Nunito;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.54px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border: none;
+        padding: 10px 20px;
+      "
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
+          fill="white"
+        />
+      </svg>
+      Add QR Code
+    </button>
+  </div>
+  <div class="note-banner" style="margin-bottom: 40px">
+    <strong
+      ><img src="../../../assets/info-icon.png" /> Important Note:
+    </strong>
+    <p>
+      Create a Universal QR Code for instant taxi bookings, allowing users to
+      scan and access the Taxi Messages chatbot seamlessly. Easily customize
+      your QR, update details anytime, and download it in PDF, PNG, or JPG
+      formats for easy sharing. Perfect for taxi stands, hotels, offices, and
+      public spaces, this QR code ensures quick and hassle-free ride access in
+      just one scan.
+    </p>
+    <button>
+      <img src="../../../assets/close-icon.png" />
+    </button>
+  </div>
+  <div class="qr-table">
+    <div class="qr-table-head">
+      <div>No</div>
+      <div>QR Code</div>
+      <div>Create Date & Time</div>
+      <div>Title</div>
+      <div>Description</div>
+      <div>Status</div>
+      <div>Actions</div>
+    </div>
+    <div class="qr-table-body">
+      <div class="qr-table-item">
+        <div>
+          <div>01</div>
+        </div>
+
+        <div>
+          <div
+            style="
+              height: fit-content;
+              width: 100px;
+              display: flex;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/temp-qr.png" />
+          </div>
+        </div>
+        <div>12/07/2024 , 4:15:12 PM</div>
+        <div>This the title of QR code</div>
+        <div>
+           Lorem Ipsum has been the industry's standard dummy text ever since
+          the 1500s............
+        </div>
+        <div>
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+          </svg>
+          Active
+        </div>
+        <div>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/see-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/edit-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/delete-qr.png" />
+          </span>
+        </div>
+      </div>
+
+      <div class="qr-table-item">
+        <div>
+          <div>01</div>
+        </div>
+
+        <div>
+          <div
+            style="
+              height: fit-content;
+              width: 100px;
+              display: flex;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/temp-qr.png" />
+          </div>
+        </div>
+        <div>12/07/2024 , 4:15:12 PM</div>
+        <div>This the title of QR code</div>
+        <div>
+           Lorem Ipsum has been the industry's standard dummy text ever since
+          the 1500s............
+        </div>
+        <div>
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+          </svg>
+          Active
+        </div>
+        <div>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/see-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/edit-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/delete-qr.png" />
+          </span>
+        </div>
+      </div>
+
+      <div class="qr-table-item">
+        <div>
+          <div>01</div>
+        </div>
+
+        <div>
+          <div
+            style="
+              height: fit-content;
+              width: 100px;
+              display: flex;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/temp-qr.png" />
+          </div>
+        </div>
+        <div>12/07/2024 , 4:15:12 PM</div>
+        <div>This the title of QR code</div>
+        <div>
+           Lorem Ipsum has been the industry's standard dummy text ever since
+          the 1500s............
+        </div>
+        <div>
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+          </svg>
+          Active
+        </div>
+        <div>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/see-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/edit-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/delete-qr.png" />
+          </span>
+        </div>
+      </div>
+
+      <div class="qr-table-item">
+        <div>
+          <div>01</div>
+        </div>
+
+        <div>
+          <div
+            style="
+              height: fit-content;
+              width: 100px;
+              display: flex;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/temp-qr.png" />
+          </div>
+        </div>
+        <div>12/07/2024 , 4:15:12 PM</div>
+        <div>This the title of QR code</div>
+        <div>
+           Lorem Ipsum has been the industry's standard dummy text ever since
+          the 1500s............
+        </div>
+        <div>
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+          </svg>
+          Active
+        </div>
+        <div>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/see-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/edit-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/delete-qr.png" />
+          </span>
+        </div>
+      </div>
+
+      <div class="qr-table-item-container">
+        <div class="qr-table-item">
+          <div>
+            <div>01</div>
+          </div>
+
+          <div>
+            <div
+              style="
+                height: fit-content;
+                width: 100px;
+                display: flex;
+                justify-content: center;
+                border-radius: 10px;
+              "
+            >
+              <img style="width: 100%" src="../../../assets/temp-qr.png" />
+            </div>
+          </div>
+          <div>12/07/2024 , 4:15:12 PM</div>
+          <div>This the title of QR code</div>
+          <div>
+             Lorem Ipsum has been the industry's standard dummy text ever since
+            the 1500s............
+          </div>
+          <div>
+            <svg
+              width="15"
+              height="16"
+              viewBox="0 0 15 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+            </svg>
+            Active
+          </div>
+          <div>
+            <span
+              style="
+                height: 25px;
+                width: 30px;
+                border: 1px solid grey;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img style="width: 20px" src="../../../assets/see-qr.png" />
+            </span>
+            <span
+              style="
+                height: 25px;
+                width: 30px;
+                border: 1px solid grey;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img style="width: 20px" src="../../../assets/edit-qr.png" />
+            </span>
+            <span
+              style="
+                height: 25px;
+                width: 30px;
+                border: 1px solid grey;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img style="width: 20px" src="../../../assets/delete-qr.png" />
+            </span>
+          </div>
+        </div>
+
+        <div class="qr-table-item-detail">
+          <div class="qr-table-item-detail-l">
+            <div class="item-detail-qr">
+              <img src="../../../assets/temp-qr.png" />
+            </div>
+            <div class="item-detail-2">
+              <p><span>Created: </span> Jan 15, 2025 , 4:12 PM</p>
+              <button>
+                <svg
+                  width="18"
+                  height="19"
+                  viewBox="0 0 18 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.1625 7.63054H16.1875C16.7467 7.63054 17.2 8.08385 17.2 8.64304L17.2 15.7555C17.2 16.8601 16.3046 17.7555 15.2 17.7555L8.0875 17.7555C7.52831 17.7555 7.075 17.3022 7.075 16.743V14.718M9.1 1.55554L3.025 1.55554C1.90662 1.55554 1 2.46217 1 3.58054L1 9.65554C1 10.7739 1.90662 11.6805 3.025 11.6805L9.1 11.6805C10.2184 11.6805 11.125 10.7739 11.125 9.65554L11.125 3.58054C11.125 2.46217 10.2184 1.55554 9.1 1.55554Z"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Copy Link
+              </button>
+            </div>
+            <div class="item-detail-3">
+              <input placeholder="Enter title here" />
+              <button><img src="../../../assets/edit-pen.png" /></button>
+            </div>
+            <div class="item-detail-4">
+              Status :
+              <label class="switch_box">
+                <input type="checkbox" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="qr-table-item-detail-r">
+            <div class="item-detail-r-1">
+              <svg
+                width="24"
+                height="14"
+                viewBox="0 0 24 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 11.9555L11.8 2.15552L21.6 11.9555"
+                  stroke="#636364"
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="item-detail-r-2">
+              <div>
+                <p>1,124</p>
+                <p>Total Scans</p>
+              </div>
+              <div>
+                <p>897</p>
+                <p>Bookings</p>
+              </div>
+            </div>
+            <textarea>Enter text here</textarea>
+            <div class="item-detail-r-4">
+              <button>
+                <svg
+                  width="20"
+                  height="21"
+                  viewBox="0 0 20 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.6001 13.9531L1.6001 17.659C1.6001 18.2206 1.82135 18.7593 2.21517 19.1564C2.609 19.5536 3.14314 19.7767 3.7001 19.7767H16.3001C16.8571 19.7767 17.3912 19.5536 17.785 19.1564C18.1788 18.7593 18.4001 18.2206 18.4001 17.659V13.9531M10.0013 1.68994V13.6899M10.0013 13.6899L14.8013 9.10479M10.0013 13.6899L5.20127 9.10479"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Download QR
+              </button>
+              <button>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.5 1.47778V20.6778H20.7M6.3 13.4779L10.5 9.27791L13.5 12.2779L20.1 5.67791M15.6097 5.07778H20.7009V10.169"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                View Stats
+              </button>
+              <button>
+                <svg
+                  width="22"
+                  height="23"
+                  viewBox="0 0 22 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.60059 4.47775H20.8006M8.80059 16.4777V9.27775M13.6006 16.4777V9.27775M16.0006 21.2777H6.40059C5.0751 21.2777 4.00059 20.2032 4.00059 18.8777V5.67775C4.00059 5.015 4.53784 4.47775 5.20059 4.47775H17.2006C17.8633 4.47775 18.4006 5.01501 18.4006 5.67775V18.8777C18.4006 20.2032 17.3261 21.2777 16.0006 21.2777ZM8.80059 4.47775H13.6006C14.2633 4.47775 14.8006 3.94049 14.8006 3.27775V2.07775C14.8006 1.415 14.2633 0.877747 13.6006 0.877747H8.80059C8.13784 0.877747 7.60059 1.415 7.60059 2.07775V3.27775C7.60059 3.94049 8.13784 4.47775 8.80059 4.47775Z"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="qr-table-item">
+        <div>
+          <div>01</div>
+        </div>
+
+        <div>
+          <div
+            style="
+              height: fit-content;
+              width: 100px;
+              display: flex;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/temp-qr.png" />
+          </div>
+        </div>
+        <div>12/07/2024 , 4:15:12 PM</div>
+        <div>This the title of QR code</div>
+        <div>
+           Lorem Ipsum has been the industry's standard dummy text ever since
+          the 1500s............
+        </div>
+        <div>
+          <svg
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+          </svg>
+          Active
+        </div>
+        <div>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/see-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/edit-qr.png" />
+          </span>
+          <span
+            style="
+              height: 25px;
+              width: 30px;
+              border: 1px solid grey;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img style="width: 20px" src="../../../assets/delete-qr.png" />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

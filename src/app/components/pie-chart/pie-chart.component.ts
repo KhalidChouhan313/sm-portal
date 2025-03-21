@@ -55,8 +55,13 @@ export class PieChartComponent implements OnInit, OnChanges {
     Chart.register(...registerables); // ✅ Ensure Chart.js is registered
   }
 
+  isUpdated = false;
+
   ngOnInit(): void {
     this.updateChartData();
+    setTimeout(() => {
+      this.isUpdated = true;
+    }, 5000);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

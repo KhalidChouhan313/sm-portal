@@ -254,6 +254,7 @@
         [totalMsg]="totalMsg"
         [totalSms]="totalSms"
         [totalWhatsapp]="totalWhatsapp"
+        [notSent]="notSent"
       ></app-reports>
     </div>
     <div class="msg-details">
@@ -500,7 +501,7 @@
           <tr *ngFor="let item of messageList">
             <div *ngIf="!messageList">No data</div>
             <td style="text-transform: uppercase">
-              {{ item.createdAt | date : "MMM, dd/MM/y, h:mma" }}
+              {{ item.createdAt | date : "dd/MM/y, h:mma" }}
             </td>
 
             <td

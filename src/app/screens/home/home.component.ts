@@ -3,6 +3,8 @@ import { AdminService } from 'src/services';
 import { AuthService } from 'src/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChartDataset } from 'chart.js';
+import { forkJoin } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +15,8 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private AS: AdminService,
     private router: Router,
-    private eRef: ElementRef
+    private eRef: ElementRef,
+    private fb: FormBuilder
   ) {}
 
   currentUser: any;
@@ -37,6 +40,7 @@ export class HomeComponent implements OnInit {
   totalMsg = 0;
   totalSms = 0;
   totalWhatsapp = 0;
+  notSent = 0;
   pieData: any;
   barChartData: ChartDataset[] = [
     { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
@@ -129,6 +133,7 @@ export class HomeComponent implements OnInit {
           this.totalMsg = 0;
           this.totalSms = 0;
           this.totalWhatsapp = 0;
+          this.notSent = 0;
           this.barChartData = [
             { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
             { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
@@ -176,6 +181,9 @@ export class HomeComponent implements OnInit {
               }
               if (gv.sent_by == 1) {
                 this.totalWhatsapp++;
+              }
+              if (gv.sent_by == 2) {
+                this.notSent++;
               }
 
               let td = new Date();
@@ -296,55 +304,53 @@ export class HomeComponent implements OnInit {
     this.page = 0;
     this.isMsgLoad = true;
     this.currentPageLimit = 0;
-    let obj = {
-      device_id: this.deviceList[0].device_id,
-      company_id: this.deviceList[0]._id,
-      skip: 0,
-    };
 
-    let t = new Date();
-    let fd = new Date(this.f_date);
-    let tz = t.getTimezoneOffset() / 60;
-    if (this.f_date != '' && this.t_date != '') {
-      fd.setDate(fd.getDate() - 1);
-      let fh = 24 + tz;
-      let m = (fd.getMonth() + 1).toString();
-      let d = fd.getDate().toString();
-      if (parseInt(m) < 10) {
-        m = '0' + m;
+    this.messageList = []; // Reset message list once at the start
+
+    const requests = this.deviceList.map((item) => {
+      let obj = {
+        device_id: item.device_id,
+        company_id: this.currentUser._id,
+        skip: 0,
+      };
+
+      let t = new Date();
+      let fd = new Date(this.f_date);
+      let tz = t.getTimezoneOffset() / 60;
+
+      if (this.f_date && this.t_date) {
+        fd.setDate(fd.getDate() - 1);
+        let fh = 24 + tz;
+        let m = (fd.getMonth() + 1).toString().padStart(2, '0');
+        let d = fd.getDate().toString().padStart(2, '0');
+
+        this.fDate = `${fd.getFullYear()}-${m}-${d}T${fh}:00:00.000Z`;
+
+        let th = 23 + tz;
+        this.tDate = `${this.t_date}T${th}:59:59.999Z`;
+
+        obj['fDate'] = this.fDate;
+        obj['tDate'] = this.tDate;
       }
-      if (parseInt(d) < 10) {
-        d = '0' + d;
-      }
-      this.fDate =
-        fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
 
-      let th = 23 + tz;
-      this.tDate = this.t_date + 'T' + th + ':59:59.999Z';
+      if (this.target) obj['target'] = this.target;
+      if (this.target_type) obj['target_type'] = this.target_type;
+      if (this.sent_by) obj['sent_by'] = parseInt(this.sent_by);
+      if (this.status) obj['status'] = this.status;
 
-      // let qry = { createdAt: { $gte: new Date("2021-09-30T19:00:00.000Z"), $lte: new Date("2021-10-03T18:59:59.999Z") } }
-      obj['fDate'] = this.fDate;
-      obj['tDate'] = this.tDate;
-    }
-    if (this.target != '') {
-      obj['target'] = this.target;
-    }
-    if (this.target_type != '') {
-      obj['target_type'] = this.target_type;
-    }
-    if (this.sent_by != '') {
-      obj['sent_by'] = parseInt(this.sent_by);
-    }
-    if (this.status != '') {
-      obj['status'] = this.status;
-    }
-    this.AS.getMessageList(obj).subscribe((ml) => {
-      this.messageList = ml;
-      console.log(ml);
-      console.log('sm', ml);
-      // this.currentPageLimit += 50
+      console.log('obj', obj);
+
+      return this.AS.getMessageList(obj);
+    });
+
+    // Wait for all API calls to complete and merge results
+    forkJoin(requests).subscribe((results) => {
+      this.messageList = results.flat(); // Flatten and merge all responses
+      console.log('Combined Messages:', this.messageList);
       this.isMsgLoad = false;
     });
+
+    this.showFilters = false;
   }
 
   clean() {
@@ -355,5 +361,6 @@ export class HomeComponent implements OnInit {
     this.sent_by = '';
     this.f_date = '';
     this.t_date = '';
+    this.search();
   }
 }

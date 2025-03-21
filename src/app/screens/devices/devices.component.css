@@ -1069,23 +1069,23 @@ tr {
 /* Set specific column widths */
 .a_table th:nth-child(1),
 .a_table td:nth-child(1) {
-  width: 350px;
-  min-width: 350px;
+  width: 150px;
+  min-width: 150px;
 } /* Created At */
 .a_table th:nth-child(2),
 .a_table td:nth-child(2) {
-  width: 180px;
-  min-width: 180px;
+  width: 130px;
+  min-width: 130px;
 } /* Target Type */
 .a_table th:nth-child(3),
 .a_table td:nth-child(3) {
-  width: 170px;
-  min-width: 170px;
+  width: 160px;
+  min-width: 160px;
 } /* Target */
 .a_table th:nth-child(4),
 .a_table td:nth-child(4) {
-  width: 200px;
-  min-width: 200px;
+  width: 120px;
+  min-width: 120px;
 } /* Message Type */
 .a_table th:nth-child(5),
 .a_table td:nth-child(5) {
@@ -1094,13 +1094,13 @@ tr {
 } /* Sent Via */
 .a_table th:nth-child(6),
 .a_table td:nth-child(6) {
-  width: 150px;
-  min-width: 150px;
+  width: 100px;
+  min-width: 100px;
 } /* Status */
 .a_table th:nth-child(7),
-.a_table td:nth-child(7) {
-  width: 350px; /* Set a fixed width */
-  max-width: 350px; /* Ensure it doesn't exceed this width */
+.a_table .msg_cell td {
+  width: 350px !important; /* Set a fixed width */
+  max-width: 350px !important; /* Ensure it doesn't exceed this width */
   overflow-x: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; /* Show "..." at the end */
   white-space: nowrap; /* Keep text on one line */

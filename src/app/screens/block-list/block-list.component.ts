@@ -20,14 +20,32 @@ export class BlockListComponent {
   showAddCon = false;
   currentUser: any;
   blacklist = [];
+  filteredBlacklist: any[] = [];
   phone = '';
   isLoad = true;
   whatsapp = false;
   sms = false;
   type = '';
+  isWhatsApp = false;
+  isSMS = false;
 
-  updateType(event: Event): void {
-    this.type = (event.target as HTMLSelectElement).value;
+  updateType(option: string): void {
+    if (option === 'whatsapp') {
+      this.isWhatsApp = !this.isWhatsApp;
+    } else if (option === 'sms') {
+      this.isSMS = !this.isSMS;
+    }
+
+    // Set the type value based on active switches
+    if (this.isWhatsApp && this.isSMS) {
+      this.type = 'both';
+    } else if (this.isWhatsApp) {
+      this.type = 'whatsapp';
+    } else if (this.isSMS) {
+      this.type = 'sms';
+    } else {
+      this.type = '';
+    }
   }
 
   updatePhone(event: Event): void {
@@ -41,10 +59,27 @@ export class BlockListComponent {
     if (!this.currentUser) {
       this.router.navigateByUrl('/login');
     }
+
     this.BS.getBlacklistUser(this.currentUser._id).subscribe((list) => {
       this.blacklist = list;
+      this.filterBlacklist(); // Initial filtering based on the default tab
       this.isLoad = false;
     });
+  }
+
+  showPhoneNumber() {
+    const enteredNumber = this.numberControl.value;
+    const foundNumber = this.filteredBlacklist.find(
+      (item) => item.phone === enteredNumber
+    );
+
+    if (foundNumber) {
+      this.filteredBlacklist = [foundNumber];
+    } else if (!enteredNumber) {
+      this.filterBlacklist();
+    } else {
+      this.filteredBlacklist = [];
+    }
   }
 
   addBlacklistUser() {
@@ -157,5 +192,22 @@ export class BlockListComponent {
   toggleVisibility() {
     console.log('working');
     this.isVisible = !this.isVisible; // Toggle the boolean value
+  }
+
+  onTabChange(tab: string) {
+    this.tab = tab;
+    this.filterBlacklist();
+  }
+
+  filterBlacklist() {
+    if (this.tab === 'All Messages') {
+      this.filteredBlacklist = this.blacklist;
+    } else {
+      this.filteredBlacklist = this.blacklist.filter(
+        (item) =>
+          (this.tab === 'WhatsApp' && item.whatsapp) ||
+          (this.tab === 'SMS' && item.sms)
+      );
+    }
   }
 }

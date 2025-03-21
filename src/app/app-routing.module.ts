@@ -40,10 +40,18 @@ const routes: Routes = [
         (m) => m.BookingsModule
       ),
   },
+
   {
-    path: 'chatbot/qr-code',
+    path: 'chatbot/QR-page',
     loadChildren: () =>
-      import('./screens/qr-code/qr-code.module').then((m) => m.QrCodeModule),
+      import('./screens/qr-page/qr-page.module').then((m) => m.QrPageModule),
+  },
+  {
+    path: 'chatbot/QR-page/qr-stacks',
+    loadChildren: () =>
+      import('./screens/qr-stacks/qr-stacks.module').then(
+        (m) => m.QrStacksModule
+      ),
   },
   {
     path: 'chatbot/customers',

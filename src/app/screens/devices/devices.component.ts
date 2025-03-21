@@ -112,6 +112,7 @@ export class DevicesComponent implements OnInit {
   totalSms = 0;
   totalWhatsapp = 0;
   totalFailed = 0;
+  notSent = 0;
   showFilters = false;
 
   deviceConnections = {};
@@ -401,7 +402,7 @@ export class DevicesComponent implements OnInit {
     this.totalMsg = 0;
     this.totalSms = 0;
     this.totalWhatsapp = 0;
-    this.totalFailed = 0;
+    this.notSent = 0;
     let endDate = new Date();
     let startDate = new Date();
     startDate.setDate(startDate.getDate() - 6);
@@ -466,8 +467,8 @@ export class DevicesComponent implements OnInit {
         if (gv.sent_by == 1) {
           this.totalWhatsapp++;
         }
-        if (gv.send_by == 3) {
-          this.totalFailed++;
+        if (gv.sent_by == 2) {
+          this.notSent++;
         }
         let td = new Date();
         let d = new Date(gv.createdAt);
@@ -675,6 +676,7 @@ export class DevicesComponent implements OnInit {
     this.sent_by = '';
     this.f_date = '';
     this.t_date = '';
+    this.search();
   }
 
   createImageFromBlob(image: Blob) {
@@ -849,6 +851,7 @@ export class DevicesComponent implements OnInit {
       // this.currentPageLimit += 50
       this.isMsgLoad = false;
     });
+    this.showFilters = false;
   }
 
   nextPage() {

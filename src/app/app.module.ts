@@ -38,10 +38,12 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { TotalTtvComponent } from './components/total-ttv/total-ttv.component';
 import { VehicleInsightsComponent } from './components/vehicle-insights/vehicle-insights.component';
 import { TotalBookingsComponent } from './components/total-bookings/total-bookings.component';
-import { QrCodeComponent } from './screens/qr-code/qr-code.component';
 // import { ReportsDeviceComponent } from './components/reports-device/reports-device.component';
 
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { QrPageComponent } from './screens/qr-page/qr-page.component';
+import { QRCodeComponent } from 'angularx-qrcode';
+import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     TotalTtvComponent,
     VehicleInsightsComponent,
     TotalBookingsComponent,
-    QrCodeComponent,
+    QrPageComponent,
+    QrStacksComponent,
     // ReportsDeviceComponent,
   ],
   imports: [
@@ -89,6 +92,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     BrowserAnimationsModule,
     HttpClientModule,
     PickerModule,
+    QRCodeComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -171,16 +171,16 @@ h6 {
 .d_card {
   border-radius: 20px;
   background: var(--Secondary-Primary-White, #fff);
-  padding: 10px 5px;
+  padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 5px;
 }
 
 .icon {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0px 0px 9px 0px #eee;
@@ -202,7 +202,7 @@ h6 {
 .name {
   color: var(--dark-color, #181818);
   font-family: Nunito;
-  font-size: 13px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -212,7 +212,7 @@ h6 {
 .d_details span {
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 10px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -246,14 +246,14 @@ h6 {
   color: white;
   text-align: center;
   font-family: Nunito;
-  font-size: 10px;
+  font-size: 14px;
   border-radius: 70px;
   background: #27a080;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.3px;
-  width: 40px;
+  width: 50px;
 }
 
 .d_badge-f {
@@ -261,14 +261,14 @@ h6 {
   color: #d83c3c;
   text-align: center;
   font-family: Nunito;
-  font-size: 7px;
+  font-size: 14px;
   border-radius: 70px;
   background: rgba(216, 60, 60, 0.2);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.3px;
-  width: 40px;
+  width: 50px;
 }
 
 .mobile {
@@ -657,6 +657,7 @@ h6 {
   gap: 0.9rem;
   font-size: 10px;
   width: fit-content;
+  overflow-y: hidden;
 }
 
 .at_item {
@@ -677,6 +678,7 @@ h6 {
 .at_item_head {
   color: #a3aed0;
   font-size: 11px;
+  height: 50px;
   border-radius: 0;
   border-top: 1px solid lightgray;
   border-bottom: 3px solid lightgray;
@@ -686,40 +688,52 @@ h6 {
   padding: 1rem;
 }
 
-.at_item div:nth-child(1) {
+.at_item_head td:nth-child(1),
+.at_item td:nth-child(1) {
   width: 144px;
   max-width: 144px;
   min-width: 144px;
 }
 
-.at_item div:nth-child(2) {
+.at_item_head td:nth-child(2),
+.at_item td:nth-child(2) {
   width: 90px;
   max-width: 90px;
   min-width: 90px;
 }
 
-.at_item div:nth-child(3) {
+.at_item_head td:nth-child(3),
+.at_item td:nth-child(3) {
   width: 124px;
   max-width: 124px;
   min-width: 124px;
 }
 
-.at_item div:nth-child(4) {
+.at_item_head td:nth-child(4),
+.at_item td:nth-child(4) {
   width: 130px;
   max-width: 130px;
   min-width: 130px;
 }
 
-.at_item div:nth-child(5) {
+.at_item_head td:nth-child(5),
+.at_item td:nth-child(5) {
   width: 90px;
   max-width: 90px;
   min-width: 90px;
 }
 
-.at_item div:nth-child(6) {
+.at_item_head td:nth-child(6),
+.at_item td:nth-child(6) {
   width: 68px;
   max-width: 68px;
   min-width: 68px;
+}
+
+td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* .at_item div:nth-child(7) {
@@ -1005,4 +1019,8 @@ h6 {
 
 .msg_cell:hover div {
   display: block;
+}
+
+tbody {
+  padding-bottom: 350px;
 }
