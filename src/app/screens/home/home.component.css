@@ -268,7 +268,7 @@ h6 {
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.3px;
-  width: 50px;
+  width: fit-content;
 }
 
 .mobile {
