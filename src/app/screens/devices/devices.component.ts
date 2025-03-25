@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AdminService, BotService } from 'src/services';
+import { AdminService, BotService, BookingsService } from 'src/services';
 // import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
 // import { Label, Color } from 'ng2-charts';
@@ -114,6 +114,8 @@ export class DevicesComponent implements OnInit {
   totalFailed = 0;
   notSent = 0;
   showFilters = false;
+  haveWabaDevice = false;
+  wabaDeviceDetails: any;
 
   deviceConnections = {};
   isBannerVisible: boolean = true;
@@ -143,6 +145,7 @@ export class DevicesComponent implements OnInit {
     // private _serviceModal: NgbModal,
     private AS: AdminService,
     private BS: BotService,
+    private BKS: BookingsService,
     private fb: FormBuilder
   ) {}
 
@@ -157,6 +160,14 @@ export class DevicesComponent implements OnInit {
       this.router.navigateByUrl('/sessions/signin');
     }
     this.AS.getUser(this.currentUser._id).subscribe((usr) => {
+      this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
+        console.log('admin', admin.data[0]);
+        this.wabaDeviceDetails = admin.data[0];
+        if (admin.data[0].wa_phone_id.length) {
+          this.haveWabaDevice = true;
+          this.deviceList.push({ device_id: admin.data[0].wa_phone_id });
+        }
+      });
       this.currentUser = usr;
       this.deviceList = usr.wa_api.filter(
         (d) =>
@@ -459,7 +470,6 @@ export class DevicesComponent implements OnInit {
         x++;
       }
       ml.map((gv, j) => {
-        console.log(ml.day);
         this.totalMsg++;
         if (gv.sent_by == 0) {
           this.totalSms++;
@@ -474,7 +484,6 @@ export class DevicesComponent implements OnInit {
         let d = new Date(gv.createdAt);
         let t = td.getTime() - d.getTime();
         t = t / (1000 * 60);
-        console.log(gv.day);
         let i = parseInt(gv.day);
         let dayIndex = parseInt(gv.day);
         let ind = this.days.findIndex((day) => day === this.days[dayIndex]);

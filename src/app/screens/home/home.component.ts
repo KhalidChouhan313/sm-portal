@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { AdminService } from 'src/services';
+import { AdminService, BookingsService } from 'src/services';
 import { AuthService } from 'src/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChartDataset } from 'chart.js';
@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
     private AS: AdminService,
     private router: Router,
     private eRef: ElementRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private BKS: BookingsService
   ) {}
 
   currentUser: any;
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit {
   thisDay = 1880;
   yesterday = 3412;
   isBannerVisible = true;
+  wabaDeviceDetails: any;
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -87,6 +89,13 @@ export class HomeComponent implements OnInit {
           skip: this.currentPageLimit,
         };
         this.AS.getMessageList(objMsg).subscribe((ml) => {
+          this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
+            console.log('admin', admin.data[0]);
+            this.wabaDeviceDetails = admin.data[0];
+            if (admin.data[0].wa_phone_id.length) {
+              this.deviceList.push({ device_id: admin.data[0].wa_phone_id });
+            }
+          });
           this.messageList = ml;
           this.isMsgLoad = false;
 

@@ -18,19 +18,49 @@
 
     <!-- smsm settings -->
     <ng-container *ngIf="currentTab.name === 'SMS Settings'">
-      <div class="h">Outgoing SMS Settings</div>
+      <div class="h">Outgoing WhatsApp settings</div>
       <div class="toggles">
-        <div class="toggle" *ngFor="let toggle of togglesData; let i = index">
+        <div
+          *ngFor="let toggle of toggles; let i = index"
+          class="toggle"
+          [class.enabled]="toggle.enabled"
+        >
           <span>{{ toggle.label }}</span>
+
+          <!-- Prevent interaction if second toggle is disabled -->
           <label
-            [class.active]="toggle.enabled"
-            (click)="toggleColor(i)"
             class="switch_box"
+            (click)="firstToggleSwitch(i, $event)"
+            [class.disabled]="i === 1 && !toggles[0].enabled"
+            [class.active]="toggles[i].enabled"
+            [style.pointer-events]="
+              i === 1 && !toggles[0].enabled ? 'none' : 'auto'
+            "
           >
             <input
               type="checkbox"
-              (change)="changeSettings($event, toggle.type)"
               [checked]="toggle.enabled"
+              [disabled]="i === 1 && !toggles[0].enabled"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="h">Outgoing SMS Settings</div>
+      <div class="toggles">
+        <div
+          *ngFor="let toggle of togglesData; let i = index"
+          class="toggle"
+          [class.enabled]="toggle.enabled"
+        >
+          <span>{{ toggle.label }}</span>
+
+          <!-- Use (change) event to handle the toggle -->
+          <label class="switch_box" [class.active]="togglesData[i].enabled">
+            <input
+              type="checkbox"
+              [checked]="toggle.enabled"
+              (change)="toggleColor(i, $event)"
             />
             <span class="slider"></span>
           </label>

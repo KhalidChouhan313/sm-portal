@@ -144,9 +144,23 @@
       <div>
         <p>{{ deviceConnections[item.device_id] }}</p>
         <!-- Display connection status for each device -->
-        <p>{{ item.device_name }}</p>
+        <p>{{ item.device_name || "Waba Device" }}</p>
       </div>
     </li>
+    <!-- <li
+      *ngIf="haveWabaDevice"
+      (click)="setCurrent(wabaDeviceDetails.wa_phone_id, 4)"
+      [class.active]="currentDeviceIndex === 4"
+    >
+      <div class="icon">
+        <img src="../../../assets/androidlogo.png" alt="a" />
+      </div>
+      <div>
+       
+        <p>dede</p>
+        <p>Waba Device</p>
+      </div>
+    </li> -->
   </ul>
 
   <div
@@ -534,11 +548,11 @@
 
             <div class="msg_cell">
               <td>
-                {{ item.message_text }}
+                {{ item.message_text || item.sms_text }}
               </td>
               <div>
                 <img src="../../../assets/Polygon.png" />
-                <p>{{ item.message_text }}</p>
+                <p>{{ item.message_text || item.sms_text }}</p>
               </div>
             </div>
           </tr>

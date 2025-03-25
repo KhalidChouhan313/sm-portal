@@ -1,10 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { QrcodeService } from 'src/services/qrcode/qrcode.service';
 @Component({
   selector: 'app-qr-page',
   templateUrl: './qr-page.component.html',
   styleUrls: ['./qr-page.component.css'],
 })
 export class QrPageComponent {
+  constructor(private qrcodeService: QrcodeService) {}
+
   activeButton: string = 'universal';
 
   inputUniversalTitleName: string = '';
@@ -28,10 +31,28 @@ export class QrPageComponent {
 
   generateUniversalQRCode() {
     const dataObject = {
-      titleName: this.inputUniversalTitleName,
-      preferenceText: this.inputUniversalPreferenceText,
+      name: this.inputUniversalTitleName,
+      type: 'text',
+      text: this.inputUniversalPreferenceText,
     };
     this.universalQrData = JSON.stringify(dataObject);
+
+    this.qrcodeService.generateCode(dataObject).subscribe(
+      (res) => {
+        console.log(res);
+        this.qrcodeService.getCode(res.id).subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   downloadUniversalQRCode() {

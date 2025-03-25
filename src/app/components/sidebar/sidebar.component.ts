@@ -23,7 +23,7 @@ export class SidebarComponent {
     }
     // console.log(currentUser._id);
 
-    this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
+    this.bookingsService.getCompanyBots(currentUser._id).subscribe(
       (res) => {
         this.loading = false;
         this.haveBot = true;

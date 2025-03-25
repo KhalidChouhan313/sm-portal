@@ -11,6 +11,7 @@ export class AppSettingsComponent implements OnInit {
   isLoad = true;
   currentUser: any = {};
   togglesData = [];
+  toggles = [];
 
   constructor(
     private AS: AdminService,
@@ -99,12 +100,82 @@ export class AppSettingsComponent implements OnInit {
       this.currentTab =
         this.tabs.find((tab) => tab.name === tabName) || this.tabs[0];
     });
+
+    this.toggles = [
+      {
+        label: 'Allow all messages via official whatsapp',
+        enabled:
+          this.currentUser.waba_check === 'all_route_waba' ||
+          this.currentUser.waba_check === 'all_waba',
+      },
+      {
+        label: 'Allow only waba hooks via official whatsapp',
+        enabled: this.currentUser.waba_check === 'all_route_waba',
+      },
+    ];
   }
 
   isActive: boolean = false;
 
-  toggleColor(index: number) {
-    this.togglesData[index].enabled = !this.togglesData[index].enabled;
+  firstToggleSwitch(index: number, event: Event): void {
+    event.preventDefault();
+
+    // If clicking the second toggle and the first is disabled, do nothing
+    if (index === 1 && !this.toggles[0].enabled) {
+      return; // Block interaction
+    }
+
+    // Toggle the current switch
+    this.toggles[index].enabled = !this.toggles[index].enabled;
+
+    // If first toggle is turned off, disable the second toggle
+    if (index === 0 && !this.toggles[0].enabled) {
+      this.toggles[1].enabled = false;
+    }
+
+    console.log(`Toggle ${index + 1} Status:`, this.toggles[index].enabled);
+
+    let waba_check = '';
+
+    if (this.toggles[0].enabled && this.toggles[1].enabled) {
+      waba_check = 'all_route_waba';
+    } else if (this.toggles[0].enabled) {
+      waba_check = 'all_waba';
+    } else {
+      waba_check = 'no_waba';
+    }
+
+    const obj = {
+      _id: this.currentUser._id,
+      waba_check: waba_check,
+    };
+
+    console.log(obj);
+
+    this.AS.updateUser(obj).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  toggleColor(index: number, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    // Update the togglesData
+    this.togglesData[index].enabled = isChecked;
+
+    // Create the update object
+    const updateObj = {
+      _id: this.currentUser._id,
+      [this.togglesData[index].type]: isChecked,
+    };
+
+    this.isLoad = true;
+
+    // Send update request
+    this.AS.updateUser(updateObj).subscribe((res) => {
+      console.log('Update Response:', res);
+      this.isLoad = false;
+    });
   }
 
   changeSettings(e, type) {
@@ -113,6 +184,7 @@ export class AppSettingsComponent implements OnInit {
       _id: this.currentUser._id,
     };
     obj[type] = e.target.checked;
+    console.log(obj);
 
     this.AS.updateUser(obj).subscribe((res) => {
       console.log(res);

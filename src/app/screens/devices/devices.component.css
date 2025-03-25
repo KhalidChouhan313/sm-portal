@@ -1303,6 +1303,13 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+tr {
+  display: flex;
+  max-width: 100%;
+  min-width: fit-content;
+  justify-content: space-between;
+}
+
 .a_top h4 {
   font-size: 34px;
 }

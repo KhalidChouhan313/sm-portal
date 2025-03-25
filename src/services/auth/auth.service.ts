@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   public user$: any = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: any, password: any): Observable<any> {
     const body = { user_name: username, password };
@@ -17,7 +17,9 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(environment.apiUrl + "/api/user/login", body, { headers });
+    return this.http.post(environment.apiUrl + '/api/user/login', body, {
+      headers,
+    });
   }
 
   authenticateUser(token: string): Observable<any> {
@@ -25,6 +27,12 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.get(environment.apiUrl + "/api/user/" + token, { headers });
+    return this.http.get(environment.apiUrl + '/api/user/' + token, {
+      headers,
+    });
+  }
+
+  public updateUser(obj) {
+    return this.http.put(`${environment.apiUrl}/api/user/updateUser`, obj);
   }
 }

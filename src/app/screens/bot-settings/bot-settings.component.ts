@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingsService, AdminService } from "src/services";
-import { Router } from "@angular/router";
+import { BookingsService, AdminService } from 'src/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bot-settings',
   templateUrl: './bot-settings.component.html',
-  styleUrls: ['./bot-settings.component.css']
+  styleUrls: ['./bot-settings.component.css'],
 })
 export class BotSettingsComponent {
   // codes = [
@@ -16,7 +16,6 @@ export class BotSettingsComponent {
   //   "LNP", "MOQ", "QRT", "TSA", "VWB", "XCY", "ZFA", "BGE", "CHF", "DKJ"
   // ]
 
-
   zipcodeList = [];
   queryList = [];
   codeIndex = 0;
@@ -24,38 +23,72 @@ export class BotSettingsComponent {
   adminDetails: any;
   siteId = 0;
   userQuery = [];
-  userQueryString = ""
-  botQuery = "";
-  outcode = "";
-  sector = "";
-  unit = "";
+  userQueryString = '';
+  botQuery = '';
+  outcode = '';
+  sector = '';
+  unit = '';
   additionalPrice = 0;
-  pickupRadius = "";
-  pickupLatitude = "";
-  pickupLongitude = "";
-  destinationLatitude = "";
-  destinationLongitude = "";
-  destinationRadius = "";
+  pickupRadius = '';
+  pickupLatitude = '';
+  pickupLongitude = '';
+  destinationLatitude = '';
+  destinationLongitude = '';
+  destinationRadius = '';
   isAirport = false;
   isEditCode = false;
   isEditQuery = false;
   isLoad = true;
 
+  vBSName1 = '';
+  vBSType1 = '';
+  vBSName2 = '';
+  vBSType2 = '';
+  vBSName3 = '';
+  vBSType3 = '';
+
   constructor(
     private BS: BookingsService,
     private AS: AdminService,
     private router: Router
-  ) { }
+  ) {}
+
+  btn1 = false;
+  btn2 = false;
+  btn3 = false;
+  btn4 = false;
+  btn5 = false;
+
+  startEdit(button) {
+    this[button] = true; // Show Save & Cancel
+  }
+
+  save(button) {
+    console.log(`${button} saved`);
+    alert('Saved');
+    this[button] = false; // Reset to Update button
+  }
+
+  cancel(button) {
+    this[button] = false; // Reset to Update button
+  }
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
-    this.AS.getUser(currentUser._id).subscribe(user => {
-      this.BS.getCompanyBots(currentUser._id).subscribe(admin => {
+    this.AS.getUser(currentUser._id).subscribe((user) => {
+      this.BS.getCompanyBots(currentUser._id).subscribe((admin) => {
         this.adminDetails = admin.data[0];
-        console.log(admin);
+        console.log(this.adminDetails);
+
+        this.vBSName1 = this.adminDetails.vehicle[0].name;
+        this.vBSName2 = this.adminDetails.vehicle[1].name;
+        this.vBSName3 = this.adminDetails.vehicle[2].name;
+        this.vBSType1 = this.adminDetails.vehicle[0].type;
+        this.vBSType2 = this.adminDetails.vehicle[1].type;
+        this.vBSType3 = this.adminDetails.vehicle[2].type;
 
         this.zipcodeList = this.adminDetails.zip_codes;
         this.queryList = this.adminDetails.query;
@@ -63,10 +96,15 @@ export class BotSettingsComponent {
         this.pickupLongitude = this.adminDetails.pickup_point_longitude;
         this.pickupRadius = this.adminDetails.pickup_radius;
         this.destinationLatitude = this.adminDetails.destination_point_latitude;
-        this.destinationLongitude = this.adminDetails.destination_point_longitude;
+        this.destinationLongitude =
+          this.adminDetails.destination_point_longitude;
         this.destinationRadius = this.adminDetails.destination_radius;
-        if (this.adminDetails.additional_price) { this.additionalPrice = this.adminDetails.additional_price }
-        if (this.adminDetails.site_id) { this.siteId = this.adminDetails.site_id }
+        if (this.adminDetails.additional_price) {
+          this.additionalPrice = this.adminDetails.additional_price;
+        }
+        if (this.adminDetails.site_id) {
+          this.siteId = this.adminDetails.site_id;
+        }
         this.isLoad = false;
       });
     });
@@ -95,9 +133,9 @@ export class BotSettingsComponent {
     };
     this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditCode = false;
-      this.outcode = "";
-      this.sector = "";
-      this.unit = "";
+      this.outcode = '';
+      this.sector = '';
+      this.unit = '';
     });
   }
 
@@ -113,9 +151,9 @@ export class BotSettingsComponent {
       zip_codes: this.zipcodeList,
     };
     this.BS.updateBotAdmin(editObj).subscribe((res) => {
-      this.outcode = "";
-      this.sector = "";
-      this.unit = "";
+      this.outcode = '';
+      this.sector = '';
+      this.unit = '';
     });
   }
 
@@ -126,9 +164,9 @@ export class BotSettingsComponent {
       zip_codes: this.zipcodeList,
     };
     this.BS.updateBotAdmin(editObj).subscribe((res) => {
-      this.outcode = "";
-      this.sector = "";
-      this.unit = "";
+      this.outcode = '';
+      this.sector = '';
+      this.unit = '';
     });
   }
 
@@ -172,22 +210,22 @@ export class BotSettingsComponent {
 
   addAirport() {
     let obj = {
-      user_query: this.userQuery.map(uq => uq.toLowerCase()),
+      user_query: this.userQuery.map((uq) => uq.toLowerCase()),
       bot_query: this.botQuery.toLowerCase(),
-      isAirport: this.isAirport
+      isAirport: this.isAirport,
     };
 
     this.queryList.push(obj);
-    console.log(this.queryList)
+    console.log(this.queryList);
     let editObj = {
       _id: this.adminDetails._id,
       query: this.queryList,
     };
     this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditQuery = false;
-      this.userQueryString = ""
+      this.userQueryString = '';
       this.userQuery = [];
-      this.botQuery = "";
+      this.botQuery = '';
       this.isAirport = false;
     });
   }
@@ -201,7 +239,7 @@ export class BotSettingsComponent {
     this.BS.updateBotAdmin(editObj).subscribe((res) => {
       this.isEditQuery = false;
       this.userQuery = [];
-      this.botQuery = "";
+      this.botQuery = '';
     });
   }
 
@@ -228,7 +266,6 @@ export class BotSettingsComponent {
       this.userQueryString = ''; // Clear only if added
     }
   }
-  
 
   updateCenterPoint() {
     this.isLoad = true;
@@ -239,48 +276,72 @@ export class BotSettingsComponent {
       pickup_radius: this.pickupRadius,
       destination_point_latitude: this.destinationLatitude,
       destination_point_longitude: this.destinationLongitude,
-      destination_radius: this.destinationRadius
-    }
+      destination_radius: this.destinationRadius,
+    };
 
     console.log(obj);
 
-    this.BS.updateBotAdmin(obj).subscribe(res => {
+    this.BS.updateBotAdmin(obj).subscribe((res) => {
       this.isLoad = false;
       // console.log(res);
-    })
-
+    });
   }
 
   updateAdditionalPrice() {
     this.isLoad = true;
     let obj = {
       _id: this.adminDetails._id,
-      additional_price: this.additionalPrice
-    }
+      additional_price: this.additionalPrice,
+    };
 
     // console.log(obj);
 
-    this.BS.updateBotAdmin(obj).subscribe(res => {
+    this.BS.updateBotAdmin(obj).subscribe((res) => {
       this.isLoad = false;
       // console.log(res);
-    })
+    });
   }
 
   updateSiteID() {
     this.isLoad = true;
     let obj = {
       _id: this.adminDetails._id,
-      site_id: this.siteId
-    }
+      site_id: this.siteId,
+    };
 
     // console.log(obj);
 
-    this.BS.updateBotAdmin(obj).subscribe(res => {
+    this.BS.updateBotAdmin(obj).subscribe((res) => {
       this.isLoad = false;
       // console.log(res);
-    })
+    });
   }
 
   // removeCode = (code) => this.codes = this.codes.filter(item => item !== code)
 
+  saveVehicalButtonsSetting() {
+    this.isLoad = true;
+
+    let obj = {
+      _id: this.adminDetails._id,
+      vehicle: [
+        {
+          name: this.vBSName1,
+          type: this.vBSType1,
+        },
+        {
+          name: this.vBSName2,
+          type: this.vBSType2,
+        },
+        {
+          name: this.vBSName3,
+          type: this.vBSType3,
+        },
+      ],
+    };
+    console.log('vbsobj', obj);
+    this.BS.changeVehicalButtonsSetting(obj).subscribe((res) => {
+      console.log('vbs', res);
+    });
+  }
 }
