@@ -115,8 +115,10 @@
   <!-- Right Section -->
   <div class="right" style="width: 85%">
     <div class="imp-banner">
-      <div><img src="../../../assets/info-icon.png" /> Important Note:</div>
       <p>
+        <span style="font-weight: 500; color: black"
+          ><img src="../../../assets/info-icon.png" /> Important Note:</span
+        >
         For all message types there are three versions that are used for
         WhatsApp and one for SMS fall-over, all four must be edited accordingly.
         Where you see @ in the message content, this is data collected from your
@@ -145,7 +147,7 @@
         <div
           style="
             width: 100%;
-            height: 500px;
+            height: 400px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -243,10 +245,20 @@
         Messages For SMS
       </h1>
     </div>
+    <div class="imp-banner" *ngIf="instanceData[3].isEditable">
+      <p>
+        <span style="font-weight: 400; color: black"
+          ><img src="../../../assets/info-icon.png" /> Important Note:</span
+        >
+        Keep your SMS text within 160 characters to ensure it is sent as a
+        single message. Messages over 160 characters will be counted as two or
+        more.
+      </p>
+    </div>
     <div class="instance_grid">
       <div
         class="instance_card"
-        style="height: 225px"
+        style="height: 200px"
         *ngFor="
           let instance of currentMessageList.slice(
             currentMessageList.length - 1,
@@ -258,6 +270,7 @@
       >
         <div class="ic_top">
           <h4 class="fw-semibold">{{ instance.name }}Messages</h4>
+
           <div class="ict_right">
             <span class="limit_text" *ngIf="instanceData[3].isEditable">
               {{ currentMessageList[3].length }} / 160
@@ -278,6 +291,7 @@
         </div>
         <div *ngIf="isExpanded" class="emoji-list"></div>
         <textarea
+          style="height: 40px"
           rows="10"
           [(ngModel)]="currentMessageList[3]"
           *ngIf="instanceData[3].isEditable"
@@ -285,6 +299,7 @@
           maxlength="160"
         ></textarea>
         <textarea
+          style="height: 40px"
           disabled
           *ngIf="!instanceData[3].isEditable"
           [(ngModel)]="currentMessageList[3]"
@@ -312,14 +327,6 @@
           <button class="msg-btn" (click)="setMessage(3)">Update</button>
         </div>
       </div>
-    </div>
-    <div class="imp-banner" *ngIf="instanceData[3].isEditable">
-      <div><img src="../../../assets/info-icon.png" /> Important Note:</div>
-      <p>
-        Keep your SMS text within 160 characters to ensure it is sent as a
-        single message. Messages over 160 characters will be counted as two or
-        more.
-      </p>
     </div>
   </div>
 </main>
