@@ -59,10 +59,13 @@
         <div>
           <p style="width: 100%; display: flex; justify-content: space-between">
             Title Name
-            <img
-              style="width: 10px; height: 10px"
-              src="../../../assets/edit-pen.png"
-            />
+            <span>
+              {{ inputUniversalTitleName?.length || 0 }}/50
+              <img
+                style="width: 10px; height: 10px"
+                src="../../../assets/edit-pen.png"
+              />
+            </span>
           </p>
           <input
             [(ngModel)]="inputUniversalTitleName"
@@ -73,17 +76,17 @@
           <p style="width: 100%; display: flex; justify-content: space-between">
             Preference Text
             <span>
-              {{ inputUniversalPreferenceText?.length || 0 }}/200
+              {{ inputUniversalPreferenceText?.length || 0 }}/80
               <img
                 style="width: 10px; height: 10px"
                 src="../../../assets/edit-pen.png"
               />
             </span>
           </p>
-          <textarea
+          <input
             [(ngModel)]="inputUniversalPreferenceText"
             placeholder="Type here"
-          ></textarea>
+          />
         </div>
         <div class="left-btn-con">
           <button *ngIf="!universalQrData" (click)="generateUniversalQRCode()">

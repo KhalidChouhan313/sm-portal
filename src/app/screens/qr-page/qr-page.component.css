@@ -67,6 +67,7 @@ h2 {
   border-radius: 20px;
   display: flex;
   justify-content: space-around;
+  align-items: stretch;
   gap: 35px;
   padding: 40px 35px;
 }
@@ -74,10 +75,9 @@ h2 {
 .main-left {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  gap: 30px;
-  width: 50%;
-  height: 100%;
+  justify-content: center;
+  gap: 50px;
+  width: 60%;
 }
 
 .main-left p {
@@ -106,7 +106,7 @@ h2 {
 }
 
 .main input {
-  padding: 15px;
+  padding: 20px 15px;
   border: 1px solid gray;
   border-radius: 10px;
   width: 100%;
@@ -128,7 +128,7 @@ h2 {
 
 .main button {
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   background: linear-gradient(to right, #2ebc96, #1a9096);
   border: none;
@@ -143,7 +143,10 @@ h2 {
   justify-content: center;
   gap: 20px;
   padding: 30px 20px;
-  width: 50%;
+  width: 40%;
+  aspect-ratio: 438/354;
+  flex: 1;
+  /* aspect-ratio: 354/438; */
   border: 2px dashed lightgray;
 }
 
@@ -169,12 +172,11 @@ h2 {
 
 .qr-con {
   position: relative;
-  width: 300px;
-  height: 300px;
+  height: 100%;
 }
 
 .main-right .qr-code {
-  height: 300px;
+  height: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -189,7 +191,7 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+  width: 100%;
 }
 
 .main-right button {
