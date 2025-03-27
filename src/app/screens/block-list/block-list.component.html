@@ -4,7 +4,10 @@
     style="display: flex; justify-content: start; gap: 10px; position: relative"
     class="top"
   >
-    <span style="display: inline" class="top_t">
+    <span
+      style="display: inline; width: 170px; white-space: nowrap"
+      class="top_t"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -21,10 +24,8 @@
     </span>
     <p>
       Adding phone numbers to blocked list will prevent that number from
-      receiving WhatApp and/or SMS.
-      <br />
-      Add the number below and select the message types you do not want the
-      number to receive.
+      receiving WhatApp and/or SMS. Add the number below and select the message
+      types you do not want the number to receive.
     </p>
     <button
       (click)="this.showBanner = false"
