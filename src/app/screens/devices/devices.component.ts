@@ -165,7 +165,10 @@ export class DevicesComponent implements OnInit {
         this.wabaDeviceDetails = admin.data[0];
         if (admin.data[0].wa_phone_id.length) {
           this.haveWabaDevice = true;
-          this.deviceList.push({ device_id: admin.data[0].wa_phone_id });
+          this.deviceList.push({
+            device_id: admin.data[0].wa_phone_id,
+            device_name: 'Official WhatsApp Account',
+          });
         }
       });
       this.currentUser = usr;

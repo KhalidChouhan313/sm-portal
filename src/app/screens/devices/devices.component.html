@@ -200,15 +200,15 @@
         :
         <span
           ><img
-            *ngIf="authStatus == 'Authenticated'"
+            *ngIf="authStatus == 'Authenticated' || !authStatus"
             src="../../../assets/auth-sign.png"
-          />{{ authStatus }}</span
+          />{{ authStatus || "Authenticated" }}</span
         >
       </div>
       <div class="h-item">
         <strong>Connection</strong>
         :
-        <span>{{ connection }}</span>
+        <span>{{ connection || "Active" }}</span>
       </div>
     </div>
     <div>
@@ -363,30 +363,23 @@
     </div>
   </div>
 
-  <div *ngIf="isBannerVisible" class="note-banner">
-    <p
-      style="
-        font-size: 14px;
-        font-weight: 300;
-        width: fit-content;
-        margin-bottom: 0;
-      "
-    >
-      <span style="font-weight: 400; color: black; display: inline">
-        <img src="../../../assets/note-icon.png" /> Importent Note:
+  <div
+    *ngIf="isBannerVisible"
+    class="note-banner"
+    style="display: flex; gap: 10px"
+  >
+    <span style="font-weight: 400; color: black; display: inline">
+      <img src="../../../assets/note-icon.png" /> Importent Note:
 
-        <!-- <button (click)="toggleBanner()">
-          <img src="../../../assets/close-icon.png" />
-        </button> -->
-      </span>
-
+      <!-- <button (click)="toggleBanner()">
+        <img src="../../../assets/close-icon.png" />
+      </button> -->
+    </span>
+    <p style="font-size: 14px; font-weight: 300; margin-bottom: 0">
       Please note that “not sent” , might be because target is not valid mobile
       or international number or your settings are configured not be send <br />
-      this Message type by SMS.
-      <br />
-
-      Device sending is limited to avoid bans , these limits are gradually
-      reduced to mitigate that risk.
+      this Message type by SMS. Device sending is limited to avoid bans , these
+      limits are gradually reduced to mitigate that risk.
     </p>
   </div>
 

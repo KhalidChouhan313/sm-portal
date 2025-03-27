@@ -114,11 +114,11 @@
 
   <!-- Right Section -->
   <div class="right" style="width: 85%">
-    <div class="imp-banner">
+    <div class="imp-banner" style="display: flex">
+      <span style="width: 250px; font-weight: 500; color: black"
+        ><img src="../../../assets/info-icon.png" /> Important Note:</span
+      >
       <p>
-        <span style="font-weight: 500; color: black"
-          ><img src="../../../assets/info-icon.png" /> Important Note:</span
-        >
         For all message types there are three versions that are used for
         WhatsApp and one for SMS fall-over, all four must be edited accordingly.
         Where you see @ in the message content, this is data collected from your
@@ -247,9 +247,20 @@
         Messages For SMS
       </h1>
     </div>
-    <div class="imp-banner" *ngIf="instanceData[3].isEditable">
-      <p>
-        <span style="font-weight: 400; color: black"
+    <div
+      class="imp-banner"
+      style="border-radius: 10px"
+      *ngIf="instanceData[3].isEditable"
+    >
+      <p style="display: flex; align-items: center; gap: 10px">
+        <span
+          style="
+            font-weight: 400;
+            color: black;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+          "
           ><img src="../../../assets/info-icon.png" /> Important Note:</span
         >
         Keep your SMS text within 160 characters to ensure it is sent as a
