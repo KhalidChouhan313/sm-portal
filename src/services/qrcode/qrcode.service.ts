@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,6 +11,13 @@ export class QrcodeService {
 
   public generateCode(data): Observable<any> {
     return this.http.post(`${environment.qrApiUrl}/api/generate/qrcode`, data);
+  }
+
+  public SaveQrImg(id, img): Observable<any> {
+    return this.http.post(
+      `${environment.qrApiUrl}/api/fetch/qrcode/${id}`,
+      img
+    );
   }
 
   public getCode(data): Observable<any> {

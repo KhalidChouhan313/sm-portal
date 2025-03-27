@@ -379,12 +379,14 @@
               <img src="../../assets/icons/android.svg" alt="android" />
             </div>
             <div class="d_details">
-              <div class="name">{{ device.device_name }}</div>
-              <span>Recent activity , 12min ago</span>
+              <div class="name">
+                {{ device.device_name || "Official WhatsApp Account" }}
+              </div>
             </div>
           </div>
 
           <div *ngIf="device?.active" class="d_badge">Active</div>
+
           <div *ngIf="!device?.active" class="d_badge-f">Inactive</div>
         </div>
       </div>

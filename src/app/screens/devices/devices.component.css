@@ -676,7 +676,6 @@ strong {
 .note-banner p {
   font-size: 14px;
   color: #737791;
-  text-align: center;
 }
 
 .activity {
@@ -1311,7 +1310,7 @@ tr {
 }
 
 .a_top h4 {
-  font-size: 34px;
+  font-size: 28px;
 }
 
 .a_top button {

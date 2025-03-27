@@ -137,14 +137,15 @@
       *ngFor="let item of deviceList; let i = index"
       (click)="setCurrent(item.id, i)"
       [class.active]="currentDeviceIndex === i"
+      style="width: 300px"
     >
       <div class="icon">
         <img src="../../../assets/androidlogo.png" alt="a" />
       </div>
       <div>
-        <p>{{ deviceConnections[item.device_id] }}</p>
+        <p>{{ deviceConnections[item.device_id] || "Active" }}</p>
         <!-- Display connection status for each device -->
-        <p>{{ item.device_name || "Waba Device" }}</p>
+        <p>{{ item.device_name || "Official WhatsApp Account" }}</p>
       </div>
     </li>
     <!-- <li
@@ -344,9 +345,9 @@
         <p>Total SMS</p>
         <p>{{ totalSms }}</p>
 
-        <p>
+        <!-- <p>
           <span><img src="../../../assets/an-arrow.png" /> 16%</span> this month
-        </p>
+        </p> -->
       </div>
     </div>
     <div class="card">
@@ -354,27 +355,36 @@
       <div>
         <p>Total WhatsApp</p>
         <p>{{ totalWhatsapp }}</p>
-
+        <!-- 
         <p>
           <span><img src="../../../assets/an-arrow.png" /> 16%</span> this month
-        </p>
+        </p> -->
       </div>
     </div>
   </div>
 
   <div *ngIf="isBannerVisible" class="note-banner">
-    <div>
-      <p><img src="../../../assets/note-icon.png" /> Importent Note:</p>
-      <button (click)="toggleBanner()">
-        <img src="../../../assets/close-icon.png" />
-      </button>
-    </div>
-    <p>
+    <p
+      style="
+        font-size: 14px;
+        font-weight: 300;
+        width: fit-content;
+        margin-bottom: 0;
+      "
+    >
+      <span style="font-weight: 400; color: black; display: inline">
+        <img src="../../../assets/note-icon.png" /> Importent Note:
+
+        <!-- <button (click)="toggleBanner()">
+          <img src="../../../assets/close-icon.png" />
+        </button> -->
+      </span>
+
       Please note that “not sent” , might be because target is not valid mobile
       or international number or your settings are configured not be send <br />
       this Message type by SMS.
-    </p>
-    <p>
+      <br />
+
       Device sending is limited to avoid bans , these limits are gradually
       reduced to mitigate that risk.
     </p>

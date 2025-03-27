@@ -93,7 +93,10 @@ export class HomeComponent implements OnInit {
             console.log('admin', admin.data[0]);
             this.wabaDeviceDetails = admin.data[0];
             if (admin.data[0].wa_phone_id.length) {
-              this.deviceList.push({ device_id: admin.data[0].wa_phone_id });
+              this.deviceList.push({
+                device_id: admin.data[0].wa_phone_id,
+                active: true,
+              });
             }
           });
           this.messageList = ml;

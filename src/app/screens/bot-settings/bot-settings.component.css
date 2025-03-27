@@ -687,3 +687,24 @@ input[type="number"] {
   font-size: 12px;
   font-weight: 200;
 }
+
+.postcode-list-h {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.postcode-list-h p {
+  display: none;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+  padding: 4px;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.postcode-list-h:hover p {
+  display: inline-block;
+}

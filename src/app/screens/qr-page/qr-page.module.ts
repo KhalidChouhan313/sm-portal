@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QrPageComponent } from './qr-page.component';
-import { QRCodeComponent } from 'angularx-qrcode';
+// import { QRCodeComponent } from 'angularx-qrcode';
+import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 
 const customersRoutes: Routes = [
   {
@@ -11,7 +12,7 @@ const customersRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(customersRoutes), QRCodeComponent],
+  imports: [RouterModule.forChild(customersRoutes), NgxQrcodeStylingComponent],
   exports: [RouterModule],
 })
 export class QrPageModule {}

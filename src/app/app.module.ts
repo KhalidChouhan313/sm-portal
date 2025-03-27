@@ -42,7 +42,8 @@ import { TotalBookingsComponent } from './components/total-bookings/total-bookin
 
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { QrPageComponent } from './screens/qr-page/qr-page.component';
-import { QRCodeComponent } from 'angularx-qrcode';
+// import { QRCodeComponent } from 'angularx-qrcode';
+import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
 
 @NgModule({
@@ -92,7 +93,8 @@ import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
     BrowserAnimationsModule,
     HttpClientModule,
     PickerModule,
-    QRCodeComponent,
+    // QRCodeComponent,
+    NgxQrcodeStylingComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

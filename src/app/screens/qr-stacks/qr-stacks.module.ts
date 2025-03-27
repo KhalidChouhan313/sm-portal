@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QrStacksComponent } from './qr-stacks.component';
-import { QRCodeComponent } from 'angularx-qrcode';
+// import { QRCodeComponent } from 'angularx-qrcode';
 
 const customersRoutes: Routes = [
   {
@@ -11,7 +11,7 @@ const customersRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(customersRoutes), QRCodeComponent],
+  imports: [RouterModule.forChild(customersRoutes)],
   exports: [RouterModule],
 })
 export class QrStacksModule {}
