@@ -1,11 +1,24 @@
 <div class="container-own">
   <div
     *ngIf="showBanner"
-    style="display: flex; justify-content: start; gap: 10px; position: relative"
+    style="
+      display: flex;
+      justify-content: start;
+      gap: 10px;
+      position: relative;
+      align-items: start;
+    "
     class="top"
   >
     <span
-      style="display: inline; width: 170px; white-space: nowrap"
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        width: 170px;
+        white-space: nowrap;
+        height: fit-content;
+      "
       class="top_t"
     >
       <svg
@@ -22,7 +35,7 @@
       </svg>
       <span style="padding-left: 10px">Important Message:</span>
     </span>
-    <p>
+    <p style="padding-top: 2px">
       Adding phone numbers to blocked list will prevent that number from
       receiving WhatApp and/or SMS. Add the number below and select the message
       types you do not want the number to receive.
@@ -50,7 +63,7 @@
   </div>
   <div class="table-top">
     <div class="tt-left">
-      <button
+      <!-- <button
         (click)="this.showBanner = true"
         style="
           width: fit-content;
@@ -74,7 +87,7 @@
             fill="#636364"
           />
         </svg>
-      </button>
+      </button> -->
       <button
         style="border: 1px solid lightgray"
         *ngFor="let t of tabs"

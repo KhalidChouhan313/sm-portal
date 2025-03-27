@@ -368,7 +368,18 @@
     class="note-banner"
     style="display: flex; gap: 10px"
   >
-    <span style="font-weight: 400; color: black; display: inline; width: 140px">
+    <span
+      style="
+        font-weight: 400;
+        color: black;
+        display: inline-flex;
+        align-items: center;
+        height: fit-content;
+        width: fit-content;
+        gap: 10px;
+        white-space: nowrap;
+      "
+    >
       <img src="../../../assets/note-icon.png" /> Importent Note:
 
       <!-- <button (click)="toggleBanner()">
@@ -376,22 +387,22 @@
       </button> -->
     </span>
     <p style="font-size: 14px; font-weight: 300; margin-bottom: 0">
-      Please note that “not sent” , might be because target is not valid mobile
-      or international number or your settings are configured not be send this
-      Message type by SMS. Device sending is limited to avoid bans , these
-      limits are gradually reduced to mitigate that risk.
+      A message marked as "not sent" may be due to an invalid mobile or
+      international number, or your settings preventing this message type from
+      being sent via SMS. Device sending is limited to avoid bans , these limits
+      are gradually reduced to mitigate that risk.
     </p>
   </div>
 
   <div class="activity">
     <div class="a_top">
       <div style="display: flex; align-items: center; gap: 5px">
-        <img
+        <!-- <img
           style="cursor: pointer"
           (click)="toggleBanner()"
           src="../../../assets/note-icon.png"
-        />
-        <h4>All Messages</h4>
+        /> -->
+        <h4 style="font-size: 20px">All Messages</h4>
       </div>
 
       <button

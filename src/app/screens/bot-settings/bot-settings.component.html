@@ -25,7 +25,7 @@
           </button>
           <button (click)="cancel('btn1')" class="danger">Cancel</button>
         </div>
-        <button *ngIf="!btn1" (click)="startEdit('btn1')">Update</button>
+        <button *ngIf="!btn1" (click)="startEdit('btn1')">Edit</button>
       </div>
       <div class="ap-si-c">
         <h1>Site ID</h1>
@@ -42,7 +42,7 @@
           Update
         </button> -->
         <button *ngIf="!btn2" (click)="startEdit('btn2'); save('btn2')">
-          Update
+          Edit
         </button>
         <div *ngIf="btn2" style="display: flex; gap: 10px">
           <button
@@ -69,6 +69,8 @@
                 style="width: 150px"
                 [(ngModel)]="vBSName1"
                 [disabled]="!btn3"
+                maxlength="20"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -79,6 +81,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType1"
                 [disabled]="!btn3"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -93,6 +96,8 @@
                 style="width: 150px"
                 [(ngModel)]="vBSName2"
                 [disabled]="!btn3"
+                maxlength="20"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -103,6 +108,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType2"
                 [disabled]="!btn3"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -117,6 +123,8 @@
                 style="width: 150px"
                 [(ngModel)]="vBSName3"
                 [disabled]="!btn3"
+                maxlength="20"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -127,6 +135,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType3"
                 [disabled]="!btn3"
+                style="width: 300px"
               />
             </div>
           </div>
@@ -135,7 +144,7 @@
       </div>
       <div class="r-a-c-p-right">
         <!-- <button (click)="saveVehicalButtonsSetting()">Update</button> -->
-        <button *ngIf="!btn3" (click)="startEdit('btn3')">Update</button>
+        <button *ngIf="!btn3" (click)="startEdit('btn3')">Edit</button>
         <div *ngIf="btn3" style="display: flex; gap: 10px">
           <button (click)="saveVehicalButtonsSetting(); save('btn3')">
             Save
@@ -150,7 +159,7 @@
         <div class="r-a-c-p-field" style="gap: 10px">
           <label style="width: 300px">Pickup Search Centre Point </label>
           <div class="inp-con">
-            <div style="width: 100%; position: relative">
+            <div style="width: fit-content; position: relative">
               <p
                 style="
                   position: absolute;
@@ -166,10 +175,11 @@
                 [(ngModel)]="pickupLatitude"
                 type="number"
                 [disabled]="!btn4"
+                style="width: 150px"
               />
             </div>
             <span>:</span>
-            <div style="width: 100%; position: relative">
+            <div style="width: fit-content; position: relative">
               <p
                 style="
                   position: absolute;
@@ -185,6 +195,7 @@
                 [(ngModel)]="pickupLongitude"
                 type="number"
                 [disabled]="!btn4"
+                style="width: 150px"
               />
             </div>
           </div>
@@ -205,7 +216,7 @@
         <div class="r-a-c-p-field">
           <label style="width: 300px">Destination Search Center Point</label>
           <div class="inp-con">
-            <div style="width: 100%; position: relative">
+            <div style="width: fit-content; position: relative">
               <p
                 style="
                   position: absolute;
@@ -221,11 +232,12 @@
                 [(ngModel)]="destinationLatitude"
                 type="number"
                 [disabled]="!btn4"
+                style="width: 150px"
               />
             </div>
 
             <span>:</span>
-            <div style="width: 100%; position: relative">
+            <div style="width: fit-content; position: relative">
               <p
                 style="
                   position: absolute;
@@ -241,6 +253,7 @@
                 [(ngModel)]="destinationLongitude"
                 type="number"
                 [disabled]="!btn4"
+                style="width: 150px"
               />
             </div>
           </div>
@@ -273,7 +286,7 @@
         >
           Update
         </button> -->
-        <button *ngIf="!btn4" (click)="startEdit('btn4')">Update</button>
+        <button *ngIf="!btn4" (click)="startEdit('btn4')">Edit</button>
         <div *ngIf="btn4" style="display: flex; gap: 10px">
           <button
             [disabled]="
@@ -359,7 +372,7 @@
           style="width: fit-content; align-items: center"
           (click)="startEdit('btn5')"
         >
-          Update
+          Edit
         </button>
         <div *ngIf="btn5" style="display: flex; gap: 10px">
           <button
@@ -424,7 +437,16 @@
     </span> -->
     </div>
     <div class="top" style="display: flex; gap: 10px; justify-content: start">
-      <span style="font-weight: 500; color: black; width: 250px"
+      <span
+        style="
+          font-weight: 600;
+          color: black;
+          width: fit-content;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        "
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="15"

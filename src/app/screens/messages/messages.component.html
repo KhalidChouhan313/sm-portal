@@ -114,8 +114,22 @@
 
   <!-- Right Section -->
   <div class="right" style="width: 85%">
-    <div class="imp-banner" style="display: flex">
-      <span style="width: 250px; font-weight: 500; color: black"
+    <div
+      class="imp-banner"
+      style="display: flex; gap: 10px; align-items: start"
+    >
+      <span
+        style="
+          width: fit-content;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: fit-content;
+
+          font-weight: 600;
+          color: black;
+        "
         ><img src="../../../assets/info-icon.png" /> Important Note:</span
       >
       <p>
@@ -224,16 +238,27 @@
 
     <div
       class="imp-banner"
+      style="display: flex; gap: 10px; align-items: start"
       *ngIf="
         instanceData[0].isEditable ||
         instanceData[1].isEditable ||
         instanceData[2].isEditable
       "
     >
+      <span
+        style="
+          font-weight: 600;
+          color: black;
+          white-space: nowrap;
+          width: fit-content;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          height: fit-content;
+        "
+        ><img src="../../../assets/info-icon.png" /> Important Note:</span
+      >
       <p>
-        <span style="font-weight: 400; color: black"
-          ><img src="../../../assets/info-icon.png" /> Important Note:</span
-        >
         Sending too many URLs can increase the risk of a WhatsApp account ban
         due to spam-detection policies. Ensure all messages are relevant and
         provide clear value to recipients. Avoid repetitive or promotional
@@ -255,7 +280,7 @@
       <p style="display: flex; align-items: center; gap: 10px">
         <span
           style="
-            font-weight: 400;
+            font-weight: 600;
             color: black;
             display: inline-flex;
             align-items: center;

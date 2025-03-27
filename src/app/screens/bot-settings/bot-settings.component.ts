@@ -70,7 +70,28 @@ export class BotSettingsComponent {
   }
 
   cancel(button) {
-    this[button] = false; // Reset to Update button
+    this[button] = false;
+
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    if (currentUser && this.adminDetails) {
+      this.vBSName1 = this.adminDetails.vehicle[0].name;
+      this.vBSName2 = this.adminDetails.vehicle[1].name;
+      this.vBSName3 = this.adminDetails.vehicle[2].name;
+      this.vBSType1 = this.adminDetails.vehicle[0].type;
+      this.vBSType2 = this.adminDetails.vehicle[1].type;
+      this.vBSType3 = this.adminDetails.vehicle[2].type;
+
+      this.zipcodeList = [...this.adminDetails.zip_codes];
+      this.queryList = [...this.adminDetails.query];
+      this.pickupLatitude = this.adminDetails.pickup_point_latitude;
+      this.pickupLongitude = this.adminDetails.pickup_point_longitude;
+      this.pickupRadius = this.adminDetails.pickup_radius;
+      this.destinationLatitude = this.adminDetails.destination_point_latitude;
+      this.destinationLongitude = this.adminDetails.destination_point_longitude;
+      this.destinationRadius = this.adminDetails.destination_radius;
+      this.additionalPrice = this.adminDetails.additional_price || 0;
+      this.siteId = this.adminDetails.site_id || 0;
+    }
   }
 
   ngOnInit(): void {

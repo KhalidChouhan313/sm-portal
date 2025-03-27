@@ -147,7 +147,6 @@ input[type="number"] {
 .r-a-c-p-field {
   display: flex;
   align-items: center;
-  gap: 2rem;
 }
 
 .r-a-c-p-field label {
@@ -170,7 +169,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 100%;
+  width: fit-content;
   position: relative;
 }
 
