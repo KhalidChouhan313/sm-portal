@@ -47,6 +47,9 @@ export class BotSettingsComponent {
   vBSName3 = '';
   vBSType3 = '';
 
+  sAAPickup = '';
+  sAADestination = '';
+
   constructor(
     private BS: BookingsService,
     private AS: AdminService,
@@ -58,6 +61,7 @@ export class BotSettingsComponent {
   btn3 = false;
   btn4 = false;
   btn5 = false;
+  btn6 = false;
 
   startEdit(button) {
     this[button] = true; // Show Save & Cancel
@@ -80,6 +84,9 @@ export class BotSettingsComponent {
       this.vBSType1 = this.adminDetails.vehicle[0].type;
       this.vBSType2 = this.adminDetails.vehicle[1].type;
       this.vBSType3 = this.adminDetails.vehicle[2].type;
+
+      this.sAADestination = this.adminDetails.destination_sub_query;
+      this.sAAPickup = this.adminDetails.pickup_sub_query;
 
       this.zipcodeList = [...this.adminDetails.zip_codes];
       this.queryList = [...this.adminDetails.query];
@@ -111,6 +118,9 @@ export class BotSettingsComponent {
         this.vBSType2 = this.adminDetails.vehicle[1].type;
         this.vBSType3 = this.adminDetails.vehicle[2].type;
 
+        this.sAADestination = this.adminDetails.destination_sub_query;
+        this.sAAPickup = this.adminDetails.pickup_sub_query;
+
         this.zipcodeList = this.adminDetails.zip_codes;
         this.queryList = this.adminDetails.query;
         this.pickupLatitude = this.adminDetails.pickup_point_latitude;
@@ -137,6 +147,17 @@ export class BotSettingsComponent {
     this.sector = this.zipcodeList[index].sector;
     this.unit = this.zipcodeList[index].unit;
     this.codeIndex = index;
+  }
+
+  updateSearchAddress() {
+    let obj = {
+      _id: this.adminDetails._id,
+      destination_sub_query: this.sAADestination,
+      pickup_sub_query: this.sAAPickup,
+    };
+    this.BS.updateBotAdmin(obj).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   updateZipcode() {

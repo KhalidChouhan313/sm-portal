@@ -10,12 +10,12 @@ export class QrcodeService {
   constructor(private http: HttpClient) {}
 
   public generateCode(data): Observable<any> {
-    return this.http.post(`${environment.qrApiUrl}/api/generate/qrcode`, data);
+    return this.http.post(`${environment.qrApiUrl}/api/create/qrcode`, data);
   }
 
   public SaveQrImg(id, img): Observable<any> {
     return this.http.post(
-      `${environment.qrApiUrl}/api/fetch/qrcode/${id}`,
+      `${environment.qrApiUrl}/api/upload/qrcode/${id}`,
       img
     );
   }

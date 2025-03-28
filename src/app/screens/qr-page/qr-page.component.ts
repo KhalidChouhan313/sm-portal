@@ -142,7 +142,7 @@ export class QrPageComponent {
 
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       console.log(res);
-      this.universalQrString = res.id;
+      this.universalQrString = res.URL;
 
       setTimeout(() => {
         const qrElement = document.querySelector(
@@ -164,7 +164,7 @@ export class QrPageComponent {
               console.log('FormData:', formData);
 
               // Send to backend
-              this.qrcodeService.SaveQrImg(res.id, formData).subscribe(
+              this.qrcodeService.SaveQrImg(res._id, formData).subscribe(
                 (qrRes) => console.log('QR saved:', qrRes),
                 (qrErr) => console.log('QR save error:', qrErr)
               );
