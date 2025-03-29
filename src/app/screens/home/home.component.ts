@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     private eRef: ElementRef,
     private fb: FormBuilder,
     private BKS: BookingsService
-  ) {}
+  ) { }
 
   currentUser: any;
   deviceList = [];
@@ -83,6 +83,7 @@ export class HomeComponent implements OnInit {
       // Fetch messages for all devices
       this.messageList = [];
       let requests = this.deviceList.map((device) => {
+
         let objMsg = {
           device_id: device.device_id,
           company_id: this.currentUser._id,
