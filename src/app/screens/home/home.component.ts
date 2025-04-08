@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit {
           company_id: this.currentUser._id,
           skip: this.currentPageLimit,
         };
+
         this.AS.getMessageList(objMsg).subscribe((ml) => {
           this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
             console.log('admin', admin.data[0]);
