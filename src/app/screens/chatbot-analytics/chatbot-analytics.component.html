@@ -23,8 +23,9 @@
     </div>
     <div *ngIf="data">
         <div class="analytics-bar">
-            <app-overview-cards [totalInteractions]="0" [totalBookings]="data.total" [bookingConversionRate]="0"
-                [totalTripValue]="0" [averageFare]="0"></app-overview-cards>
+            <app-overview-cards [totalInteractions]="data.interaction" [totalBookings]="data.total"
+                [bookingConversionRate]="0" [totalTripValue]="data.totalTripValue"
+                [averageFare]="data.averageFareValue"></app-overview-cards>
         </div>
         <div class="main-analytics-wrapper row">
             <div class="col-md-3 first-col">

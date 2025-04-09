@@ -11,17 +11,40 @@ export class ChatbotAnalyticsComponent {
   devices = []
   showFilters = false
   data: any;
+  // data = {
+  //   averageFareValue: 0,
+  //   totalTripValue: 0,
+  //   totalBookingCount: 0,
+  //   categorizedBookings: 0
+  // };
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    // console.log(currentUser);
+
+    if (!currentUser) {
+
+    }
     console.log(currentUser);
 
-    this.bookingService.getChatbotDashboardDetails(currentUser._id).subscribe(
-      (res) => {
-        this.data = res;
-        console.log(this.data);
+    this.bookingService.getChatbotDashboardDetails(currentUser._id).subscribe((res) => {
+      this.bookingService.getBookingStats(currentUser._id).subscribe((bDetails: any) => {
+        this.bookingService.totalTripValueStats(currentUser._id).subscribe((bDetails2: any) => {
+          this.data = res;
+          this.data['totalBookingCount'] = bDetails.totalBookingCount;
+          this.data['categorizedBookings'] = bDetails.categorizedBookings;
+          this.data['averageFareValue'] = bDetails2.averageFareValue.toFixed(2);
+          this.data['totalTripValue'] = bDetails2.totalTripValue.toFixed(2);
+          console.log(this.data, 'fff');
+        })
+      })
+    })
+    this.bookingService.vehicleTypesStats(currentUser._id).subscribe((bDetails: any) => {
+      console.log('vehicleTypesStats', bDetails);
+    })
 
-      }
-    )
+    this.bookingService.priceBasedStats(currentUser._id).subscribe((bDetails: any) => {
+      console.log('priceBasedStats', bDetails);
+    })
   }
 }
