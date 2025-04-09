@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     private eRef: ElementRef,
     private fb: FormBuilder,
     private BKS: BookingsService
-  ) {}
+  ) { }
 
   currentUser: any;
   deviceList = [];
@@ -82,26 +82,25 @@ export class HomeComponent implements OnInit {
 
       // Fetch messages for all devices
       this.messageList = [];
-      this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
-        this.wabaDeviceDetails = admin.data[0];
-        if (admin.data[0].wa_phone_id.length) {
-          console.log('admin', admin.data[0]);
-          this.deviceList.push({
-            device_id: admin.data[0].wa_phone_id,
-            active: true,
+      let requests = this.deviceList.map((device) => {
+        let objMsg = {
+          device_id: device.device_id,
+          company_id: this.currentUser._id,
+          skip: this.currentPageLimit,
+        };
+        this.AS.getMessageList(objMsg).subscribe((ml) => {
+          this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
+            console.log('admin', admin.data[0]);
+            this.wabaDeviceDetails = admin.data[0];
+            if (admin.data[0].wa_phone_id.length) {
+              this.deviceList.push({
+                device_id: admin.data[0].wa_phone_id,
+                active: true,
+              });
+            }
           });
-        }
-        let requests = this.deviceList.map((device) => {
-          console.log('device', device.device_id);
-          let objMsg = {
-            device_id: device.device_id,
-            company_id: this.currentUser._id,
-            skip: this.currentPageLimit,
-          };
-
-          this.AS.getMessageList(objMsg).subscribe((ml) => {
-            this.messageList = [...this.messageList, ...ml];
-            this.isMsgLoad = false;
+          this.messageList = ml;
+          this.isMsgLoad = false;
 
             let endDate = new Date();
             let startDate = new Date();
