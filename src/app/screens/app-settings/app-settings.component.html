@@ -24,6 +24,10 @@
           *ngFor="let toggle of toggles; let i = index"
           class="toggle"
           [class.enabled]="toggle.enabled"
+          [ngStyle]="{
+            backgroundColor:
+              i === 1 && toggles[0].enabled ? 'lightgrey' : 'initial'
+          }"
         >
           <span>{{ toggle.label }}</span>
 
@@ -31,16 +35,16 @@
           <label
             class="switch_box"
             (click)="firstToggleSwitch(i, $event)"
-            [class.disabled]="i === 1 && !toggles[0].enabled"
+            [class.disabled]="i === 0 && toggles[1].enabled"
             [class.active]="toggles[i].enabled"
             [style.pointer-events]="
-              i === 1 && !toggles[0].enabled ? 'none' : 'auto'
+              i === 1 && toggles[0].enabled ? 'none' : 'auto'
             "
           >
             <input
               type="checkbox"
               [checked]="toggle.enabled"
-              [disabled]="i === 1 && !toggles[0].enabled"
+              [disabled]="i === 0 && toggles[1].enabled"
             />
             <span class="slider"></span>
           </label>
@@ -190,18 +194,35 @@
       </div>
       <div
         class="imp-banner"
-        style="display: flex; justify-content: start; gap: 10px"
+        style="
+          display: flex;
+          justify-content: start;
+          gap: 5px;
+          align-items: start;
+        "
       >
         <span
           style="
-            font-weight: 400;
+            font-weight: 500;
+            font-family: 'DM Sans';
             color: black;
             width: fit-content;
             white-space: nowrap;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
           "
           ><img src="../../../assets/info-icon.png" /> Important Note:</span
         >
-        <p style="margin-bottom: 0">
+        <p
+          style="
+            margin-bottom: 0;
+            font-family: 'DM Sans';
+            font-size: 14px;
+            color: black;
+          "
+        >
           Please note that “not sent” , might be because target is not valid
           mobile or international number or your settings are configured not be
           send this Message type by SMS. Device sending is limited to avoid bans

@@ -55,6 +55,165 @@
         </div>
       </div>
     </div>
+
+    <div class="r-a-c-p">
+      <div
+        class="r-a-c-p-left"
+        style="display: flex; flex-direction: column; gap: 2rem"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+          "
+        >
+          <div style="display: flex; flex-direction: row; width: 100%">
+            <div
+              class="f-con"
+              style="width: 50%; display: flex; justify-content: start"
+            >
+              <div
+                class="toggle"
+                style="
+                  border: none;
+                  width: 80%;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <span class="f-heading">Allow New Booking Cancellation</span>
+                  <img style="width: 20px" src="../../../assets/warning.png" />
+                </div>
+
+                <!-- Use (change) event to handle the toggle -->
+
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <label class="switch_box" (click)="bookingConfirmation()">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+
+                  <p class="helping-text">
+                    Enable or disable the ability for users to cancel new
+                    (unassigned) bookings.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="f-con"
+              style="width: 50%; display: flex; justify-content: start"
+            >
+              <div
+                class="toggle"
+                style="
+                  border: none;
+                  width: 80%;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <span class="f-heading"
+                    >Allow Dispatched Booking Cancellation</span
+                  >
+                  <img style="width: 20px" src="../../../assets/warning.png" />
+                </div>
+                <!-- Use (change) event to handle the toggle -->
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <label class="switch_box">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+
+                  <p class="helping-text">
+                    Enable or disable the ability for users to cancel a booking
+                    after it has been dispatched to a driver.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: row; width: 100%">
+            <div
+              class="f-con"
+              style="width: 50%; display: flex; justify-content: start"
+            >
+              <div
+                class="toggle"
+                style="
+                  border: none;
+                  width: 80%;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <span class="f-heading"
+                    >Allow Customer to Message Driver on Dispatch</span
+                  >
+                  <img style="width: 20px" src="../../../assets/warning.png" />
+                </div>
+
+                <!-- Use (change) event to handle the toggle -->
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <label class="switch_box" (click)="trackDriverMsg()">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+
+                  <p class="helping-text">
+                    Enable or disable the option for customers to send a message
+                    to the driver when their ride is dispatched.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="f-con"
+              style="width: 50%; display: flex; justify-content: start"
+            >
+              <div
+                class="toggle"
+                style="
+                  border: none;
+                  width: 80%;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <span class="f-heading"
+                    >Allow Customer to Message Driver on Arrival</span
+                  >
+                  <img style="width: 20px" src="../../../assets/warning.png" />
+                </div>
+
+                <!-- Use (change) event to handle the toggle -->
+                <div style="display: flex; align-items: center; gap: 15px">
+                  <label class="switch_box" (click)="arrivedDriverMsg()">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+
+                  <p class="helping-text">
+                    Enable or disable the option for customers to send a message
+                    to the driver when the driver has arrived at the
+                    pickup location.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="c-bg-heading">Vehicle Buttons Settings</div>
     <div class="r-a-c-p">
       <div
@@ -62,8 +221,8 @@
         style="display: flex; flex-direction: column; gap: 2rem"
       >
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="r-a-c-p-field">
-            <label>Display Name</label>
+          <div class="f-con">
+            <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -74,8 +233,8 @@
               />
             </div>
           </div>
-          <div class="r-a-c-p-field">
-            <label>iCabbi Vehicle Attribute</label>
+          <div class="f-con">
+            <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -89,8 +248,8 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="r-a-c-p-field">
-            <label>Display Name</label>
+          <div class="f-con">
+            <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -101,8 +260,8 @@
               />
             </div>
           </div>
-          <div class="r-a-c-p-field">
-            <label>iCabbi Vehicle Attribute</label>
+          <div class="f-con">
+            <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -116,8 +275,8 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="r-a-c-p-field">
-            <label>Display Name</label>
+          <div class="f-con">
+            <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -128,8 +287,8 @@
               />
             </div>
           </div>
-          <div class="r-a-c-p-field">
-            <label>iCabbi Vehicle Attribute</label>
+          <div class="f-con">
+            <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
                 style="width: 150px"
@@ -156,8 +315,10 @@
     <div class="c-bg-heading">Search Radius Settings</div>
     <div class="r-a-c-p">
       <div class="r-a-c-p-left">
-        <div class="r-a-c-p-field" style="gap: 10px">
-          <label style="width: 300px">Pickup Search Centre Point </label>
+        <div class="f-con">
+          <label class="f-heading" style="width: 33%"
+            >Pickup Search Centre Point
+          </label>
           <div class="inp-con">
             <div style="width: fit-content; position: relative">
               <p
@@ -200,8 +361,8 @@
             </div>
           </div>
         </div>
-        <div class="r-a-c-p-field" style="gap: 10px">
-          <label style="width: 250px"
+        <div class="f-con">
+          <label class="f-heading" style="width: 100%"
             >Pickup Search Radius (in Kilometers)
           </label>
           <div class="inp-con">
@@ -213,8 +374,10 @@
             />
           </div>
         </div>
-        <div class="r-a-c-p-field">
-          <label style="width: 300px">Destination Search Center Point</label>
+        <div class="f-con">
+          <label class="f-heading" style="width: 33%"
+            >Destination Search Center Point</label
+          >
           <div class="inp-con">
             <div style="width: fit-content; position: relative">
               <p
@@ -258,8 +421,8 @@
             </div>
           </div>
         </div>
-        <div class="r-a-c-p-field">
-          <label style="width: 250px"
+        <div class="f-con">
+          <label class="f-heading" style="width: 100%"
             >Destination Search Radius (in Kilometers)</label
           >
           <div class="inp-con">
@@ -326,7 +489,7 @@
     <div class="c-bg-heading postcode-list-h">
       Postcode list
       <img style="width: 20px" src="../../../assets/warning.png" />
-      <p>
+      <p style="padding-top: 2px">
         You can add postcodes so that the system will allow searching if the
         address is outside of the search radius. Postcodes can as just Outcode,
         or Outcode & Sector or fully. <br />An example might be an
@@ -454,16 +617,18 @@
       system stores it as "Revolution."
     </span> -->
     </div>
-    <div class="top" style="display: flex; gap: 10px; justify-content: start">
+    <div class="top" style="display: flex; gap: 5px; justify-content: start">
       <span
         style="
-          font-weight: 600;
+          font-weight: 500;
           color: black;
           width: fit-content;
           white-space: nowrap;
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 5px;
+          font-family: 'DM Sans';
+          font-size: 14px;
         "
         ><svg
           xmlns="http://www.w3.org/2000/svg"
@@ -479,7 +644,15 @@
         </svg>
         Important Message:</span
       >
-      <p>
+      <p
+        style="
+          font-size: 14px;
+          padding-top: 2px;
+          color: black;
+          font-weight: 400;
+          font-family: 'DM Sans';
+        "
+      >
         Customers might type a location or commonly refer to it differently than
         is saved in your dispatch system, an example might be Vodka Revs, but in
         your dispatch system it's saved as Revolution. By adding alternatives

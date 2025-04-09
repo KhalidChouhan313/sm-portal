@@ -121,15 +121,15 @@ export class AppSettingsComponent implements OnInit {
     event.preventDefault();
 
     // If clicking the second toggle and the first is disabled, do nothing
-    if (index === 1 && !this.toggles[0].enabled) {
-      return; // Block interaction
-    }
+    // if (index === 1 && !this.toggles[0].enabled) {
+    //   return; // Block interaction
+    // }
 
     // Toggle the current switch
     this.toggles[index].enabled = !this.toggles[index].enabled;
 
     // If first toggle is turned off, disable the second toggle
-    if (index === 0 && !this.toggles[0].enabled) {
+    if (index === 0 && this.toggles[0].enabled) {
       this.toggles[1].enabled = false;
     }
 

@@ -45,6 +45,7 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
 // import { QRCodeComponent } from 'angularx-qrcode';
 import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
+import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
     TotalBookingsComponent,
     QrPageComponent,
     QrStacksComponent,
+    QrStatsComponent,
     // ReportsDeviceComponent,
   ],
   imports: [

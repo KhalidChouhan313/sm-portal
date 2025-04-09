@@ -984,4 +984,8 @@ export class DevicesComponent implements OnInit {
       }
     );
   }
+
+  reloadWindow() {
+    window.location.reload();
+  }
 }

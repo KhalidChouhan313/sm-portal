@@ -20,11 +20,31 @@ export class QrcodeService {
     );
   }
 
-  public getCode(data): Observable<any> {
-    return this.http.get(`${environment.qrApiUrl}/api/fetch/qrcode/${data}`);
+  public getAllQrCodes(data): Observable<any> {
+    return this.http.get(`${environment.qrApiUrl}/api/qrcode/details/${data}`);
   }
 
-  public getCodeDetails(data): Observable<any> {
-    return this.http.get(`${environment.qrApiUrl}/api/qrcode/details/${data}`);
+  public getQrCodeDetails(id): Observable<any> {
+    return this.http.get(
+      `${environment.qrApiUrl}/api/singleqrcode/details/${id}`
+    );
+  }
+
+  public deleteQrCode(id): Observable<any> {
+    return this.http.delete(`${environment.qrApiUrl}/api/delete/qrcode/${id}`);
+  }
+
+  public updateQrCode(id, data): Observable<any> {
+    return this.http.put(
+      `${environment.qrApiUrl}/api/update/qrcode/${id}`,
+      data
+    );
+  }
+
+  public updateQrCodeStatus(id, data): Observable<any> {
+    return this.http.put(
+      `${environment.qrApiUrl}/api/status/qrcode/${id}`,
+      data
+    );
   }
 }

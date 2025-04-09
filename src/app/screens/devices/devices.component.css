@@ -984,7 +984,8 @@ strong {
 
 .inp_con label {
   color: #fff;
-  font-size: 0.8rem;
+
+  font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1027,6 +1028,7 @@ strong {
 
 .a_table tr {
   width: 100%;
+  justify-content: space-between;
 }
 
 /* .a_table tr th {
@@ -1073,13 +1075,13 @@ tr {
 } /* Created At */
 .a_table th:nth-child(2),
 .a_table td:nth-child(2) {
-  width: 130px;
-  min-width: 130px;
+  width: 110px;
+  min-width: 110px;
 } /* Target Type */
 .a_table th:nth-child(3),
 .a_table td:nth-child(3) {
-  width: 160px;
-  min-width: 160px;
+  width: 130px;
+  min-width: 130px;
 } /* Target */
 .a_table th:nth-child(4),
 .a_table td:nth-child(4) {
@@ -1088,8 +1090,8 @@ tr {
 } /* Message Type */
 .a_table th:nth-child(5),
 .a_table td:nth-child(5) {
-  width: 160px;
-  min-width: 160px;
+  width: 110px;
+  min-width: 110px;
 } /* Sent Via */
 .a_table th:nth-child(6),
 .a_table td:nth-child(6) {
@@ -1098,8 +1100,8 @@ tr {
 } /* Status */
 .a_table th:nth-child(7),
 .a_table .msg_cell td {
-  width: 350px !important; /* Set a fixed width */
-  max-width: 350px !important; /* Ensure it doesn't exceed this width */
+  width: 750px !important; /* Set a fixed width */
+  max-width: 750px !important; /* Ensure it doesn't exceed this width */
   overflow-x: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; /* Show "..." at the end */
   white-space: nowrap; /* Keep text on one line */
@@ -1306,7 +1308,7 @@ tr {
   display: flex;
   max-width: 100%;
   min-width: fit-content;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .a_top h4 {
@@ -1396,6 +1398,7 @@ tr {
   white-space: wrap;
   z-index: 10;
   padding: 5px;
+
   border-radius: 10px;
 }
 
@@ -1406,6 +1409,7 @@ tr {
   text-overflow: ellipsis; /* Show "..." at the end */
   white-space: nowrap; /* Keep text on one line */
   display: block;
+  text-align: left;
 }
 
 .msg_cell div p {
@@ -1429,5 +1433,22 @@ tr {
 }
 
 .msg_cell:hover div {
+  display: block;
+}
+
+.page-reload-btn {
+  position: relative;
+}
+
+.page-reload-btn img {
+  display: block;
+  width: 60px !important;
+  position: absolute;
+  bottom: -65px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-reload-btn:hover img {
   display: block;
 }

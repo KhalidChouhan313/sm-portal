@@ -69,9 +69,387 @@
       </div>
 
       <div class="cus-modal-3">
+        <div *ngIf="activeModalIndex == 1" class="cus-modal-3-settings">
+          <div class="cus-modal-3">
+            <div></div>
+            <p class="cus-modal-setting-h">Choose a style</p>
+            <div class="cus-modal-3-0-shape">
+              <div>
+                Square
+                <img src="../../../assets/qr-shape-1.png" />
+              </div>
+              <div>
+                Doted
+                <img src="../../../assets/qr-shape-2.png" />
+              </div>
+              <div>
+                Rounded
+                <img src="../../../assets/qr-shape-3.png" />
+              </div>
+              <div>
+                Sharp Edges
+                <img src="../../../assets/qr-shape-4.png" />
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Solid Colors</p>
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span>
+                <span style="background: black"></span>
+                <span style="background: white"></span>
+                <span style="background: #f44336"></span>
+                <span style="background: #e91e63"></span>
+                <span style="background: #9c27b0"></span>
+                <span style="background: #673ab7"></span>
+                <span style="background: #3f51b5"></span>
+                <span style="background: #2196f3"></span>
+                <span style="background: #00bcd4"></span>
+              </div>
+              <div>
+                <span style="background: #009688"></span>
+                <span style="background: #009688"></span>
+                <span style="background: #8bc34a"></span>
+                <span style="background: #cddc39"></span>
+                <span style="background: #ffeb3b"></span>
+                <span style="background: #ff9800"></span>
+                <span style="background: #ff5722"></span>
+                <span style="background: #795548"></span>
+                <span style="background: #607d8b"></span>
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <button>
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                To
+                <button>
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div>
+                <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span>
+                <span style="background: black"></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div *ngIf="activeModalIndex == 0" class="cus-modal-3-settings">
           <div class="cus-modal-3">
             <p class="cus-modal-setting-h">Choose a style</p>
+            <div class="cus-modal-3-0-shape">
+              <div>
+                Square
+                <img src="../../../assets/qr-shape-1.png" />
+              </div>
+              <div>
+                Doted
+                <img src="../../../assets/qr-shape-2.png" />
+              </div>
+              <div>
+                Rounded
+                <img src="../../../assets/qr-shape-3.png" />
+              </div>
+              <div>
+                Sharp Edges
+                <img src="../../../assets/qr-shape-4.png" />
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Solid Colors</p>
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span>
+                <span style="background: black"></span>
+                <span style="background: white"></span>
+                <span style="background: #f44336"></span>
+                <span style="background: #e91e63"></span>
+                <span style="background: #9c27b0"></span>
+                <span style="background: #673ab7"></span>
+                <span style="background: #3f51b5"></span>
+                <span style="background: #2196f3"></span>
+                <span style="background: #00bcd4"></span>
+              </div>
+              <div>
+                <span style="background: #009688"></span>
+                <span style="background: #009688"></span>
+                <span style="background: #8bc34a"></span>
+                <span style="background: #cddc39"></span>
+                <span style="background: #ffeb3b"></span>
+                <span style="background: #ff9800"></span>
+                <span style="background: #ff5722"></span>
+                <span style="background: #795548"></span>
+                <span style="background: #607d8b"></span>
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <button>
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                To
+                <button>
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div>
+                <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span>
+                <span style="background: black"></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="cus-modal-3-qr">
@@ -92,7 +470,6 @@
     </div>
   </app-modal>
   <div class="nav">
-    <img src="../../../assets/info-icon.png" />
     <button
       (click)="setActive('universal')"
       [class.active]="activeButton === 'universal'"
@@ -126,19 +503,20 @@
 
   <!-- Content for Universal QR -->
   <div *ngIf="activeButton === 'universal'">
-    <h2 class="qr-sec">
+    <h2 class="qr-sec" *ngIf="showUniversalQrGenerator">
       <img height="15px" width="15px" src="../../../assets/info-icon.png" /> Set
       Up Your Universal QR Code
     </h2>
     <div
+      *ngIf="showUniversalQrGenerator"
       class="note-banner"
-      style="display: flex; justify-content: start; gap: 10px"
+      style="display: flex; justify-content: start; gap: 5px"
     >
-      <span style="font-weight: 400; color: black"
+      <strong style="color: black"
         ><img style="width: 15px" src="../../../assets/info-icon.png" />
         Important Note:
-      </span>
-      <p style="text-align: left">
+      </strong>
+      <p style="text-align: left; color: black; font-weight: 400">
         Create a Universal QR Code for instant taxi bookings, allowing users to
         scan and access the Taxi Messages chatbot seamlessly. Easily customize
         your QR, update details anytime, and download it in PDF, PNG, or JPG
@@ -150,42 +528,54 @@
         <img src="../../../assets/close-icon.png" />
       </button>
     </div>
-    <div class="main">
+    <div class="main" *ngIf="showUniversalQrGenerator">
       <div class="main-left">
         <div>
           <p style="width: 100%; display: flex; justify-content: space-between">
             Title Name
-            <span>
+            <span *ngIf="!universalQrData">
               {{ inputUniversalTitleName?.length || 0 }}/50
-              <img
+              <!-- <img
                 style="width: 10px; height: 10px"
                 src="../../../assets/edit-pen.png"
-              />
+              /> -->
             </span>
           </p>
           <input
             [(ngModel)]="inputUniversalTitleName"
             placeholder="Type here"
+            maxlength="50"
+            [readonly]="universalQrData"
           />
         </div>
         <div class="left-textarea">
           <p style="width: 100%; display: flex; justify-content: space-between">
             Preference Text
-            <span>
+            <span *ngIf="!universalQrData">
               {{ inputUniversalPreferenceText?.length || 0 }}/80
-              <img
+              <!-- <img
                 style="width: 10px; height: 10px"
                 src="../../../assets/edit-pen.png"
-              />
+              /> -->
             </span>
           </p>
           <input
             [(ngModel)]="inputUniversalPreferenceText"
             placeholder="Type here"
+            maxlength="80"
+            [readonly]="universalQrData"
           />
         </div>
         <div class="left-btn-con" *ngIf="!universalQrData">
-          <button (click)="generateUniversalQRCode()">Generate QR Code</button>
+          <button
+            (click)="generateUniversalQRCode()"
+            [disabled]="
+              !inputUniversalTitleName?.trim() ||
+              !inputUniversalPreferenceText?.trim()
+            "
+          >
+            Generate QR Code
+          </button>
         </div>
       </div>
       <div class="main-right" *ngIf="!universalQrData">
@@ -335,7 +725,14 @@
       <strong
         ><img src="../../../assets/info-icon.png" /> Important Note:
       </strong>
-      <p style="text-align: left">
+      <p
+        style="
+          text-align: left;
+          color: black;
+          font-weight: 400;
+          font-family: 'DM Sans';
+        "
+      >
         Create a Universal QR Code for instant taxi bookings, allowing users to
         scan and access the Taxi Messages chatbot seamlessly. Easily customize
         your QR, update details anytime, and download it in PDF, PNG, or JPG
@@ -454,12 +851,9 @@
   <div
     style="display: flex; justify-content: space-between; align-items: center"
   >
-    <h2 class="qr-sec">
-      <img height="15px" width="15px" src="../../../assets/info-icon.png" />
-
-      Set QR Code List
-    </h2>
+    <h2 class="qr-sec">QR Code</h2>
     <button
+      (click)="showUniversalQrGenerator = true"
       style="
         border-radius: 8px;
         background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
@@ -498,7 +892,7 @@
     <strong
       ><img src="../../../assets/info-icon.png" /> Important Note:
     </strong>
-    <p>
+    <p style="text-align: left; color: black; font-weight: 400">
       Create a Universal QR Code for instant taxi bookings, allowing users to
       scan and access the Taxi Messages chatbot seamlessly. Easily customize
       your QR, update details anytime, and download it in PDF, PNG, or JPG
@@ -521,326 +915,13 @@
       <div>Actions</div>
     </div>
     <div class="qr-table-body">
-      <div class="qr-table-item">
-        <div>
-          <div>01</div>
-        </div>
-
-        <div>
-          <div
-            style="
-              height: fit-content;
-              width: 100px;
-              display: flex;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <img style="width: 100%" src="../../../assets/temp-qr.png" />
-          </div>
-        </div>
-        <div>12/07/2024 , 4:15:12 PM</div>
-        <div>This the title of QR code</div>
-        <div>
-           Lorem Ipsum has been the industry's standard dummy text ever since
-          the 1500s............
-        </div>
-        <div>
-          <svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
-          </svg>
-          Active
-        </div>
-        <div>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/see-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/edit-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/delete-qr.png" />
-          </span>
-        </div>
-      </div>
-
-      <div class="qr-table-item">
-        <div>
-          <div>01</div>
-        </div>
-
-        <div>
-          <div
-            style="
-              height: fit-content;
-              width: 100px;
-              display: flex;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <img style="width: 100%" src="../../../assets/temp-qr.png" />
-          </div>
-        </div>
-        <div>12/07/2024 , 4:15:12 PM</div>
-        <div>This the title of QR code</div>
-        <div>
-           Lorem Ipsum has been the industry's standard dummy text ever since
-          the 1500s............
-        </div>
-        <div>
-          <svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
-          </svg>
-          Active
-        </div>
-        <div>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/see-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/edit-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/delete-qr.png" />
-          </span>
-        </div>
-      </div>
-
-      <div class="qr-table-item">
-        <div>
-          <div>01</div>
-        </div>
-
-        <div>
-          <div
-            style="
-              height: fit-content;
-              width: 100px;
-              display: flex;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <img style="width: 100%" src="../../../assets/temp-qr.png" />
-          </div>
-        </div>
-        <div>12/07/2024 , 4:15:12 PM</div>
-        <div>This the title of QR code</div>
-        <div>
-           Lorem Ipsum has been the industry's standard dummy text ever since
-          the 1500s............
-        </div>
-        <div>
-          <svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
-          </svg>
-          Active
-        </div>
-        <div>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/see-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/edit-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/delete-qr.png" />
-          </span>
-        </div>
-      </div>
-
-      <div class="qr-table-item">
-        <div>
-          <div>01</div>
-        </div>
-
-        <div>
-          <div
-            style="
-              height: fit-content;
-              width: 100px;
-              display: flex;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <img style="width: 100%" src="../../../assets/temp-qr.png" />
-          </div>
-        </div>
-        <div>12/07/2024 , 4:15:12 PM</div>
-        <div>This the title of QR code</div>
-        <div>
-           Lorem Ipsum has been the industry's standard dummy text ever since
-          the 1500s............
-        </div>
-        <div>
-          <svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
-          </svg>
-          Active
-        </div>
-        <div>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/see-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/edit-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/delete-qr.png" />
-          </span>
-        </div>
-      </div>
-
-      <div class="qr-table-item-container">
+      <div
+        *ngFor="let item of allQrCodes; let i = index"
+        class="qr-table-item-container"
+      >
         <div class="qr-table-item">
           <div>
-            <div>01</div>
+            <div>{{ i + 1 }}</div>
           </div>
 
           <div>
@@ -856,13 +937,12 @@
               <img style="width: 100%" src="../../../assets/temp-qr.png" />
             </div>
           </div>
-          <div>12/07/2024 , 4:15:12 PM</div>
-          <div>This the title of QR code</div>
+          <div>{{ item.createdAt | date : "MM/dd/yyyy, h:mm:ss a" }}</div>
+          <div>{{ item.name }}</div>
           <div>
-             Lorem Ipsum has been the industry's standard dummy text ever since
-            the 1500s............
+            {{ item.text }}
           </div>
-          <div>
+          <div style="text-transform: capitalize">
             <svg
               width="15"
               height="16"
@@ -870,12 +950,18 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
+              <circle
+                cx="7.5"
+                cy="7.69125"
+                r="7.5"
+                [attr.fill]="item.status === 'active' ? '#41D461' : '#FF4D4F'"
+              />
             </svg>
-            Active
+            {{ item.status }}
           </div>
           <div>
             <span
+              (click)="toggleDetails(i)"
               style="
                 height: 25px;
                 width: 30px;
@@ -917,10 +1003,10 @@
           </div>
         </div>
 
-        <div class="qr-table-item-detail">
+        <div class="qr-table-item-detail" *ngIf="selectedItemIndex === i">
           <div class="qr-table-item-detail-l">
             <div class="item-detail-qr">
-              <img src="../../../assets/temp-qr.png" />
+              <img [src]="allQrCodes[i].qrCodeImage" />
             </div>
             <div class="item-detail-2">
               <p><span>Created: </span> Jan 15, 2025 , 4:12 PM</p>
@@ -943,19 +1029,41 @@
               </button>
             </div>
             <div class="item-detail-3">
-              <input placeholder="Enter title here" />
-              <button><img src="../../../assets/edit-pen.png" /></button>
+              <input
+                placeholder="Enter title here"
+                [disabled]="isQrListTitleEditable"
+                [(ngModel)]="qrListTitle"
+              />
+              <button>
+                <img
+                  *ngIf="isQrListTitleEditable"
+                  (click)="isQrListTitleEditable = !isQrListTitleEditable"
+                  src="../../../assets/edit-pen.png"
+                />
+                <img
+                  *ngIf="!isQrListTitleEditable"
+                  src="../../../assets/confirm-edit.png"
+                />
+              </button>
             </div>
             <div class="item-detail-4">
               Status :
-              <label class="switch_box">
-                <input type="checkbox" />
+              <label
+                class="switch_box"
+                (click)="
+                  updateQrStatus(
+                    i,
+                    item.status === 'active' ? 'inactive' : 'active'
+                  )
+                "
+              >
+                <input type="checkbox" [checked]="item.status === 'active'" />
                 <span class="slider"></span>
               </label>
             </div>
           </div>
           <div class="qr-table-item-detail-r">
-            <div class="item-detail-r-1">
+            <div class="item-detail-r-1" (click)="toggleDetails(i)">
               <svg
                 width="24"
                 height="14"
@@ -982,9 +1090,37 @@
                 <p>Bookings</p>
               </div>
             </div>
-            <textarea>Enter text here</textarea>
+            <div style="position: relative">
+              <button
+                style="
+                  position: absolute;
+                  top: 10px;
+                  right: 10px;
+                  border: none;
+                  background: none;
+                "
+              >
+                <img
+                  *ngIf="isQrListDescriptionEditable"
+                  src="../../../assets/edit-pen.png"
+                  style="width: 15px"
+                  (click)="
+                    isQrListDescriptionEditable = !isQrListDescriptionEditable
+                  "
+                />
+                <img
+                  *ngIf="!isQrListDescriptionEditable"
+                  src="../../../assets/confirm-edit.png"
+                  style="width: 15px"
+                />
+              </button>
+              <textarea
+                [disabled]="isQrListDescriptionEditable"
+                [(ngModel)]="qrListDescription"
+              ></textarea>
+            </div>
             <div class="item-detail-r-4">
-              <button>
+              <button (click)="downloadQrCode(item.qrCodeImage, 'qrcode.jpg')">
                 <svg
                   width="20"
                   height="21"
@@ -1003,24 +1139,29 @@
                 Download QR
               </button>
               <button>
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <a
+                  href="/chatbot/QR-page/QR-stats"
+                  style="color: black; text-decoration: none"
                 >
-                  <path
-                    d="M1.5 1.47778V20.6778H20.7M6.3 13.4779L10.5 9.27791L13.5 12.2779L20.1 5.67791M15.6097 5.07778H20.7009V10.169"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                View Stats
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.5 1.47778V20.6778H20.7M6.3 13.4779L10.5 9.27791L13.5 12.2779L20.1 5.67791M15.6097 5.07778H20.7009V10.169"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  View Stats
+                </a>
               </button>
-              <button>
+              <button (click)="deleteQr(i)">
                 <svg
                   width="22"
                   height="23"
@@ -1040,84 +1181,6 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="qr-table-item">
-        <div>
-          <div>01</div>
-        </div>
-
-        <div>
-          <div
-            style="
-              height: fit-content;
-              width: 100px;
-              display: flex;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <img style="width: 100%" src="../../../assets/temp-qr.png" />
-          </div>
-        </div>
-        <div>12/07/2024 , 4:15:12 PM</div>
-        <div>This the title of QR code</div>
-        <div>
-           Lorem Ipsum has been the industry's standard dummy text ever since
-          the 1500s............
-        </div>
-        <div>
-          <svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="7.5" cy="7.69125" r="7.5" fill="#41D461" />
-          </svg>
-          Active
-        </div>
-        <div>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/see-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/edit-qr.png" />
-          </span>
-          <span
-            style="
-              height: 25px;
-              width: 30px;
-              border: 1px solid grey;
-              border-radius: 4px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img style="width: 20px" src="../../../assets/delete-qr.png" />
-          </span>
         </div>
       </div>
     </div>
