@@ -92,6 +92,14 @@ export class QrPageComponent {
   constructor(private qrcodeService: QrcodeService, private router: Router) {}
 
   currentUser: any;
+  allQrCodes: any = null;
+  activeQrDetails: any = null;
+  showUniversalQrGenerator = false;
+
+  isQrListTitleEditable = true;
+  isQrListDescriptionEditable = true;
+  qrListTitle: string = '';
+  qrListDescription: string = '';
 
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('user_details'));
@@ -100,6 +108,13 @@ export class QrPageComponent {
     if (user) {
       this.router.navigateByUrl('/sessions/signin');
     }
+
+    this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
+      this.allQrCodes = res;
+      if (res.length == 0) {
+        this.showUniversalQrGenerator = true;
+      }
+    });
   }
 
   activeModalIndex = 0; // Initially, first tab is active
@@ -142,7 +157,7 @@ export class QrPageComponent {
 
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       console.log(res);
-      this.universalQrString = res.URL;
+      this.universalQrString = `${res.URL}/?cId=${this.currentUser._id}`;
 
       setTimeout(() => {
         const qrElement = document.querySelector(
@@ -236,5 +251,69 @@ export class QrPageComponent {
         console.error('Canvas not found.');
       }
     }, 500); // Ensure QR code is rendered before downloading
+  }
+
+  selectedItemIndex: number | null = null;
+
+  toggleDetails(index: number): void {
+    if (this.selectedItemIndex !== index) {
+      // If the clicked item is not already open, fetch the details
+      let qrCodeId = this.allQrCodes[index]._id;
+      this.qrListTitle = this.allQrCodes[index].name;
+      this.qrListDescription = this.allQrCodes[index].text;
+      this.qrcodeService.getQrCodeDetails(qrCodeId).subscribe((res) => {
+        console.log(res); // You can store this response in a variable to display the details
+        this.activeQrDetails = res;
+      });
+    }
+    this.selectedItemIndex = this.selectedItemIndex === index ? null : index;
+    this.isQrListTitleEditable = true;
+    this.isQrListDescriptionEditable = true;
+  }
+
+  deleteQr(index: number) {
+    let qrCodeId = this.allQrCodes[index]._id;
+    this.qrcodeService.deleteQrCode(qrCodeId).subscribe((res) => {
+      console.log(res);
+      this.allQrCodes.splice(index, 1); // Remove the deleted QR code from the list
+      this.toggleDetails(index);
+      if (this.allQrCodes.length == 0) {
+        this.showUniversalQrGenerator = true;
+      }
+    });
+  }
+
+  updateQr(index: number, name: string, text: string) {
+    let qrCodeId = this.allQrCodes[index]._id;
+    const dataObject = {
+      name: name,
+      text: text,
+    };
+    this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
+      console.log(res);
+      this.allQrCodes[index].name = name;
+      this.allQrCodes[index].text = text;
+      this.toggleDetails(index);
+    });
+  }
+
+  updateQrStatus(index: number, status: string) {
+    let qrCodeId = this.allQrCodes[index]._id;
+    const dataObject = {
+      status: status,
+    };
+    this.qrcodeService
+      .updateQrCodeStatus(qrCodeId, dataObject)
+      .subscribe((res) => {
+        console.log(res);
+        this.allQrCodes[index].status = status;
+      });
+  }
+
+  downloadQrCode(url: string, filename: string = 'image.jpg') {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
   }
 }

@@ -12,7 +12,6 @@ export class NavbarComponent implements OnInit {
   currentUrl: string = '';
   constructor(private authService: AuthService, private router: Router) {
     this.currentUrl = this.router.url;
-    console.log('url', this.currentUrl);
   }
 
   user: any = null;
@@ -23,30 +22,30 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.checkAuthentication();
 
+    // Run immediately
+    this.updateUrlAndTitle(this.router.url);
+
+    // Run on every navigation change
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
+      .subscribe((event: NavigationEnd) => {
+        this.updateUrlAndTitle(event.urlAfterRedirects || event.url);
         this.checkAuthentication();
       });
+  }
 
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        this.currentUrl = event.urlAfterRedirects || event.url;
-        this.currentUrl = `home${
-          this.currentUrl.replace(/\//g, ' / ').split('?')[0]
-        }`;
+  updateUrlAndTitle(rawUrl: string): void {
+    if (!rawUrl || rawUrl.trim() === '/' || rawUrl.trim() === '') {
+      this.currentUrl = 'home / dashboard';
+      this.title = 'dashboard';
+    } else {
+      const cleanedUrl = rawUrl.split('?')[0].replace(/\/$/, ''); // remove trailing slash
+      this.currentUrl = 'home' + cleanedUrl.replace(/\//g, ' / ');
+      const urlParts = this.currentUrl.split(' / ').filter(Boolean);
+      this.title = urlParts[urlParts.length - 1].replace(/-/g, ' ');
+    }
 
-        // Trim any leading or trailing spaces for more reliable comparison
-        if (this.currentUrl.trim() === 'home /') {
-          this.currentUrl = 'home / dashboard';
-        }
-
-        const urlParts = this.currentUrl.split(' / '); // Split by spaces around "/"
-        this.title = urlParts[urlParts.length - 1];
-
-        this.title = this.title.replace(/-/g, ' ');
-      });
+    console.log('Current URL:', `"${this.currentUrl}"`);
   }
 
   checkAuthentication(): void {

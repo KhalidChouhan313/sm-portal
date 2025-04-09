@@ -366,30 +366,41 @@
   <div
     *ngIf="isBannerVisible"
     class="note-banner"
-    style="display: flex; gap: 10px"
+    style="display: flex; gap: 5px"
   >
     <span
       style="
-        font-weight: 400;
+        font-weight: 500;
         color: black;
         display: inline-flex;
         align-items: center;
         height: fit-content;
         width: fit-content;
-        gap: 10px;
+        gap: 5px;
+        font-size: 14px;
         white-space: nowrap;
+        font-family: 'DM Sans';
       "
     >
-      <img src="../../../assets/note-icon.png" /> Importent Note:
+      <img style="width: 15px" src="../../../assets/note-icon.png" /> Important
+      Note:
 
       <!-- <button (click)="toggleBanner()">
         <img src="../../../assets/close-icon.png" />
       </button> -->
     </span>
-    <p style="font-size: 14px; font-weight: 300; margin-bottom: 0">
+    <p
+      style="
+        font-size: 14px;
+        font-family: 'DM Sans';
+        margin-bottom: 0;
+        font-size: 14px;
+        color: black;
+      "
+    >
       A message marked as "not sent" may be due to an invalid mobile or
       international number, or your settings preventing this message type from
-      being sent via SMS. Device sending is limited to avoid bans , these limits
+      being sent via SMS. Device sending is limited to avoid bans, these limits
       are gradually reduced to mitigate that risk.
     </p>
   </div>
@@ -405,15 +416,39 @@
         <h4 style="font-size: 20px">All Messages</h4>
       </div>
 
-      <button
-        class="filter"
-        [ngClass]="{ active: showFilters }"
-        (click)="filters()"
-      >
-        <img src="../../../assets/filter-icon-black.png" />
-        <img src="../../../assets/filter-icon.png" />
-        <span>Search</span>
-      </button>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <button
+          class="page-reload-btn"
+          style="height: 40px; background: white"
+          (click)="reloadWindow()"
+        >
+          <svg
+            width="13"
+            height="12"
+            viewBox="0 0 13 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.25589 3.55C3.14198 2.02561 4.79815 1 6.69502 1C8.84573 1 10.687 2.31846 11.4472 4.1875M3.81236 4.1875H1.25V1.6375M11.0816 8.65C10.1955 10.1744 8.53935 11.2 6.64247 11.2C4.49177 11.2 2.6505 9.88154 1.89026 8.0125M9.52513 8.0125H12.0875V10.5625"
+              stroke="#636364"
+              stroke-width="1.1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <img src="../../../assets/device-tt-3.png" />
+        </button>
+        <button
+          class="filter"
+          [ngClass]="{ active: showFilters }"
+          (click)="filters()"
+        >
+          <img src="../../../assets/filter-icon-black.png" />
+          <img src="../../../assets/filter-icon.png" />
+          <span>Search</span>
+        </button>
+      </div>
     </div>
     <div *ngIf="showFilter == true" class="filters">
       <button class="close" (click)="filters()">
@@ -522,7 +557,8 @@
         </thead>
 
         <!-- Table Body -->
-        <tbody>
+        <app-loader *ngIf="isMsgLoad"></app-loader>
+        <tbody *ngIf="!isMsgLoad">
           <tr *ngIf="messageList.length === 0">
             <td colspan="3">No data found</td>
           </tr>
@@ -556,7 +592,7 @@
             </td>
 
             <td>
-              <p [ngClass]="item.status === 'sent' ? 's_dot_r' : 's_dot_g'"></p>
+              <p [ngClass]="item.status === 'Sent' ? 's_dot_g' : 's_dot_r'"></p>
               {{ item.status }}
             </td>
 

@@ -50,6 +50,10 @@ export class BotSettingsComponent {
   sAAPickup = '';
   sAADestination = '';
 
+  booking_confirmation: boolean = false;
+  track_driver_msg: boolean = false;
+  arrived_driver_msg: boolean = false;
+
   constructor(
     private BS: BookingsService,
     private AS: AdminService,
@@ -384,6 +388,42 @@ export class BotSettingsComponent {
     console.log('vbsobj', obj);
     this.BS.changeVehicalButtonsSetting(obj).subscribe((res) => {
       console.log('vbs', res);
+    });
+  }
+
+  bookingConfirmation() {
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.booking_confirmation = !this.booking_confirmation;
+    let obj = {
+      _id: currentUser._id,
+      booking_confirmation: this.booking_confirmation,
+    };
+    this.AS.updateUser(obj).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  trackDriverMsg() {
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.track_driver_msg = !this.track_driver_msg;
+    let obj = {
+      _id: currentUser._id,
+      track_driver_msg: this.track_driver_msg,
+    };
+    this.AS.updateUser(obj).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  arrivedDriverMsg() {
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.arrived_driver_msg = !this.arrived_driver_msg;
+    let obj = {
+      _id: currentUser._id,
+      arrived_driver_msg: this.arrived_driver_msg,
+    };
+    this.AS.updateUser(obj).subscribe((res) => {
+      console.log(res);
     });
   }
 }

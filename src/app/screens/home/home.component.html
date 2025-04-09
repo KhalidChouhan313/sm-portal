@@ -135,8 +135,8 @@
         <div *ngIf="isBannerVisible" class="a_top_2">
           <div>
             <img src="../../../assets/info-icon.png" />
-            <p>
-              <span>Important Note:</span>
+            <p style="font-size: 14px">
+              <span style="color: black">Important Note:</span>
               After seven days, all sent message data will be permanently
               deleted.
             </p>
@@ -280,7 +280,8 @@
               </td>
             </tr>
           </thead>
-          <tbody>
+          <app-loader *ngIf="isMsgLoad"></app-loader>
+          <tbody *ngIf="!isMsgLoad">
             <div
               *ngIf="messageList.length == 0"
               style="
@@ -319,7 +320,7 @@
               </td>
               <td>
                 <p
-                  [ngClass]="item.status === 'sent' ? 's_dot_r' : 's_dot_g'"
+                  [ngClass]="item.status === 'Sent' ? 's_dot_g' : 's_dot_r'"
                 ></p>
                 {{ item.status }}
               </td>

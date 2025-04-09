@@ -54,6 +54,12 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'chatbot/QR-page/QR-stats',
+    loadChildren: () =>
+      import('./screens/qr-stats/qr-stats.module').then((m) => m.QrStatsModule),
+  },
+
+  {
     path: 'chatbot/customers',
     loadChildren: () =>
       import('./screens/customers/customers.module').then(
