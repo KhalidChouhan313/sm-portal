@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     private eRef: ElementRef,
     private fb: FormBuilder,
     private BKS: BookingsService
-  ) { }
+  ) {}
 
   currentUser: any;
   deviceList = [];
@@ -212,16 +212,13 @@ export class HomeComponent implements OnInit {
 
               if (gv.sent_by == 0) {
                 let v = this.barChartData[0]['data'][ind];
-                this.barChartData[0]['data'][ind] =
-                  parseInt(v.toString()) + 1;
+                this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
               } else if (gv.sent_by == 1) {
                 let v = this.barChartData[1]['data'][ind];
-                this.barChartData[1]['data'][ind] =
-                  parseInt(v.toString()) + 1;
+                this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
               } else {
                 let v = this.barChartData[2]['data'][ind];
-                this.barChartData[2]['data'][ind] =
-                  parseInt(v.toString()) + 1;
+                this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
               }
               let v = this.barChartData[3]['data'][ind];
               this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
@@ -290,7 +287,6 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-
 
   toggleBanner() {
     this.isBannerVisible = !this.isBannerVisible;

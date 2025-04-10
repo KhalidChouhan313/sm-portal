@@ -117,6 +117,8 @@ export class QrPageComponent {
     });
   }
 
+  showLoader: boolean = true;
+
   activeModalIndex = 0; // Initially, first tab is active
 
   setModalActive(index: number) {
@@ -157,7 +159,7 @@ export class QrPageComponent {
 
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       console.log(res);
-      this.universalQrString = `${res.URL}/?cId=${this.currentUser._id}`;
+      this.universalQrString = `${res.URL}`;
 
       setTimeout(() => {
         const qrElement = document.querySelector(
@@ -188,7 +190,17 @@ export class QrPageComponent {
         } else {
           console.error('QR element not found!');
         }
-      }, 2000);
+        this.showLoader = false;
+        let user = JSON.parse(localStorage.getItem('user_details'));
+        this.currentUser = user;
+        console.log(user);
+
+        this.qrcodeService
+          .getAllQrCodes(this.currentUser._id)
+          .subscribe((res) => {
+            this.allQrCodes = res;
+          });
+      }, 4000);
     });
   }
 
@@ -283,18 +295,46 @@ export class QrPageComponent {
     });
   }
 
-  updateQr(index: number, name: string, text: string) {
-    let qrCodeId = this.allQrCodes[index]._id;
+  updateQrTitle(index) {
+    let qrCodeId = this.activeQrDetails._id;
+
     const dataObject = {
-      name: name,
-      text: text,
+      name: this.qrListTitle,
+      text: this.activeQrDetails.text,
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.allQrCodes[index].name = name;
-      this.allQrCodes[index].text = text;
-      this.toggleDetails(index);
+      this.allQrCodes[index].name = this.qrListTitle;
+      this.allQrCodes[index].text = this.qrListDescription;
+
+      this.isQrListTitleEditable = true;
     });
+  }
+
+  cancelQrTitle(index) {
+    this.qrListTitle = this.activeQrDetails.name;
+    this.isQrListTitleEditable = true;
+  }
+
+  updateQrText(index) {
+    let qrCodeId = this.activeQrDetails._id;
+
+    const dataObject = {
+      name: this.activeQrDetails.name,
+      text: this.qrListDescription,
+    };
+    this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
+      console.log(res);
+      this.allQrCodes[index].name = this.qrListTitle;
+      this.allQrCodes[index].text = this.qrListDescription;
+
+      this.isQrListDescriptionEditable = true;
+    });
+  }
+
+  cancelQrText(index) {
+    this.qrListDescription = this.activeQrDetails.text;
+    this.isQrListDescriptionEditable = true;
   }
 
   updateQrStatus(index: number, status: string) {
@@ -311,9 +351,60 @@ export class QrPageComponent {
   }
 
   downloadQrCode(url: string, filename: string = 'image.jpg') {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.click();
+    // Fetch the image as a blob to avoid CORS issues
+    fetch(url, { mode: 'cors' })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link); // Required for Firefox
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl); // Clean up
+      })
+      .catch((error) => console.error('Download failed:', error));
+  }
+
+  downloadGenQrCode() {
+    fetch(this.allQrCodes[this.allQrCodes.length - 1].qrCodeImage, {
+      mode: 'cors',
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'image.jpg';
+        document.body.appendChild(link); // Required for Firefox
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl); // Clean up
+      })
+      .catch((error) => console.error('Download failed:', error));
+  }
+
+  directToQrStats() {
+    this.router.navigate(['chatbot/QR-page/QR-stats'], {
+      queryParams: {
+        qrId: this.activeQrDetails._id,
+        title: this.activeQrDetails.name,
+      },
+    });
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.activeQrDetails.qrCodeImage).then(() => {
+      alert('URL copied to clipboard!');
+    });
+  }
+
+  copyQrLink() {
+    navigator.clipboard
+      .writeText(this.allQrCodes[this.allQrCodes.length - 1].qrCodeImage)
+      .then(() => {
+        alert('URL copied to clipboard!');
+      });
   }
 }

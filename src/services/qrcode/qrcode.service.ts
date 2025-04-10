@@ -47,4 +47,8 @@ export class QrcodeService {
       data
     );
   }
+
+  public getQrCodeStats(id): Observable<any> {
+    return this.http.get(`${environment.qrApiUrl}/api/getscannedqrcode/${id}`);
+  }
 }

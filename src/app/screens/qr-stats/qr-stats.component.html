@@ -2,7 +2,7 @@
   <div class="top-banner">
     <div class="top-banner-content">
       <div class="top-banner-content-1">
-        <h3>The Title</h3>
+        <h3>{{ title }}</h3>
         <div>13265651231161616165156.......</div>
       </div>
       <div class="top-banner-qr-info">
@@ -108,85 +108,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
-      </tr>
-      <tr>
-        <td>12/07/2024 , 4:15:12 PM</td>
-        <td>Chrome</td>
-        <td>114.0 0.0 </td>
-        <td>Android</td>
-        <td>103.12.123.1234</td>
-        <td>Los Angeles</td>
-        <td>California</td>
-        <td>USA</td>
+      <tr *ngFor="let item of stats.scanData">
+        <td>{{ item.timestamp }}</td>
+        <td>{{ item.browser }}</td>
+        <td>{{ item.browserVersion }}</td>
+        <td>{{ item.os }}</td>
+        <td>{{ item.ipAddress }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.state }}</td>
+        <td>{{ item.country }}</td>
       </tr>
     </tbody>
   </table>
