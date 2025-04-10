@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BookingsService } from 'src/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-details',
@@ -6,17 +8,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent {
-  customers = [
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-    { name: 'John Doe', address: '123 Main Street', date: 'Tue, Jul 12, 2022', bookings: 3, dropOff: '456 Elm Road', vehicle: 'Saloon' },
-  ];
+  bookings = [];
+  constructor(
+    private bookingsService: BookingsService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    if (!currentUser) {
+      this.router.navigateByUrl('/sessions/signin');
+    }
+    // console.log(currentUser._id);
+
+    this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
+      (res) => {
+        if (res.data.length > 15) {
+          res.data = res.data.slice(0, 15);
+        }
+        this.bookings = res.data
+          ?.map((item: any) => ({ ...item, selected: false }))
+          ?.sort(
+            (a: any, b: any) =>
+              new Date(b?.createdAt).getTime() -
+              new Date(a?.createdAt).getTime()
+          );
+      },
+      (err) => {
+        this.bookings = [];
+      }
+    );
+  }
 }
