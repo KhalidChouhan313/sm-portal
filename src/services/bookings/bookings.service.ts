@@ -66,4 +66,20 @@ export class BookingsService {
   public changeVehicalButtonsSetting(obj) {
     return this.http.put(`${environment.apiUrl}/api/waba/bot-settings`, obj);
   }
+
+  public getBookingStats(company_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/booking-stats/${company_id}`);
+  }
+
+  public vehicleTypesStats(company_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/vehicle-type-stats/${company_id}`);
+  }
+
+  public totalTripValueStats(company_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/total-trip-value-stats/${company_id}`);
+  }
+
+  public priceBasedStats(company_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/price-based-stats/${company_id}`);
+  }
 }

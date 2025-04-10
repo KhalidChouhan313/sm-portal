@@ -8,11 +8,11 @@ import { Chart } from 'chart.js';
 })
 export class VehicleInsightsComponent implements AfterViewInit {
   @Input() data: any;
-  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  // months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   ngAfterViewInit() {
-    let viData: any = this.mapData(this.data)
-    console.log(viData);
+    // let viData: any = this.mapData(this.data)
+    // console.log(this.data);
     // data: {
     //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     //     datasets: [
@@ -26,7 +26,16 @@ export class VehicleInsightsComponent implements AfterViewInit {
     // },
     new Chart('vehicleChart', {
       type: 'bar',
-      data: viData,
+      data: {
+        labels: this.data.map(item => item.name),
+        datasets: [{
+          label: 'bookings',
+          data: this.data.map(item => item.value),
+          backgroundColor: '#7a9fd3',
+          borderColor: '#074cae',
+          borderWidth: 1
+        }]
+      },
       options: {
         responsive: true,
         // maintainAspectRatio: false,
@@ -55,13 +64,13 @@ export class VehicleInsightsComponent implements AfterViewInit {
   }
 
   public mapData = (data) => {
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const labels = data.map(d => d.name)
 
     // Initialize datasets for each vehicle type
-    const vehicleTypes = [...new Set(data.map(item => item._id.vehicle_type))];
+    const vehicleTypes = [...new Set(data.map(item => item._id.name))];
     let datasets = vehicleTypes.map((type, i) => ({
       label: type,
-      data: Array(12).fill(0), // Start with all zeros for each month
+      data: Array(data.length).fill(0), // Start with all zeros for each month
       backgroundColor: '#ffcf00',
       borderRadius: 5
     }));

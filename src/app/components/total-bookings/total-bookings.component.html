@@ -1,6 +1,6 @@
 <div class="dashboard-card">
-    <h3>Total Booking</h3>
-    <div class="total">{{ totalBookings }}</div>
+    <h3>Completed Bookings</h3>
+    <div class="total">{{ bookingData.completed_booking }}</div>
     <div class="progress-bar">
         <div class="progress-bookings"
             [ngStyle]="{ 'width': (((bookingData.total-bookingData.cancel)/bookingData.total)*100).toString()+'%'}">
@@ -8,21 +8,21 @@
         <div class="progress-cancels"
             [ngStyle]="{ 'width': ((bookingData.cancel/bookingData.total)*100).toString()+'%'}"></div>
     </div>
-    <div class="growth">+{{ bookingsIncrease }}% this week</div>
+    <div class="growth">+{{ bookingData.growth }}% this week</div>
     <div class="details">
-        <div class="detail-item">
+        <div *ngFor="let stat of bookingData.categorizedBookings;" class="detail-item">
             <div class="detail-item-head">
                 <span class="dot bookings"></span>
-                <span class="label">Active</span>
+                <span class="label">{{stat.status}}</span>
             </div>
-            <span class="value">{{ bookingData.total-bookingData.cancel }}</span>
+            <span class="value">{{ stat.count }}</span>
         </div>
-        <div class="detail-item">
+        <!-- <div class="detail-item">
             <div class="detail-item-head">
                 <span class="dot cancels"></span>
                 <span class="label">Total Cancels</span>
             </div>
-            <span class="value">{{ bookingData.cancel }}</span>
-        </div>
+            <span class="value">{{ bookingData.cancelled_boooking }}</span>
+        </div> -->
     </div>
 </div>

@@ -3,17 +3,21 @@
         <h3>Total TTV</h3>
     </div>
     <div class="canvas-box">
-        <canvas id="ttvChart" style="margin: 0; padding: 0px;width: 100%;"></canvas>
+        <!-- <canvas id="ttvChart" style="margin: 0; padding: 0px;width: 100%;"></canvas> -->
     </div>
     <div class="stats">
-        <h3>£12,700</h3>
+        <!-- <h3>£12,700</h3> -->
+        <div *ngFor="let bkng of priceBaseStats;">
+            <p style="text-transform: capitalize;">{{bkng.status}} Booking Fare</p>
+            <span>£{{bkng.value}}</span>
+        </div>
         <div>
             <p>Average Fare</p>
-            <span>£45.00</span>
+            <span>£{{bookingData.averageFareValue}}</span>
         </div>
         <div>
             <p>Total Trip Value</p>
-            <span>£12,700</span>
+            <span>£{{bookingData.totalTripValue}}</span>
         </div>
     </div>
 
