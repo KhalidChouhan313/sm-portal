@@ -6,13 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./total-bookings.component.css']
 })
 export class TotalBookingsComponent {
-  @Input() totalBookings = 0;
+  @Input() bookingData: any;
 
   // totalBookings = 296;
-  bookingsIncrease = 0;
-  bookingData: any;
+  // bookingsIncrease = 0;
+  // bookingData: any;
   ngOnInit(): void {
-    this.bookingsIncrease = 8;
-    this.bookingData = { total: this.totalBookings, cancel: 0 };
+    console.log(this.bookingData, 'dd');
+
+    // this.bookingsIncrease = 8;
+    // this.bookingData = { total: this.totalBookings, cancel: 0 };
   }
 }

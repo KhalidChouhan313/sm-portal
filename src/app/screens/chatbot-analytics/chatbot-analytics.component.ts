@@ -10,7 +10,9 @@ export class ChatbotAnalyticsComponent {
   constructor(private bookingService: BookingsService,) { }
   devices = []
   showFilters = false
-  data: any;
+  data: any = {};
+  vehicle_insights: any;
+  price_base_stats: any
   // data = {
   //   averageFareValue: 0,
   //   totalTripValue: 0,
@@ -25,26 +27,30 @@ export class ChatbotAnalyticsComponent {
     if (!currentUser) {
 
     }
-    console.log(currentUser);
+    // console.log(currentUser);
 
     this.bookingService.getChatbotDashboardDetails(currentUser._id).subscribe((res) => {
       this.bookingService.getBookingStats(currentUser._id).subscribe((bDetails: any) => {
         this.bookingService.totalTripValueStats(currentUser._id).subscribe((bDetails2: any) => {
+          // console.log(bDetails, bDetails2);
+
           this.data = res;
           this.data['totalBookingCount'] = bDetails.totalBookingCount;
           this.data['categorizedBookings'] = bDetails.categorizedBookings;
           this.data['averageFareValue'] = bDetails2.averageFareValue.toFixed(2);
           this.data['totalTripValue'] = bDetails2.totalTripValue.toFixed(2);
-          console.log(this.data, 'fff');
+          this.data['booking_conversion_rate'] = (this.data.totalBookingCount / this.data.interaction).toFixed(2);
+          // console.log(this.data, 'fff');
         })
       })
     })
-    this.bookingService.vehicleTypesStats(currentUser._id).subscribe((bDetails: any) => {
-      console.log('vehicleTypesStats', bDetails);
+
+    this.bookingService.vehicleTypesStats(currentUser._id).subscribe((vDetails: any) => {
+      this.vehicle_insights = vDetails;
     })
 
     this.bookingService.priceBasedStats(currentUser._id).subscribe((bDetails: any) => {
-      console.log('priceBasedStats', bDetails);
+      this.price_base_stats = bDetails;
     })
   }
 }
