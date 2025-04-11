@@ -101,6 +101,9 @@ export class QrPageComponent {
   qrListTitle: string = '';
   qrListDescription: string = '';
 
+  isDeleteModalOpen = false;
+  deleteIndex: any;
+
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('user_details'));
     this.currentUser = user;
@@ -283,7 +286,7 @@ export class QrPageComponent {
     this.isQrListDescriptionEditable = true;
   }
 
-  deleteQr(index: number) {
+  deleteQr(index: number = this.deleteIndex) {
     let qrCodeId = this.allQrCodes[index]._id;
     this.qrcodeService.deleteQrCode(qrCodeId).subscribe((res) => {
       console.log(res);
@@ -385,11 +388,11 @@ export class QrPageComponent {
       .catch((error) => console.error('Download failed:', error));
   }
 
-  directToQrStats() {
+  directToQrStats(index: number) {
     this.router.navigate(['chatbot/QR-page/QR-stats'], {
       queryParams: {
-        qrId: this.activeQrDetails._id,
-        title: this.activeQrDetails.name,
+        qrId: this.allQrCodes[index]._id,
+        title: this.allQrCodes[index].name,
       },
     });
   }
@@ -406,5 +409,15 @@ export class QrPageComponent {
       .then(() => {
         alert('URL copied to clipboard!');
       });
+  }
+
+  toggleDeleteModal(i) {
+    if (!this.isDeleteModalOpen) {
+      this.isDeleteModalOpen = true;
+      this.deleteIndex = i;
+    } else {
+      this.isDeleteModalOpen = false;
+      this.deleteIndex = null;
+    }
   }
 }

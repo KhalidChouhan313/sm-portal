@@ -30,4 +30,16 @@ export class QrStatsComponent implements OnInit {
       });
     });
   }
+
+  copyToClipboard(value: string) {
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        console.log('Copied to clipboard:', value);
+        // Optionally show a success message
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err);
+      });
+  }
 }

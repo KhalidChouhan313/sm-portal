@@ -1,4 +1,42 @@
 <main>
+  <app-modal *ngIf="isDeleteModalOpen">
+    <div class="cus-modal">
+      <h1>Are you sure you want to delete?</h1>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          justify-content: center;
+        "
+      >
+        <button
+          (click)="isDeleteModalOpen = false"
+          style="
+            color: white;
+            background: grey;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+          "
+        >
+          Cancel
+        </button>
+        <button
+          style="
+            color: white;
+            background: red;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+          "
+          (click)="deleteQr(); isDeleteModalOpen = false"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </app-modal>
   <app-modal *ngIf="openUniversalQrCustomize">
     <div class="cus-modal">
       <div class="cus-modal-1">
@@ -497,17 +535,17 @@
         want to offer easy ride access.
       </p>
     </div>
-    <img src="../../../assets/qr-banner-img.png" />
-    <img src="../../../assets/qr-banner-gradient.png" />
+    <img src="../../../assets/qr-new-banner.png" />
+    <!-- <img src="../../../assets/qr-banner-gradient.png" /> -->
   </div>
 
   <!-- Content for Universal QR -->
   <div *ngIf="activeButton === 'universal'">
     <h2 class="qr-sec" *ngIf="showUniversalQrGenerator">
-      <img height="15px" width="15px" src="../../../assets/info-icon.png" /> Set
-      Up Your Universal QR Code
+      Set Up Your Universal QR Code
+      <img height="25px" width="25px" src="../../../assets/warning.png" />
     </h2>
-    <div
+    <!-- <div
       *ngIf="showUniversalQrGenerator"
       class="note-banner"
       style="display: flex; justify-content: start; gap: 5px"
@@ -527,7 +565,7 @@
       <button>
         <img src="../../../assets/close-icon.png" />
       </button>
-    </div>
+    </div> -->
     <div class="main" *ngIf="showUniversalQrGenerator" style="height: 593px">
       <div class="main-left">
         <div>
@@ -618,8 +656,8 @@
         <ngx-qrcode-styling
           *ngIf="universalQrString.length > 0"
           #qrCodeElem
-          [width]="300"
-          [height]="300"
+          [width]="440"
+          [height]="440"
           [data]="universalQrString"
           [dotsOptions]="{ color: '#000', type: 'rounded' }"
           [backgroundOptions]="{ color: '#fff' }"
@@ -923,7 +961,7 @@
   <div class="qr-table">
     <div class="qr-table-head">
       <div>No</div>
-      <div>QR Code</div>
+      <!-- <div>QR Code</div> -->
       <div>Create Date & Time</div>
       <div>Title</div>
       <div>Description</div>
@@ -940,7 +978,7 @@
             <div>{{ i + 1 }}</div>
           </div>
 
-          <div>
+          <!-- <div>
             <div
               style="
                 height: fit-content;
@@ -952,7 +990,7 @@
             >
               <img style="width: 100%" src="../../../assets/temp-qr.png" />
             </div>
-          </div>
+          </div> -->
           <div>{{ item.createdAt | date : "MM/dd/yyyy, h:mm:ss a" }}</div>
           <div>{{ item.name }}</div>
           <div>
@@ -1000,8 +1038,23 @@
                 align-items: center;
                 justify-content: center;
               "
+              (click)="directToQrStats(i)"
             >
-              <img style="width: 20px" src="../../../assets/edit-qr.png" />
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.3999 1.40002V15.6H15.5999M4.9499 10.2751L8.05615 7.16887L10.2749 9.38762L15.1562 4.50637M11.8352 4.06252H15.6006V7.82787"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </span>
             <span
               style="
@@ -1013,6 +1066,7 @@
                 align-items: center;
                 justify-content: center;
               "
+              (click)="toggleDeleteModal(i)"
             >
               <img style="width: 20px" src="../../../assets/delete-qr.png" />
             </span>
@@ -1235,7 +1289,7 @@
                 </svg>
                 Download Qr
               </button>
-              <button (click)="directToQrStats()">
+              <button (click)="directToQrStats(i)">
                 <svg
                   width="17"
                   height="17"
@@ -1253,7 +1307,7 @@
                 </svg>
                 View Stats
               </button>
-              <button (click)="deleteQr(i)">
+              <button (click)="toggleDeleteModal(i)">
                 <svg
                   width="16"
                   height="17"

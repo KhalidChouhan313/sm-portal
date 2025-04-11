@@ -253,7 +253,7 @@ h2 {
 }
 
 .main-right-qr div button {
-  width: 200px !important;
+  width: 270px !important;
   padding: 10px 0 !important;
   height: auto !important;
   font-weight: 300 !important;
@@ -267,9 +267,9 @@ h2 {
 .qr-banner {
   width: 100%;
   /* aspect-ratio: 1482/332; */
-  height: fit-content;
+  /* height: fit-content; */
   overflow: hidden;
-  height: fit-content;
+  aspect-ratio: 1482/272;
   position: relative;
   margin-top: 20px;
   border-radius: 10px;
@@ -278,7 +278,6 @@ h2 {
 
 .qr-banner img {
   width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -290,7 +289,7 @@ h2 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 26px;
 }
 
 .qr-banner h3 {
@@ -420,27 +419,27 @@ h2 {
   min-width: 100px;
 }
 
-.qr-table-head div:nth-child(3) {
+.qr-table-head div:nth-child(2) {
   width: 250px;
   min-width: 250px;
 }
 
-.qr-table-head div:nth-child(4) {
+.qr-table-head div:nth-child(3) {
   width: 200px;
   min-width: 200px;
 }
 
-.qr-table-head div:nth-child(5) {
+.qr-table-head div:nth-child(4) {
   width: 250px;
   min-width: 250px;
 }
 
-.qr-table-head div:nth-child(6) {
+.qr-table-head div:nth-child(5) {
   width: 100px;
   min-width: 100px;
 }
 
-.qr-table-head div:nth-child(7) {
+.qr-table-head div:nth-child(6) {
   width: 200px;
   min-width: 200px;
 }
@@ -465,7 +464,7 @@ h2 {
   align-items: start;
   justify-content: space-between;
   width: 100%;
-  padding: 15px 0;
+  padding: 35px 0;
   border-top: 1px solid lightgray;
 }
 
@@ -486,7 +485,7 @@ h2 {
   align-items: center;
 }
 
-.qr-table-item div:nth-child(3) {
+.qr-table-item div:nth-child(2) {
   color: var(--text, #636364);
   font-family: Nunito;
   font-size: 18px;
@@ -499,7 +498,7 @@ h2 {
   min-width: 250px;
 }
 
-.qr-table-item div:nth-child(4) {
+.qr-table-item div:nth-child(3) {
   color: var(--text, #636364);
   font-family: Nunito;
   font-size: 18px;
@@ -512,7 +511,7 @@ h2 {
   text-align: center;
 }
 
-.qr-table-item div:nth-child(5) {
+.qr-table-item div:nth-child(4) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -529,7 +528,7 @@ h2 {
   letter-spacing: 0.45px;
 }
 
-.qr-table-item div:nth-child(6) {
+.qr-table-item div:nth-child(5) {
   width: 100px;
   min-width: 100px;
   color: var(--text, #636364);
@@ -542,7 +541,7 @@ h2 {
   text-align: center;
 }
 
-.qr-table-item div:nth-child(7) {
+.qr-table-item div:nth-child(6) {
   display: flex;
   align-items: start;
   justify-content: center;
