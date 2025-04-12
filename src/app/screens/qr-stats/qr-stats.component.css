@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 80px;
 }
 
 .top-banner-qr-info-1 {
@@ -155,6 +155,8 @@ tr {
   border-collapse: separate;
   border-spacing: 20px;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
 }
 
 td {
@@ -171,6 +173,10 @@ thead td {
   font-weight: 700;
   line-height: normal;
   padding: 22.779px 0;
+  display: inline-block;
+
+  text-align: center;
+  white-space: nowrap;
 }
 
 tbody td {
@@ -182,9 +188,23 @@ tbody td {
   line-height: normal;
   letter-spacing: 0.42px;
   padding: 11.191px 0;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
 }
 
 thead td:first-child,
 tbody td:first-child {
-  width: 200px;
+  width: 118px !important;
+}
+
+thead td:nth-child(2),
+tbody td:nth-child(2) {
+  width: 100px !important;
+}
+
+table {
+  table-layout: fixed; /* This allows columns to size based on content */
+  width: 100%; /* Optional, depending on layout */
+  border-collapse: separate;
 }

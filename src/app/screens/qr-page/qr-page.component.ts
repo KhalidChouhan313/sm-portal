@@ -185,7 +185,17 @@ export class QrPageComponent {
 
               // Send to backend
               this.qrcodeService.SaveQrImg(res._id, formData).subscribe(
-                (qrRes) => console.log('QR saved:', qrRes),
+                (qrRes) => {
+                  let user = JSON.parse(localStorage.getItem('user_details'));
+                  this.currentUser = user;
+                  console.log(qrRes);
+
+                  this.qrcodeService
+                    .getAllQrCodes(this.currentUser._id)
+                    .subscribe((res) => {
+                      this.allQrCodes = res;
+                    });
+                },
                 (qrErr) => console.log('QR save error:', qrErr)
               );
             })
@@ -194,15 +204,6 @@ export class QrPageComponent {
           console.error('QR element not found!');
         }
         this.showLoader = false;
-        let user = JSON.parse(localStorage.getItem('user_details'));
-        this.currentUser = user;
-        console.log(user);
-
-        this.qrcodeService
-          .getAllQrCodes(this.currentUser._id)
-          .subscribe((res) => {
-            this.allQrCodes = res;
-          });
       }, 4000);
     });
   }
