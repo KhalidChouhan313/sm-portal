@@ -108,6 +108,7 @@
     <thead>
       <tr>
         <td>Date & Time</td>
+        <td>Scan ID</td>
         <td>Browser Name</td>
         <td>Browser Version</td>
         <td>Platform</td>
@@ -120,6 +121,7 @@
     <tbody>
       <tr *ngFor="let item of stats.scanData">
         <td>{{ item.createdAt | date : "MM/dd/yyyy, h:mm:ss a" }}</td>
+        <td>{{ item._id }}</td>
         <td>{{ item.browser }}</td>
         <td>{{ item.browserVersion }}</td>
         <td>{{ item.os }}</td>

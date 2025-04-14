@@ -200,6 +200,11 @@ tbody td:first-child {
 
 thead td:nth-child(2),
 tbody td:nth-child(2) {
+  width: 250px !important;
+}
+
+thead td:nth-child(3),
+tbody td:nth-child(3) {
   width: 100px !important;
 }
 
