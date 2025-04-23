@@ -350,7 +350,7 @@ strong {
 }
 
 .menu li.active p:last-child {
-  font-size: 16px;
+  /* font-size: 16px; */
 }
 
 .menu li .icon {
@@ -1072,6 +1072,7 @@ tr {
 .a_table td:nth-child(1) {
   width: 150px;
   min-width: 150px;
+  margin: auto;
 } /* Created At */
 .a_table th:nth-child(2),
 .a_table td:nth-child(2) {
@@ -1278,8 +1279,8 @@ tr {
 .s_dot_r {
   background-color: #ff515c;
   border-radius: 50%;
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width: 8px;
   display: inline-block;
   margin-bottom: 0;
 }
@@ -1287,8 +1288,8 @@ tr {
 .s_dot_g {
   background-color: #2ebc96;
   border-radius: 50%;
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width: 8px;
   display: inline-block;
   margin-bottom: 0;
 }

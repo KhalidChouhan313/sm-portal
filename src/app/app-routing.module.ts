@@ -42,7 +42,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'chatbot/QR-page',
+    path: 'chatbot/QR-code',
     loadChildren: () =>
       import('./screens/qr-page/qr-page.module').then((m) => m.QrPageModule),
   },
@@ -54,7 +54,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'chatbot/QR-page/QR-stats',
+    path: 'chatbot/QR-code/QR-stats',
     loadChildren: () =>
       import('./screens/qr-stats/qr-stats.module').then((m) => m.QrStatsModule),
   },

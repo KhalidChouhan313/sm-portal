@@ -40,7 +40,8 @@ export class NavbarComponent implements OnInit {
       this.title = 'dashboard';
     } else {
       const cleanedUrl = rawUrl.split('?')[0].replace(/\/$/, ''); // remove trailing slash
-      this.currentUrl = 'home' + cleanedUrl.replace(/\//g, ' / ');
+      this.currentUrl =
+        'home' + cleanedUrl.replace(/\//g, ' / ').replace(/-/g, ' ');
       const urlParts = this.currentUrl.split(' / ').filter(Boolean);
       this.title = urlParts[urlParts.length - 1].replace(/-/g, ' ');
     }

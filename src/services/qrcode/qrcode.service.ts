@@ -51,4 +51,11 @@ export class QrcodeService {
   public getQrCodeStats(id): Observable<any> {
     return this.http.get(`${environment.qrApiUrl}/api/getscannedqrcode/${id}`);
   }
+
+  public updateQrImg(id, img): Observable<any> {
+    return this.http.post(
+      `${environment.qrApiUrl}/api/update/qrcode/${id}`,
+      img
+    );
+  }
 }

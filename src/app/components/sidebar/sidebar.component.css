@@ -199,6 +199,7 @@ a {
   margin-left: 0;
   padding-left: 0;
   border: none;
+  align-items: center;
 }
 
 .sub_menu_item {

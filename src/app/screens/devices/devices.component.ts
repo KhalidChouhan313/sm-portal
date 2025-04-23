@@ -988,4 +988,8 @@ export class DevicesComponent implements OnInit {
   reloadWindow() {
     window.location.reload();
   }
+
+  formatText(text: string) {
+    return text.replace(/sms/gi, 'SMS');
+  }
 }

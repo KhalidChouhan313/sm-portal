@@ -55,6 +55,7 @@ export class BookingsComponent implements OnInit {
 
     this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
       (res) => {
+        console.log('bookings', res);
         this.bookingsService
           .getCompanyBots(currentUser._id)
           .subscribe((bot) => {

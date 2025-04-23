@@ -104,9 +104,9 @@
         <div class="th_item">Vehicle type</div>
         <div class="th_item">Estimated Price</div>
         <div class="th_item">Status</div>
-        <div class="th_item">
+        <!-- <div class="th_item">
           <span style="opacity: 0">view</span>
-        </div>
+        </div> -->
       </div>
       <div
         *ngIf="loading"
@@ -121,7 +121,11 @@
         <app-loader></app-loader>
       </div>
       <ng-container *ngFor="let booking of bookings">
-        <div *ngIf="!loading" class="table_body">
+        <div
+          *ngIf="!loading"
+          class="table_body"
+          (click)="selectBooking(booking)"
+        >
           <div class="th_item">
             <input type="checkbox" [checked]="booking.selected" />
           </div>
@@ -151,13 +155,15 @@
             {{ booking.estimated_fare }}
           </div>
           <div class="th_item">
-            <div class="badge">Completed</div>
+            <div class="badge" style="text-transform: capitalize">
+              {{ booking.status }}
+            </div>
           </div>
-          <div class="th_item">
+          <!-- <div class="th_item">
             <button class="toggle_more" (click)="selectBooking(booking)">
               {{ selectedBooking === booking._id ? "˄" : "˅" }}
             </button>
-          </div>
+          </div> -->
         </div>
         <div
           *ngIf="currentBookingDetails"

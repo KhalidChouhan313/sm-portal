@@ -137,7 +137,7 @@
       *ngFor="let item of deviceList; let i = index"
       (click)="setCurrent(item.id, i)"
       [class.active]="currentDeviceIndex === i"
-      style="width: 300px"
+      style="min-width: fit-content; max-width: 300px"
     >
       <div class="icon">
         <img src="../../../assets/androidlogo.png" alt="a" />
@@ -582,7 +582,9 @@
             </td>
 
             <td>{{ item.to_number }}</td>
-            <td style="text-transform: capitalize">{{ item.msg_type }}</td>
+            <td style="text-transform: capitalize">
+              {{ formatText(item.msg_type) }}
+            </td>
             <td>
               <div style="color: #3981f7" *ngIf="item.sent_by === 0">SMS</div>
               <div style="color: #2ebc96" *ngIf="item.sent_by === 1">

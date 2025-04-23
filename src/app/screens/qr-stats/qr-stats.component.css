@@ -43,6 +43,10 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
 }
 
 .top-banner-content-1 div {
@@ -195,17 +199,32 @@ tbody td {
 
 thead td:first-child,
 tbody td:first-child {
-  width: 118px !important;
+  width: 170px !important;
 }
 
 thead td:nth-child(2),
 tbody td:nth-child(2) {
-  width: 250px !important;
+  width: 98px !important;
 }
 
 thead td:nth-child(3),
 tbody td:nth-child(3) {
-  width: 100px !important;
+  width: 106px !important;
+}
+
+thead td:nth-child(4),
+tbody td:nth-child(4) {
+  width: 118px !important;
+}
+
+thead td:nth-child(5),
+tbody td:nth-child(5) {
+  width: 66px !important;
+}
+
+thead td:nth-child(6),
+tbody td:nth-child(6) {
+  width: 110px !important;
 }
 
 table {

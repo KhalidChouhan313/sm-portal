@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import html2canvas from 'html2canvas';
 import { QrcodeService } from 'src/services/qrcode/qrcode.service';
 import {
@@ -103,6 +103,11 @@ export class QrPageComponent {
 
   isDeleteModalOpen = false;
   deleteIndex: any;
+  isChecked = false;
+
+  isNotCustomizable = true;
+
+  currentQrId = '';
 
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('user_details'));
@@ -133,8 +138,9 @@ export class QrPageComponent {
   inputUniversalTitleName: string = '';
   inputUniversalPreferenceText: string = '';
   universalQrData: string = '';
-  universalQrString: string = '';
+  universalQrString: any = '';
   openUniversalQrCustomize = false;
+  openUniversalQrCustomizeFromDetails = false;
 
   inputSmartTitleName: string = '';
   inputSmartPickup: string = '';
@@ -152,6 +158,7 @@ export class QrPageComponent {
   // universal qr code
 
   generateUniversalQRCode() {
+    this.isNotCustomizable = true;
     const dataObject = {
       name: this.inputUniversalTitleName,
       type: 'text',
@@ -163,6 +170,7 @@ export class QrPageComponent {
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       console.log(res);
       this.universalQrString = `${res.URL}`;
+      this.currentQrId = res._id;
 
       setTimeout(() => {
         const qrElement = document.querySelector(
@@ -204,6 +212,7 @@ export class QrPageComponent {
           console.error('QR element not found!');
         }
         this.showLoader = false;
+        this.isNotCustomizable = false;
       }, 4000);
     });
   }
@@ -270,18 +279,37 @@ export class QrPageComponent {
   }
 
   selectedItemIndex: number | null = null;
+  currentQr = null;
+  activeQrId = null;
 
   toggleDetails(index: number): void {
+    this.currentQr = '';
+    console.log(this.allQrCodes);
+
     if (this.selectedItemIndex !== index) {
-      // If the clicked item is not already open, fetch the details
       let qrCodeId = this.allQrCodes[index]._id;
       this.qrListTitle = this.allQrCodes[index].name;
       this.qrListDescription = this.allQrCodes[index].text;
+      this.currentQr = this.allQrCodes[index].url;
+      this.activeQrId = this.allQrCodes[index]._id;
+
       this.qrcodeService.getQrCodeDetails(qrCodeId).subscribe((res) => {
-        console.log(res); // You can store this response in a variable to display the details
         this.activeQrDetails = res;
+
+        console.log(this.currentQr);
+
+        // After content loads, scroll to bottom if it's the last item
+        if (index === this.allQrCodes.length - 1) {
+          setTimeout(() => {
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: 'smooth',
+            });
+          }, 200); // Delay ensures content is rendered
+        }
       });
     }
+
     this.selectedItemIndex = this.selectedItemIndex === index ? null : index;
     this.isQrListTitleEditable = true;
     this.isQrListDescriptionEditable = true;
@@ -390,7 +418,7 @@ export class QrPageComponent {
   }
 
   directToQrStats(index: number) {
-    this.router.navigate(['chatbot/QR-page/QR-stats'], {
+    this.router.navigate(['chatbot/QR-code/QR-stats'], {
       queryParams: {
         qrId: this.allQrCodes[index]._id,
         title: this.allQrCodes[index].name,
@@ -399,7 +427,7 @@ export class QrPageComponent {
   }
 
   copyToClipboard() {
-    navigator.clipboard.writeText(this.activeQrDetails.qrCodeImage).then(() => {
+    navigator.clipboard.writeText(this.activeQrDetails.url).then(() => {
       alert('URL copied to clipboard!');
     });
   }
@@ -420,5 +448,346 @@ export class QrPageComponent {
       this.isDeleteModalOpen = false;
       this.deleteIndex = null;
     }
+  }
+
+  showScrollButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showScrollButton = window.pageYOffset > 200;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  qrShouldRender = true;
+  cShowQrLoader = false;
+
+  dotStyle: DotType = 'rounded';
+  selectedDotStyle: DotType = 'rounded';
+
+  dotColor = 'black';
+  selectedDotColor = 'black';
+
+  dotGradient1 = '';
+  dotGradient2 = '';
+
+  eyeExternal: CornerSquareType = 'square';
+  selectedEyeExternal: CornerSquareType = 'square';
+  eyeInternal: CornerDotType = 'square';
+  selectedEyeInternal: CornerDotType = 'square';
+
+  eyeColor = 'black';
+
+  eyeGradient1 = '';
+  eyeGradient2 = '';
+
+  bgColor = 'white';
+
+  bgGradient1 = '';
+  bgGradient2 = '';
+
+  logoDataUrl = '';
+
+  isGradient: boolean = false;
+
+  regenQr() {
+    this.qrShouldRender = false;
+    // this.cShowQrLoader = true;
+
+    setTimeout(() => {
+      // this.cShowQrLoader = false;
+      this.qrShouldRender = true;
+    }, 0); // 1.5 seconds
+  }
+
+  // qrCombo to cover all possible combinations for dot and corner styles
+  qrCombo:
+    | 'dotSolid_cornerSolid_solidBg'
+    | 'dotSolid_cornerSolid_gradientBg'
+    | 'dotSolid_cornerGradient_solidBg'
+    | 'dotSolid_cornerGradient_gradientBg'
+    | 'dotGradient_cornerSolid_solidBg'
+    | 'dotGradient_cornerSolid_gradientBg'
+    | 'dotGradient_cornerGradient_solidBg'
+    | 'dotGradient_cornerGradient_gradientBg' = 'dotSolid_cornerSolid_solidBg';
+
+  // Function to set QR style based on dot and corner styles
+  setQRStyle(
+    dotGradient: boolean,
+    cornerGradient: boolean,
+    bgGradient: boolean
+  ) {
+    if (dotGradient && cornerGradient && bgGradient) {
+      this.qrCombo = 'dotGradient_cornerGradient_gradientBg';
+    } else if (dotGradient && cornerGradient && !bgGradient) {
+      this.qrCombo = 'dotGradient_cornerGradient_solidBg';
+    } else if (dotGradient && !cornerGradient && bgGradient) {
+      this.qrCombo = 'dotGradient_cornerSolid_gradientBg';
+    } else if (dotGradient && !cornerGradient && !bgGradient) {
+      this.qrCombo = 'dotGradient_cornerSolid_solidBg';
+    } else if (!dotGradient && cornerGradient && bgGradient) {
+      this.qrCombo = 'dotSolid_cornerGradient_gradientBg';
+    } else if (!dotGradient && cornerGradient && !bgGradient) {
+      this.qrCombo = 'dotSolid_cornerGradient_solidBg';
+    } else if (!dotGradient && !cornerGradient && bgGradient) {
+      this.qrCombo = 'dotSolid_cornerSolid_gradientBg';
+    } else {
+      this.qrCombo = 'dotSolid_cornerSolid_solidBg';
+    }
+    this.regenQr();
+  }
+
+  // Function for selecting dot style
+  cDotStyle(s: DotType) {
+    this.dotStyle = s;
+    this.selectedDotStyle = s;
+    this.regenQr();
+  }
+
+  // Function for selecting dot color (solid)
+  cDotColor(color: string) {
+    this.dotColor = color;
+    this.selectedDotColor = color;
+
+    const cornerGradient = this.qrCombo.includes('cornerGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(false, cornerGradient, bgGradient);
+    this.regenQr();
+  }
+
+  // Function for selecting dot gradient
+  cDotGradient(c1: string, c2: string) {
+    this.dotGradient1 = c1;
+    this.dotGradient2 = c2;
+
+    const cornerGradient = this.qrCombo.includes('cornerGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(true, cornerGradient, bgGradient);
+    this.regenQr();
+  }
+
+  pDotGradient() {
+    const cornerGradient = this.qrCombo.includes('cornerGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(true, cornerGradient, bgGradient);
+    this.regenQr();
+  }
+
+  // Function for selecting eye (corner) color (solid)
+  cEyeColor(color: string) {
+    this.eyeColor = color;
+
+    const dotGradient = this.qrCombo.includes('dotGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(dotGradient, false, bgGradient);
+    this.regenQr();
+  }
+
+  // Function for selecting eye (corner) gradient
+  cEyeGradient(c1: string, c2: string) {
+    this.eyeColor = '';
+    this.eyeGradient1 = c1;
+    this.eyeGradient2 = c2;
+
+    const dotGradient = this.qrCombo.includes('dotGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(dotGradient, true, bgGradient);
+    this.regenQr();
+  }
+
+  pEyeGradient() {
+    const dotGradient = this.qrCombo.includes('dotGradient');
+    const bgGradient = this.qrCombo.includes('gradientBg');
+    this.setQRStyle(dotGradient, true, bgGradient);
+    this.regenQr();
+    console.log(this.eyeGradient1, this.eyeGradient2);
+  }
+
+  // Function for selecting internal eye shape
+  cEyeInternal(s: CornerDotType) {
+    this.eyeInternal = s;
+    this.selectedEyeInternal = s;
+    this.regenQr();
+  }
+
+  // Function for selecting external eye shape
+  cEyeExternal(s: CornerSquareType) {
+    this.eyeExternal = s;
+    this.selectedEyeExternal = s;
+    this.regenQr();
+  }
+
+  // Function for selecting background color (solid)
+  cBgColor(color: string) {
+    this.bgColor = color;
+    this.setQRStyle(
+      this.qrCombo.includes('dotGradient'),
+      this.qrCombo.includes('cornerGradient'),
+      false
+    );
+    this.regenQr();
+  }
+
+  // Function for selecting background gradient
+  cBgGradient(c1: string, c2: string) {
+    console.log(c1, c2);
+    this.bgGradient1 = c1;
+    this.bgGradient2 = c2;
+    this.setQRStyle(
+      this.qrCombo.includes('dotGradient'),
+      this.qrCombo.includes('cornerGradient'),
+      true
+    );
+    this.regenQr();
+  }
+
+  pBgGradient() {
+    this.setQRStyle(
+      this.qrCombo.includes('dotGradient'),
+      this.qrCombo.includes('cornerGradient'),
+      true
+    );
+    this.regenQr();
+  }
+
+  // Function for uploading a logo
+  cImg(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const file: File | null = target.files?.[0] || null;
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoDataUrl = reader.result as string;
+        this.regenQr(); // ✅ Now it runs AFTER logoDataUrl is set
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.regenQr(); // Fallback if no file selected
+    }
+  }
+
+  saveBtnText = 'Save Changes';
+
+  cSaveQr() {
+    this.saveBtnText = 'Saving...';
+    const qrElement = document.querySelector(
+      'ngx-qrcode-styling'
+    ) as HTMLElement;
+
+    setTimeout(() => {
+      if (qrElement) {
+        html2canvas(qrElement)
+          .then((canvas) => {
+            const qrImgBase64 = canvas.toDataURL('image/png');
+
+            // Convert Base64 to Blob
+            const qrBlob = this.base64ToBlob(qrImgBase64, 'image/png');
+
+            // Create FormData
+            const formData = new FormData();
+            formData.append('qrCodeImage', qrBlob, 'qrcode.png');
+
+            console.log('FormData:', formData);
+
+            // Send to backend
+            this.qrcodeService
+              .updateQrImg(this.currentQrId, formData)
+              .subscribe(
+                (qrRes) => {
+                  let user = JSON.parse(localStorage.getItem('user_details'));
+                  this.currentUser = user;
+                  console.log(qrRes);
+
+                  this.openUniversalQrCustomize = false;
+                  this.saveBtnText = 'Save Changes';
+                  this.qrcodeService
+                    .getAllQrCodes(this.currentUser._id)
+                    .subscribe((res) => {
+                      this.allQrCodes = res;
+                    });
+                },
+                (qrErr) => console.log('QR save error:', qrErr)
+              );
+          })
+          .catch((err) => console.log('QR capture error:', err));
+      } else {
+        console.error('QR element not found!');
+      }
+    }, 4000);
+  }
+
+  cSaveQrFromDetails() {
+    this.saveBtnText = 'Saving...';
+    const qrElement = document.querySelector(
+      'ngx-qrcode-styling'
+    ) as HTMLElement;
+
+    setTimeout(() => {
+      if (qrElement) {
+        html2canvas(qrElement)
+          .then((canvas) => {
+            const qrImgBase64 = canvas.toDataURL('image/png');
+
+            // Convert Base64 to Blob
+            const qrBlob = this.base64ToBlob(qrImgBase64, 'image/png');
+
+            // Create FormData
+            const formData = new FormData();
+            formData.append('qrCodeImage', qrBlob, 'qrcode.png');
+
+            console.log('FormData:', formData);
+
+            // Send to backend
+            this.qrcodeService.updateQrImg(this.activeQrId, formData).subscribe(
+              (qrRes) => {
+                let user = JSON.parse(localStorage.getItem('user_details'));
+                this.currentUser = user;
+                console.log(qrRes);
+
+                this.openUniversalQrCustomizeFromDetails = false;
+                this.saveBtnText = 'Save Changes';
+                this.qrcodeService
+                  .getAllQrCodes(this.currentUser._id)
+                  .subscribe((res) => {
+                    this.allQrCodes = res;
+                  });
+              },
+              (qrErr) => console.log('QR save error:', qrErr)
+            );
+          })
+          .catch((err) => console.log('QR capture error:', err));
+      } else {
+        console.error('QR element not found!');
+      }
+    }, 4000);
+  }
+
+  cDownloadQr() {
+    const qrElement = document.querySelector(
+      'ngx-qrcode-styling'
+    ) as HTMLElement;
+
+    const canvas = qrElement.querySelector('canvas') as HTMLCanvasElement;
+    if (canvas) {
+      const dataUrl = canvas.toDataURL('image/png');
+
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'qr-code.png';
+      link.click();
+    } else {
+      console.error('Canvas not found in QR element.');
+    }
+  }
+
+  qrDetailImgLoader = false;
+  qrDetailImgLoad() {
+    this.qrDetailImgLoader = true;
+    setTimeout(() => {
+      this.qrDetailImgLoader = false;
+    }, 1000);
   }
 }

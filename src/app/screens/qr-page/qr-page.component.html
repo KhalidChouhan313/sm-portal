@@ -1,4 +1,27 @@
-<main>
+<main style="position: relative">
+  <button
+    *ngIf="showScrollButton"
+    style="
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: rgba(37, 231, 37, 0.847);
+      color: green;
+      border: none;
+      font-size: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+    "
+    (click)="scrollToTop()"
+  >
+    <img style="width: 20px" src="../../../assets/side-up-arrow.png" />
+  </button>
+
   <app-modal *ngIf="isDeleteModalOpen">
     <div class="cus-modal">
       <h1>Are you sure you want to delete?</h1>
@@ -37,590 +60,993 @@
       </div>
     </div>
   </app-modal>
+
   <app-modal *ngIf="openUniversalQrCustomize">
-    <div class="cus-modal">
-      <div class="cus-modal-1">
-        <h1>Design your QR <img src="../../../assets/warning.png" /></h1>
-        <div class="cus-modol-1-btn-con">
-          <button>Save Changes</button>
-          <button>
-            <svg
-              width="21"
-              height="21"
-              viewBox="0 0 21 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+    <div
+      style="
+        width: 866px;
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+        overflow: scroll;
+      "
+    >
+      <div class="cus-modal">
+        <div class="cus-modal-1">
+          <h1>Design your QR <img src="../../../assets/warning.png" /></h1>
+          <div class="cus-modol-1-btn-con">
+            <!-- <button (click)="cSaveQr()">{{ saveBtnText }}</button> -->
+            <button
+              (click)="openUniversalQrCustomize = !openUniversalQrCustomize"
+              style="background: white !important"
+              [disabled]="saveBtnText === 'Saving...'"
             >
-              <path
-                d="M14.1713 7.53589C14.3665 7.34063 14.3665 7.02405 14.1713 6.82878C13.976 6.63352 13.6594 6.63352 13.4642 6.82878L14.1713 7.53589ZM6.67595 13.617C6.48069 13.8123 6.48069 14.1289 6.67595 14.3241C6.87121 14.5194 7.18779 14.5194 7.38306 14.3241L6.67595 13.617ZM13.4642 14.3241C13.6594 14.5194 13.976 14.5194 14.1713 14.3241C14.3665 14.1289 14.3665 13.8123 14.1713 13.617L13.4642 14.3241ZM7.38306 6.82878C7.18779 6.63352 6.87121 6.63352 6.67595 6.82878C6.48069 7.02405 6.48069 7.34063 6.67595 7.53589L7.38306 6.82878ZM16.8583 17.0111C13.3045 20.5649 7.54271 20.5649 3.98894 17.0111L3.28184 17.7182C7.22613 21.6625 13.6211 21.6625 17.5654 17.7182L16.8583 17.0111ZM3.98894 17.0111C0.435172 13.4573 0.435172 7.69555 3.98894 4.14178L3.28184 3.43467C-0.662459 7.37897 -0.662459 13.7739 3.28184 17.7182L3.98894 17.0111ZM3.98894 4.14178C7.54271 0.588007 13.3045 0.588007 16.8583 4.14178L17.5654 3.43467C13.6211 -0.509624 7.22613 -0.509624 3.28184 3.43467L3.98894 4.14178ZM16.8583 4.14178C20.4121 7.69555 20.4121 13.4573 16.8583 17.0111L17.5654 17.7182C21.5097 13.7739 21.5097 7.37897 17.5654 3.43467L16.8583 4.14178ZM13.4642 6.82878L10.0701 10.2229L10.7772 10.93L14.1713 7.53589L13.4642 6.82878ZM10.0701 10.2229L6.67595 13.617L7.38306 14.3241L10.7772 10.93L10.0701 10.2229ZM14.1713 13.617L10.7772 10.2229L10.0701 10.93L13.4642 14.3241L14.1713 13.617ZM10.7772 10.2229L7.38306 6.82878L6.67595 7.53589L10.0701 10.93L10.7772 10.2229Z"
-                fill="white"
-              />
-            </svg>
-            Close
-          </button>
+              <svg
+                width="22"
+                height="21"
+                viewBox="0 0 22 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.975 19.675L1.0153 1.32495M20.975 1.32495L1.0153 19.675"
+                  stroke="#2EBC96"
+                  stroke-width="1.2975"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="cus-modal-2">
-        <svg
-          width="20"
-          height="21"
-          viewBox="0 0 20 21"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9 5.5H11V7.5H9V5.5ZM10 15.5C10.55 15.5 11 15.05 11 14.5V10.5C11 9.95 10.55 9.5 10 9.5C9.45 9.5 9 9.95 9 10.5V14.5C9 15.05 9.45 15.5 10 15.5ZM10 0.5C4.48 0.5 0 4.98 0 10.5C0 16.02 4.48 20.5 10 20.5C15.52 20.5 20 16.02 20 10.5C20 4.98 15.52 0.5 10 0.5ZM10 18.5C5.59 18.5 2 14.91 2 10.5C2 6.09 5.59 2.5 10 2.5C14.41 2.5 18 6.09 18 10.5C18 14.91 14.41 18.5 10 18.5Z"
-            fill="#636364"
-          />
-        </svg>
-        <div
-          (click)="setModalActive(0)"
-          [class.active]="activeModalIndex === 0"
-        >
-          Shape
+        <div class="cus-modal-2">
+          <svg
+            width="20"
+            height="21"
+            viewBox="0 0 20 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 5.5H11V7.5H9V5.5ZM10 15.5C10.55 15.5 11 15.05 11 14.5V10.5C11 9.95 10.55 9.5 10 9.5C9.45 9.5 9 9.95 9 10.5V14.5C9 15.05 9.45 15.5 10 15.5ZM10 0.5C4.48 0.5 0 4.98 0 10.5C0 16.02 4.48 20.5 10 20.5C15.52 20.5 20 16.02 20 10.5C20 4.98 15.52 0.5 10 0.5ZM10 18.5C5.59 18.5 2 14.91 2 10.5C2 6.09 5.59 2.5 10 2.5C14.41 2.5 18 6.09 18 10.5C18 14.91 14.41 18.5 10 18.5Z"
+              fill="#636364"
+            />
+          </svg>
+          <div
+            (click)="setModalActive(0)"
+            [class.active]="activeModalIndex === 0"
+          >
+            Shape
+          </div>
+          <div
+            (click)="setModalActive(1)"
+            [class.active]="activeModalIndex === 1"
+          >
+            Eyes
+          </div>
+          <div
+            (click)="setModalActive(2)"
+            [class.active]="activeModalIndex === 2"
+          >
+            Background
+          </div>
+          <div
+            (click)="setModalActive(3)"
+            [class.active]="activeModalIndex === 3"
+          >
+            Logo
+          </div>
+          <div
+            (click)="setModalActive(4)"
+            [class.active]="activeModalIndex === 4"
+          >
+            Error Level
+          </div>
         </div>
-        <div
-          (click)="setModalActive(1)"
-          [class.active]="activeModalIndex === 1"
-        >
-          Eyes
-        </div>
-        <div
-          (click)="setModalActive(2)"
-          [class.active]="activeModalIndex === 2"
-        >
-          Background
-        </div>
-        <div
-          (click)="setModalActive(3)"
-          [class.active]="activeModalIndex === 3"
-        >
-          Logo
-        </div>
-        <div
-          (click)="setModalActive(4)"
-          [class.active]="activeModalIndex === 4"
-        >
-          Error Level
-        </div>
-      </div>
 
-      <div class="cus-modal-3">
-        <div *ngIf="activeModalIndex == 1" class="cus-modal-3-settings">
-          <div style="display: flex; gap: 20px">
+        <div class="cus-modal-3">
+          <div *ngIf="activeModalIndex == 1" class="cus-modal-3-settings">
+            <div style="display: flex; gap: 20px">
+              <div
+                style="
+                  border-right: 2px solid rgba(26, 144, 150, 0.5);
+                  padding-right: 20px;
+                "
+              >
+                <p
+                  style="
+                    color: #000;
+                    font-family: 'DM Sans';
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 42px; /* 210% */
+                    letter-spacing: -0.4px;
+                  "
+                >
+                  External Eye
+                </p>
+                <p class="cus-modal-setting-h">Choose a style</p>
+                <div class="cus-modal-3-0-shape">
+                  <div (click)="cEyeExternal('square')">
+                    <!-- Square -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeExternal === 'square'
+                      }"
+                      src="../../../assets/ee1.png"
+                    />
+                  </div>
+                  <div (click)="cEyeExternal('dot')">
+                    <!-- Doted -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeExternal === 'dot'
+                      }"
+                      src="../../../assets/ee2.png"
+                    />
+                  </div>
+                  <div (click)="cEyeExternal('extra-rounded')">
+                    <!-- Rounded -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape':
+                          selectedEyeExternal === 'extra-rounded'
+                      }"
+                      src="../../../assets/ee3.png"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p
+                  style="
+                    color: #000;
+                    font-family: 'DM Sans';
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 42px; /* 210% */
+                    letter-spacing: -0.4px;
+                  "
+                >
+                  Internal Eye
+                </p>
+                <p class="cus-modal-setting-h">Choose a style</p>
+                <div class="cus-modal-3-0-shape">
+                  <div (click)="cEyeInternal('square')">
+                    <!-- Square -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeInternal === 'square'
+                      }"
+                      src="../../../assets/ei2.png"
+                    />
+                  </div>
+                  <div (click)="cEyeInternal('dot')">
+                    <!-- Doted -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeInternal === 'dot'
+                      }"
+                      src="../../../assets/ei1.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div
               style="
-                border-right: 2px solid rgba(26, 144, 150, 0.5);
-                padding-right: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 440px;
               "
             >
-              <p
-                style="
-                  color: #000;
-                  font-family: 'DM Sans';
-                  font-size: 20px;
-                  font-style: normal;
-                  font-weight: 600;
-                  line-height: 42px; /* 210% */
-                  letter-spacing: -0.4px;
-                "
-              >
-                External Eye
-              </p>
-              <p class="cus-modal-setting-h">Choose a style</p>
-              <div class="cus-modal-3-0-shape">
-                <div>
-                  Square
-                  <img src="../../../assets/qr-shape-1.png" />
-                </div>
-                <div>
-                  Doted
-                  <img src="../../../assets/qr-shape-2.png" />
-                </div>
-                <div>
-                  Rounded
-                  <img src="../../../assets/qr-shape-3.png" />
-                </div>
-                <div>
-                  Sharp Edges
-                  <img src="../../../assets/qr-shape-4.png" />
-                </div>
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="e-c"
+                  id="e-c"
+                  [(ngModel)]="eyeColor"
+                  (change)="regenQr()"
+                />
               </div>
             </div>
-            <div>
-              <p
-                style="
-                  color: #000;
-                  font-family: 'DM Sans';
-                  font-size: 20px;
-                  font-style: normal;
-                  font-weight: 600;
-                  line-height: 42px; /* 210% */
-                  letter-spacing: -0.4px;
-                "
-              >
-                Internal Eye
-              </p>
-              <p class="cus-modal-setting-h">Choose a style</p>
-              <div class="cus-modal-3-0-shape">
-                <div>
-                  Square
-                  <img src="../../../assets/qr-shape-1.png" />
-                </div>
-                <div>
-                  Doted
-                  <img src="../../../assets/qr-shape-2.png" />
-                </div>
-                <div>
-                  Rounded
-                  <img src="../../../assets/qr-shape-3.png" />
-                </div>
-                <div>
-                  Sharp Edges
-                  <img src="../../../assets/qr-shape-4.png" />
-                </div>
+            <div class="cus-modal-3-0-color">
+              <!-- Row 1 -->
+              <div style="margin-bottom: 10px">
+                <span [style.borderColor]="eyeColor">
+                  <label for="e-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </label>
+                </span>
+                <span
+                  style="background: black"
+                  (click)="cEyeColor('black')"
+                ></span>
+                <span
+                  style="background: white"
+                  (click)="cEyeColor('white')"
+                ></span>
+                <span
+                  style="background: #f44336"
+                  (click)="cEyeColor('#f44336')"
+                ></span>
+                <span
+                  style="background: #e91e63"
+                  (click)="cEyeColor('#e91e63')"
+                ></span>
+                <span
+                  style="background: #9c27b0"
+                  (click)="cEyeColor('#9c27b0')"
+                ></span>
+                <span
+                  style="background: #673ab7"
+                  (click)="cEyeColor('#673ab7')"
+                ></span>
+                <span
+                  style="background: #3f51b5"
+                  (click)="cEyeColor('#3f51b5')"
+                ></span>
+                <span
+                  style="background: #2196f3"
+                  (click)="cEyeColor('#2196f3')"
+                ></span>
+              </div>
+
+              <!-- Row 2 -->
+              <div>
+                <span
+                  style="background: #00bcd4"
+                  (click)="cEyeColor('#00bcd4')"
+                ></span>
+                <span
+                  style="background: #009688"
+                  (click)="cEyeColor('#009688')"
+                ></span>
+                <span
+                  style="background: #8bc34a"
+                  (click)="cEyeColor('#8bc34a')"
+                ></span>
+                <span
+                  style="background: #cddc39"
+                  (click)="cEyeColor('#cddc39')"
+                ></span>
+                <span
+                  style="background: #ffeb3b"
+                  (click)="cEyeColor('#ffeb3b')"
+                ></span>
+                <span
+                  style="background: #ff9800"
+                  (click)="cEyeColor('#ff9800')"
+                ></span>
+                <span
+                  style="background: #ff5722"
+                  (click)="cEyeColor('#ff5722')"
+                ></span>
+                <span
+                  style="background: #795548"
+                  (click)="cEyeColor('#795548')"
+                ></span>
+                <span
+                  style="background: #607d8b"
+                  (click)="cEyeColor('#607d8b')"
+                ></span>
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="e-g-1" [style.borderColor]="eyeGradient1">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="e-g-1"
+                  id="e-g-1"
+                  [(ngModel)]="eyeGradient1"
+                  (change)="pEyeGradient()"
+                />
+                To
+
+                <label for="e-g-2" [style.borderColor]="eyeGradient2">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="e-g-2"
+                  id="e-g-2"
+                  [(ngModel)]="eyeGradient2"
+                  (change)="pEyeGradient()"
+                />
+              </div>
+              <div>
+                <!-- <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span> -->
+                <span
+                  (click)="cEyeGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
               </div>
             </div>
           </div>
 
-          <p class="cus-modal-setting-h">Solid Colors</p>
-          <div class="cus-modal-3-0-color">
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span style="background: white"></span>
-              <span style="background: #f44336"></span>
-              <span style="background: #e91e63"></span>
-              <span style="background: #9c27b0"></span>
-              <span style="background: #673ab7"></span>
-              <span style="background: #3f51b5"></span>
-              <span style="background: #2196f3"></span>
-              <span style="background: #00bcd4"></span>
+          <div *ngIf="activeModalIndex == 0" class="cus-modal-3-settings">
+            <p class="cus-modal-setting-h">Choose a style</p>
+            <div class="cus-modal-3-0-shape">
+              <div (click)="cDotStyle('square')">
+                Square
+                <img
+                  src="../../../assets/qr-shape-1.png"
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'square'
+                  }"
+                />
+              </div>
+              <div (click)="cDotStyle('dots')">
+                Doted
+                <img
+                  src="../../../assets/qr-shape-2.png"
+                  [ngClass]="{ 'selected-shape': selectedDotStyle === 'dots' }"
+                />
+              </div>
+              <div (click)="cDotStyle('rounded')">
+                Rounded
+                <img
+                  src="../../../assets/qr-shape-3.png"
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'rounded'
+                  }"
+                />
+              </div>
+              <div (click)="cDotStyle('classy')">
+                Sharp Edges
+                <img
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'classy'
+                  }"
+                  src="../../../assets/qr-shape-4.png"
+                />
+              </div>
             </div>
-            <div>
-              <span style="background: #009688"></span>
-              <span style="background: #009688"></span>
-              <span style="background: #8bc34a"></span>
-              <span style="background: #cddc39"></span>
-              <span style="background: #ffeb3b"></span>
-              <span style="background: #ff9800"></span>
-              <span style="background: #ff5722"></span>
-              <span style="background: #795548"></span>
-              <span style="background: #607d8b"></span>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 440px;
+              "
+            >
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="d-c"
+                  id="d-c"
+                  [(ngModel)]="dotColor"
+                  (change)="regenQr()"
+                />
+              </div>
             </div>
-          </div>
-          <p class="cus-modal-setting-h">Gradients</p>
-          <div class="cus-modal-3-0-gradients">
-            <div>
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              To
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span [style.borderColor]="dotColor"
+                  ><label for="d-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg> </label
+                ></span>
+                <span
+                  *ngFor="
+                    let color of [
+                      '#000000',
+                      '#ffffff',
+                      '#f44336',
+                      '#e91e63',
+                      '#9c27b0',
+                      '#673ab7',
+                      '#3f51b5',
+                      '#2196f3'
+                    ]
+                  "
+                  [style.background]="color"
+                  [ngClass]="{ 'selected-color': selectedDotColor === color }"
+                  (click)="cDotColor(color)"
+                ></span>
+              </div>
+              <div>
+                <span
+                  *ngFor="
+                    let color of [
+                      '#009688',
+                      '#8bc34a',
+                      '#cddc39',
+                      '#ffeb3b',
+                      '#ff9800',
+                      '#ff5722',
+                      '#795548',
+                      '#607d8b',
+                      '#00bcd4'
+                    ]
+                  "
+                  [style.background]="color"
+                  [ngClass]="{ 'selected-color': selectedDotColor === color }"
+                  (click)="cDotColor(color)"
+                ></span>
+              </div>
             </div>
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #e91e63 0%, #f44336 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #9c27b0 0%, #673ab7 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #3f51b5 0%, #2196f3 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #00bcd4 0%, #009688 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #009688 0%, #8bc34a 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #cddc39 0%, #ffeb3b 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #ff9800 0%, #ff5722 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #607d8b 0%, #df9d85 100%);
-                "
-              ></span>
-            </div>
-          </div>
-        </div>
 
-        <div *ngIf="activeModalIndex == 0" class="cus-modal-3-settings">
-          <p class="cus-modal-setting-h">Choose a style</p>
-          <div class="cus-modal-3-0-shape">
-            <div>
-              Square
-              <img src="../../../assets/qr-shape-1.png" />
-            </div>
-            <div>
-              Doted
-              <img src="../../../assets/qr-shape-2.png" />
-            </div>
-            <div>
-              Rounded
-              <img src="../../../assets/qr-shape-3.png" />
-            </div>
-            <div>
-              Sharp Edges
-              <img src="../../../assets/qr-shape-4.png" />
-            </div>
-          </div>
-          <p class="cus-modal-setting-h">Solid Colors</p>
-          <div class="cus-modal-3-0-color">
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span style="background: white"></span>
-              <span style="background: #f44336"></span>
-              <span style="background: #e91e63"></span>
-              <span style="background: #9c27b0"></span>
-              <span style="background: #673ab7"></span>
-              <span style="background: #3f51b5"></span>
-              <span style="background: #2196f3"></span>
-              <span style="background: #00bcd4"></span>
-            </div>
-            <div>
-              <span style="background: #009688"></span>
-              <span style="background: #009688"></span>
-              <span style="background: #8bc34a"></span>
-              <span style="background: #cddc39"></span>
-              <span style="background: #ffeb3b"></span>
-              <span style="background: #ff9800"></span>
-              <span style="background: #ff5722"></span>
-              <span style="background: #795548"></span>
-              <span style="background: #607d8b"></span>
-            </div>
-          </div>
-          <p class="cus-modal-setting-h">Gradients</p>
-          <div class="cus-modal-3-0-gradients">
-            <div>
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              To
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #e91e63 0%, #f44336 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #9c27b0 0%, #673ab7 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #3f51b5 0%, #2196f3 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #00bcd4 0%, #009688 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #009688 0%, #8bc34a 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #cddc39 0%, #ffeb3b 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #ff9800 0%, #ff5722 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #607d8b 0%, #df9d85 100%);
-                "
-              ></span>
-            </div>
-          </div>
-        </div>
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="d-g-1" [style.borderColor]="dotGradient1">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="d-g-1"
+                  id="d-g-1"
+                  [(ngModel)]="dotGradient1"
+                  (change)="pDotGradient()"
+                />
+                To
 
-        <div *ngIf="activeModalIndex == 2" class="cus-modal-3-settings">
-          <p class="cus-modal-setting-h">Solid Colors</p>
-          <div class="cus-modal-3-0-color">
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span style="background: white"></span>
-              <span style="background: #f44336"></span>
-              <span style="background: #e91e63"></span>
-              <span style="background: #9c27b0"></span>
-              <span style="background: #673ab7"></span>
-              <span style="background: #3f51b5"></span>
-              <span style="background: #2196f3"></span>
-              <span style="background: #00bcd4"></span>
-            </div>
-            <div>
-              <span style="background: #009688"></span>
-              <span style="background: #009688"></span>
-              <span style="background: #8bc34a"></span>
-              <span style="background: #cddc39"></span>
-              <span style="background: #ffeb3b"></span>
-              <span style="background: #ff9800"></span>
-              <span style="background: #ff5722"></span>
-              <span style="background: #795548"></span>
-              <span style="background: #607d8b"></span>
-            </div>
-          </div>
-          <p class="cus-modal-setting-h">Gradients</p>
-          <div class="cus-modal-3-0-gradients">
-            <div>
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              To
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div>
-              <span
-                ><svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
-                    fill="black"
-                  />
-                </svg>
-              </span>
-              <span style="background: black"></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #e91e63 0%, #f44336 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #9c27b0 0%, #673ab7 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #3f51b5 0%, #2196f3 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #00bcd4 0%, #009688 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #009688 0%, #8bc34a 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #cddc39 0%, #ffeb3b 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #ff9800 0%, #ff5722 100%);
-                "
-              ></span>
-              <span
-                style="
-                  background: linear-gradient(270deg, #607d8b 0%, #df9d85 100%);
-                "
-              ></span>
-            </div>
-          </div>
-        </div>
+                <label for="d-g-2" [style.borderColor]="dotGradient2">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="d-g-2"
+                  id="d-g-2"
+                  [(ngModel)]="dotGradient2"
+                  (change)="pDotGradient()"
+                />
+              </div>
+              <div>
+                <!-- Solid Color (example) -->
+                <span
+                  style="background: black"
+                  (click)="cDotColor('black')"
+                ></span>
 
-        <div *ngIf="activeModalIndex == 3" class="cus-modal-3-settings">
-          <p class="cus-modal-setting-h">Choose your Logo</p>
+                <!-- Gradient Options -->
+                <span
+                  (click)="cDotGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="activeModalIndex == 2" class="cus-modal-3-settings">
+            <div
+              style="
+                width: 440px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="b-c"
+                  id="b-c"
+                  [(ngModel)]="bgColor"
+                  (change)="regenQr()"
+                />
+              </div>
+            </div>
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span [style.borderColor]="bgColor"
+                  ><label for="b-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg> </label
+                ></span>
+                <span
+                  (click)="cBgColor('black')"
+                  style="background: black"
+                ></span>
+                <span
+                  (click)="cBgColor('white')"
+                  style="background: white"
+                ></span>
+                <span
+                  (click)="cBgColor('#f44336')"
+                  style="background: #f44336"
+                ></span>
+                <span
+                  (click)="cBgColor('#e91e63')"
+                  style="background: #e91e63"
+                ></span>
+                <span
+                  (click)="cBgColor('#9c27b0')"
+                  style="background: #9c27b0"
+                ></span>
+                <span
+                  (click)="cBgColor('#673ab7')"
+                  style="background: #673ab7"
+                ></span>
+                <span
+                  (click)="cBgColor('#3f51b5')"
+                  style="background: #3f51b5"
+                ></span>
+                <span
+                  (click)="cBgColor('#2196f3')"
+                  style="background: #2196f3"
+                ></span>
+              </div>
+              <div>
+                <span
+                  (click)="cBgColor('#009688')"
+                  style="background: #009688"
+                ></span>
+                <span
+                  (click)="cBgColor('#8bc34a')"
+                  style="background: #8bc34a"
+                ></span>
+                <span
+                  (click)="cBgColor('#cddc39')"
+                  style="background: #cddc39"
+                ></span>
+                <span
+                  (click)="cBgColor('#ffeb3b')"
+                  style="background: #ffeb3b"
+                ></span>
+                <span
+                  (click)="cBgColor('#ff9800')"
+                  style="background: #ff9800"
+                ></span>
+                <span
+                  (click)="cBgColor('#ff5722')"
+                  style="background: #ff5722"
+                ></span>
+                <span
+                  (click)="cBgColor('#795548')"
+                  style="background: #795548"
+                ></span>
+                <span
+                  (click)="cBgColor('#607d8b')"
+                  style="background: #607d8b"
+                ></span>
+                <span
+                  (click)="cBgColor('#00bcd4')"
+                  style="background: #00bcd4"
+                ></span>
+              </div>
+            </div>
+
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="b-b-1" [style.borderColor]="bgGradient1">
+                  <!-- Keep same icon -->
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="b-b-1"
+                  id="b-b-1"
+                  [(ngModel)]="bgGradient1"
+                  (change)="pBgGradient()"
+                />
+                To
+
+                <label for="b-b-2" [style.borderColor]="bgGradient2">
+                  <!-- Keep same icon -->
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="b-b-2"
+                  id="b-b-2"
+                  [(ngModel)]="bgGradient2"
+                  (change)="pBgGradient()"
+                />
+              </div>
+
+              <div>
+                <!-- <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span> -->
+
+                <span
+                  (click)="cBgGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="activeModalIndex == 3" class="cus-modal-3-settings">
+            <!-- <p class="cus-modal-setting-h">Choose your Logo</p>
 
           <div
             style="
@@ -642,26 +1068,1609 @@
               letter-spacing: 0.54px;
             "
           >
-            <label class="switch_box">
-              <input type="checkbox" />
+            <label class="switch_box" [class.active]="isChecked">
+              <input type="checkbox" [(ngModel)]="isChecked" />
               <span class="slider"></span>
             </label>
             Hide Background Dots
+          </div> -->
+            <p class="cus-modal-setting-h">Upload Logo</p>
+            <input
+              type="file"
+              id="logo-upload"
+              style="display: none"
+              accept="image/*"
+              (change)="cImg($event)"
+            />
+            <label
+              for="logo-upload"
+              style="
+                display: flex;
+                width: 349px;
+                height: 75px;
+                padding: 17px;
+                align-items: center;
+                gap: 23px;
+                border-radius: 8px;
+                border: 2px dashed #d9d9d9;
+                color: var(--text, #636364); /* Texi */
+                font-family: Nunito;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
+              "
+            >
+              <img
+                src="../../../assets/gallery-icon (2).png"
+                style="width: 25px"
+              />
+              <span *ngIf="!logoDataUrl">Choose File – No File Chosen</span>
+              <span *ngIf="logoDataUrl">Change Logo</span>
+            </label>
           </div>
-          <p class="cus-modal-setting-h">Upload Logo</p>
-          <input type="file" id="logo-upload" style="display: none" />
-          <label
-            for="logo-upload"
+
+          <div *ngIf="activeModalIndex == 4" class="cus-modal-3-settings">
+            <p class="cus-modal-setting-h">Error Correction Level</p>
+            <div style="display: flex; gap: 20px">
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
+                  font-family: 'DM Sans';
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
+                  text-transform: capitalize;
+                "
+              >
+                Low (7%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Best for clean environments
+                </p>
+              </div>
+
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
+                  font-family: 'DM Sans';
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
+                  text-transform: capitalize;
+                "
+              >
+                Medium (15%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Good for standard use
+                </p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 20px">
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
+                  font-family: 'DM Sans';
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
+                  text-transform: capitalize;
+                "
+              >
+                Quartile (25%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Better damage resistance
+                </p>
+              </div>
+
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
+                  font-family: 'DM Sans';
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
+                  text-transform: capitalize;
+                "
+              >
+                High (30%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Best damage resistance
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cus-modal-3-qr">
+            <!-- QR: Dot Solid + Corner Solid + Solid Background -->
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 200px;
+                aspect-ratio: 1/1;
+                position: absolute;
+              "
+              *ngIf="saveBtnText === 'Saving...'"
+            >
+              <div
+                style="
+                  background: white;
+                  opacity: 0.8;
+                  width: 200px;
+                  aspect-ratio: 1/1;
+                  position: absolute;
+                "
+              ></div>
+              <app-loader></app-loader>
+            </div>
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotSolid_cornerSolid_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Solid + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotSolid_cornerSolid_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Gradient + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotSolid_cornerGradient_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Gradient + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotSolid_cornerGradient_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Solid + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotGradient_cornerSolid_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Solid + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotGradient_cornerSolid_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Gradient + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotGradient_cornerGradient_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Gradient + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                universalQrString.length > 0 &&
+                qrCombo === 'dotGradient_cornerGradient_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="universalQrString"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px">
+              <button
+                (click)="cDownloadQr()"
+                style="
+                  display: flex;
+                  padding: 10px 0px;
+                  font-size: 10px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 6.507px;
+                  flex: 1 0 0;
+                  border-radius: 3.254px;
+                  border: 0.651px solid rgba(0, 0, 0, 0.2);
+                  box-shadow: 0px 0px 6.507px 0px rgba(46, 188, 150, 0.2);
+                  background: white;
+                "
+              >
+                <svg
+                  width="12"
+                  height="14"
+                  viewBox="0 0 12 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.530273 9.09524L0.530274 11.5068C0.530274 11.8722 0.674247 12.2227 0.930521 12.4812C1.18679 12.7396 1.53438 12.8848 1.8968 12.8848H10.096C10.4584 12.8848 10.806 12.7396 11.0623 12.4812C11.3185 12.2227 11.4625 11.8722 11.4625 11.5068V9.09524M5.99715 1.11523V8.92397M5.99715 8.92397L9.12064 5.94028M5.99715 8.92397L2.87366 5.94028"
+                    stroke="black"
+                    stroke-width="0.976092"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Download Qr
+              </button>
+              <button
+                style="
+                  display: flex;
+                  padding: 10px 0px;
+                  font-size: 10px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 6.507px;
+                  flex: 1 0 0;
+                  border-radius: 3.254px;
+                  background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%),
+                    #fff;
+                  box-shadow: 0px 0px 6.507px 0px rgba(46, 188, 150, 0.2);
+                  border: none;
+                  color: white;
+                "
+                (click)="cSaveQr()"
+              >
+                {{ saveBtnText }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+
+  <app-modal *ngIf="openUniversalQrCustomizeFromDetails">
+    <div
+      style="
+        width: 866px;
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+        overflow: scroll;
+      "
+    >
+      <div class="cus-modal">
+        <div class="cus-modal-1">
+          <h1>Design your QR <img src="../../../assets/warning.png" /></h1>
+          <div class="cus-modol-1-btn-con">
+            <!-- <button (click)="cSaveQrFromDetails()">{{ saveBtnText }}</button> -->
+            <button
+              (click)="
+                openUniversalQrCustomizeFromDetails =
+                  !openUniversalQrCustomizeFromDetails
+              "
+              [disabled]="saveBtnText === 'Saving...'"
+              style="background: white !important"
+            >
+              <svg
+                width="22"
+                height="21"
+                viewBox="0 0 22 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.975 19.675L1.0153 1.32495M20.975 1.32495L1.0153 19.675"
+                  stroke="#2EBC96"
+                  stroke-width="1.2975"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="cus-modal-2">
+          <svg
+            width="20"
+            height="21"
+            viewBox="0 0 20 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 5.5H11V7.5H9V5.5ZM10 15.5C10.55 15.5 11 15.05 11 14.5V10.5C11 9.95 10.55 9.5 10 9.5C9.45 9.5 9 9.95 9 10.5V14.5C9 15.05 9.45 15.5 10 15.5ZM10 0.5C4.48 0.5 0 4.98 0 10.5C0 16.02 4.48 20.5 10 20.5C15.52 20.5 20 16.02 20 10.5C20 4.98 15.52 0.5 10 0.5ZM10 18.5C5.59 18.5 2 14.91 2 10.5C2 6.09 5.59 2.5 10 2.5C14.41 2.5 18 6.09 18 10.5C18 14.91 14.41 18.5 10 18.5Z"
+              fill="#636364"
+            />
+          </svg>
+          <div
+            (click)="setModalActive(0)"
+            [class.active]="activeModalIndex === 0"
+          >
+            Shape
+          </div>
+          <div
+            (click)="setModalActive(1)"
+            [class.active]="activeModalIndex === 1"
+          >
+            Eyes
+          </div>
+          <div
+            (click)="setModalActive(2)"
+            [class.active]="activeModalIndex === 2"
+          >
+            Background
+          </div>
+          <div
+            (click)="setModalActive(3)"
+            [class.active]="activeModalIndex === 3"
+          >
+            Logo
+          </div>
+          <div
+            (click)="setModalActive(4)"
+            [class.active]="activeModalIndex === 4"
+          >
+            Error Level
+          </div>
+        </div>
+
+        <div class="cus-modal-3">
+          <div *ngIf="activeModalIndex == 1" class="cus-modal-3-settings">
+            <div style="display: flex; gap: 20px">
+              <div
+                style="
+                  border-right: 2px solid rgba(26, 144, 150, 0.5);
+                  padding-right: 20px;
+                "
+              >
+                <p
+                  style="
+                    color: #000;
+                    font-family: 'DM Sans';
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 42px; /* 210% */
+                    letter-spacing: -0.4px;
+                  "
+                >
+                  External Eye
+                </p>
+                <p class="cus-modal-setting-h">Choose a style</p>
+                <div class="cus-modal-3-0-shape">
+                  <div (click)="cEyeExternal('square')">
+                    <!-- Square -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeExternal === 'square'
+                      }"
+                      src="../../../assets/ee1.png"
+                    />
+                  </div>
+                  <div (click)="cEyeExternal('dot')">
+                    <!-- Doted -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeExternal === 'dot'
+                      }"
+                      src="../../../assets/ee2.png"
+                    />
+                  </div>
+                  <div (click)="cEyeExternal('extra-rounded')">
+                    <!-- Rounded -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape':
+                          selectedEyeExternal === 'extra-rounded'
+                      }"
+                      src="../../../assets/ee3.png"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p
+                  style="
+                    color: #000;
+                    font-family: 'DM Sans';
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 42px; /* 210% */
+                    letter-spacing: -0.4px;
+                  "
+                >
+                  Internal Eye
+                </p>
+                <p class="cus-modal-setting-h">Choose a style</p>
+                <div class="cus-modal-3-0-shape">
+                  <div (click)="cEyeInternal('square')">
+                    <!-- Square -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeInternal === 'square'
+                      }"
+                      src="../../../assets/ei2.png"
+                    />
+                  </div>
+                  <div (click)="cEyeInternal('dot')">
+                    <!-- Doted -->
+                    <img
+                      [ngClass]="{
+                        'selected-shape': selectedEyeInternal === 'dot'
+                      }"
+                      src="../../../assets/ei1.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 440px;
+              "
+            >
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="e-c"
+                  id="e-c"
+                  [(ngModel)]="eyeColor"
+                  (change)="regenQr()"
+                />
+              </div>
+            </div>
+            <div class="cus-modal-3-0-color">
+              <!-- Row 1 -->
+              <div style="margin-bottom: 10px">
+                <span [style.borderColor]="eyeColor"
+                  ><label for="e-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg> </label
+                ></span>
+                <span
+                  style="background: black"
+                  (click)="cEyeColor('black')"
+                ></span>
+                <span
+                  style="background: white"
+                  (click)="cEyeColor('white')"
+                ></span>
+                <span
+                  style="background: #f44336"
+                  (click)="cEyeColor('#f44336')"
+                ></span>
+                <span
+                  style="background: #e91e63"
+                  (click)="cEyeColor('#e91e63')"
+                ></span>
+                <span
+                  style="background: #9c27b0"
+                  (click)="cEyeColor('#9c27b0')"
+                ></span>
+                <span
+                  style="background: #673ab7"
+                  (click)="cEyeColor('#673ab7')"
+                ></span>
+                <span
+                  style="background: #3f51b5"
+                  (click)="cEyeColor('#3f51b5')"
+                ></span>
+                <span
+                  style="background: #2196f3"
+                  (click)="cEyeColor('#2196f3')"
+                ></span>
+              </div>
+
+              <!-- Row 2 -->
+              <div>
+                <span
+                  style="background: #009688"
+                  (click)="cEyeColor('#009688')"
+                ></span>
+                <span
+                  style="background: #8bc34a"
+                  (click)="cEyeColor('#8bc34a')"
+                ></span>
+                <span
+                  style="background: #cddc39"
+                  (click)="cEyeColor('#cddc39')"
+                ></span>
+                <span
+                  style="background: #ffeb3b"
+                  (click)="cEyeColor('#ffeb3b')"
+                ></span>
+                <span
+                  style="background: #ff9800"
+                  (click)="cEyeColor('#ff9800')"
+                ></span>
+                <span
+                  style="background: #ff5722"
+                  (click)="cEyeColor('#ff5722')"
+                ></span>
+                <span
+                  style="background: #795548"
+                  (click)="cEyeColor('#795548')"
+                ></span>
+                <span
+                  style="background: #607d8b"
+                  (click)="cEyeColor('#607d8b')"
+                ></span>
+                <span
+                  style="background: #00bcd4"
+                  (click)="cEyeColor('#00bcd4')"
+                ></span>
+              </div>
+            </div>
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="e-g-1" [style.borderColor]="eyeGradient1">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="e-g-1"
+                  id="e-g-1"
+                  [(ngModel)]="eyeGradient1"
+                  (change)="pEyeGradient()"
+                />
+                To
+
+                <label for="e-g-2" [style.borderColor]="eyeGradient2">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="e-g-2"
+                  id="e-g-2"
+                  [(ngModel)]="eyeGradient2"
+                  (change)="pEyeGradient()"
+                />
+              </div>
+              <div>
+                <!-- <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span> -->
+                <span
+                  (click)="cEyeGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cEyeGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="activeModalIndex == 0" class="cus-modal-3-settings">
+            <p class="cus-modal-setting-h">Choose a style</p>
+            <div class="cus-modal-3-0-shape">
+              <div (click)="cDotStyle('square')">
+                Square
+                <img
+                  src="../../../assets/qr-shape-1.png"
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'square'
+                  }"
+                />
+              </div>
+              <div (click)="cDotStyle('dots')">
+                Doted
+                <img
+                  src="../../../assets/qr-shape-2.png"
+                  [ngClass]="{ 'selected-shape': selectedDotStyle === 'dots' }"
+                />
+              </div>
+              <div (click)="cDotStyle('rounded')">
+                Rounded
+                <img
+                  src="../../../assets/qr-shape-3.png"
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'rounded'
+                  }"
+                />
+              </div>
+              <div (click)="cDotStyle('classy')">
+                Sharp Edges
+                <img
+                  [ngClass]="{
+                    'selected-shape': selectedDotStyle === 'classy'
+                  }"
+                  src="../../../assets/qr-shape-4.png"
+                />
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 440px;
+              "
+            >
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="d-c"
+                  id="d-c"
+                  [(ngModel)]="dotColor"
+                  (change)="regenQr()"
+                />
+              </div>
+            </div>
+
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span [style.borderColor]="dotColor">
+                  <label for="d-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg> </label
+                ></span>
+                <span
+                  *ngFor="
+                    let color of [
+                      '#000000',
+                      '#ffffff',
+                      '#f44336',
+                      '#e91e63',
+                      '#9c27b0',
+                      '#673ab7',
+                      '#3f51b5',
+                      '#2196f3'
+                    ]
+                  "
+                  [style.background]="color"
+                  [ngClass]="{ 'selected-color': selectedDotColor === color }"
+                  (click)="cDotColor(color)"
+                ></span>
+              </div>
+              <div>
+                <span
+                  *ngFor="
+                    let color of [
+                      '#009688',
+                      '#8bc34a',
+                      '#cddc39',
+                      '#ffeb3b',
+                      '#ff9800',
+                      '#ff5722',
+                      '#795548',
+                      '#607d8b',
+                      '#00bcd4'
+                    ]
+                  "
+                  [style.background]="color"
+                  [ngClass]="{ 'selected-color': selectedDotColor === color }"
+                  (click)="cDotColor(color)"
+                ></span>
+              </div>
+            </div>
+
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="d-g-1" [style.borderColor]="dotGradient1">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="d-g-1"
+                  id="d-g-1"
+                  [(ngModel)]="dotGradient1"
+                  (change)="pDotGradient()"
+                />
+                To
+
+                <label for="d-g-2" [style.borderColor]="dotGradient2">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="d-g-2"
+                  id="d-g-2"
+                  [(ngModel)]="dotGradient2"
+                  (change)="pDotGradient()"
+                />
+              </div>
+              <div>
+                <!-- Solid Color (example) -->
+                <span
+                  style="background: black"
+                  (click)="cDotColor('black')"
+                ></span>
+
+                <!-- Gradient Options -->
+                <span
+                  (click)="cDotGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+                <span
+                  (click)="cDotGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="activeModalIndex == 2" class="cus-modal-3-settings">
+            <div
+              style="
+                width: 440px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <p class="cus-modal-setting-h">Solid Colors</p>
+              <div>
+                <input
+                  type="color"
+                  name="b-c"
+                  id="b-c"
+                  [(ngModel)]="bgColor"
+                  (change)="regenQr()"
+                />
+              </div>
+            </div>
+            <div class="cus-modal-3-0-color">
+              <div>
+                <span [style.borderColor]="bgColor">
+                  <label for="b-c">
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </label>
+                </span>
+                <span
+                  (click)="cBgColor('black')"
+                  style="background: black"
+                ></span>
+                <span
+                  (click)="cBgColor('white')"
+                  style="background: white"
+                ></span>
+                <span
+                  (click)="cBgColor('#f44336')"
+                  style="background: #f44336"
+                ></span>
+                <span
+                  (click)="cBgColor('#e91e63')"
+                  style="background: #e91e63"
+                ></span>
+                <span
+                  (click)="cBgColor('#9c27b0')"
+                  style="background: #9c27b0"
+                ></span>
+                <span
+                  (click)="cBgColor('#673ab7')"
+                  style="background: #673ab7"
+                ></span>
+                <span
+                  (click)="cBgColor('#3f51b5')"
+                  style="background: #3f51b5"
+                ></span>
+                <span
+                  (click)="cBgColor('#2196f3')"
+                  style="background: #2196f3"
+                ></span>
+              </div>
+              <div>
+                <span
+                  (click)="cBgColor('#009688')"
+                  style="background: #009688"
+                ></span>
+                <span
+                  (click)="cBgColor('#8bc34a')"
+                  style="background: #8bc34a"
+                ></span>
+                <span
+                  (click)="cBgColor('#cddc39')"
+                  style="background: #cddc39"
+                ></span>
+                <span
+                  (click)="cBgColor('#ffeb3b')"
+                  style="background: #ffeb3b"
+                ></span>
+                <span
+                  (click)="cBgColor('#ff9800')"
+                  style="background: #ff9800"
+                ></span>
+                <span
+                  (click)="cBgColor('#ff5722')"
+                  style="background: #ff5722"
+                ></span>
+                <span
+                  (click)="cBgColor('#795548')"
+                  style="background: #795548"
+                ></span>
+                <span
+                  (click)="cBgColor('#607d8b')"
+                  style="background: #607d8b"
+                ></span>
+                <span
+                  (click)="cBgColor('#00bcd4')"
+                  style="background: #00bcd4"
+                ></span>
+              </div>
+            </div>
+
+            <p class="cus-modal-setting-h">Gradients</p>
+            <div class="cus-modal-3-0-gradients">
+              <div>
+                <label for="b-b-1" [style.borderColor]="bgGradient1">
+                  <!-- Keep same icon -->
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="b-b-1"
+                  id="b-b-1"
+                  [(ngModel)]="bgGradient1"
+                  (change)="pBgGradient()"
+                />
+                To
+
+                <label for="b-b-2" [style.borderColor]="bgGradient2">
+                  <!-- Keep same icon -->
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.0731 5.20709L15.9929 12.1269M1 15.5868L14.6314 1.95543C15.9053 0.681526 17.9707 0.681524 19.2446 1.95542C20.5185 3.22932 20.5185 5.29472 19.2446 6.56863L5.6132 20.2H1V15.5868Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <input
+                  type="color"
+                  name="b-b-2"
+                  id="b-b-2"
+                  [(ngModel)]="bgGradient2"
+                  (change)="pBgGradient()"
+                />
+              </div>
+
+              <div>
+                <!-- <span
+                  ><svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3241 7.53589C14.5193 7.34063 14.5193 7.02405 14.3241 6.82878C14.1288 6.63352 13.8122 6.63352 13.617 6.82878L14.3241 7.53589ZM6.82875 13.617C6.63349 13.8123 6.63349 14.1289 6.82875 14.3241C7.02401 14.5194 7.34059 14.5194 7.53586 14.3241L6.82875 13.617ZM13.617 14.3241C13.8122 14.5194 14.1288 14.5194 14.3241 14.3241C14.5193 14.1289 14.5193 13.8123 14.3241 13.617L13.617 14.3241ZM7.53586 6.82878C7.34059 6.63352 7.02401 6.63352 6.82875 6.82878C6.63349 7.02405 6.63349 7.34063 6.82875 7.53589L7.53586 6.82878ZM17.0111 17.0111C13.4573 20.5649 7.69552 20.5649 4.14174 17.0111L3.43464 17.7182C7.37893 21.6625 13.7739 21.6625 17.7182 17.7182L17.0111 17.0111ZM4.14174 17.0111C0.587974 13.4573 0.587974 7.69555 4.14174 4.14178L3.43464 3.43467C-0.509658 7.37897 -0.509657 13.7739 3.43464 17.7182L4.14174 17.0111ZM4.14174 4.14178C7.69552 0.588007 13.4573 0.588007 17.0111 4.14178L17.7182 3.43467C13.7739 -0.509624 7.37893 -0.509624 3.43464 3.43467L4.14174 4.14178ZM17.0111 4.14178C20.5649 7.69555 20.5649 13.4573 17.0111 17.0111L17.7182 17.7182C21.6625 13.7739 21.6625 7.37897 17.7182 3.43467L17.0111 4.14178ZM13.617 6.82878L10.2229 10.2229L10.93 10.93L14.3241 7.53589L13.617 6.82878ZM10.2229 10.2229L6.82875 13.617L7.53586 14.3241L10.93 10.93L10.2229 10.2229ZM14.3241 13.617L10.93 10.2229L10.2229 10.93L13.617 14.3241L14.3241 13.617ZM10.93 10.2229L7.53586 6.82878L6.82875 7.53589L10.2229 10.93L10.93 10.2229Z"
+                      fill="black"
+                    />
+                  </svg>
+                </span> -->
+
+                <span
+                  (click)="cBgGradient('#e91e63', '#f44336')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #e91e63 0%,
+                      #f44336 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#9c27b0', '#673ab7')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #9c27b0 0%,
+                      #673ab7 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#3f51b5', '#2196f3')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #3f51b5 0%,
+                      #2196f3 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#00bcd4', '#009688')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #00bcd4 0%,
+                      #009688 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#009688', '#8bc34a')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #009688 0%,
+                      #8bc34a 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#cddc39', '#ffeb3b')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #cddc39 0%,
+                      #ffeb3b 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#ff9800', '#ff5722')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #ff9800 0%,
+                      #ff5722 100%
+                    );
+                  "
+                ></span>
+
+                <span
+                  (click)="cBgGradient('#607d8b', '#df9d85')"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #607d8b 0%,
+                      #df9d85 100%
+                    );
+                  "
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="activeModalIndex == 3" class="cus-modal-3-settings">
+            <!-- <p class="cus-modal-setting-h">Choose your Logo</p>
+
+          <div
             style="
               display: flex;
-              width: 349px;
-              height: 75px;
-              padding: 17px;
+              padding: 15px;
+              justify-content: center;
               align-items: center;
-              gap: 23px;
-              border-radius: 8px;
-              border: 2px dashed #d9d9d9;
-              color: var(--text, #636364); /* Texi */
+              gap: 15px;
+              border-radius: 20px;
+              border: 1px solid #e4e4e7;
+              color: var(--text, #636364);
+
+              /* Texi */
               font-family: Nunito;
               font-size: 18px;
               font-style: normal;
@@ -670,184 +2679,607 @@
               letter-spacing: 0.54px;
             "
           >
-            <img
-              src="../../../assets/gallery-icon (2).png"
-              style="width: 25px"
+            <label class="switch_box" [class.active]="isChecked">
+              <input type="checkbox" [(ngModel)]="isChecked" />
+              <span class="slider"></span>
+            </label>
+            Hide Background Dots
+          </div> -->
+            <p class="cus-modal-setting-h">Upload Logo</p>
+            <input
+              type="file"
+              id="logo-upload"
+              style="display: none"
+              accept="image/*"
+              (change)="cImg($event)"
             />
-            Choose File No File Chosen
-          </label>
-        </div>
-
-        <div *ngIf="activeModalIndex == 4" class="cus-modal-3-settings">
-          <p class="cus-modal-setting-h">Error Correction Level</p>
-          <div style="display: flex; gap: 20px">
-            <div
+            <label
+              for="logo-upload"
               style="
                 display: flex;
-                padding: 10px;
-                flex-direction: column;
+                width: 349px;
+                height: 75px;
+                padding: 17px;
                 align-items: center;
-                gap: 10px;
+                gap: 23px;
                 border-radius: 8px;
-                border: 1px solid #1a9096;
-                color: #000;
-                font-family: 'DM Sans';
-                font-size: 16px;
+                border: 2px dashed #d9d9d9;
+                color: var(--text, #636364); /* Texi */
+                font-family: Nunito;
+                font-size: 18px;
                 font-style: normal;
-                font-weight: 500;
-                line-height: 42px; /* 262.5% */
-                letter-spacing: -0.32px;
-                text-transform: capitalize;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
               "
             >
-              Low (7%)
-              <p
+              <img
+                src="../../../assets/gallery-icon (2).png"
+                style="width: 25px"
+              />
+              <span *ngIf="!logoDataUrl">Choose File – No File Chosen</span>
+              <span *ngIf="logoDataUrl">Change Logo</span>
+            </label>
+          </div>
+
+          <div *ngIf="activeModalIndex == 4" class="cus-modal-3-settings">
+            <p class="cus-modal-setting-h">Error Correction Level</p>
+            <div style="display: flex; gap: 20px">
+              <div
                 style="
-                  color: var(--text, #636364);
-                  text-align: center;
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
                   font-family: 'DM Sans';
-                  font-size: 14px;
+                  font-size: 16px;
                   font-style: normal;
                   font-weight: 500;
-                  line-height: 18px; /* 128.571% */
-                  letter-spacing: -0.28px;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
               >
-                Best for clean environments
-              </p>
+                Low (7%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Best for clean environments
+                </p>
+              </div>
+
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
+                  font-family: 'DM Sans';
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
+                  text-transform: capitalize;
+                "
+              >
+                Medium (15%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Good for standard use
+                </p>
+              </div>
             </div>
-
-            <div
-              style="
-                display: flex;
-                padding: 10px;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                border-radius: 8px;
-                border: 1px solid #1a9096;
-                color: #000;
-                font-family: 'DM Sans';
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 42px; /* 262.5% */
-                letter-spacing: -0.32px;
-                text-transform: capitalize;
-              "
-            >
-              Medium (15%)
-              <p
+            <div style="display: flex; gap: 20px">
+              <div
                 style="
-                  color: var(--text, #636364);
-                  text-align: center;
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
                   font-family: 'DM Sans';
-                  font-size: 14px;
+                  font-size: 16px;
                   font-style: normal;
                   font-weight: 500;
-                  line-height: 18px; /* 128.571% */
-                  letter-spacing: -0.28px;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
               >
-                Good for standard use
-              </p>
-            </div>
+                Quartile (25%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Better damage resistance
+                </p>
+              </div>
 
-            <div
-              style="
-                display: flex;
-                padding: 10px;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                border-radius: 8px;
-                border: 1px solid #1a9096;
-                color: #000;
-                font-family: 'DM Sans';
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 42px; /* 262.5% */
-                letter-spacing: -0.32px;
-                text-transform: capitalize;
-              "
-            >
-              Quartile (25%)
-              <p
+              <div
                 style="
-                  color: var(--text, #636364);
-                  text-align: center;
+                  width: 100%;
+                  display: flex;
+                  padding: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+                  border-radius: 8px;
+                  border: 1px solid #1a9096;
+                  color: #000;
                   font-family: 'DM Sans';
-                  font-size: 14px;
+                  font-size: 16px;
                   font-style: normal;
                   font-weight: 500;
-                  line-height: 18px; /* 128.571% */
-                  letter-spacing: -0.28px;
+                  line-height: 42px; /* 262.5% */
+                  letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
               >
-                Better damage resistance
-              </p>
-            </div>
-
-            <div
-              style="
-                display: flex;
-                padding: 10px;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                border-radius: 8px;
-                border: 1px solid #1a9096;
-                color: #000;
-                font-family: 'DM Sans';
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 42px; /* 262.5% */
-                letter-spacing: -0.32px;
-                text-transform: capitalize;
-              "
-            >
-              High (30%)
-              <p
-                style="
-                  color: var(--text, #636364);
-                  text-align: center;
-                  font-family: 'DM Sans';
-                  font-size: 14px;
-                  font-style: normal;
-                  font-weight: 500;
-                  line-height: 18px; /* 128.571% */
-                  letter-spacing: -0.28px;
-                  text-transform: capitalize;
-                "
-              >
-                Best damage resistance
-              </p>
+                High (30%)
+                <p
+                  style="
+                    color: var(--text, #636364);
+                    text-align: center;
+                    font-family: 'DM Sans';
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px; /* 128.571% */
+                    letter-spacing: -0.28px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Best damage resistance
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="cus-modal-3-qr">
-          <ngx-qrcode-styling
-            *ngIf="universalQrString.length > 0"
-            #qrCodeElem
-            [width]="300"
-            [height]="300"
-            [data]="universalQrString"
-            [dotsOptions]="{ color: '#000', type: 'rounded' }"
-            [backgroundOptions]="{ color: '#fff' }"
-            [image]="'assets/logo.png'"
-            [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
-          >
-          </ngx-qrcode-styling>
+          <div class="cus-modal-3-qr" style="position: relative">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 200px;
+                aspect-ratio: 1/1;
+                position: absolute;
+              "
+              *ngIf="saveBtnText === 'Saving...'"
+            >
+              <div
+                style="
+                  background: white;
+                  opacity: 0.8;
+                  width: 200px;
+                  aspect-ratio: 1/1;
+                  position: absolute;
+                "
+              ></div>
+              <app-loader></app-loader>
+            </div>
+
+            <!-- QR: Dot Solid + Corner Solid + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotSolid_cornerSolid_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Solid + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotSolid_cornerSolid_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Gradient + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotSolid_cornerGradient_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Solid + Corner Gradient + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotSolid_cornerGradient_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{ type: dotStyle, color: dotColor }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Solid + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotGradient_cornerSolid_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Solid + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotGradient_cornerSolid_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
+              [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Gradient + Solid Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotGradient_cornerGradient_solidBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{ color: bgColor }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <!-- QR: Dot Gradient + Corner Gradient + Gradient Background -->
+            <ngx-qrcode-styling
+              *ngIf="
+                qrShouldRender &&
+                currentQr.length > 0 &&
+                qrCombo === 'dotGradient_cornerGradient_gradientBg'
+              "
+              [width]="200"
+              [height]="200"
+              [margin]="1"
+              [data]="currentQr"
+              [dotsOptions]="{
+                type: dotStyle,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: dotGradient1 },
+                    { offset: 1, color: dotGradient2 }
+                  ]
+                }
+              }"
+              [cornersSquareOptions]="{
+                type: eyeExternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [cornersDotOptions]="{
+                type: eyeInternal,
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: eyeGradient1 },
+                    { offset: 1, color: eyeGradient2 }
+                  ]
+                }
+              }"
+              [image]="logoDataUrl"
+              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+              [backgroundOptions]="{
+                gradient: {
+                  type: 'linear',
+                  rotation: 0.5,
+                  colorStops: [
+                    { offset: 0, color: bgGradient1 },
+                    { offset: 1, color: bgGradient2 }
+                  ]
+                }
+              }"
+              id="cQrCode"
+            ></ngx-qrcode-styling>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px">
+              <button
+                (click)="cDownloadQr()"
+                style="
+                  display: flex;
+                  padding: 10px 0;
+                  font-size: 10px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 6.507px;
+                  flex: 1 0 0;
+                  border-radius: 3.254px;
+                  border: 0.651px solid rgba(0, 0, 0, 0.2);
+                  box-shadow: 0px 0px 6.507px 0px rgba(46, 188, 150, 0.2);
+                  background: white;
+                "
+              >
+                <svg
+                  width="12"
+                  height="14"
+                  viewBox="0 0 12 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.530273 9.09524L0.530274 11.5068C0.530274 11.8722 0.674247 12.2227 0.930521 12.4812C1.18679 12.7396 1.53438 12.8848 1.8968 12.8848H10.096C10.4584 12.8848 10.806 12.7396 11.0623 12.4812C11.3185 12.2227 11.4625 11.8722 11.4625 11.5068V9.09524M5.99715 1.11523V8.92397M5.99715 8.92397L9.12064 5.94028M5.99715 8.92397L2.87366 5.94028"
+                    stroke="black"
+                    stroke-width="0.976092"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Download Qr
+              </button>
+              <button
+                style="
+                  display: flex;
+                  padding: 10px 0px;
+                  font-size: 10px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 6.507px;
+                  flex: 1 0 0;
+                  border-radius: 3.254px;
+                  background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%),
+                    #fff;
+                  box-shadow: 0px 0px 6.507px 0px rgba(46, 188, 150, 0.2);
+                  border: none;
+                  color: white;
+                "
+                (click)="cSaveQrFromDetails()"
+              >
+                {{ saveBtnText }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </app-modal>
+
   <div class="nav">
     <button
       (click)="setActive('universal')"
@@ -930,7 +3362,7 @@
         </div>
         <div class="left-textarea">
           <p style="width: 100%; display: flex; justify-content: space-between">
-            Preference Text
+            Prefilled Text
             <span *ngIf="!universalQrData">
               {{ inputUniversalPreferenceText?.length || 0 }}/80
               <!-- <img
@@ -1103,8 +3535,14 @@
             "
             *ngIf="universalQrData"
             (click)="openUniversalQrCustomize = true"
+            [disabled]="isNotCustomizable"
           >
-            Customize QR Code
+            <ng-container *ngIf="!isNotCustomizable; else loading">
+              Customize QR Code
+            </ng-container>
+            <ng-template #loading>
+              <div class="load"></div>
+            </ng-template>
           </button>
         </div>
       </div>
@@ -1217,7 +3655,7 @@
             <ngx-qrcode-styling
               [width]="300"
               [height]="300"
-              [data]="'https://zentobyte.com'"
+              [data]="''"
               [dotsOptions]="{ color: '#000', type: 'rounded' }"
               [backgroundOptions]="{ color: '#fff' }"
               [image]="'assets/logo.png'"
@@ -1255,7 +3693,11 @@
   >
     <h2 class="qr-sec">QR Code List</h2>
     <button
-      (click)="showUniversalQrGenerator = true"
+      (click)="
+        universalQrData = '';
+        universalQrString = '';
+        showUniversalQrGenerator = true
+      "
       style="
         border-radius: 8px;
         background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
@@ -1312,7 +3754,7 @@
       <!-- <div>QR Code</div> -->
       <div>Create Date & Time</div>
       <div>Title</div>
-      <div>Description</div>
+      <div>Prefilled Text</div>
       <div>Status</div>
       <div>Actions</div>
     </div>
@@ -1340,14 +3782,14 @@
             </div>
           </div> -->
           <div>{{ item.createdAt | date : "MM/dd/yyyy, h:mm:ss a" }}</div>
-          <div>{{ item.name }}</div>
-          <div>
+          <div title="{{ item.name }}">{{ item.name }}</div>
+          <div title="{{ item.text }}">
             {{ item.text }}
           </div>
           <div style="text-transform: capitalize">
             <svg
-              width="15"
-              height="16"
+              width="10"
+              height="10"
               viewBox="0 0 15 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1363,7 +3805,7 @@
           </div>
           <div>
             <span
-              (click)="toggleDetails(i)"
+              (click)="toggleDetails(i); qrDetailImgLoad()"
               style="
                 height: 25px;
                 width: 30px;
@@ -1374,7 +3816,7 @@
                 justify-content: center;
               "
             >
-              <img style="width: 20px" src="../../../assets/see-qr.png" />
+              <img style="width: 15px" src="../../../assets/see-qr.png" />
             </span>
             <span
               style="
@@ -1389,8 +3831,8 @@
               (click)="directToQrStats(i)"
             >
               <svg
-                width="20"
-                height="20"
+                width="15"
+                height="15"
                 viewBox="0 0 17 17"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1416,267 +3858,291 @@
               "
               (click)="toggleDeleteModal(i)"
             >
-              <img style="width: 20px" src="../../../assets/delete-qr.png" />
+              <img style="width: 15px" src="../../../assets/delete-qr.png" />
             </span>
           </div>
         </div>
-
-        <div class="qr-table-item-detail" *ngIf="selectedItemIndex === i">
-          <div class="qr-table-item-detail-l">
-            <div class="item-detail-l-1">
-              <img [src]="allQrCodes[i].qrCodeImage" />
-            </div>
-            <div class="item-detail-l-2">
-              <button>Customize Qr Code</button>
-              <div class="">
-                Status :
-                <label
-                  [ngClass]="{ active: item.status === 'active' }"
-                  class="switch_box"
+        <div style="overflow: scroll" *ngIf="selectedItemIndex === i">
+          <div class="qr-table-item-detail">
+            <div class="qr-table-item-detail-l">
+              <div class="item-detail-l-1">
+                <div *ngIf="qrDetailImgLoader">
+                  <app-loader></app-loader>
+                </div>
+                <img
+                  *ngIf="!qrDetailImgLoader"
+                  [src]="allQrCodes[i].qrCodeImage"
+                />
+              </div>
+              <div class="item-detail-l-2">
+                <button
                   (click)="
-                    updateQrStatus(
-                      i,
-                      item.status === 'active' ? 'inactive' : 'active'
-                    )
+                    openUniversalQrCustomizeFromDetails =
+                      !openUniversalQrCustomizeFromDetails
                   "
                 >
-                  <input type="checkbox" [checked]="item.status === 'active'" />
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="qr-table-item-detail-r">
-            <div class="item-detail-r-1">
-              <div class="r-1-1">
-                <p>
-                  <span>Created: </span
-                  >{{ allQrCodes[i].createdAt | date : "MMM d, y, h:mm a" }}
-                </p>
-                <div class="r-1-1-1">
-                  <span
-                    ><p>{{ allQrCodes[i].qrCodeImage }}</p></span
+                  Customize Qr Code
+                </button>
+                <div class="">
+                  Status :
+                  <label
+                    [ngClass]="{ active: item.status === 'active' }"
+                    class="switch_box"
+                    (click)="
+                      updateQrStatus(
+                        i,
+                        item.status === 'active' ? 'inactive' : 'active'
+                      )
+                    "
                   >
-                  <button class="r-1-1-1-copy" (click)="copyToClipboard()">
-                    <svg
-                      width="18"
-                      height="19"
-                      viewBox="0 0 18 19"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.1625 7.475H16.1875C16.7467 7.475 17.2 7.92831 17.2 8.4875L17.2 15.6C17.2 16.7046 16.3046 17.6 15.2 17.6L8.0875 17.6C7.52831 17.6 7.075 17.1467 7.075 16.5875V14.5625M9.1 1.4L3.025 1.4C1.90662 1.4 1 2.30662 1 3.425L1 9.5C1 10.6184 1.90662 11.525 3.025 11.525L9.1 11.525C10.2184 11.525 11.125 10.6184 11.125 9.5L11.125 3.425C11.125 2.30663 10.2184 1.4 9.1 1.4Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                    Copy Link
-                  </button>
+                    <input
+                      type="checkbox"
+                      [checked]="item.status === 'active'"
+                    />
+                    <span class="slider"></span>
+                  </label>
                 </div>
-                <div class="r-1-1-2">
-                  <span
-                    >Title
-                    <button
-                      class="r-1-1-2-edit"
-                      *ngIf="isQrListTitleEditable"
-                      (click)="isQrListTitleEditable = !isQrListTitleEditable"
+              </div>
+            </div>
+            <div class="qr-table-item-detail-r">
+              <div class="item-detail-r-1">
+                <div class="r-1-1">
+                  <p>
+                    <span>Created: </span
+                    >{{ allQrCodes[i].createdAt | date : "MMM d, y, h:mm a" }}
+                  </p>
+                  <div class="r-1-1-1">
+                    <span
+                      ><p>{{ allQrCodes[i].url }}</p></span
                     >
+                    <button class="r-1-1-1-copy" (click)="copyToClipboard()">
                       <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
+                        width="18"
+                        height="19"
+                        viewBox="0 0 18 19"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 11.247V13.6112C0 13.8289 0.171087 14 0.388835 14H2.75295C2.85405 14 2.95515 13.9611 3.02514 13.8833L11.5173 5.39897L8.60103 2.48271L0.116651 10.9671C0.0388836 11.0449 0 11.1382 0 11.247ZM13.7725 3.14373C14.0758 2.84044 14.0758 2.35051 13.7725 2.04722L11.9528 0.227468C11.6495 -0.0758228 11.1596 -0.0758228 10.8563 0.227468L9.43314 1.6506L12.3494 4.56687L13.7725 3.14373Z"
-                          fill="black"
+                          d="M14.1625 7.475H16.1875C16.7467 7.475 17.2 7.92831 17.2 8.4875L17.2 15.6C17.2 16.7046 16.3046 17.6 15.2 17.6L8.0875 17.6C7.52831 17.6 7.075 17.1467 7.075 16.5875V14.5625M9.1 1.4L3.025 1.4C1.90662 1.4 1 2.30662 1 3.425L1 9.5C1 10.6184 1.90662 11.525 3.025 11.525L9.1 11.525C10.2184 11.525 11.125 10.6184 11.125 9.5L11.125 3.425C11.125 2.30663 10.2184 1.4 9.1 1.4Z"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
                         />
                       </svg>
+                      Copy Link
                     </button>
-
-                    <div
-                      style="display: flex; gap: 10px"
-                      *ngIf="!isQrListTitleEditable"
-                    >
-                      <button class="r-1-1-2-save" (click)="updateQrTitle(i)">
-                        Save
-
+                  </div>
+                  <div class="r-1-1-2">
+                    <span
+                      >Title
+                      <button
+                        class="r-1-1-2-edit"
+                        *ngIf="isQrListTitleEditable"
+                        (click)="isQrListTitleEditable = !isQrListTitleEditable"
+                      >
                         <svg
-                          width="13"
+                          width="14"
                           height="14"
-                          viewBox="0 0 13 14"
+                          viewBox="0 0 14 14"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M7.79983 1.3999H2.89981C1.74001 1.3999 0.799805 2.34011 0.799805 3.49991V10.5C0.799805 11.6598 1.74001 12.6 2.89981 12.6H9.89984C11.0596 12.6 11.9999 11.6598 11.9999 10.5V6.64992M11.2998 3.14991L6.39983 8.04993L4.99982 6.64992"
-                            stroke="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            d="M0 11.247V13.6112C0 13.8289 0.171087 14 0.388835 14H2.75295C2.85405 14 2.95515 13.9611 3.02514 13.8833L11.5173 5.39897L8.60103 2.48271L0.116651 10.9671C0.0388836 11.0449 0 11.1382 0 11.247ZM13.7725 3.14373C14.0758 2.84044 14.0758 2.35051 13.7725 2.04722L11.9528 0.227468C11.6495 -0.0758228 11.1596 -0.0758228 10.8563 0.227468L9.43314 1.6506L12.3494 4.56687L13.7725 3.14373Z"
+                            fill="black"
                           />
                         </svg>
                       </button>
-                      <button class="r-1-1-2-cancel" (click)="cancelQrTitle(i)">
-                        Cancel
-                      </button>
-                    </div>
-                  </span>
-                  <input
-                    [disabled]="isQrListTitleEditable"
-                    [(ngModel)]="qrListTitle"
-                  />
-                </div>
-                <div class="r-1-1-2">
-                  <span
-                    >Prefilled Text
 
-                    <button
-                      class="r-1-1-2-edit"
-                      *ngIf="isQrListDescriptionEditable"
-                      (click)="
-                        isQrListDescriptionEditable =
-                          !isQrListDescriptionEditable
-                      "
-                    >
+                      <div
+                        style="display: flex; gap: 10px"
+                        *ngIf="!isQrListTitleEditable"
+                      >
+                        <button class="r-1-1-2-save" (click)="updateQrTitle(i)">
+                          Save
+
+                          <svg
+                            width="13"
+                            height="14"
+                            viewBox="0 0 13 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79983 1.3999H2.89981C1.74001 1.3999 0.799805 2.34011 0.799805 3.49991V10.5C0.799805 11.6598 1.74001 12.6 2.89981 12.6H9.89984C11.0596 12.6 11.9999 11.6598 11.9999 10.5V6.64992M11.2998 3.14991L6.39983 8.04993L4.99982 6.64992"
+                              stroke="white"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <button
+                          class="r-1-1-2-cancel"
+                          (click)="cancelQrTitle(i)"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </span>
+                    <input
+                      [disabled]="isQrListTitleEditable"
+                      [(ngModel)]="qrListTitle"
+                    />
+                  </div>
+                  <div class="r-1-1-2">
+                    <span
+                      >Prefilled Text
+
+                      <button
+                        class="r-1-1-2-edit"
+                        *ngIf="isQrListDescriptionEditable"
+                        (click)="
+                          isQrListDescriptionEditable =
+                            !isQrListDescriptionEditable
+                        "
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 11.247V13.6112C0 13.8289 0.171087 14 0.388835 14H2.75295C2.85405 14 2.95515 13.9611 3.02514 13.8833L11.5173 5.39897L8.60103 2.48271L0.116651 10.9671C0.0388836 11.0449 0 11.1382 0 11.247ZM13.7725 3.14373C14.0758 2.84044 14.0758 2.35051 13.7725 2.04722L11.9528 0.227468C11.6495 -0.0758228 11.1596 -0.0758228 10.8563 0.227468L9.43314 1.6506L12.3494 4.56687L13.7725 3.14373Z"
+                            fill="black"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        style="display: flex; gap: 10px"
+                        *ngIf="!isQrListDescriptionEditable"
+                      >
+                        <button class="r-1-1-2-save" (click)="updateQrText(i)">
+                          Save
+
+                          <svg
+                            width="13"
+                            height="14"
+                            viewBox="0 0 13 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79983 1.3999H2.89981C1.74001 1.3999 0.799805 2.34011 0.799805 3.49991V10.5C0.799805 11.6598 1.74001 12.6 2.89981 12.6H9.89984C11.0596 12.6 11.9999 11.6598 11.9999 10.5V6.64992M11.2998 3.14991L6.39983 8.04993L4.99982 6.64992"
+                              stroke="white"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <button
+                          class="r-1-1-2-cancel"
+                          (click)="cancelQrText(i)"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </span>
+                    <input
+                      [disabled]="isQrListDescriptionEditable"
+                      [(ngModel)]="qrListDescription"
+                    />
+                  </div>
+                </div>
+                <div class="r-1-2">
+                  <span style="display: flex; height: 40px">
+                    <button (click)="toggleDetails(i)">
+                      Close
                       <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
+                        width="16"
+                        height="9"
+                        viewBox="0 0 16 9"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 11.247V13.6112C0 13.8289 0.171087 14 0.388835 14H2.75295C2.85405 14 2.95515 13.9611 3.02514 13.8833L11.5173 5.39897L8.60103 2.48271L0.116651 10.9671C0.0388836 11.0449 0 11.1382 0 11.247ZM13.7725 3.14373C14.0758 2.84044 14.0758 2.35051 13.7725 2.04722L11.9528 0.227468C11.6495 -0.0758228 11.1596 -0.0758228 10.8563 0.227468L9.43314 1.6506L12.3494 4.56687L13.7725 3.14373Z"
-                          fill="black"
+                          d="M1 7.89997L7.8 1.09998L14.6 7.89997"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
                         />
                       </svg>
                     </button>
-                    <div
-                      style="display: flex; gap: 10px"
-                      *ngIf="!isQrListDescriptionEditable"
-                    >
-                      <button class="r-1-1-2-save" (click)="updateQrText(i)">
-                        Save
-
-                        <svg
-                          width="13"
-                          height="14"
-                          viewBox="0 0 13 14"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7.79983 1.3999H2.89981C1.74001 1.3999 0.799805 2.34011 0.799805 3.49991V10.5C0.799805 11.6598 1.74001 12.6 2.89981 12.6H9.89984C11.0596 12.6 11.9999 11.6598 11.9999 10.5V6.64992M11.2998 3.14991L6.39983 8.04993L4.99982 6.64992"
-                            stroke="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </button>
-                      <button class="r-1-1-2-cancel" (click)="cancelQrText(i)">
-                        Cancel
-                      </button>
-                    </div>
                   </span>
-                  <input
-                    [disabled]="isQrListDescriptionEditable"
-                    [(ngModel)]="qrListDescription"
-                  />
-                </div>
-              </div>
-              <div class="r-1-2">
-                <span style="display: flex; height: 40px">
-                  <button (click)="toggleDetails(i)">
-                    Close
-                    <svg
-                      width="16"
-                      height="9"
-                      viewBox="0 0 16 9"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1 7.89997L7.8 1.09998L14.6 7.89997"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </span>
 
-                <div>
-                  <p>1,124</p>
-                  <span>Total Scans </span>
-                </div>
-                <div>
-                  <p>1,124</p>
-                  <span>Total Bookings </span>
+                  <div>
+                    <p>1,124</p>
+                    <span>Total Scans </span>
+                  </div>
+                  <div>
+                    <p>1,124</p>
+                    <span>Total Bookings </span>
+                  </div>
                 </div>
               </div>
+              <div class="item-detail-r-2">
+                <button
+                  (click)="downloadQrCode(item.qrCodeImage, 'qrcode.jpg')"
+                >
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 13 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.946777 8.59524L0.946777 11.0068C0.946777 11.3722 1.09075 11.7227 1.34702 11.9812C1.6033 12.2396 1.95088 12.3848 2.31331 12.3848H10.5125C10.8749 12.3848 11.2225 12.2396 11.4788 11.9812C11.735 11.7227 11.879 11.3722 11.879 11.0068V8.59524M6.41365 0.615234V8.42397M6.41365 8.42397L9.53715 5.44028M6.41365 8.42397L3.29016 5.44028"
+                      stroke="black"
+                      stroke-width="0.976092"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Download QR
+                </button>
+                <button (click)="directToQrStats(i)">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.3999 1.40002V15.6H15.5999M4.9499 10.2751L8.05615 7.16887L10.2749 9.38762L15.1562 4.50637M11.8352 4.06252H15.6006V7.82787"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  View Stats
+                </button>
+                <button (click)="toggleDeleteModal(i)">
+                  <svg
+                    width="16"
+                    height="17"
+                    viewBox="0 0 16 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.55664 3.84123H15.1096M6.63899 12.3118V7.22946M10.0272 12.3118V7.22946M11.7213 15.7001H4.94488C4.00924 15.7001 3.25076 14.9416 3.25076 14.0059V4.68828C3.25076 4.22047 3.63 3.84123 4.09782 3.84123H12.5684C13.0362 3.84123 13.4155 4.22047 13.4155 4.68828V14.0059C13.4155 14.9416 12.657 15.7001 11.7213 15.7001ZM6.63899 3.84123H10.0272C10.495 3.84123 10.8743 3.46198 10.8743 2.99417V2.14711C10.8743 1.67929 10.495 1.30005 10.0272 1.30005H6.63899C6.17118 1.30005 5.79193 1.67929 5.79193 2.14711V2.99417C5.79193 3.46198 6.17118 3.84123 6.63899 3.84123Z"
+                      stroke="black"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Delete
+                </button>
+              </div>
             </div>
-            <div class="item-detail-r-2">
-              <button (click)="downloadQrCode(item.qrCodeImage, 'qrcode.jpg')">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 13 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.946777 8.59524L0.946777 11.0068C0.946777 11.3722 1.09075 11.7227 1.34702 11.9812C1.6033 12.2396 1.95088 12.3848 2.31331 12.3848H10.5125C10.8749 12.3848 11.2225 12.2396 11.4788 11.9812C11.735 11.7227 11.879 11.3722 11.879 11.0068V8.59524M6.41365 0.615234V8.42397M6.41365 8.42397L9.53715 5.44028M6.41365 8.42397L3.29016 5.44028"
-                    stroke="black"
-                    stroke-width="0.976092"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Download Qr
-              </button>
-              <button (click)="directToQrStats(i)">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 17 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.3999 1.40002V15.6H15.5999M4.9499 10.2751L8.05615 7.16887L10.2749 9.38762L15.1562 4.50637M11.8352 4.06252H15.6006V7.82787"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                View Stats
-              </button>
-              <button (click)="toggleDeleteModal(i)">
-                <svg
-                  width="16"
-                  height="17"
-                  viewBox="0 0 16 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.55664 3.84123H15.1096M6.63899 12.3118V7.22946M10.0272 12.3118V7.22946M11.7213 15.7001H4.94488C4.00924 15.7001 3.25076 14.9416 3.25076 14.0059V4.68828C3.25076 4.22047 3.63 3.84123 4.09782 3.84123H12.5684C13.0362 3.84123 13.4155 4.22047 13.4155 4.68828V14.0059C13.4155 14.9416 12.657 15.7001 11.7213 15.7001ZM6.63899 3.84123H10.0272C10.495 3.84123 10.8743 3.46198 10.8743 2.99417V2.14711C10.8743 1.67929 10.495 1.30005 10.0272 1.30005H6.63899C6.17118 1.30005 5.79193 1.67929 5.79193 2.14711V2.99417C5.79193 3.46198 6.17118 3.84123 6.63899 3.84123Z"
-                    stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Delete
-              </button>
-            </div>
-          </div>
-          <!-- <div class="qr-table-item-detail-l">
+            <!-- <div class="qr-table-item-detail-l">
             <div class="item-detail-qr">
               <img [src]="allQrCodes[i].qrCodeImage" />
             </div>
@@ -1848,6 +4314,7 @@
               </button>
             </div>
           </div> -->
+          </div>
         </div>
       </div>
     </div>

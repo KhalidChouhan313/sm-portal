@@ -14,7 +14,7 @@ import { BotService } from 'src/services';
   styleUrls: ['./block-list.component.css'],
 })
 export class BlockListComponent {
-  tabs = ['All Messages', 'WhatsApp', 'SMS'];
+  tabs = ['All Messages', 'WhatsApp', 'SMS', 'Non-whatsapp', 'Non-SMS'];
   tab: any = this.tabs[0];
   showBanner = true;
   showAddCon = false;
@@ -202,12 +202,14 @@ export class BlockListComponent {
   filterBlacklist() {
     if (this.tab === 'All Messages') {
       this.filteredBlacklist = this.blacklist;
-    } else {
-      this.filteredBlacklist = this.blacklist.filter(
-        (item) =>
-          (this.tab === 'WhatsApp' && item.whatsapp) ||
-          (this.tab === 'SMS' && item.sms)
-      );
+    } else if (this.tab === 'WhatsApp') {
+      this.filteredBlacklist = this.blacklist.filter((item) => item.whatsapp);
+    } else if (this.tab === 'SMS') {
+      this.filteredBlacklist = this.blacklist.filter((item) => item.sms);
+    } else if (this.tab === 'Non-whatsapp') {
+      this.filteredBlacklist = this.blacklist.filter((item) => !item.whatsapp);
+    } else if (this.tab === 'Non-SMS') {
+      this.filteredBlacklist = this.blacklist.filter((item) => !item.sms);
     }
   }
 }

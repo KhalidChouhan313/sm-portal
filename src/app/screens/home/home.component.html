@@ -260,8 +260,8 @@
           </div>
           <!-- <video src="../../../assets/videos/search.mp4" autoplay="true" muted="true" loop="true"></video> -->
         </div>
-        <table class="a_table">
-          <thead>
+        <table class="a_table" style="min-width: 100%; max-width: fit-content">
+          <thead *ngIf="!isMsgLoad">
             <tr class="at_item at_item_head">
               <td>Created Date</td>
               <td>Target Type</td>
@@ -308,7 +308,9 @@
                 <ng-template #smsText>SMS</ng-template>
               </td>
               <td>+{{ item.to_number }}</td>
-              <td style="text-transform: capitalize">{{ item.msg_type }}</td>
+              <td style="text-transform: capitalize">
+                {{ formatText(item.msg_type) }}
+              </td>
               <td>
                 <span style="color: #3981f7" *ngIf="item.sent_by === 0"
                   >SMS</span

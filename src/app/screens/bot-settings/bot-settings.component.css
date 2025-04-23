@@ -68,6 +68,7 @@ input[type="number"] {
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  gap: 20px;
 }
 
 .c-bg-heading:nth-child(1) {
@@ -161,7 +162,7 @@ input[type="number"] {
   flex: 1;
   display: grid;
   grid-template-columns: 0.6fr 0.4fr;
-  column-gap: 8rem;
+  column-gap: 5rem;
   row-gap: 1.5rem;
 }
 
@@ -346,6 +347,7 @@ input[type="number"] {
   gap: 1.5rem;
   border-radius: 0.75rem;
   background: rgba(46, 188, 150, 0.2);
+  width: 100%;
 }
 
 .code {
@@ -767,7 +769,7 @@ input[type="number"] {
   line-height: normal;
   border-radius: 9px;
   border: 1px solid #e5e5ed;
-  width: 93%;
+  width: 90%;
 }
 
 .saa .btn-con {
@@ -817,6 +819,10 @@ input[type="number"] {
   transition: background 250ms ease-in-out;
   display: inline-block;
   overflow: hidden;
+}
+
+.switch_box:has(input:checked) {
+  background: linear-gradient(to left, #34836e 0%, #0dc997 100%) !important;
 }
 
 .switch_box input:checked ~ .switch_box {
@@ -874,8 +880,8 @@ input[type="number"] {
   display: none;
   position: absolute;
   top: 0;
-  right: -200px;
-  width: 200px;
+  right: -168px;
+  width: 168px;
   z-index: 9999;
   padding: 10px;
   border-radius: 10px;

@@ -221,7 +221,7 @@
         style="display: flex; flex-direction: column; gap: 2rem"
       >
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="f-con">
+          <div class="f-con" style="width: 40%">
             <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
@@ -233,7 +233,7 @@
               />
             </div>
           </div>
-          <div class="f-con">
+          <div class="f-con" style="gap: 25px; width: 40%">
             <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
@@ -248,7 +248,7 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="f-con">
+          <div class="f-con" style="width: 40%">
             <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
@@ -260,7 +260,7 @@
               />
             </div>
           </div>
-          <div class="f-con">
+          <div class="f-con" style="gap: 25px; width: 40%">
             <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
@@ -275,7 +275,7 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; width: 100%">
-          <div class="f-con">
+          <div class="f-con" style="width: 40%">
             <label class="f-heading">Display Name</label>
             <div class="inp-con">
               <input
@@ -287,7 +287,7 @@
               />
             </div>
           </div>
-          <div class="f-con">
+          <div class="f-con" style="gap: 25px; width: 40%">
             <label class="f-heading">iCabbi Vehicle Attribute</label>
             <div class="inp-con">
               <input
@@ -313,10 +313,10 @@
       </div>
     </div>
     <div class="c-bg-heading">Search Radius Settings</div>
-    <div class="r-a-c-p">
+    <div class="r-a-c-p" style="position: relative">
       <div class="r-a-c-p-left">
         <div class="f-con">
-          <label class="f-heading" style="width: 33%"
+          <label class="f-heading" style="width: 45%; padding-right: 10px"
             >Pickup Search Centre Point
           </label>
           <div class="inp-con">
@@ -370,12 +370,12 @@
               [(ngModel)]="pickupRadius"
               type="number"
               [disabled]="!btn4"
-              style="width: 200px"
+              style="width: 100px"
             />
           </div>
         </div>
         <div class="f-con">
-          <label class="f-heading" style="width: 33%"
+          <label class="f-heading" style="width: 45%; padding-right: 10px"
             >Destination Search Center Point</label
           >
           <div class="inp-con">
@@ -422,7 +422,7 @@
           </div>
         </div>
         <div class="f-con">
-          <label class="f-heading" style="width: 100%"
+          <label class="f-heading" style="width: 100%; padding-right: 10px"
             >Destination Search Radius (in Kilometers)</label
           >
           <div class="inp-con">
@@ -430,12 +430,12 @@
               [(ngModel)]="destinationRadius"
               type="number"
               [disabled]="!btn4"
-              style="width: 200px"
+              style="width: 100px"
             />
           </div>
         </div>
       </div>
-      <div class="r-a-c-p-right">
+      <div class="r-a-c-p-right" style="width: 48px">
         <!-- <button
           [disabled]="
             !pickupRadius ||
@@ -449,7 +449,13 @@
         >
           Update
         </button> -->
-        <button *ngIf="!btn4" (click)="startEdit('btn4')">Edit</button>
+        <button
+          *ngIf="!btn4"
+          style="position: absolute; right: 2rem"
+          (click)="startEdit('btn4')"
+        >
+          Edit
+        </button>
         <div *ngIf="btn4" style="display: flex; gap: 10px">
           <button
             [disabled]="
@@ -486,10 +492,10 @@
         <button *ngIf="btn6" (click)="cancel('btn6')">Cancel</button>
       </div>
     </div>
-    <div class="c-bg-heading postcode-list-h">
+    <div class="c-bg-heading postcode-list-h" style="white-space: nowrap">
       Postcode list
       <img style="width: 20px" src="../../../assets/warning.png" />
-      <p style="padding-top: 2px">
+      <p style="padding-top: 2px" style="white-space: wrap">
         You can add postcodes so that the system will allow searching if the
         address is outside of the search radius. Postcodes can as just Outcode,
         or Outcode & Sector or fully. <br />An example might be an
@@ -659,7 +665,7 @@
         the chatbot knows to search for an address that the system recognises
         when the user has not sent an address it recognises.
       </p>
-      <button>
+      <!-- <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="11"
@@ -675,7 +681,7 @@
             stroke-linejoin="round"
           />
         </svg>
-      </button>
+      </button> -->
     </div>
     <div class="q-l">
       <div class="q-l-tags">
