@@ -691,6 +691,7 @@ input[type="number"] {
 
 .airport-help-con img {
   width: 20px;
+  margin-left: 5px;
 }
 
 .airport-help-con:hover span {
@@ -730,6 +731,7 @@ input[type="number"] {
 
 .postcode-list-h:hover p {
   display: inline-block;
+  margin-bottom: 0;
 }
 
 .saa {

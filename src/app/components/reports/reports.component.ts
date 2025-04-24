@@ -205,8 +205,14 @@ export class ReportsComponent implements OnInit, OnChanges {
         maintainAspectRatio: false,
         scales: {
           x: { display: true, grid: { display: false } },
-          y: { display: false, grid: { display: false } },
+          y: {
+            display: false,
+            grid: { display: false },
+            beginAtZero: true,
+            min: 0,
+          },
         },
+
         plugins: {
           legend: { display: false },
           tooltip: {

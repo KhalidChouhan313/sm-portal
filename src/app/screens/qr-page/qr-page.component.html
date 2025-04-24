@@ -77,7 +77,9 @@
           <div class="cus-modol-1-btn-con">
             <!-- <button (click)="cSaveQr()">{{ saveBtnText }}</button> -->
             <button
-              (click)="openUniversalQrCustomize = !openUniversalQrCustomize"
+              (click)="
+                openUniversalQrCustomize = !openUniversalQrCustomize; resetQr()
+              "
               style="background: white !important"
               [disabled]="saveBtnText === 'Saving...'"
             >
@@ -246,38 +248,39 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="e-c"
-                  id="e-c"
-                  [(ngModel)]="eyeColor"
-                  (change)="regenQr()"
-                />
-              </div>
             </div>
             <div class="cus-modal-3-0-color">
               <!-- Row 1 -->
               <div style="margin-bottom: 10px">
-                <span [style.borderColor]="eyeColor">
-                  <label for="e-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </label>
-                </span>
+                <div style="gap: 0">
+                  <span [style.background]="eyeColor">
+                    <label for="e-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </label>
+                  </span>
+                  <input
+                    type="color"
+                    name="e-c"
+                    id="e-c"
+                    [(ngModel)]="eyeColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
                 <span
                   style="background: black"
                   (click)="cEyeColor('black')"
@@ -355,7 +358,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="e-g-1" [style.borderColor]="eyeGradient1">
+                <label for="e-g-1" [style.background]="eyeGradient1">
                   <svg
                     width="21"
                     height="21"
@@ -378,10 +381,11 @@
                   id="e-g-1"
                   [(ngModel)]="eyeGradient1"
                   (change)="pEyeGradient()"
+                  (input)="pEyeGradient()"
                 />
                 To
 
-                <label for="e-g-2" [style.borderColor]="eyeGradient2">
+                <label for="e-g-2" [style.background]="eyeGradient2">
                   <svg
                     width="21"
                     height="21"
@@ -404,6 +408,7 @@
                   id="e-g-2"
                   [(ngModel)]="eyeGradient2"
                   (change)="pEyeGradient()"
+                  (input)="pEyeGradient()"
                 />
               </div>
               <div>
@@ -552,36 +557,38 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="d-c"
-                  id="d-c"
-                  [(ngModel)]="dotColor"
-                  (change)="regenQr()"
-                />
-              </div>
             </div>
             <div class="cus-modal-3-0-color">
               <div>
-                <span [style.borderColor]="dotColor"
-                  ><label for="d-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg> </label
-                ></span>
+                <div style="gap: 0">
+                  <span [style.background]="dotColor"
+                    ><label for="d-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg> </label
+                  ></span>
+                  <input
+                    type="color"
+                    name="d-c"
+                    id="d-c"
+                    [(ngModel)]="dotColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
+
                 <span
                   *ngFor="
                     let color of [
@@ -625,7 +632,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="d-g-1" [style.borderColor]="dotGradient1">
+                <label for="d-g-1" [style.background]="dotGradient1">
                   <svg
                     width="21"
                     height="21"
@@ -648,10 +655,11 @@
                   id="d-g-1"
                   [(ngModel)]="dotGradient1"
                   (change)="pDotGradient()"
+                  (input)="pDotGradient()"
                 />
                 To
 
-                <label for="d-g-2" [style.borderColor]="dotGradient2">
+                <label for="d-g-2" [style.background]="dotGradient2">
                   <svg
                     width="21"
                     height="21"
@@ -674,6 +682,7 @@
                   id="d-g-2"
                   [(ngModel)]="dotGradient2"
                   (change)="pDotGradient()"
+                  (input)="pDotGradient()"
                 />
               </div>
               <div>
@@ -778,36 +787,38 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="b-c"
-                  id="b-c"
-                  [(ngModel)]="bgColor"
-                  (change)="regenQr()"
-                />
-              </div>
             </div>
             <div class="cus-modal-3-0-color">
               <div>
-                <span [style.borderColor]="bgColor"
-                  ><label for="b-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg> </label
-                ></span>
+                <div style="gap: 0">
+                  <span [style.background]="bgColor"
+                    ><label for="b-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg> </label
+                  ></span>
+                  <input
+                    type="color"
+                    name="b-c"
+                    id="b-c"
+                    [(ngModel)]="bgColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
+
                 <span
                   (click)="cBgColor('black')"
                   style="background: black"
@@ -884,7 +895,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="b-b-1" [style.borderColor]="bgGradient1">
+                <label for="b-b-1" [style.background]="bgGradient1">
                   <!-- Keep same icon -->
                   <svg
                     width="21"
@@ -908,10 +919,11 @@
                   id="b-b-1"
                   [(ngModel)]="bgGradient1"
                   (change)="pBgGradient()"
+                  (input)="pBgGradient()"
                 />
                 To
 
-                <label for="b-b-2" [style.borderColor]="bgGradient2">
+                <label for="b-b-2" [style.background]="bgGradient2">
                   <!-- Keep same icon -->
                   <svg
                     width="21"
@@ -935,6 +947,7 @@
                   id="b-b-2"
                   [(ngModel)]="bgGradient2"
                   (change)="pBgGradient()"
+                  (input)="pBgGradient()"
                 />
               </div>
 
@@ -1133,6 +1146,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('L')"
               >
                 Low (7%)
                 <p
@@ -1171,6 +1185,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('M')"
               >
                 Medium (15%)
                 <p
@@ -1210,6 +1225,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('Q')"
               >
                 Quartile (25%)
                 <p
@@ -1248,6 +1264,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('H')"
               >
                 High (30%)
                 <p
@@ -1269,7 +1286,7 @@
             </div>
           </div>
 
-          <div class="cus-modal-3-qr">
+          <div class="cus-modal-3-qr" style="position: relative">
             <!-- QR: Dot Solid + Corner Solid + Solid Background -->
 
             <div
@@ -1294,6 +1311,7 @@
               ></div>
               <app-loader></app-loader>
             </div>
+
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
@@ -1310,6 +1328,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -1338,6 +1361,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -1379,6 +1407,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -1428,6 +1461,11 @@
                   ]
                 }
               }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
             ></ngx-qrcode-styling>
 
             <!-- QR: Dot Gradient + Corner Solid + Solid Background -->
@@ -1457,6 +1495,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -1495,6 +1538,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -1546,6 +1594,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -1604,6 +1657,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -1687,7 +1745,8 @@
             <button
               (click)="
                 openUniversalQrCustomizeFromDetails =
-                  !openUniversalQrCustomizeFromDetails
+                  !openUniversalQrCustomizeFromDetails;
+                resetQr()
               "
               [disabled]="saveBtnText === 'Saving...'"
               style="background: white !important"
@@ -1856,37 +1915,39 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="e-c"
-                  id="e-c"
-                  [(ngModel)]="eyeColor"
-                  (change)="regenQr()"
-                />
-              </div>
+              =
             </div>
             <div class="cus-modal-3-0-color">
               <!-- Row 1 -->
               <div style="margin-bottom: 10px">
-                <span [style.borderColor]="eyeColor"
-                  ><label for="e-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg> </label
-                ></span>
+                <div style="gap: 0">
+                  <span [style.background]="eyeColor"
+                    ><label for="e-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg> </label
+                  ></span>
+                  <input
+                    type="color"
+                    name="e-c"
+                    id="e-c"
+                    [(ngModel)]="eyeColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
                 <span
                   style="background: black"
                   (click)="cEyeColor('black')"
@@ -1964,7 +2025,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="e-g-1" [style.borderColor]="eyeGradient1">
+                <label for="e-g-1" [style.background]="eyeGradient1">
                   <svg
                     width="21"
                     height="21"
@@ -1987,10 +2048,11 @@
                   id="e-g-1"
                   [(ngModel)]="eyeGradient1"
                   (change)="pEyeGradient()"
+                  (input)="pEyeGradient()"
                 />
                 To
 
-                <label for="e-g-2" [style.borderColor]="eyeGradient2">
+                <label for="e-g-2" [style.background]="eyeGradient2">
                   <svg
                     width="21"
                     height="21"
@@ -2013,6 +2075,7 @@
                   id="e-g-2"
                   [(ngModel)]="eyeGradient2"
                   (change)="pEyeGradient()"
+                  (input)="pEyeGradient()"
                 />
               </div>
               <div>
@@ -2161,37 +2224,39 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="d-c"
-                  id="d-c"
-                  [(ngModel)]="dotColor"
-                  (change)="regenQr()"
-                />
-              </div>
             </div>
 
             <div class="cus-modal-3-0-color">
               <div>
-                <span [style.borderColor]="dotColor">
-                  <label for="d-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg> </label
-                ></span>
+                <div style="gap: 0">
+                  <span [style.background]="dotColor">
+                    <label for="d-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg> </label
+                  ></span>
+                  <input
+                    type="color"
+                    name="d-c"
+                    id="d-c"
+                    [(ngModel)]="dotColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
+
                 <span
                   *ngFor="
                     let color of [
@@ -2235,7 +2300,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="d-g-1" [style.borderColor]="dotGradient1">
+                <label for="d-g-1" [style.background]="dotGradient1">
                   <svg
                     width="21"
                     height="21"
@@ -2258,10 +2323,11 @@
                   id="d-g-1"
                   [(ngModel)]="dotGradient1"
                   (change)="pDotGradient()"
+                  (input)="pDotGradient()"
                 />
                 To
 
-                <label for="d-g-2" [style.borderColor]="dotGradient2">
+                <label for="d-g-2" [style.background]="dotGradient2">
                   <svg
                     width="21"
                     height="21"
@@ -2284,6 +2350,7 @@
                   id="d-g-2"
                   [(ngModel)]="dotGradient2"
                   (change)="pDotGradient()"
+                  (input)="pDotGradient()"
                 />
               </div>
               <div>
@@ -2388,37 +2455,39 @@
               "
             >
               <p class="cus-modal-setting-h">Solid Colors</p>
-              <div>
-                <input
-                  type="color"
-                  name="b-c"
-                  id="b-c"
-                  [(ngModel)]="bgColor"
-                  (change)="regenQr()"
-                />
-              </div>
             </div>
             <div class="cus-modal-3-0-color">
               <div>
-                <span [style.borderColor]="bgColor">
-                  <label for="b-c">
-                    <svg
-                      width="21"
-                      height="22"
-                      viewBox="0 0 21 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </label>
-                </span>
+                <div style="gap: 0">
+                  <span [style.background]="bgColor">
+                    <label for="b-c">
+                      <svg
+                        width="21"
+                        height="22"
+                        viewBox="0 0 21 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.0731 5.60711L15.9929 12.5269M1 15.9868L14.6314 2.35545C15.9053 1.08155 17.9707 1.08155 19.2446 2.35545C20.5185 3.62935 20.5185 5.69475 19.2446 6.96865L5.6132 20.6H1V15.9868Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </label>
+                  </span>
+                  <input
+                    type="color"
+                    name="b-c"
+                    id="b-c"
+                    [(ngModel)]="bgColor"
+                    (change)="regenQr()"
+                    (input)="regenQr()"
+                  />
+                </div>
+
                 <span
                   (click)="cBgColor('black')"
                   style="background: black"
@@ -2495,7 +2564,7 @@
             <p class="cus-modal-setting-h">Gradients</p>
             <div class="cus-modal-3-0-gradients">
               <div>
-                <label for="b-b-1" [style.borderColor]="bgGradient1">
+                <label for="b-b-1" [style.background]="bgGradient1">
                   <!-- Keep same icon -->
                   <svg
                     width="21"
@@ -2519,10 +2588,11 @@
                   id="b-b-1"
                   [(ngModel)]="bgGradient1"
                   (change)="pBgGradient()"
+                  (input)="pBgGradient()"
                 />
                 To
 
-                <label for="b-b-2" [style.borderColor]="bgGradient2">
+                <label for="b-b-2" [style.background]="bgGradient2">
                   <!-- Keep same icon -->
                   <svg
                     width="21"
@@ -2546,6 +2616,7 @@
                   id="b-b-2"
                   [(ngModel)]="bgGradient2"
                   (change)="pBgGradient()"
+                  (input)="pBgGradient()"
                 />
               </div>
 
@@ -2744,6 +2815,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('L')"
               >
                 Low (7%)
                 <p
@@ -2782,6 +2854,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('M')"
               >
                 Medium (15%)
                 <p
@@ -2821,6 +2894,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('Q')"
               >
                 Quartile (25%)
                 <p
@@ -2859,6 +2933,7 @@
                   letter-spacing: -0.32px;
                   text-transform: capitalize;
                 "
+                (click)="cErrorCorrection('H')"
               >
                 High (30%)
                 <p
@@ -2921,6 +2996,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -2949,6 +3029,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -2990,6 +3075,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -3039,6 +3129,11 @@
                   ]
                 }
               }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
             ></ngx-qrcode-styling>
 
             <!-- QR: Dot Gradient + Corner Solid + Solid Background -->
@@ -3068,6 +3163,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -3106,6 +3206,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -3157,6 +3262,11 @@
               [image]="logoDataUrl"
               [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
               [backgroundOptions]="{ color: bgColor }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
+              }"
               id="cQrCode"
             ></ngx-qrcode-styling>
 
@@ -3215,6 +3325,11 @@
                     { offset: 1, color: bgGradient2 }
                   ]
                 }
+              }"
+              [qrOptions]="{
+                typeNumber: typeNum,
+                mode: 'Byte',
+                errorCorrectionLevel: errorCorrection
               }"
               id="cQrCode"
             ></ngx-qrcode-styling>
@@ -3634,6 +3749,7 @@
             <img src="../../../assets/download-icon.png" />
           </button>
         </div> -->
+
           <div class="qr-con">
             <img
               *ngIf="!smartQrData"
@@ -3645,6 +3761,7 @@
               class="qr-code"
               src="../../../assets/empty-qr-area.png"
             />
+
             <!-- <qrcode
             class="qr-code"
             *ngIf="smartQrData"
@@ -3653,6 +3770,7 @@
             [width]="200"
           ></qrcode> -->
             <ngx-qrcode-styling
+              *ngIf="smartQrData"
               [width]="300"
               [height]="300"
               [data]="''"
@@ -3663,7 +3781,6 @@
             >
             </ngx-qrcode-styling>
           </div>
-
           <p class="main-right-info-text" *ngIf="!smartQrData">
             Click the "Generate" button to create a QR code
           </p>
@@ -3675,10 +3792,9 @@
               justify-content: center;
               flex-direction: column;
             "
+            *ngIf="smartQrData"
           >
-            <p class="main-right-info-text" *ngIf="smartQrData">
-              Download QR Code
-            </p>
+            <p class="main-right-info-text">Download QR Code</p>
           </div>
           <button *ngIf="smartQrData">Customize QR Code</button>
         </div>

@@ -5,9 +5,11 @@ import {
   CornerDotType,
   CornerSquareType,
   DotType,
+  ErrorCorrectionLevel,
   NgxQrcodeStylingComponent,
   Options,
   ShapeType,
+  TypeNumber,
 } from 'ngx-qrcode-styling';
 import { Router } from '@angular/router';
 @Component({
@@ -488,6 +490,10 @@ export class QrPageComponent {
   bgGradient1 = '';
   bgGradient2 = '';
 
+  typeNum: TypeNumber = 0;
+
+  errorCorrection: ErrorCorrectionLevel = 'H';
+
   logoDataUrl = '';
 
   isGradient: boolean = false;
@@ -500,6 +506,42 @@ export class QrPageComponent {
       // this.cShowQrLoader = false;
       this.qrShouldRender = true;
     }, 0); // 1.5 seconds
+  }
+
+  resetQr() {
+    this.dotStyle = 'rounded';
+    this.selectedDotStyle = 'rounded';
+
+    this.dotColor = 'black';
+    this.selectedDotColor = 'black';
+
+    this.dotGradient1 = '';
+    this.dotGradient2 = '';
+
+    this.eyeExternal = 'square';
+    this.selectedEyeExternal = 'square';
+    this.eyeInternal = 'square';
+    this.selectedEyeInternal = 'square';
+
+    this.eyeColor = 'black';
+
+    this.eyeGradient1 = '';
+    this.eyeGradient2 = '';
+
+    this.bgColor = 'white';
+
+    this.bgGradient1 = '';
+    this.bgGradient2 = '';
+
+    this.errorCorrection = 'H';
+
+    this.logoDataUrl = '';
+
+    this.isGradient = false;
+
+    // this.universalQrData = '';
+    // this.universalQrString = '';
+    this.showUniversalQrGenerator = false;
   }
 
   // qrCombo to cover all possible combinations for dot and corner styles
@@ -536,6 +578,11 @@ export class QrPageComponent {
     } else {
       this.qrCombo = 'dotSolid_cornerSolid_solidBg';
     }
+    this.regenQr();
+  }
+
+  cErrorCorrection(c: ErrorCorrectionLevel) {
+    this.errorCorrection = c;
     this.regenQr();
   }
 
@@ -587,7 +634,7 @@ export class QrPageComponent {
 
   // Function for selecting eye (corner) gradient
   cEyeGradient(c1: string, c2: string) {
-    this.eyeColor = '';
+    // this.eyeColor = '';
     this.eyeGradient1 = c1;
     this.eyeGradient2 = c2;
 
@@ -717,6 +764,7 @@ export class QrPageComponent {
         console.error('QR element not found!');
       }
     }, 4000);
+    this.resetQr();
   }
 
   cSaveQrFromDetails() {
@@ -763,6 +811,7 @@ export class QrPageComponent {
         console.error('QR element not found!');
       }
     }, 4000);
+    this.resetQr();
   }
 
   cDownloadQr() {
