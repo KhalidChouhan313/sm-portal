@@ -1,0 +1,53 @@
+<div class="a_table_wrapper">
+    <table class="table">
+        <!-- Table Head -->
+        <thead>
+            <tr>
+                <th>Created Date</th>
+                <th>Phone</th>
+                <th>Booking Date/Time</th>
+            </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <!-- <app-loader *ngIf="interactionList.length === 0"></app-loader> -->
+        <tbody>
+            <tr *ngIf="interactionList.length === 0">
+                <td colspan="3">No data found</td>
+            </tr>
+            <tr *ngFor="let item of interactionList; let i = index;">
+
+                <td style="text-transform: uppercase">
+                    {{ item.createdAt | date:'dd/MM/y, h:mma' }}
+                </td>
+                <td>{{ item.phone }}</td>
+                <td>
+                    {{item?.time?.split('T')[0]}} {{item?.time?.split('T')[1]}}
+                </td>
+
+                <div class="msg_cell">
+                    <div>
+                        <a class="btn btn-outline-secondary" (click)="openModal(item)">
+                            <img style="width: 15px" src="../../../assets/see-qr.png" />
+                        </a>
+                    </div>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="interaction-flow-layer" *ngIf="interactionDetails"></div>
+<div class="interaction-flow-container" *ngIf="interactionDetails">
+    <div class="interaction-flow-box">
+        <div class="interaction-flow-header">
+            <div>
+                <h1>Interaction Flow</h1>
+                <h6 class="interaction-flow-header-phone">
+                    <span>Phone:</span> {{ interactionDetails.phone }}
+                </h6>
+            </div>
+            <a (click)="closeInteractionFlow()" class="close-interaction-flow">x</a>
+        </div>
+        <app-interaction-flow [interactionDetails]="interactionDetails"></app-interaction-flow>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+import { Component, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-interaction-flow',
+  templateUrl: './interaction-flow.component.html',
+  styleUrls: ['./interaction-flow.component.css']
+})
+export class InteractionFlowComponent implements OnInit {
+  @Input() interactionDetails: any;
+  messages = [];
+  constructor() { }
+
+  ngOnInit(): void {
+    console.log(this.interactionDetails);
+    this.messages = [
+      // { sender: 'bot', text: 'Ask pickup' },
+      // { sender: 'user', text: this.interactionDetails.search_pickup },
+      // { sender: 'user', text: `Pickup \n${this.interactionDetails.selected_destination.address}` },
+      // { sender: 'bot', text: 'Ask destination' },
+      // { sender: 'user', text: this.interactionDetails.search_destination },
+      // { sender: 'user', text: `Pickup \n${this.interactionDetails.selected_destination.address}` },
+      // { sender: 'user', text: 'Ask pickup' },
+      // { sender: 'bot', text: 'Ask pickup' },
+      // { sender: 'user', text: 'Ask pickup' },
+    ];
+    if (this.interactionDetails.search_pickup) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask pickup' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.search_pickup });
+    }
+    if (this.interactionDetails.selected_destination.address) {
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Pickup \n${this.interactionDetails.selected_destination.address}` });
+    }
+    if (this.interactionDetails.search_destination) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask destination.' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.search_destination });
+    }
+    if (this.interactionDetails.selected_destination.address) {
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Destination: \n${this.interactionDetails.selected_destination.address}` });
+    }
+    if (this.interactionDetails.vehicle_type) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask vehicle' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Vehicle type: \n${this.interactionDetails.vehicle_name}` });
+    }
+    if (this.interactionDetails.date) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask Date' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Date: \n${this.interactionDetails.date}` });
+    }
+    if (this.interactionDetails.time) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask Time' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Time: \n${this.interactionDetails.time}` });
+    }
+
+
+  }
+
+}
