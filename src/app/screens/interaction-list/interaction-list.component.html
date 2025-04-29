@@ -5,6 +5,7 @@
             <tr>
                 <th>Created Date</th>
                 <th>Phone</th>
+                <th>Status</th>
                 <th>Booking Date/Time</th>
             </tr>
         </thead>
@@ -21,6 +22,13 @@
                     {{ item.createdAt | date:'dd/MM/y, h:mma' }}
                 </td>
                 <td>{{ item.phone }}</td>
+                <td>
+                    <span class="status-badge"
+                        [ngClass]="{'active': item.status === 'completed', 'inactive': item.status !== 'completed'}">
+                        <span *ngIf="item.status === 'completed'">Completed</span>
+                        <span *ngIf="item.status !== 'completed'">Interrupted</span>
+                    </span>
+                </td>
                 <td>
                     {{item?.time?.split('T')[0]}} {{item?.time?.split('T')[1]}}
                 </td>

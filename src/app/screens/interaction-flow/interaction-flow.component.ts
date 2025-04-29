@@ -38,16 +38,28 @@ export class InteractionFlowComponent implements OnInit {
       this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Destination: \n${this.interactionDetails.selected_destination.address}` });
     }
     if (this.interactionDetails.vehicle_type) {
-      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask vehicle' });
-      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Vehicle type: \n${this.interactionDetails.vehicle_name}` });
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Select vehicle' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.vehicle_name });
     }
     if (this.interactionDetails.date) {
-      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask Date' });
-      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Date: \n${this.interactionDetails.date}` });
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Enter Date' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.date });
     }
     if (this.interactionDetails.time) {
-      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask Time' });
-      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Time: \n${this.interactionDetails.time}` });
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Enter Time' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.time.toLowerCase() == 'asap' ? this.interactionDetails.time : this.interactionDetails.time.split('T')[1] });
+    }
+    if (this.interactionDetails.price) {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: `Qutation £${this.interactionDetails.price}` });
+      // this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.time.toLowerCase() == 'asap' ? this.interactionDetails.time : this.interactionDetails.time.split('T')[1] });
+    }
+    if (this.interactionDetails.note) {
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: 'Confirm' });
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Note' });
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.note });
+    }
+    if (this.interactionDetails.status === 'completed') {
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Booking Confirmed' });
     }
 
 

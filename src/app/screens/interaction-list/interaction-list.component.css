@@ -109,3 +109,18 @@ tr {
 .interaction-flow-header-phone span {
     font-weight: bold;
 }
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+text-transform: capitalize;
+}
+
+.active {
+  background-color: #008000;
+}
+
+.inactive {
+  background-color: #ff0000;
+}
