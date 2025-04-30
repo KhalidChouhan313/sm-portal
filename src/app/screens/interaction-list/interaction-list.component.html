@@ -45,8 +45,8 @@
     </table>
 </div>
 <div class="interaction-flow-layer" *ngIf="interactionDetails"></div>
-<div class="interaction-flow-container" *ngIf="interactionDetails">
-    <div class="interaction-flow-box">
+<div class="interaction-flow-container col-md-12" *ngIf="interactionDetails" (click)="closeInteractionFlow()">
+    <div class="interaction-flow-box col-xl-4 col-lg-5 col-md-6 col-sm-12 col-xs-12" (click)="stopPropagation($event)">
         <div class="interaction-flow-header">
             <div>
                 <h1>Interaction Flow</h1>

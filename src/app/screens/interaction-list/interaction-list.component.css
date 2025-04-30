@@ -97,6 +97,7 @@ tr {
     cursor: pointer;
     text-decoration: none;
     color: #000;
+    height: fit-content;
 }
 
 .interaction-flow-header-phone {

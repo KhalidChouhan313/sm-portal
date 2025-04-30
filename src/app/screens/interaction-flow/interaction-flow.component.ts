@@ -23,15 +23,18 @@ export class InteractionFlowComponent implements OnInit {
       // { sender: 'bot', text: 'Ask pickup' },
       // { sender: 'user', text: 'Ask pickup' },
     ];
+    this.messages.push({ timestamp: Date.now(), sender: 'user', text: 'Hi' });
+    this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Enter pickup address.' });
+
     if (this.interactionDetails.search_pickup) {
-      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask pickup' });
+      // this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask pickup' });
       this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.search_pickup });
     }
-    if (this.interactionDetails.selected_destination.address) {
-      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Pickup \n${this.interactionDetails.selected_destination.address}` });
+    if (this.interactionDetails.selected_pickup.address) {
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: `Pickup \n${this.interactionDetails.selected_pickup.address}` });
     }
     if (this.interactionDetails.search_destination) {
-      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Ask destination.' });
+      this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Enter destination address.' });
       this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.search_destination });
     }
     if (this.interactionDetails.selected_destination.address) {
@@ -57,6 +60,9 @@ export class InteractionFlowComponent implements OnInit {
       this.messages.push({ timestamp: Date.now(), sender: 'user', text: 'Confirm' });
       this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Note' });
       this.messages.push({ timestamp: Date.now(), sender: 'user', text: this.interactionDetails.note });
+    }
+    if (!this.interactionDetails.note && this.interactionDetails.status === 'completed') {
+      this.messages.push({ timestamp: Date.now(), sender: 'user', text: 'Confirm' });
     }
     if (this.interactionDetails.status === 'completed') {
       this.messages.push({ timestamp: Date.now(), sender: 'bot', text: 'Booking Confirmed' });

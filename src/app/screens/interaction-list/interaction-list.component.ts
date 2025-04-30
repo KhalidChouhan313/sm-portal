@@ -33,4 +33,8 @@ export class InteractionListComponent implements OnInit {
   closeInteractionFlow() {
     this.interactionDetails = null;
   }
+
+  stopPropagation(event: MouseEvent) {
+    event.stopPropagation();
+  }
 }
