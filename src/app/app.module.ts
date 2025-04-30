@@ -4,6 +4,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { CommonModule } from '@angular/common';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +49,12 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
 import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
 import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
+<<<<<<< HEAD
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
+=======
+// import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
+// import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
+>>>>>>> f0365af2ee97405e194d0eada2cefa1ff76580dc
 
 @NgModule({
   declarations: [
@@ -83,7 +91,12 @@ import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
     QrPageComponent,
     QrStacksComponent,
     QrStatsComponent,
+<<<<<<< HEAD
     // SmartLocationQrComponent,
+=======
+    // InteractionFlowComponent,
+    // InteractionListComponent,
+>>>>>>> f0365af2ee97405e194d0eada2cefa1ff76580dc
     // ReportsDeviceComponent,
   ],
   imports: [
@@ -91,16 +104,19 @@ import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
     AppRoutingModule,
     NgChartsModule,
     FormsModule,
+    // NgbModule,
     NgxDaterangepickerMd.forRoot(),
+    NgxGraphModule,
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     PickerModule,
+    CommonModule,
     // QRCodeComponent,
     NgxQrcodeStylingComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

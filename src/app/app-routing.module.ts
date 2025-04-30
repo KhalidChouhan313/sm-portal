@@ -73,6 +73,20 @@ const routes: Routes = [
         (m) => m.ChatflowModule
       ),
   },
+  // {
+  //   path: 'chatbot/interactions-flow',
+  //   loadChildren: () =>
+  //     import('./screens/interaction-flow/interaction-flow.module').then(
+  //       (m) => m.InteractionFlowModule
+  //     ),
+  // },
+  {
+    path: 'chatbot/interactions',
+    loadChildren: () =>
+      import('./screens/interaction-list/interaction-list.module').then(
+        (m) => m.InteractionListModule
+      ),
+  },
   {
     path: 'chatbot/bot-settings',
     loadChildren: () =>
@@ -112,4 +126,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

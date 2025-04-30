@@ -28,7 +28,7 @@ export class OverviewCardsComponent implements OnInit {
     this.overviewCards = [
       { title: 'Total Interactions', value: this.totalInteractions ? this.totalInteractions : 0, description: '' },
       { title: 'Total Bookings', value: this.totalBookings ? this.totalBookings : 0, description: '' },
-      { title: 'Booking Conversion Rate', value: `${this.bookingConversionRate}%`, description: '' },
+      { title: 'Booking Conversion Rate', value: `${this.bookingConversionRate * 100}%`, description: '' },
       { title: 'Total Trip Value', value: `£${this.totalTripValue ? this.totalTripValue : 0}`, description: '' },
       { title: 'Average Fare', value: `£${this.averageFare ? this.averageFare : 0}`, description: '' }
     ];

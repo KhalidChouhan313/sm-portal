@@ -82,4 +82,12 @@ export class BookingsService {
   public priceBasedStats(company_id) {
     return this.http.get(`${environment.apiUrl}/api/waba/price-based-stats/${company_id}`);
   }
+
+  public getInteractionList(company_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/interactions/${company_id}`);
+  }
+
+  public getInteractionDetails(interaction_id) {
+    return this.http.get(`${environment.apiUrl}/api/waba/interaction-details/${interaction_id}`);
+  }
 }
