@@ -4492,9 +4492,8 @@
                   </div>
                 </div>
                 <div class="r-1-2">
-                  <span style="display: flex; height: 40px; gap: 5px">
+                  <span style="display: flex; gap: 10px; background: black">
                     <button
-                      *ngIf="item.type == 'location'"
                       (click)="copyToClipboard()"
                       style="background: transparent; border: none"
                     >
@@ -4513,24 +4512,26 @@
                         />
                       </svg>
                     </button>
-                    <button (click)="toggleDetails(i)">
-                      Close
-                      <svg
-                        width="16"
-                        height="9"
-                        viewBox="0 0 16 9"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 7.89997L7.8 1.09998L14.6 7.89997"
-                          stroke="black"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
+                    <span style="display: flex; height: 40px; gap: 5px">
+                      <button (click)="toggleDetails(i)">
+                        Close
+                        <svg
+                          width="16"
+                          height="9"
+                          viewBox="0 0 16 9"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 7.89997L7.8 1.09998L14.6 7.89997"
+                            stroke="black"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </span>
                   </span>
 
                   <div>

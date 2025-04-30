@@ -496,7 +496,7 @@ h2 {
 .qr-table-item div:nth-child(2) {
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -509,7 +509,7 @@ h2 {
 .qr-table-item div:nth-child(3) {
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -534,7 +534,7 @@ h2 {
 
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -550,7 +550,7 @@ h2 {
   min-width: 118px;
   color: var(--text, #636364);
   font-family: Nunito;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
