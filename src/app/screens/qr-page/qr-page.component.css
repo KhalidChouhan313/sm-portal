@@ -120,7 +120,7 @@ h2 {
   border: 1px solid gray;
   border-radius: 10px;
   width: 100%;
-  height: 100px;
+  height: 80px;
   resize: none;
 }
 
@@ -838,6 +838,7 @@ h2 {
 
 .qr-table-item-detail-l {
   width: 340px;
+  height: 418px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -851,6 +852,7 @@ h2 {
 .item-detail-l-2 {
   display: flex;
   gap: 20px;
+  width: 340px;
 }
 
 .item-detail-l-2 button {
@@ -875,7 +877,7 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border: 2px solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 8px;
   width: 50%;
 }
@@ -903,7 +905,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 6px;
   width: 60%;
 }
 
@@ -986,7 +988,7 @@ h2 {
 .r-1-1-2 {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   align-items: start;
 }
 
@@ -1182,8 +1184,8 @@ h2 {
 .cus-modal {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 24px;
+  gap: 10px;
+  padding: 15px 25px;
   width: 100%;
 }
 
@@ -1283,6 +1285,7 @@ h2 {
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  padding: 6px 24px;
 }
 
 .cus-modal-setting-h {
@@ -1291,7 +1294,7 @@ h2 {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 42px; /* 210% */
+  line-height: 26px; /* 210% */
   letter-spacing: -0.4px;
   margin-bottom: 0;
 }
@@ -1492,6 +1495,12 @@ div:has(.qr-table-item-detail) {
   .item-detail-r-2 button {
     height: 35px;
   }
+  .qr-table-item-detail-l {
+    height: 281px;
+  }
+  .item-detail-l-2 {
+    width: 250px;
+  }
 }
 
 @media (max-width: 1600px) {
@@ -1507,7 +1516,7 @@ div:has(.qr-table-item-detail) {
 }
 
 .load {
-  border: 2px solid #f3f3f3;
+  border: 2px solid #b3b3b3;
   border-top: 2px solid transparent;
   border-radius: 50%;
   width: 16px;

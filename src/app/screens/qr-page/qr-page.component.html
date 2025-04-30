@@ -67,7 +67,7 @@
         width: 866px;
         display: flex;
         justify-content: center;
-        height: 80vh;
+        height: 554px;
         overflow: scroll;
       "
     >
@@ -1122,6 +1122,22 @@
               <span *ngIf="!logoDataUrl">Choose File – No File Chosen</span>
               <span *ngIf="logoDataUrl">Change Logo</span>
             </label>
+            <button
+              (click)="cRemoveLogo()"
+              [disabled]="!logoDataUrl"
+              style="
+                padding: 10px 20px;
+                background-color: #ff4d4f;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-family: Nunito;
+                font-weight: 600;
+                width: 349px;
+              "
+            >
+              Remove Logo
+            </button>
           </div>
 
           <div *ngIf="activeModalIndex == 4" class="cus-modal-3-settings">
@@ -1315,13 +1331,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotSolid_cornerSolid_solidBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{ type: dotStyle, color: dotColor }"
               [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
               [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
@@ -1340,13 +1356,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotSolid_cornerSolid_gradientBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{ type: dotStyle, color: dotColor }"
               [cornersSquareOptions]="{ type: eyeExternal, color: eyeColor }"
               [cornersDotOptions]="{ type: eyeInternal, color: eyeColor }"
@@ -1374,13 +1390,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotSolid_cornerGradient_solidBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{ type: dotStyle, color: dotColor }"
               [cornersSquareOptions]="{
                 type: eyeExternal,
@@ -1419,13 +1435,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotSolid_cornerGradient_gradientBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{ type: dotStyle, color: dotColor }"
               [cornersSquareOptions]="{
                 type: eyeExternal,
@@ -1472,13 +1488,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotGradient_cornerSolid_solidBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{
                 type: dotStyle,
                 gradient: {
@@ -1507,13 +1523,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotGradient_cornerSolid_gradientBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{
                 type: dotStyle,
                 gradient: {
@@ -1551,13 +1567,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotGradient_cornerGradient_solidBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{
                 type: dotStyle,
                 gradient: {
@@ -1606,13 +1622,13 @@
             <ngx-qrcode-styling
               *ngIf="
                 qrShouldRender &&
-                universalQrString.length > 0 &&
+                qrString.length > 0 &&
                 qrCombo === 'dotGradient_cornerGradient_gradientBg'
               "
               [width]="200"
               [height]="200"
               [margin]="1"
-              [data]="universalQrString"
+              [data]="qrString"
               [dotsOptions]="{
                 type: dotStyle,
                 gradient: {
@@ -1733,7 +1749,7 @@
         width: 866px;
         display: flex;
         justify-content: center;
-        height: 80vh;
+        height: 554px;
         overflow: scroll;
       "
     >
@@ -2791,6 +2807,22 @@
               <span *ngIf="!logoDataUrl">Choose File – No File Chosen</span>
               <span *ngIf="logoDataUrl">Change Logo</span>
             </label>
+            <button
+              (click)="cRemoveLogo()"
+              [disabled]="!logoDataUrl"
+              style="
+                padding: 10px 20px;
+                background-color: #ff4d4f;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-family: Nunito;
+                font-weight: 600;
+                width: 349px;
+              "
+            >
+              Remove Logo
+            </button>
           </div>
 
           <div *ngIf="activeModalIndex == 4" class="cus-modal-3-settings">
@@ -3397,13 +3429,13 @@
 
   <div class="nav">
     <button
-      (click)="setActive('universal')"
+      (click)="setActive('universal'); updateFilteredQrCodes()"
       [class.active]="activeButton === 'universal'"
     >
       Universal QR
     </button>
     <button
-      (click)="setActive('smart')"
+      (click)="setActive('smart'); updateFilteredQrCodes()"
       [class.active]="activeButton === 'smart'"
     >
       Smart Locations QR
@@ -3550,7 +3582,7 @@
           [data]="universalQrString"
           [dotsOptions]="{ color: '#000', type: 'rounded' }"
           [backgroundOptions]="{ color: '#fff' }"
-          [image]="'assets/logo.png'"
+          [image]="''"
           [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
         >
         </ngx-qrcode-styling>
@@ -3693,111 +3725,273 @@
         <img src="../../../assets/close-icon.png" />
       </button>
     </div>
-    <div style="width: 100%; overflow: scroll">
-      <div class="main">
+    <div style="width: 100%">
+      <div *ngIf="showUniversalQrGenerator" class="main">
         <div class="main-left">
           <div>
             <p
               style="width: 100%; display: flex; justify-content: space-between"
             >
               Title Name
-              <img
-                style="width: 10px; height: 10px"
-                src="../../../assets/edit-pen.png"
-              />
+              <span>
+                {{ inputSmartTitleName.length || 0 }}/50
+                <!-- <img
+                  style="width: 10px; height: 10px"
+                  src="../../../assets/edit-pen.png"
+                /> -->
+              </span>
             </p>
-            <input [(ngModel)]="inputSmartTitleName" placeholder="Type here" />
+            <input
+              maxlength="50"
+              [(ngModel)]="inputSmartTitleName"
+              placeholder="Type here"
+              [readonly]="smartQrData"
+            />
           </div>
+
+          <div>
+            <p
+              style="width: 100%; display: flex; justify-content: space-between"
+            >
+              Prefilled Text
+              <span>
+                {{ inputSmartPrefilledText.length || 0 }}/80
+                <!-- <img
+                  style="width: 10px; height: 10px"
+                  src="../../../assets/edit-pen.png"
+                /> -->
+              </span>
+            </p>
+            <input
+              [(ngModel)]="inputSmartPrefilledText"
+              placeholder="Type here"
+              maxlength="80"
+              [readonly]="smartQrData"
+            />
+          </div>
+
           <div class="left-textarea">
             <p
               style="width: 100%; display: flex; justify-content: space-between"
             >
               Pickup Location
               <span>
-                {{ inputSmartPickup.length || 0 }}/200
-                <img
+                <!-- {{ inputSmartPickup.length || 0 }}/200 -->
+                <!-- <img
                   style="width: 10px; height: 10px"
                   src="../../../assets/edit-pen.png"
-                />
+                /> -->
               </span>
             </p>
-            <textarea
-              [(ngModel)]="inputSmartPickup"
-              placeholder="Type here"
-            ></textarea>
+            <div style="position: relative">
+              <input
+                [(ngModel)]="inputSmartPickup"
+                (input)="getLocations()"
+                placeholder="Type here"
+                style="text-overflow: ellipsis"
+                [title]="inputSmartPickup"
+                [readonly]="smartQrData"
+              />
+              <div
+                style="
+                  position: absolute;
+                  top: 50%;
+                  right: 10px;
+                  transform: translateY(-50%);
+                "
+                *ngIf="locationLoader"
+              >
+                <div class="load"></div>
+              </div>
+              <div
+                *ngIf="locations.length != 0"
+                style="
+                  position: absolute;
+                  background: white;
+                  max-height: 200px;
+                  min-height: fit-content;
+                  overflow: scroll;
+                  box-shadow: 0 0 10px lightgray;
+                  padding: 0 10px;
+                  cursor: pointer;
+                  width: 100%;
+                  z-index: 10;
+                "
+              >
+                <div
+                  *ngFor="let location of locations; let i = index"
+                  style="border-bottom: 1px solid lightgray; padding: 10px"
+                  (click)="selectLocation(i)"
+                >
+                  {{ location.title }}
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="left-btn-con">
-            <button *ngIf="!smartQrData" (click)="generateSmartQRCode()">
+          <div class="left-btn-con" *ngIf="!smartQrData">
+            <button
+              (click)="generateSmartQRCode()"
+              [disabled]="
+                !inputSmartTitleName?.trim() ||
+                !inputSmartPrefilledText?.trim() ||
+                !inputSmartPickup?.trim() ||
+                !inputSmartPickupLat ||
+                !inputSmartPickupLng
+              "
+            >
               Generate QR Code
             </button>
-            <button *ngIf="smartQrData">Save & View Stats</button>
+            <!-- <button *ngIf="smartQrData">Save & View Stats</button>
             <button
               *ngIf="smartQrData"
               (click)="generateSmartQRCode()"
               style="width: 150px"
             >
               Edit Details
-            </button>
+            </button> -->
           </div>
         </div>
-        <div class="main-right">
-          <!-- <div>
-          <button *ngIf="!smartQrData">
-            <img src="../../../assets/refresh-white.png" />
-          </button>
-          <button *ngIf="smartQrData" (click)="downloadSmartQRCode()">
-            <img src="../../../assets/download-icon.png" />
-          </button>
-        </div> -->
-
+        <div class="main-right" *ngIf="!smartQrData">
           <div class="qr-con">
-            <img
-              *ngIf="!smartQrData"
-              class="qr-gif"
-              src="../../../assets/qr-gif.gif"
-            />
-            <img
-              *ngIf="!smartQrData"
-              class="qr-code"
-              src="../../../assets/empty-qr-area.png"
-            />
-
-            <!-- <qrcode
-            class="qr-code"
-            *ngIf="smartQrData"
-            [qrdata]="smartQrData"
-            [errorCorrectionLevel]="'M'"
-            [width]="200"
-          ></qrcode> -->
-            <ngx-qrcode-styling
-              *ngIf="smartQrData"
-              [width]="300"
-              [height]="300"
-              [data]="''"
-              [dotsOptions]="{ color: '#000', type: 'rounded' }"
-              [backgroundOptions]="{ color: '#fff' }"
-              [image]="'assets/logo.png'"
-              [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
-            >
-            </ngx-qrcode-styling>
+            <img class="qr-gif" src="../../../assets/qr-gif.gif" />
+            <img class="qr-code" src="../../../assets/empty-qr-area.png" />
           </div>
-          <p class="main-right-info-text" *ngIf="!smartQrData">
+          <p class="main-right-info-text">
             Click the "Generate" button to create a QR code
           </p>
-
+        </div>
+        <div class="main-right-qr" *ngIf="smartQrData">
+          <ngx-qrcode-styling
+            *ngIf="smartQrString.length > 0"
+            [width]="300"
+            [height]="300"
+            [data]="smartQrString"
+            [dotsOptions]="{ color: '#000', type: 'rounded' }"
+            [backgroundOptions]="{ color: '#fff' }"
+            [image]="''"
+            [imageOptions]="{ crossOrigin: 'anonymous', margin: 10 }"
+          >
+          </ngx-qrcode-styling>
           <div
             style="
               display: flex;
               align-items: center;
               justify-content: center;
               flex-direction: column;
+              gap: 10px;
             "
-            *ngIf="smartQrData"
           >
-            <p class="main-right-info-text">Download QR Code</p>
+            <button
+              (click)="downloadGenQrCode()"
+              style="
+                display: flex;
+                width: 60%;
+                height: 41px;
+                align-items: center;
+                gap: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+                background: white;
+                color: var(--dark-color, #181818);
+                text-align: center;
+                font-family: Nunito;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
+              "
+            >
+              <svg
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.59998 13.7199L1.59998 17.4257C1.59998 17.9874 1.82123 18.526 2.21505 18.9231C2.60888 19.3203 3.14302 19.5434 3.69998 19.5434H16.3C16.8569 19.5434 17.3911 19.3203 17.7849 18.9231C18.1787 18.526 18.4 17.9874 18.4 17.4257V13.7199M10.0011 1.45667V13.4567M10.0011 13.4567L14.8011 8.87151M10.0011 13.4567L5.20115 8.87151"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Download QR
+            </button>
+            <button
+              style="
+                display: flex;
+                width: 40%;
+                height: 41px;
+                align-items: center;
+                gap: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
+                background: white;
+                color: var(--dark-color, #181818);
+                text-align: center;
+                font-family: Nunito;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.54px;
+              "
+              (click)="copyQrLink()"
+            >
+              <svg
+                width="18"
+                height="19"
+                viewBox="0 0 18 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.1625 7.47502H16.1875C16.7467 7.47502 17.2 7.92834 17.2 8.48752L17.2 15.6C17.2 16.7046 16.3046 17.6 15.2 17.6L8.0875 17.6C7.52831 17.6 7.075 17.1467 7.075 16.5875V14.5625M9.1 1.40002L3.025 1.40002C1.90662 1.40002 1 2.30665 1 3.42502L1 9.50002C1 10.6184 1.90662 11.525 3.025 11.525L9.1 11.525C10.2184 11.525 11.125 10.6184 11.125 9.50002L11.125 3.42502C11.125 2.30665 10.2184 1.40003 9.1 1.40002Z"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Copy Link
+            </button>
+
+            <button
+              style="
+                width: 450px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+              "
+              *ngIf="smartQrString"
+              (click)="openUniversalQrCustomize = true"
+              [disabled]="isNotCustomizable"
+            >
+              <ng-container *ngIf="!isNotCustomizable; else loading">
+                Customize QR Code
+              </ng-container>
+              <ng-template #loading>
+                <div class="load"></div>
+              </ng-template>
+            </button>
           </div>
-          <button *ngIf="smartQrData">Customize QR Code</button>
         </div>
+
+        <!-- <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+          "
+          *ngIf="smartQrData"
+        >
+          <p class="main-right-info-text">Download QR Code</p>
+        </div>
+        <button *ngIf="smartQrData">Customize QR Code</button> -->
       </div>
     </div>
   </div>
@@ -3811,8 +4005,18 @@
     <button
       (click)="
         universalQrData = '';
+        smartQrData = '';
         universalQrString = '';
-        showUniversalQrGenerator = true
+        showUniversalQrGenerator = true;
+        inputUniversalTitleName = '';
+        inputUniversalPreferenceText = '';
+        qrString = '';
+        smartQrString = '';
+        inputSmartPickup = '';
+        inputSmartPrefilledText = '';
+        inputSmartTitleName = '';
+        inputSmartPickupLat = '';
+        inputSmartPickupLng = ''
       "
       style="
         border-radius: 8px;
@@ -3876,7 +4080,7 @@
     </div>
     <div class="qr-table-body">
       <div
-        *ngFor="let item of allQrCodes; let i = index"
+        *ngFor="let item of filteredQrCodes; let i = index"
         class="qr-table-item-container"
       >
         <div class="qr-table-item">
@@ -3997,7 +4201,7 @@
                       !openUniversalQrCustomizeFromDetails
                   "
                 >
-                  Customize Qr Code
+                  Customize QR Code
                 </button>
                 <div class="">
                   Status :
@@ -4023,11 +4227,33 @@
             <div class="qr-table-item-detail-r">
               <div class="item-detail-r-1">
                 <div class="r-1-1">
-                  <p>
-                    <span>Created: </span
-                    >{{ allQrCodes[i].createdAt | date : "MMM d, y, h:mm a" }}
-                  </p>
-                  <div class="r-1-1-1">
+                  <div style="display: flex; gap: 15px">
+                    <p style="white-space: nowrap">
+                      <span>Created: </span
+                      >{{ allQrCodes[i].createdAt | date : "MMM d, y, h:mm a" }}
+                    </p>
+                    <div
+                      style="display: flex; align-items: center; gap: 5px"
+                      *ngIf="item.type == 'location'"
+                    >
+                      <span
+                        ><p
+                          style="
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-size: 12px;
+                            background: white;
+                            padding: 5px;
+                            box-shadow: 0 0 10px lightgray;
+                          "
+                        >
+                          {{ allQrCodes[i].url }}
+                        </p></span
+                      >
+                    </div>
+                  </div>
+                  <div class="r-1-1-1" *ngIf="item.type == 'text'">
                     <span
                       ><p>{{ allQrCodes[i].url }}</p></span
                     >
@@ -4166,9 +4392,127 @@
                       [(ngModel)]="qrListDescription"
                     />
                   </div>
+                  <div
+                    class="r-1-1-2"
+                    *ngIf="item.type == 'location'"
+                    style="position: relative"
+                  >
+                    <span
+                      >Pickup Location
+
+                      <button
+                        class="r-1-1-2-edit"
+                        *ngIf="isQrListPickupLocationEditable"
+                        (click)="
+                          isQrListPickupLocationEditable =
+                            !isQrListPickupLocationEditable
+                        "
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 11.247V13.6112C0 13.8289 0.171087 14 0.388835 14H2.75295C2.85405 14 2.95515 13.9611 3.02514 13.8833L11.5173 5.39897L8.60103 2.48271L0.116651 10.9671C0.0388836 11.0449 0 11.1382 0 11.247ZM13.7725 3.14373C14.0758 2.84044 14.0758 2.35051 13.7725 2.04722L11.9528 0.227468C11.6495 -0.0758228 11.1596 -0.0758228 10.8563 0.227468L9.43314 1.6506L12.3494 4.56687L13.7725 3.14373Z"
+                            fill="black"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        style="display: flex; gap: 10px"
+                        *ngIf="!isQrListPickupLocationEditable"
+                      >
+                        <button
+                          class="r-1-1-2-save"
+                          (click)="updateQrPickupLocation(i)"
+                        >
+                          Save
+
+                          <svg
+                            width="13"
+                            height="14"
+                            viewBox="0 0 13 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79983 1.3999H2.89981C1.74001 1.3999 0.799805 2.34011 0.799805 3.49991V10.5C0.799805 11.6598 1.74001 12.6 2.89981 12.6H9.89984C11.0596 12.6 11.9999 11.6598 11.9999 10.5V6.64992M11.2998 3.14991L6.39983 8.04993L4.99982 6.64992"
+                              stroke="white"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <button
+                          class="r-1-1-2-cancel"
+                          (click)="cancelQrPickupLocation(i)"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </span>
+                    <input
+                      [disabled]="isQrListPickupLocationEditable"
+                      [(ngModel)]="qrListPickupLocation"
+                      (input)="getLocationsFromDetails()"
+                      style="text-overflow: ellipsis"
+                    />
+                    <div
+                      *ngIf="qrListPickupLocation.length != 0"
+                      style="
+                        position: absolute;
+                        background: white;
+                        max-height: 130px;
+                        min-height: fit-content;
+                        overflow: scroll;
+                        box-shadow: 0 0 10px lightgray;
+                        padding: 0 10px;
+                        cursor: pointer;
+                        width: 100%;
+                        z-index: 10;
+                      "
+                    >
+                      <div
+                        *ngFor="
+                          let location of locationsFromDetails;
+                          let j = index
+                        "
+                        style="
+                          border-bottom: 1px solid lightgray;
+                          padding: 10px;
+                        "
+                        (click)="selectLocationFromDetails(j)"
+                      >
+                        {{ location.title }}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="r-1-2">
-                  <span style="display: flex; height: 40px">
+                  <span style="display: flex; height: 40px; gap: 5px">
+                    <button
+                      *ngIf="item.type == 'location'"
+                      (click)="copyToClipboard()"
+                      style="background: transparent; border: none"
+                    >
+                      <svg
+                        width="18"
+                        height="19"
+                        viewBox="0 0 18 19"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14.1625 7.475H16.1875C16.7467 7.475 17.2 7.92831 17.2 8.4875L17.2 15.6C17.2 16.7046 16.3046 17.6 15.2 17.6L8.0875 17.6C7.52831 17.6 7.075 17.1467 7.075 16.5875V14.5625M9.1 1.4L3.025 1.4C1.90662 1.4 1 2.30662 1 3.425L1 9.5C1 10.6184 1.90662 11.525 3.025 11.525L9.1 11.525C10.2184 11.525 11.125 10.6184 11.125 9.5L11.125 3.425C11.125 2.30663 10.2184 1.4 9.1 1.4Z"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
                     <button (click)="toggleDetails(i)">
                       Close
                       <svg

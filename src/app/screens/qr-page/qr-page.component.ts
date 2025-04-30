@@ -100,8 +100,10 @@ export class QrPageComponent {
 
   isQrListTitleEditable = true;
   isQrListDescriptionEditable = true;
+  isQrListPickupLocationEditable = true;
   qrListTitle: string = '';
   qrListDescription: string = '';
+  qrListPickupLocation: string = '';
 
   isDeleteModalOpen = false;
   deleteIndex: any;
@@ -121,10 +123,26 @@ export class QrPageComponent {
 
     this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
       this.allQrCodes = res;
+      this.updateFilteredQrCodes();
+      console.log(this.allQrCodes);
       if (res.length == 0) {
         this.showUniversalQrGenerator = true;
       }
     });
+  }
+  filteredQrCodes = [];
+  updateFilteredQrCodes(): void {
+    if (this.activeButton === 'smart') {
+      this.filteredQrCodes = this.allQrCodes.filter(
+        (item) => item.type === 'location'
+      );
+    } else if (this.activeButton === 'universal') {
+      this.filteredQrCodes = this.allQrCodes.filter(
+        (item) => item.type === 'text'
+      );
+    } else {
+      this.filteredQrCodes = this.allQrCodes;
+    }
   }
 
   showLoader: boolean = true;
@@ -146,7 +164,13 @@ export class QrPageComponent {
 
   inputSmartTitleName: string = '';
   inputSmartPickup: string = '';
+  inputSmartPickupLat: any;
+  inputSmartPickupLng: any;
+  inputSmartPrefilledText = '';
   smartQrData: string = '';
+  smartQrString = '';
+
+  qrString: any;
 
   haveUniversal = true;
   haveSmart = true;
@@ -172,6 +196,8 @@ export class QrPageComponent {
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       console.log(res);
       this.universalQrString = `${res.URL}`;
+      this.qrString = `${res.URL}`;
+      this.smartQrString = null;
       this.currentQrId = res._id;
 
       setTimeout(() => {
@@ -257,11 +283,139 @@ export class QrPageComponent {
   // Smart location qr code
 
   generateSmartQRCode() {
+    this.isNotCustomizable = true;
     const dataObject = {
-      titleName: this.inputSmartTitleName,
-      pickupLocation: this.inputSmartPickup,
+      name: this.inputSmartTitleName,
+      type: 'location',
+      text: this.inputSmartPrefilledText,
+      userId: this.currentUser._id,
+      pickupDetails: {
+        address: this.inputSmartPickup,
+        lat: this.inputSmartPickupLat,
+        lng: this.inputSmartPickupLng,
+      },
     };
     this.smartQrData = JSON.stringify(dataObject);
+
+    this.qrcodeService.generateCode(dataObject).subscribe((res) => {
+      this.smartQrString = `${res.URL}`;
+      this.qrString = `${res.URL}`;
+      console.log(this.qrString);
+      this.universalQrString = null;
+      this.currentQrId = res._id;
+      console.log('smart qr link', res);
+
+      setTimeout(() => {
+        const qrElement = document.querySelector(
+          'ngx-qrcode-styling'
+        ) as HTMLElement;
+
+        if (qrElement) {
+          html2canvas(qrElement)
+            .then((canvas) => {
+              const qrImgBase64 = canvas.toDataURL('image/png');
+
+              // Convert Base64 to Blob
+              const qrBlob = this.base64ToBlob(qrImgBase64, 'image/png');
+
+              // Create FormData
+              const formData = new FormData();
+              formData.append('qrCodeImage', qrBlob, 'qrcode.png');
+
+              console.log('FormData:', formData);
+
+              // Send to backend
+              this.qrcodeService.SaveQrImg(res._id, formData).subscribe(
+                (qrRes) => {
+                  let user = JSON.parse(localStorage.getItem('user_details'));
+                  this.currentUser = user;
+                  console.log(qrRes);
+
+                  this.qrcodeService
+                    .getAllQrCodes(this.currentUser._id)
+                    .subscribe((res) => {
+                      this.allQrCodes = res;
+                    });
+                },
+                (qrErr) => console.log('QR save error:', qrErr)
+              );
+            })
+            .catch((err) => console.log('QR capture error:', err));
+        } else {
+          console.error('QR element not found!');
+        }
+        this.showLoader = false;
+        this.isNotCustomizable = false;
+      }, 4000);
+    });
+  }
+
+  private timeout: any;
+  locations = [];
+  locationLoader = false;
+  getLocations() {
+    console.log(this.inputSmartPickup);
+    this.locationLoader = true;
+    this.locations = [];
+
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      const obj = {
+        qry: this.inputSmartPickup,
+        botAdmin: {
+          pickup_point_latitude: 24.8607,
+          pickup_point_longitude: 67.0011,
+          pickup_radius: 100,
+        },
+      };
+      this.qrcodeService.getPickupLocations(obj).subscribe((res) => {
+        this.locations = res.addresses;
+        this.locationLoader = false;
+        console.log(res);
+      });
+    }, 1500);
+  }
+
+  private timeoutFromDetails: any;
+  locationsFromDetails = [];
+  locationLoaderFromDetails = false;
+  getLocationsFromDetails() {
+    console.log('working');
+    this.locationLoaderFromDetails = true;
+    this.locationsFromDetails = [];
+    clearTimeout(this.timeoutFromDetails);
+    this.timeout = setTimeout(() => {
+      const obj = {
+        qry: this.qrListPickupLocation,
+        botAdmin: {
+          pickup_point_latitude: 24.8607,
+          pickup_point_longitude: 67.0011,
+          pickup_radius: 100,
+        },
+      };
+      this.qrcodeService.getPickupLocations(obj).subscribe((res) => {
+        this.locationsFromDetails = res.addresses;
+        this.locationLoaderFromDetails = false;
+        console.log(res);
+      });
+    }, 1500);
+  }
+
+  selectLocation(i) {
+    this.inputSmartPickup = this.locations[i].title;
+    this.inputSmartPickupLat = this.locations[i].lat;
+    this.inputSmartPickupLng = this.locations[i].lng;
+
+    this.locations = [];
+  }
+
+  selectLocationFromDetails(i) {
+    this.inputSmartPickup = this.locationsFromDetails[i].title;
+    this.qrListPickupLocation = this.locationsFromDetails[i].title;
+    this.inputSmartPickupLat = this.locationsFromDetails[i].lat;
+    this.inputSmartPickupLng = this.locationsFromDetails[i].lng;
+
+    this.locationsFromDetails = [];
   }
 
   downloadSmartQRCode() {
@@ -286,28 +440,28 @@ export class QrPageComponent {
 
   toggleDetails(index: number): void {
     this.currentQr = '';
-    console.log(this.allQrCodes);
+    const selectedItem = this.filteredQrCodes[index]; // ✅ filtered list, not all
+
+    if (!selectedItem) return;
 
     if (this.selectedItemIndex !== index) {
-      let qrCodeId = this.allQrCodes[index]._id;
-      this.qrListTitle = this.allQrCodes[index].name;
-      this.qrListDescription = this.allQrCodes[index].text;
-      this.currentQr = this.allQrCodes[index].url;
-      this.activeQrId = this.allQrCodes[index]._id;
+      let qrCodeId = selectedItem._id;
+      this.qrListTitle = selectedItem.name;
+      this.qrListDescription = selectedItem.text;
+      this.qrListPickupLocation = selectedItem.pickupDetails?.address || '';
+      this.currentQr = selectedItem.url;
+      this.activeQrId = selectedItem._id;
 
       this.qrcodeService.getQrCodeDetails(qrCodeId).subscribe((res) => {
         this.activeQrDetails = res;
 
-        console.log(this.currentQr);
-
-        // After content loads, scroll to bottom if it's the last item
-        if (index === this.allQrCodes.length - 1) {
+        if (index === this.filteredQrCodes.length - 1) {
           setTimeout(() => {
             window.scrollTo({
               top: document.body.scrollHeight,
               behavior: 'smooth',
             });
-          }, 200); // Delay ensures content is rendered
+          }, 200);
         }
       });
     }
@@ -315,6 +469,7 @@ export class QrPageComponent {
     this.selectedItemIndex = this.selectedItemIndex === index ? null : index;
     this.isQrListTitleEditable = true;
     this.isQrListDescriptionEditable = true;
+    this.isQrListPickupLocationEditable = true;
   }
 
   deleteQr(index: number = this.deleteIndex) {
@@ -335,11 +490,18 @@ export class QrPageComponent {
     const dataObject = {
       name: this.qrListTitle,
       text: this.activeQrDetails.text,
+      // pickupDetails: {
+      //   address: this.activeQrDetails.pickupDetails.address,
+      //   lat: this.activeQrDetails.pickupDetails.lat,
+      //   lng: this.activeQrDetails.pickupDetails.lng,
+      // },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.allQrCodes[index].name = this.qrListTitle;
-      this.allQrCodes[index].text = this.qrListDescription;
+      this.filteredQrCodes[index].name = this.qrListTitle;
+      this.filteredQrCodes[index].text = this.qrListDescription;
+      this.filteredQrCodes[index].pickupDetails.address =
+        this.qrListPickupLocation;
 
       this.isQrListTitleEditable = true;
     });
@@ -356,11 +518,18 @@ export class QrPageComponent {
     const dataObject = {
       name: this.activeQrDetails.name,
       text: this.qrListDescription,
+      // pickupDetails: {
+      //   address: this.activeQrDetails.pickupDetails.address,
+      //   lat: this.activeQrDetails.pickupDetails.lat,
+      //   lng: this.activeQrDetails.pickupDetails.lng,
+      // },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.allQrCodes[index].name = this.qrListTitle;
-      this.allQrCodes[index].text = this.qrListDescription;
+      this.filteredQrCodes[index].name = this.qrListTitle;
+      this.filteredQrCodes[index].text = this.qrListDescription;
+      this.filteredQrCodes[index].pickupDetails.address =
+        this.qrListPickupLocation;
 
       this.isQrListDescriptionEditable = true;
     });
@@ -369,6 +538,34 @@ export class QrPageComponent {
   cancelQrText(index) {
     this.qrListDescription = this.activeQrDetails.text;
     this.isQrListDescriptionEditable = true;
+  }
+
+  updateQrPickupLocation(index) {
+    let qrCodeId = this.activeQrDetails._id;
+
+    const dataObject = {
+      name: this.activeQrDetails.name,
+      text: this.activeQrDetails.text,
+      pickupDetails: {
+        address: this.qrListPickupLocation,
+        lat: this.activeQrDetails.pickupDetails.lat,
+        lng: this.activeQrDetails.pickupDetails.lng,
+      },
+    };
+    this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
+      console.log(res);
+      this.filteredQrCodes[index].name = this.qrListTitle;
+      this.filteredQrCodes[index].text = this.qrListDescription;
+      this.filteredQrCodes[index].pickupDetails.address =
+        this.qrListPickupLocation;
+
+      this.isQrListPickupLocationEditable = true;
+    });
+  }
+
+  cancelQrPickupLocation(index) {
+    this.qrListPickupLocation = this.activeQrDetails.pickupDetails.address;
+    this.isQrListPickupLocationEditable = true;
   }
 
   updateQrStatus(index: number, status: string) {
@@ -714,6 +911,11 @@ export class QrPageComponent {
     } else {
       this.regenQr(); // Fallback if no file selected
     }
+  }
+
+  cRemoveLogo(): void {
+    this.logoDataUrl = null;
+    this.regenQr(); // Regenerate QR without the logo
   }
 
   saveBtnText = 'Save Changes';

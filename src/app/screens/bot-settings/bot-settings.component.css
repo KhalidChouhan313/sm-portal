@@ -67,7 +67,7 @@ input[type="number"] {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 86%;
   gap: 20px;
 }
 

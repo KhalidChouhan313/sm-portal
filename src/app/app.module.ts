@@ -46,6 +46,7 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
 import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
 import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
+// import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
     QrPageComponent,
     QrStacksComponent,
     QrStatsComponent,
+    // SmartLocationQrComponent,
     // ReportsDeviceComponent,
   ],
   imports: [

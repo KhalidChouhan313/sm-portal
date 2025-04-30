@@ -58,4 +58,8 @@ export class QrcodeService {
       img
     );
   }
+
+  public getPickupLocations(obj): Observable<any> {
+    return this.http.post(`${environment.qrApiUrl}/api/pickup-address`, obj);
+  }
 }
