@@ -9,6 +9,7 @@ import { QrcodeService } from 'src/services/qrcode/qrcode.service';
 })
 export class QrStatsComponent implements OnInit {
   qrId: string | null = '';
+  qrURL: string | null = '';
   stats: any;
   title: string = '';
   ipAddress: string | null = '';
@@ -20,6 +21,7 @@ export class QrStatsComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.qrId = params['qrId']; // qrId is the query parameter in the URL
       this.title = params['title'];
+      this.qrURL = params['qrURL'];
       console.log('QR ID:', this.qrId); // Should log '1000'
 
       this.QR.getQrCodeStats(params['qrId']).subscribe((res) => {

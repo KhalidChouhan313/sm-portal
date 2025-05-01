@@ -21,7 +21,9 @@ export class QrcodeService {
   }
 
   public getAllQrCodes(data): Observable<any> {
-    return this.http.get(`${environment.qrApiUrl}/api/qrcode/details/${data}`);
+    return this.http.get(
+      `${environment.qrApiUrl}/api/qrcode/details/${data}?page=1&limit=10`
+    );
   }
 
   public getQrCodeDetails(id): Observable<any> {

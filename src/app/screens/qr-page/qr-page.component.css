@@ -472,7 +472,7 @@ h2 {
   justify-content: space-between;
   max-width: 1534px;
   min-width: fit-content;
-  padding: 35px 0;
+  padding: 28px 0;
   border-top: 1px solid lightgray;
 }
 
@@ -501,9 +501,9 @@ h2 {
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.54px;
-  width: 160px;
+  width: 188px;
   text-align: center;
-  min-width: 160px;
+  min-width: 188px;
 }
 
 .qr-table-item div:nth-child(3) {

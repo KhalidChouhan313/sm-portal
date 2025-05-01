@@ -122,7 +122,8 @@ export class QrPageComponent {
     }
 
     this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
-      this.allQrCodes = res;
+      console.log(res);
+      this.allQrCodes = res.data.location.concat(res.data.text);
       this.updateFilteredQrCodes();
       console.log(this.allQrCodes);
       if (res.length == 0) {
@@ -229,7 +230,8 @@ export class QrPageComponent {
                   this.qrcodeService
                     .getAllQrCodes(this.currentUser._id)
                     .subscribe((res) => {
-                      this.allQrCodes = res;
+                      this.allQrCodes = res.data.location.concat(res.data.text);
+                      this.updateFilteredQrCodes();
                     });
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
@@ -334,7 +336,8 @@ export class QrPageComponent {
                   this.qrcodeService
                     .getAllQrCodes(this.currentUser._id)
                     .subscribe((res) => {
-                      this.allQrCodes = res;
+                      this.allQrCodes = res.data.location.concat(res.data.text);
+                      this.updateFilteredQrCodes();
                     });
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
@@ -445,8 +448,8 @@ export class QrPageComponent {
     if (!selectedItem) return;
 
     if (this.selectedItemIndex !== index) {
-      let qrCodeId = selectedItem._id;
-      this.qrListTitle = selectedItem.name;
+      let qrCodeId = selectedItem.id;
+      this.qrListTitle = selectedItem.title;
       this.qrListDescription = selectedItem.text;
       this.qrListPickupLocation = selectedItem.pickupDetails?.address || '';
       this.currentQr = selectedItem.url;
@@ -454,7 +457,7 @@ export class QrPageComponent {
 
       this.qrcodeService.getQrCodeDetails(qrCodeId).subscribe((res) => {
         this.activeQrDetails = res;
-
+        console.log(res);
         if (index === this.filteredQrCodes.length - 1) {
           setTimeout(() => {
             window.scrollTo({
@@ -526,7 +529,7 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.filteredQrCodes[index].name = this.qrListTitle;
+      this.filteredQrCodes[index].title = this.qrListTitle;
       this.filteredQrCodes[index].text = this.qrListDescription;
       this.filteredQrCodes[index].pickupDetails.address =
         this.qrListPickupLocation;
@@ -554,7 +557,7 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.filteredQrCodes[index].name = this.qrListTitle;
+      this.filteredQrCodes[index].title = this.qrListTitle;
       this.filteredQrCodes[index].text = this.qrListDescription;
       this.filteredQrCodes[index].pickupDetails.address =
         this.qrListPickupLocation;
@@ -619,8 +622,9 @@ export class QrPageComponent {
   directToQrStats(index: number) {
     this.router.navigate(['chatbot/QR-code/QR-stats'], {
       queryParams: {
-        qrId: this.allQrCodes[index]._id,
-        title: this.allQrCodes[index].name,
+        qrId: this.filteredQrCodes[index]._id,
+        qrURL: this.filteredQrCodes[index].url,
+        title: this.filteredQrCodes[index].title,
       },
     });
   }
@@ -955,7 +959,8 @@ export class QrPageComponent {
                   this.qrcodeService
                     .getAllQrCodes(this.currentUser._id)
                     .subscribe((res) => {
-                      this.allQrCodes = res;
+                      this.allQrCodes = res.data.location.concat(res.data.text);
+                      this.updateFilteredQrCodes();
                     });
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
@@ -1002,7 +1007,8 @@ export class QrPageComponent {
                 this.qrcodeService
                   .getAllQrCodes(this.currentUser._id)
                   .subscribe((res) => {
-                    this.allQrCodes = res;
+                    this.allQrCodes = res.data.location.concat(res.data.text);
+                    this.updateFilteredQrCodes();
                   });
               },
               (qrErr) => console.log('QR save error:', qrErr)
