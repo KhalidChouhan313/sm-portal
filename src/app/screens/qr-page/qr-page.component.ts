@@ -121,6 +121,10 @@ export class QrPageComponent {
       this.router.navigateByUrl('/sessions/signin');
     }
 
+    this.fetchQrList();
+  }
+
+  fetchQrList() {
     this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
       console.log(res);
       this.allQrCodes = res.data.location.concat(res.data.text);
@@ -221,18 +225,11 @@ export class QrPageComponent {
               console.log('FormData:', formData);
 
               // Send to backend
-              this.qrcodeService.SaveQrImg(res._id, formData).subscribe(
+              this.qrcodeService.updateQrImg(res._id, formData).subscribe(
                 (qrRes) => {
-                  let user = JSON.parse(localStorage.getItem('user_details'));
-                  this.currentUser = user;
                   console.log(qrRes);
 
-                  this.qrcodeService
-                    .getAllQrCodes(this.currentUser._id)
-                    .subscribe((res) => {
-                      this.allQrCodes = res.data.location.concat(res.data.text);
-                      this.updateFilteredQrCodes();
-                    });
+                  this.fetchQrList();
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
               );
@@ -327,18 +324,13 @@ export class QrPageComponent {
               console.log('FormData:', formData);
 
               // Send to backend
-              this.qrcodeService.SaveQrImg(res._id, formData).subscribe(
+              this.qrcodeService.updateQrImg(res._id, formData).subscribe(
                 (qrRes) => {
                   let user = JSON.parse(localStorage.getItem('user_details'));
                   this.currentUser = user;
                   console.log(qrRes);
 
-                  this.qrcodeService
-                    .getAllQrCodes(this.currentUser._id)
-                    .subscribe((res) => {
-                      this.allQrCodes = res.data.location.concat(res.data.text);
-                      this.updateFilteredQrCodes();
-                    });
+                  this.fetchQrList();
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
               );
@@ -441,7 +433,9 @@ export class QrPageComponent {
   currentQr = null;
   activeQrId = null;
 
+  qrDetailImgLoader = false;
   toggleDetails(index: number): void {
+    this.qrDetailImgLoader = true;
     this.currentQr = '';
     const selectedItem = this.filteredQrCodes[index]; // ✅ filtered list, not all
 
@@ -449,14 +443,22 @@ export class QrPageComponent {
 
     if (this.selectedItemIndex !== index) {
       let qrCodeId = selectedItem.id;
-      this.qrListTitle = selectedItem.title;
-      this.qrListDescription = selectedItem.text;
-      this.qrListPickupLocation = selectedItem.pickupDetails?.address || '';
-      this.currentQr = selectedItem.url;
-      this.activeQrId = selectedItem._id;
-
       this.qrcodeService.getQrCodeDetails(qrCodeId).subscribe((res) => {
         this.activeQrDetails = res;
+
+        this.qrListTitle = this.activeQrDetails.recordWithoutPublicId[0].name;
+
+        this.qrListDescription =
+          this.activeQrDetails.recordWithoutPublicId[0].text;
+
+        this.qrListPickupLocation =
+          this.activeQrDetails.recordWithoutPublicId[0].pickupDetails
+            ?.address || '';
+
+        this.currentQr = this.activeQrDetails.recordWithoutPublicId[0].url;
+
+        this.activeQrId = this.activeQrDetails.recordWithoutPublicId[0]._id;
+        this.qrDetailImgLoader = false;
         console.log(res);
         if (index === this.filteredQrCodes.length - 1) {
           setTimeout(() => {
@@ -476,11 +478,13 @@ export class QrPageComponent {
   }
 
   deleteQr(index: number = this.deleteIndex) {
-    let qrCodeId = this.allQrCodes[index]._id;
+    let qrCodeId = this.filteredQrCodes[index].id;
     this.qrcodeService.deleteQrCode(qrCodeId).subscribe((res) => {
       console.log(res);
-      this.allQrCodes.splice(index, 1); // Remove the deleted QR code from the list
-      this.toggleDetails(index);
+      this.filteredQrCodes.splice(index, 1); // Remove the deleted QR code from the list
+      // this.toggleDetails(index);
+      this.selectedItemIndex = null;
+      this.fetchQrList();
       if (this.allQrCodes.length == 0) {
         this.showUniversalQrGenerator = true;
       }
@@ -488,11 +492,12 @@ export class QrPageComponent {
   }
 
   updateQrTitle(index) {
-    let qrCodeId = this.activeQrDetails._id;
+    let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
+    console.log(qrCodeId);
 
     const dataObject = {
       name: this.qrListTitle,
-      text: this.activeQrDetails.text,
+      text: this.activeQrDetails.recordWithoutPublicId[0].text,
       // pickupDetails: {
       //   address: this.activeQrDetails.pickupDetails.address,
       //   lat: this.activeQrDetails.pickupDetails.lat,
@@ -501,25 +506,29 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.filteredQrCodes[index].name = this.qrListTitle;
-      this.filteredQrCodes[index].text = this.qrListDescription;
-      this.filteredQrCodes[index].pickupDetails.address =
-        this.qrListPickupLocation;
+      this.activeQrDetails.recordWithoutPublicId[0].name = this.qrListTitle;
+      this.activeQrDetails.recordWithoutPublicId[0].text =
+        this.qrListDescription;
+      if (this.activeQrDetails.recordWithoutPublicId[0]?.pickupDetails) {
+        this.activeQrDetails.recordWithoutPublicId[0].pickupDetails.address =
+          this.qrListPickupLocation;
+      }
 
       this.isQrListTitleEditable = true;
+      this.fetchQrList();
     });
   }
 
   cancelQrTitle(index) {
-    this.qrListTitle = this.activeQrDetails.name;
+    this.qrListTitle = this.activeQrDetails.recordWithoutPublicId[0].name;
     this.isQrListTitleEditable = true;
   }
 
   updateQrText(index) {
-    let qrCodeId = this.activeQrDetails._id;
+    let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
 
     const dataObject = {
-      name: this.activeQrDetails.name,
+      name: this.activeQrDetails.recordWithoutPublicId[0].name,
       text: this.qrListDescription,
       // pickupDetails: {
       //   address: this.activeQrDetails.pickupDetails.address,
@@ -529,40 +538,46 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.filteredQrCodes[index].title = this.qrListTitle;
-      this.filteredQrCodes[index].text = this.qrListDescription;
-      this.filteredQrCodes[index].pickupDetails.address =
-        this.qrListPickupLocation;
+      this.activeQrDetails.recordWithoutPublicId[0].title = this.qrListTitle;
+      this.activeQrDetails.recordWithoutPublicId[0].text =
+        this.qrListDescription;
+      if (this.activeQrDetails.recordWithoutPublicId[0]?.pickupDetails) {
+        this.activeQrDetails.recordWithoutPublicId[0].pickupDetails.address =
+          this.qrListPickupLocation;
+      }
 
       this.isQrListDescriptionEditable = true;
+      this.fetchQrList();
     });
   }
 
   cancelQrText(index) {
-    this.qrListDescription = this.activeQrDetails.text;
+    this.qrListDescription = this.activeQrDetails.recordWithoutPublicId[0].text;
     this.isQrListDescriptionEditable = true;
   }
 
   updateQrPickupLocation(index) {
-    let qrCodeId = this.activeQrDetails._id;
+    let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
 
     const dataObject = {
-      name: this.activeQrDetails.name,
-      text: this.activeQrDetails.text,
+      name: this.activeQrDetails.recordWithoutPublicId[0].name,
+      text: this.activeQrDetails.recordWithoutPublicId[0].text,
       pickupDetails: {
         address: this.qrListPickupLocation,
-        lat: this.activeQrDetails.pickupDetails.lat,
-        lng: this.activeQrDetails.pickupDetails.lng,
+        lat: this.activeQrDetails.recordWithoutPublicId[0].pickupDetails.lat,
+        lng: this.activeQrDetails.recordWithoutPublicId[0].pickupDetails.lng,
       },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
-      this.filteredQrCodes[index].title = this.qrListTitle;
-      this.filteredQrCodes[index].text = this.qrListDescription;
-      this.filteredQrCodes[index].pickupDetails.address =
+      this.activeQrDetails.recordWithoutPublicId[0].title = this.qrListTitle;
+      this.activeQrDetails.recordWithoutPublicId[0].text =
+        this.qrListDescription;
+      this.activeQrDetails.recordWithoutPublicId[0].pickupDetails.address =
         this.qrListPickupLocation;
 
       this.isQrListPickupLocationEditable = true;
+      this.fetchQrList();
     });
   }
 
@@ -572,7 +587,7 @@ export class QrPageComponent {
   }
 
   updateQrStatus(index: number, status: string) {
-    let qrCodeId = this.allQrCodes[index]._id;
+    let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
     const dataObject = {
       status: status,
     };
@@ -580,7 +595,7 @@ export class QrPageComponent {
       .updateQrCodeStatus(qrCodeId, dataObject)
       .subscribe((res) => {
         console.log(res);
-        this.allQrCodes[index].status = status;
+        this.filteredQrCodes[index].status = status;
       });
   }
 
@@ -620,13 +635,17 @@ export class QrPageComponent {
   }
 
   directToQrStats(index: number) {
-    this.router.navigate(['chatbot/QR-code/QR-stats'], {
-      queryParams: {
-        qrId: this.filteredQrCodes[index]._id,
-        qrURL: this.filteredQrCodes[index].url,
-        title: this.filteredQrCodes[index].title,
-      },
-    });
+    this.qrcodeService
+      .getQrCodeDetails(this.filteredQrCodes[index].id)
+      .subscribe((res) => {
+        this.router.navigate(['chatbot/QR-code/QR-stats'], {
+          queryParams: {
+            qrId: this.filteredQrCodes[index].id,
+            qrURL: res.recordWithoutPublicId[0].url,
+            title: this.filteredQrCodes[index].title,
+          },
+        });
+      });
   }
 
   copyToClipboard() {
@@ -956,12 +975,14 @@ export class QrPageComponent {
 
                   this.openUniversalQrCustomize = false;
                   this.saveBtnText = 'Save Changes';
-                  this.qrcodeService
-                    .getAllQrCodes(this.currentUser._id)
-                    .subscribe((res) => {
-                      this.allQrCodes = res.data.location.concat(res.data.text);
-                      this.updateFilteredQrCodes();
-                    });
+                  // this.qrcodeService
+                  //   .getAllQrCodes(this.currentUser._id)
+                  //   .subscribe((res) => {
+                  //     this.allQrCodes = res.data.location.concat(res.data.text);
+                  //     this.updateFilteredQrCodes();
+                  //   });
+                  // this.fetchQrList();
+                  this.selectedItemIndex = null;
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
               );
@@ -1004,12 +1025,14 @@ export class QrPageComponent {
 
                 this.openUniversalQrCustomizeFromDetails = false;
                 this.saveBtnText = 'Save Changes';
-                this.qrcodeService
-                  .getAllQrCodes(this.currentUser._id)
-                  .subscribe((res) => {
-                    this.allQrCodes = res.data.location.concat(res.data.text);
-                    this.updateFilteredQrCodes();
-                  });
+                // this.qrcodeService
+                //   .getAllQrCodes(this.currentUser._id)
+                //   .subscribe((res) => {
+                //     this.allQrCodes = res.data.location.concat(res.data.text);
+                //     this.updateFilteredQrCodes();
+                //   });
+                this.selectedItemIndex = null;
+                // this.fetchQrList();
               },
               (qrErr) => console.log('QR save error:', qrErr)
             );
@@ -1040,11 +1063,17 @@ export class QrPageComponent {
     }
   }
 
-  qrDetailImgLoader = false;
-  qrDetailImgLoad() {
-    this.qrDetailImgLoader = true;
-    setTimeout(() => {
-      this.qrDetailImgLoader = false;
-    }, 1000);
+  searchQrQry = '';
+  searchQr() {
+    this.qrcodeService
+      .getQrCodeByTitle(this.currentUser._id, this.searchQrQry)
+      .subscribe((res) => {
+        console.log(res);
+        res.qrCodeData.map((item) => {
+          item.title = item.name;
+        });
+        this.allQrCodes = res.qrCodeData;
+        this.updateFilteredQrCodes();
+      });
   }
 }

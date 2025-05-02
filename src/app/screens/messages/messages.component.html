@@ -144,6 +144,44 @@
         <span style="text-transform: capitalize">{{ currentList }}</span>
         Messages For WhatsApp
       </h1>
+      <p
+        *ngIf="
+          tab == 'custom1' ||
+          tab == 'custom2' ||
+          tab == 'review' ||
+          tab == 'preauth'
+        "
+        style="
+          color: #333540;
+          font-family: Poppins;
+          text-transform: capitalize;
+          font-size: 1.25rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          font-weight: 600;
+        "
+      >
+        Message Limit
+        <span
+          style="
+            margin-left: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 8px 20px;
+          "
+        >
+          {{
+            tab === "review"
+              ? currentUser.review_limit
+              : tab === "preauth"
+              ? currentUser.preAuth_limit
+              : tab === "custom1"
+              ? currentUser.custom1_limit
+              : currentUser.custom2_limit
+          }}
+        </span>
+      </p>
     </div>
     <div class="msg-boxes-container">
       <div

@@ -315,127 +315,145 @@
     <div class="c-bg-heading">Search Radius Settings</div>
     <div class="r-a-c-p" style="position: relative">
       <div class="r-a-c-p-left" style="column-gap: 0">
-        <div class="f-con" style="width: 87%">
-          <label class="f-heading" style="width: 45%; padding-right: 10px"
-            >Pickup Search Centre Point
-          </label>
-          <div class="inp-con">
-            <div style="width: fit-content; position: relative">
-              <p
-                style="
-                  position: absolute;
-                  top: -20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  color: gray;
-                "
-              >
-                Latitude
-              </p>
-              <input
-                [(ngModel)]="pickupLatitude"
-                type="number"
-                [disabled]="!btn4"
-                style="width: 150px"
-              />
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            gap: 50px;
+            justify-content: space-between;
+          "
+        >
+          <div class="f-con" style="width: 50%">
+            <label class="f-heading" style="width: 200px"
+              >Pickup Search Centre Point
+            </label>
+            <div class="inp-con">
+              <div style="width: fit-content; position: relative">
+                <p
+                  style="
+                    position: absolute;
+                    top: -20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: gray;
+                  "
+                >
+                  Latitude
+                </p>
+                <input
+                  [(ngModel)]="pickupLatitude"
+                  type="number"
+                  [disabled]="!btn4"
+                  style="width: 150px"
+                />
+              </div>
+              <span>:</span>
+              <div style="width: fit-content; position: relative">
+                <p
+                  style="
+                    position: absolute;
+                    top: -20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: gray;
+                  "
+                >
+                  Longitude
+                </p>
+                <input
+                  [(ngModel)]="pickupLongitude"
+                  type="number"
+                  [disabled]="!btn4"
+                  style="width: 150px"
+                />
+              </div>
             </div>
-            <span>:</span>
-            <div style="width: fit-content; position: relative">
-              <p
-                style="
-                  position: absolute;
-                  top: -20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  color: gray;
-                "
-              >
-                Longitude
-              </p>
+          </div>
+          <div class="f-con" style="width: 50%; justify-content: center">
+            <label class="f-heading" style="width: 260px"
+              >Pickup Search Radius (in Kilometers)
+            </label>
+            <div class="inp-con">
               <input
-                [(ngModel)]="pickupLongitude"
+                [(ngModel)]="pickupRadius"
                 type="number"
                 [disabled]="!btn4"
-                style="width: 150px"
+                style="width: 100px"
               />
             </div>
           </div>
         </div>
-        <div class="f-con">
-          <label class="f-heading" style="width: 100%"
-            >Pickup Search Radius (in Kilometers)
-          </label>
-          <div class="inp-con">
-            <input
-              [(ngModel)]="pickupRadius"
-              type="number"
-              [disabled]="!btn4"
-              style="width: 100px"
-            />
-          </div>
-        </div>
-        <div class="f-con" style="width: 87%">
-          <label class="f-heading" style="width: 45%; padding-right: 10px"
-            >Destination Search Center Point</label
-          >
-          <div class="inp-con">
-            <div style="width: fit-content; position: relative">
-              <p
-                style="
-                  position: absolute;
-                  top: -20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  color: gray;
-                "
-              >
-                Latitude
-              </p>
-              <input
-                [(ngModel)]="destinationLatitude"
-                type="number"
-                [disabled]="!btn4"
-                style="width: 150px"
-              />
-            </div>
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            gap: 50px;
+            justify-content: space-between;
+          "
+        >
+          <div class="f-con" style="width: 50%">
+            <label class="f-heading" style="width: 200px"
+              >Destination Search Center Point</label
+            >
+            <div class="inp-con">
+              <div style="width: fit-content; position: relative">
+                <p
+                  style="
+                    position: absolute;
+                    top: -20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: gray;
+                  "
+                >
+                  Latitude
+                </p>
+                <input
+                  [(ngModel)]="destinationLatitude"
+                  type="number"
+                  [disabled]="!btn4"
+                  style="width: 150px"
+                />
+              </div>
 
-            <span>:</span>
-            <div style="width: fit-content; position: relative">
-              <p
-                style="
-                  position: absolute;
-                  top: -20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  color: gray;
-                "
-              >
-                Longitude
-              </p>
-              <input
-                [(ngModel)]="destinationLongitude"
-                type="number"
-                [disabled]="!btn4"
-                style="width: 150px"
-              />
+              <span>:</span>
+              <div style="width: fit-content; position: relative">
+                <p
+                  style="
+                    position: absolute;
+                    top: -20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: gray;
+                  "
+                >
+                  Longitude
+                </p>
+                <input
+                  [(ngModel)]="destinationLongitude"
+                  type="number"
+                  [disabled]="!btn4"
+                  style="width: 150px"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="f-con">
-          <label class="f-heading" style="width: 100%; padding-right: 10px"
-            >Destination Search Radius (in Kilometers)</label
-          >
-          <div class="inp-con">
-            <input
-              [(ngModel)]="destinationRadius"
-              type="number"
-              [disabled]="!btn4"
-              style="width: 100px"
-            />
+          <div class="f-con" style="width: 50%; justify-content: center">
+            <label class="f-heading" style="width: 260px"
+              >Destination Search Radius (in Kilometers)</label
+            >
+            <div class="inp-con">
+              <input
+                [(ngModel)]="destinationRadius"
+                type="number"
+                [disabled]="!btn4"
+                style="width: 100px"
+              />
+            </div>
           </div>
         </div>
       </div>
-      <div class="r-a-c-p-right" style="width: 48px">
+      <div class="r-a-c-p-right">
         <!-- <button
           [disabled]="
             !pickupRadius ||
@@ -449,13 +467,7 @@
         >
           Update
         </button> -->
-        <button
-          *ngIf="!btn4"
-          style="position: absolute; right: 2rem"
-          (click)="startEdit('btn4')"
-        >
-          Edit
-        </button>
+        <button *ngIf="!btn4" (click)="startEdit('btn4')">Edit</button>
         <div *ngIf="btn4" style="display: flex; gap: 10px">
           <button
             [disabled]="
@@ -476,13 +488,15 @@
     </div>
     <div class="c-bg-heading">Search Address Addition</div>
     <div class="p-c-l saa">
-      <div>
-        <p>Pickup:</p>
-        <input [disabled]="!btn6" [(ngModel)]="sAAPickup" />
-      </div>
-      <div>
-        <p>Destination:</p>
-        <input [disabled]="!btn6" [(ngModel)]="sAADestination" />
+      <div style="display: flex; flex-direction: column; width: 100%">
+        <div>
+          <p>Pickup:</p>
+          <input [disabled]="!btn6" [(ngModel)]="sAAPickup" />
+        </div>
+        <div>
+          <p>Destination:</p>
+          <input [disabled]="!btn6" [(ngModel)]="sAADestination" />
+        </div>
       </div>
       <div class="btn-con">
         <button *ngIf="!btn6" (click)="startEdit('btn6')">Edit</button>
@@ -582,7 +596,11 @@
             </svg>
             <span> Add New </span>
           </button>
-          <button (click)="cancel('btn5')">Cancel</button>
+          <button
+            (click)="cancel('btn5'); outcode = ''; sector = ''; unit = ''"
+          >
+            Cancel
+          </button>
         </div>
         <div class="p-c-l-keywords">
           <div *ngFor="let code of zipcodeList; let i = index" class="code">

@@ -175,6 +175,7 @@ export class MessagesComponent implements OnInit {
     private router: Router
   ) {}
 
+  currentUser: any;
   ngOnInit() {
     this.isLoad = true;
     this.isEdit = true;
@@ -182,13 +183,13 @@ export class MessagesComponent implements OnInit {
     this.currentMsg = '';
     this.currentIndex = 0;
 
-    let currentUser = JSON.parse(localStorage.getItem('user_details'));
-    if (!currentUser) {
+    this.currentUser = JSON.parse(localStorage.getItem('user_details'));
+    if (!this.currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
-    console.log('here', currentUser);
+    console.log('here', this.currentUser);
 
-    this.AS.getUser(currentUser._id).subscribe((admin) => {
+    this.AS.getUser(this.currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
       console.log(admin);
       this.currentMessageList = admin.messages.booking;

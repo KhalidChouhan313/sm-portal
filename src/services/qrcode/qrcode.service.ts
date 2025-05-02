@@ -20,9 +20,9 @@ export class QrcodeService {
     );
   }
 
-  public getAllQrCodes(data): Observable<any> {
+  public getAllQrCodes(data, page = 1): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/qrcode/details/${data}?page=1&limit=10`
+      `${environment.qrApiUrl}/api/qrcode/details/${data}?page=${page}&limit=10`
     );
   }
 
@@ -63,5 +63,11 @@ export class QrcodeService {
 
   public getPickupLocations(obj): Observable<any> {
     return this.http.post(`${environment.qrApiUrl}/api/pickup-address`, obj);
+  }
+
+  public getQrCodeByTitle(id, title): Observable<any> {
+    return this.http.get(
+      `${environment.qrApiUrl}/api/getDetails/bycompany/${id}/${title}`
+    );
   }
 }

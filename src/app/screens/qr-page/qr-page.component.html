@@ -1714,7 +1714,16 @@
               id="cQrCode"
             ></ngx-qrcode-styling>
 
-            <div style="display: flex; gap: 10px; margin-top: 10px">
+            <div
+              style="
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+                position: absolute;
+                width: 200px;
+                top: 224px;
+              "
+            >
               <button
                 (click)="cDownloadQr()"
                 style="
@@ -3430,7 +3439,16 @@
               id="cQrCode"
             ></ngx-qrcode-styling>
 
-            <div style="display: flex; gap: 10px; margin-top: 10px">
+            <div
+              style="
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+                position: absolute;
+                width: 200px;
+                top: 224px;
+              "
+            >
               <button
                 (click)="cDownloadQr()"
                 style="
@@ -4071,7 +4089,32 @@
   <div
     style="display: flex; justify-content: space-between; align-items: center"
   >
-    <h2 class="qr-sec">QR Code List</h2>
+    <div style="display: flex; gap: 20px; align-items: center">
+      <h2 class="qr-sec">QR Code List</h2>
+
+      <div style="display: flex; gap: 10px; align-items: center">
+        <input
+          style="padding: 10px; outline: none"
+          placeholder="QR Code Title"
+          [(ngModel)]="searchQrQry"
+        />
+        <button
+          (click)="searchQr()"
+          style="
+            border-radius: 8px;
+            background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
+            box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.5);
+            color: white;
+            font-family: Poppins;
+            font-size: 1rem;
+            border: none;
+            padding: 10px 20px;
+          "
+        >
+          Search
+        </button>
+      </div>
+    </div>
     <button
       (click)="
         universalQrData = '';
@@ -4148,7 +4191,9 @@
       <div>Status</div>
       <div>Actions</div>
     </div>
-    <div class="qr-table-body">
+
+    <app-loader *ngIf="filteredQrCodes.length == 0"></app-loader>
+    <div class="qr-table-body" *ngIf="filteredQrCodes.length > 0">
       <div
         *ngFor="let item of filteredQrCodes; let i = index"
         class="qr-table-item-container"
@@ -4195,7 +4240,7 @@
           </div>
           <div>
             <span
-              (click)="toggleDetails(i); qrDetailImgLoad()"
+              (click)="toggleDetails(i)"
               style="
                 height: 25px;
                 width: 30px;
@@ -4261,7 +4306,7 @@
                 </div>
                 <img
                   *ngIf="!qrDetailImgLoader"
-                  [src]="activeQrDetails?.recordWithoutPublicId[0].qrCodeImage"
+                  [src]="activeQrDetails.recordWithoutPublicId[0].qrCodeImage"
                 />
               </div>
               <div class="item-detail-l-2">
@@ -4620,7 +4665,12 @@
               </div>
               <div class="item-detail-r-2">
                 <button
-                  (click)="downloadQrCode(item.qrCodeImage, 'qrcode.jpg')"
+                  (click)="
+                    downloadQrCode(
+                      activeQrDetails.recordWithoutPublicId[0].qrCodeImage,
+                      'qrcode.jpg'
+                    )
+                  "
                 >
                   <svg
                     width="13"
@@ -4851,6 +4901,12 @@
           </div> -->
           </div>
         </div>
+      </div>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: right">
+      <div style="display: flex">
+        <!-- <button></button> -->
       </div>
     </div>
   </div>
