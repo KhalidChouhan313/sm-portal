@@ -105,7 +105,8 @@ export class HomeComponent implements OnInit {
 
             let endDate = new Date();
             let startDate = new Date();
-            startDate.setDate(startDate.getDate() - 6);
+            // startDate.setDate(startDate.getDate() - 6);
+            startDate.setHours(startDate.getHours() - 24);
 
             let t = endDate;
             let fd = startDate;
@@ -277,7 +278,11 @@ export class HomeComponent implements OnInit {
                 yesterday: this.yesterday,
                 per: this.percentChange,
               });
-              this.pieData = [this.totalWhatsapp, this.totalSms];
+              let pieTotal = this.totalWhatsapp + this.totalSms;
+              this.pieData = [
+                (this.totalWhatsapp / pieTotal) * 100,
+                (this.totalSms / pieTotal) * 100,
+              ];
               console.log({
                 total: this.totalMsg,
                 whatsapp: this.totalWhatsapp,

@@ -7,19 +7,19 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat-flow',
   templateUrl: './chat-flow.component.html',
-  styleUrls: ['./chat-flow.component.css']
+  styleUrls: ['./chat-flow.component.css'],
 })
 export class ChatFlowComponent implements OnInit {
   selectedCard: any = null;
   fixedMenuToggled: boolean = false;
-  selectedButton: any = null
+  selectedButton: any = null;
   selectCard = (item: any) => {
     this.selectedCard = item;
-  }
+  };
 
   selectButton = (item: any) => {
     this.selectedButton = item;
-  }
+  };
 
   cards = [
     // {
@@ -103,7 +103,7 @@ export class ChatFlowComponent implements OnInit {
     //   ],
     //   buttons: []
     // },
-  ]
+  ];
 
   // private serviceModal: NgbModalRef;
 
@@ -129,14 +129,14 @@ export class ChatFlowComponent implements OnInit {
     private AS: AdminService,
     // private _serviceModal: NgbModal,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     // if (!currentUser) {
     //   this.router.navigateByUrl('/sessions/signin');
     // }
-    this.AS.getUser(currentUser._id).subscribe(admin => {
+    this.AS.getUser(currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
       // if (!this.adminDetails.wtsp_bot) {
       //   this.router.navigateByUrl('/sessions/signin');
@@ -144,22 +144,24 @@ export class ChatFlowComponent implements OnInit {
       this.BS.getBotMessages(currentUser._id).subscribe((result: any) => {
         // console.log(result);
 
-        let res: any = this.messageList = result.data.sort((a, b) => { return a.msg_index - b.msg_index }) //.filter(f => f.msg_index == 2)
-        res = this.moveMessage(res, 3, 6)
-        res = this.moveMessage(res, 15, 4)
-        res = this.moveMessage(res, 20, 5)
-        res = this.moveMessage(res, 21, 6)
-        res = this.moveMessage(res, 22, 7)
-        res = this.moveMessage(res, 23, 8)
-        res = this.moveMessage(res, 24, 13)
-        res = this.moveMessage(res, 25, 14)
-        res = this.moveMessage(res, 26, 15)
-        res = this.moveMessage(res, 27, 16)
-        res = this.moveMessage(res, 34, 23)
-        res = this.moveMessage(res, 35, 24)
-        res = this.moveMessage(res, 36, 25)
-        res = this.moveMessage(res, 32, 1)
-        res = this.moveMessage(res, 27, 2)
+        let res: any = (this.messageList = result.data.sort((a, b) => {
+          return a.msg_index - b.msg_index;
+        })); //.filter(f => f.msg_index == 2)
+        res = this.moveMessage(res, 3, 6);
+        res = this.moveMessage(res, 15, 4);
+        res = this.moveMessage(res, 20, 5);
+        res = this.moveMessage(res, 21, 6);
+        res = this.moveMessage(res, 22, 7);
+        res = this.moveMessage(res, 23, 8);
+        res = this.moveMessage(res, 24, 13);
+        res = this.moveMessage(res, 25, 14);
+        res = this.moveMessage(res, 26, 15);
+        res = this.moveMessage(res, 27, 16);
+        res = this.moveMessage(res, 34, 23);
+        res = this.moveMessage(res, 35, 24);
+        res = this.moveMessage(res, 36, 25);
+        res = this.moveMessage(res, 32, 1);
+        res = this.moveMessage(res, 27, 2);
         this.messageList = res;
         // console.log(this.messageList);
 
@@ -167,41 +169,46 @@ export class ChatFlowComponent implements OnInit {
           this.currMessage = this.messageList[0];
           this.msgName = this.currMessage.msg_name;
           this.normal_msg = this.messageList[0].msg_body;
-          if (this.normal_msg == '') { this.isEdit = false }
+          if (this.normal_msg == '') {
+            this.isEdit = false;
+          }
           this.isLoad = false;
         }
         this.cards = [];
         this.messageList.map((ml, i) => {
           let obj = {
-            type: "conditional",
+            type: 'conditional',
             title: ml.msg_name,
             desc: ml.msg_body,
             id: ml.msg_index,
-            bottomText: "Next",
-            linkedTo: i < (this.messageList.length - 1) ? [this.messageList[i + 1].msg_index.toString()] : [],
+            bottomText: 'Next',
+            linkedTo:
+              i < this.messageList.length - 1
+                ? [this.messageList[i + 1].msg_index.toString()]
+                : [],
             triggers: [
               {
-                name: "Example Action 1",
-                linkedTo: ["s1"]
+                name: 'Example Action 1',
+                linkedTo: ['s1'],
               },
               {
-                name: "Example Action 2",
-                linkedTo: ["s2"]
+                name: 'Example Action 2',
+                linkedTo: ['s2'],
               },
             ],
-            buttons: []
-          }
-          this.cards.push(obj)
-        })
-      })
-    })
+            buttons: [],
+          };
+          this.cards.push(obj);
+        });
+      });
+    });
   }
 
   private moveMessage(arr: any, fromIndex, toIndex) {
     var element = arr[fromIndex];
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
-    return arr
+    return arr;
   }
 
   openMessage(index) {
@@ -234,16 +241,16 @@ export class ChatFlowComponent implements OnInit {
     //   }
     //   keywords.push(kObj)
     // });
-    this.isSaving = true
+    this.isSaving = true;
     let obj = {
       _id: this.currMessage._id,
       msg_name: this.msgName,
       msg_body: this.normal_msg,
       // keywords: keywords
-    }
+    };
 
-    this.BS.updateMessage(obj).subscribe(result => {
-      this.messageList[this.currIndex] = result
+    this.BS.updateMessage(obj).subscribe((result) => {
+      this.messageList[this.currIndex] = result;
       this.isEdit = false;
       this.currIndex = -1;
       this.isSaving = false;
@@ -256,12 +263,11 @@ export class ChatFlowComponent implements OnInit {
       //   }
       //   this.keywordList.push(obj);
       // })
-    })
+    });
   }
 
   cancelEdit() {
     this.isEdit = false;
     this.currIndex = -1;
   }
-
 }

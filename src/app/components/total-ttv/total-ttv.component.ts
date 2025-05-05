@@ -4,7 +4,7 @@ import { Chart, registerables } from 'chart.js';
 @Component({
   selector: 'app-total-ttv',
   templateUrl: './total-ttv.component.html',
-  styleUrls: ['./total-ttv.component.css']
+  styleUrls: ['./total-ttv.component.css'],
 })
 export class TotalTtvComponent implements OnInit {
   @Input() priceBaseStats: any;
@@ -15,8 +15,8 @@ export class TotalTtvComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.priceBaseStats.sort((a, b) => a.status - b.status)
-
+    this.priceBaseStats.sort((a, b) => a.status - b.status);
+    console.log(this.bookingData);
     this.renderChart();
   }
 
@@ -33,17 +33,17 @@ export class TotalTtvComponent implements OnInit {
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.priceBaseStats.map(p => p.status),
+        labels: this.priceBaseStats.map((p) => p.status),
         datasets: [
           {
             label: 'TTV Trend',
-            data: this.priceBaseStats.map(p => p.value),
+            data: this.priceBaseStats.map((p) => p.value),
             borderColor: '#6C63FF',
             borderWidth: 2,
-            tension: .4,
+            tension: 0.4,
             fill: true,
             backgroundColor: gradient,
-          }
+          },
           // {
           //   label: 'Projected Trend',
           //   data: [13000, 14000, 13500, 15500, 14500, 16000, 15500],
@@ -66,25 +66,25 @@ export class TotalTtvComponent implements OnInit {
         },
         elements: {
           point: {
-            radius: 0
-          }
+            radius: 0,
+          },
         },
         scales: {
           x: {
             display: true,
             border: {
-              display: false
+              display: false,
             },
             grid: {
-              display: false,  // Remove grid lines for the x-axis
-              lineWidth: 0
-            }
+              display: false, // Remove grid lines for the x-axis
+              lineWidth: 0,
+            },
           },
           y: {
             display: true,
             grid: {
-              display: false,  // Remove grid lines for the x-axis
-            }
+              display: false, // Remove grid lines for the x-axis
+            },
           },
         },
       },

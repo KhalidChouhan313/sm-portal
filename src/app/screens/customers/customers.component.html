@@ -12,12 +12,19 @@
           </button>
 
           <!-- Loop through pages dynamically -->
-          <button
+          <!-- <button
             *ngFor="let page of [].constructor(totalPages); let i = index"
             [class.active]="currentPage === i + 1"
             (click)="setPage(i + 1)"
           >
             {{ i + 1 }}
+          </button> -->
+          <button
+            *ngFor="let page of paginationRange"
+            [class.active]="currentPage === page"
+            (click)="setPage(page)"
+          >
+            {{ page }}
           </button>
 
           <button (click)="nextPage()" *ngIf="currentPage !== totalPages">
@@ -105,8 +112,10 @@
             style="height: 21px; width: 12px; margin-right: -0.25rem"
           />
         </div>
-        <div class="th_item">Total Bookings</div>
-        <div class="th_item">Actions</div>
+        <div class="th_item"><span> Total Bookings </span></div>
+        <div class="th_item">
+          <span> Actions </span>
+        </div>
         <div class="th_item">
           <span style="opacity: 0">view</span>
         </div>

@@ -17,6 +17,8 @@ export class MessagesComponent implements OnInit {
   activeIndex: number | null = null; // Track which textarea is active
   isExpanded: boolean = false;
 
+  messageLimit: number | null = null;
+
   toggleEmojiTab(index: number) {
     this.isExpanded = !this.isExpanded;
 
@@ -168,6 +170,8 @@ export class MessagesComponent implements OnInit {
     'message text',
   ];
 
+  isMessageLimitEditable = false;
+
   constructor(
     private BS: BotService,
     private AS: AdminService,
@@ -279,6 +283,30 @@ export class MessagesComponent implements OnInit {
     }
 
     console.log(instance);
+  }
+
+  editMessageLimit() {
+    let toEdit = '';
+    this.tab === 'review'
+      ? (toEdit = 'review_limit')
+      : this.tab === 'preauth'
+      ? (toEdit = 'preAuth_limit')
+      : this.tab === 'custom1'
+      ? (toEdit = 'custom1_limit')
+      : (toEdit = 'custom2_limit');
+    const obj = {
+      _id: this.currentUser._id,
+      [toEdit]: this.messageLimit,
+    };
+    this.AS.updateUser(obj).subscribe((res) => {
+      let user = JSON.parse(localStorage.getItem('user_details') || '{}');
+      user[toEdit] = this.messageLimit;
+      localStorage.setItem('user_details', JSON.stringify(user));
+
+      // ✅ Optionally update currentUser in memory too
+      this.currentUser[toEdit] = this.messageLimit;
+    });
+    this.isMessageLimitEditable = false;
   }
 
   textChange() {

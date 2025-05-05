@@ -29,6 +29,19 @@ export class PieChartComponent implements OnInit, OnChanges {
       legend: {
         display: false,
       },
+      tooltip: {
+        callbacks: {
+          label: (tooltipItem) => {
+            const dataset = tooltipItem.dataset;
+            const data = dataset.data as number[];
+            const total = data.reduce((sum, value) => sum + value, 0);
+            const value = data[tooltipItem.dataIndex];
+            const percentage = total ? ((value / total) * 100).toFixed(1) : 0;
+            const label = tooltipItem.label || '';
+            return `${label}: ${percentage}%`;
+          },
+        },
+      },
     },
     cutout: '60%', // Defines the thickness of the doughnut
     rotation: -90, // Starts from the top
@@ -48,6 +61,7 @@ export class PieChartComponent implements OnInit, OnChanges {
       },
     ],
   };
+  A;
 
   public pieChartType: ChartType = 'doughnut';
 

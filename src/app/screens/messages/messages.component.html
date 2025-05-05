@@ -152,34 +152,104 @@
           tab == 'preauth'
         "
         style="
-          color: #333540;
+          border-radius: 8px;
+          background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
+          box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.5);
+          display: flex;
+          height: 52px;
+          padding: 10px 15px;
+          align-items: center;
+          gap: 10px;
+
+          color: #fff;
+
+          /* Text/Text Regular 1 */
           font-family: Poppins;
-          text-transform: capitalize;
-          font-size: 1.25rem;
+          font-size: 18px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          font-weight: 600;
         "
       >
         Message Limit
         <span
           style="
-            margin-left: 10px;
-            border: 1px solid black;
+            display: flex;
+            padding: 5px 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
             border-radius: 5px;
-            padding: 8px 20px;
+            border: 1px solid #fff;
+            background: #fff;
+            color: #737791;
+            text-align: center;
+            font-family: Nunito;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: 0.48px;
           "
         >
-          {{
-            tab === "review"
-              ? currentUser.review_limit
-              : tab === "preauth"
-              ? currentUser.preAuth_limit
-              : tab === "custom1"
-              ? currentUser.custom1_limit
-              : currentUser.custom2_limit
-          }}
+          <div *ngIf="!isMessageLimitEditable">
+            {{
+              tab === "review"
+                ? currentUser.review_limit
+                : tab === "preauth"
+                ? currentUser.preAuth_limit
+                : tab === "custom1"
+                ? currentUser.custom1_limit
+                : currentUser.custom2_limit
+            }}
+          </div>
+          <input
+            style="width: 20px; outline: none; border: none"
+            *ngIf="isMessageLimitEditable"
+            [(ngModel)]="messageLimit"
+          />
+
+          <button
+            style="
+              background: none;
+              border: none;
+              border-radius: 0px;
+              border-left: 1px solid lightgray;
+              height: fit-content;
+              width: fit-content;
+              box-shadow: none;
+            "
+          >
+            <svg
+              *ngIf="!isMessageLimitEditable"
+              (click)="isMessageLimitEditable = !isMessageLimitEditable"
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M-0.00012207 8.03363V9.7223C-0.00012207 9.87783 0.122084 10 0.27762 10H1.96629C2.0385 10 2.11072 9.97227 2.16071 9.91672L8.2266 3.85639L6.14353 1.77332L0.0832006 7.83365C0.0276522 7.8892 -0.00012207 7.95586 -0.00012207 8.03363ZM9.8375 2.24548C10.0541 2.02884 10.0541 1.67889 9.8375 1.46225L8.53767 0.162418C8.32103 -0.0542207 7.97107 -0.0542207 7.75443 0.162418L6.7379 1.17895L8.82096 3.26202L9.8375 2.24548Z"
+                fill="#737791"
+              />
+            </svg>
+
+            <svg
+              *ngIf="isMessageLimitEditable"
+              (click)="editMessageLimit()"
+              width="15"
+              height="12"
+              viewBox="0 0 15 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.0477 0.306458L4.98185 8.37232L1.66062 5.05108L0 6.7117L4.98185 11.6936L14.7083 1.96707"
+                fill="#737791"
+              />
+            </svg>
+          </button>
         </span>
       </p>
     </div>

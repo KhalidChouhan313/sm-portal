@@ -23,20 +23,20 @@
 
 .search-bar input {
   padding: 8px 12px;
-  background-color: #2EBC9622;
-  border: 1px solid #2EBC9622;
+  background-color: #2ebc9622;
+  border: 1px solid #2ebc9622;
   border-radius: 25px;
   width: 45%;
   font-size: 0.7rem;
 }
 
 .search-bar button {
-  background-color: #2EBC9622;
+  background-color: #2ebc9622;
   border: none;
   padding: 9px 16px;
   border-radius: 25px;
   cursor: pointer;
-  color: #2EBC96;
+  color: #2ebc96;
   font-size: 0.7rem;
 }
 
@@ -53,8 +53,8 @@ table th,
 table td {
   text-align: left;
   padding: 12px 16px;
-text-align: center;
-color: #737791;
+  text-align: center;
+  color: #737791;
   /* border-bottom: 1px solid #e6e6e6; */
   font-size: 0.7rem;
 }
@@ -68,9 +68,19 @@ table tr:nth-child(even) {
 }
 
 table tr {
-border: none;
+  border: none;
 }
 
 table tr:hover {
   background-color: #eef7f2;
+}
+
+h2 {
+  color: #1b2559 !important;
+  font-family: "DM Sans";
+  font-size: 20px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 160% */
+  letter-spacing: -0.4px;
 }

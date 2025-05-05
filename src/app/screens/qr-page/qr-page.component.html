@@ -4089,81 +4089,148 @@
   <div
     style="display: flex; justify-content: space-between; align-items: center"
   >
-    <div style="display: flex; gap: 20px; align-items: center">
-      <h2 class="qr-sec">QR Code List</h2>
+    <h2 class="qr-sec">QR Code List</h2>
 
-      <div style="display: flex; gap: 10px; align-items: center">
-        <input
-          style="padding: 10px; outline: none"
-          placeholder="QR Code Title"
-          [(ngModel)]="searchQrQry"
-        />
-        <button
-          (click)="searchQr()"
-          style="
-            border-radius: 8px;
-            background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
-            box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.5);
-            color: white;
-            font-family: Poppins;
-            font-size: 1rem;
-            border: none;
-            padding: 10px 20px;
-          "
-        >
-          Search
-        </button>
-      </div>
-    </div>
-    <button
-      (click)="
-        universalQrData = '';
-        smartQrData = '';
-        universalQrString = '';
-        showUniversalQrGenerator = true;
-        inputUniversalTitleName = '';
-        inputUniversalPreferenceText = '';
-        qrString = '';
-        smartQrString = '';
-        inputSmartPickup = '';
-        inputSmartPrefilledText = '';
-        inputSmartTitleName = '';
-        inputSmartPickupLat = '';
-        inputSmartPickupLng = ''
-      "
-      style="
-        border-radius: 8px;
-        background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
-        color: #fff;
-        font-family: Nunito;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        letter-spacing: 0.54px;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        border: none;
-        padding: 10px 20px;
-      "
-    >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div style="display: flex; align-items: center">
+      <input
+        style="
+          padding: 10px;
+          outline: none;
+          border-top-left-radius: 40px;
+          border-bottom-left-radius: 40px;
+          border: 1px solid rgba(46, 188, 150, 0.2);
+          background: rgba(46, 188, 150, 0.2);
+          width: 350px;
+        "
+        placeholder="QR Code Title"
+        [(ngModel)]="searchQrQry"
+      />
+      <button
+        (click)="searchQr()"
+        style="
+          border-top-right-radius: 40px;
+          border-bottom-right-radius: 40px;
+          background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
+          box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.5);
+          color: white;
+          font-family: Poppins;
+          font-size: 1rem;
+          border: none;
+          padding: 9px 20px;
+        "
       >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
-          fill="white"
-        />
-      </svg>
-      Add QR Code
-    </button>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M20.9999 21L16.6499 16.65"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div style="display: flex; gap: 10px">
+      <button
+        click="fetchQrList()"
+        style="
+          border-radius: 8px;
+          background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+          color: #fff;
+          font-family: Nunito;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: 0.54px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          border: none;
+          padding: 10px 20px;
+        "
+      >
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M26.25 3.75V10M26.25 10H20M26.25 10L22.5 6.6146C20.5096 4.8332 17.8814 3.75 15 3.75C8.7868 3.75 3.75 8.7868 3.75 15C3.75 21.2133 8.7868 26.25 15 26.25C20.354 26.25 24.8344 22.51 25.9713 17.5"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Refresh
+      </button>
+      <button
+        (click)="
+          universalQrData = '';
+          smartQrData = '';
+          universalQrString = '';
+          showUniversalQrGenerator = true;
+          inputUniversalTitleName = '';
+          inputUniversalPreferenceText = '';
+          qrString = '';
+          smartQrString = '';
+          inputSmartPickup = '';
+          inputSmartPrefilledText = '';
+          inputSmartTitleName = '';
+          inputSmartPickupLat = '';
+          inputSmartPickupLng = ''
+        "
+        style="
+          border-radius: 8px;
+          background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+          color: #fff;
+          font-family: Nunito;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: 0.54px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          border: none;
+          padding: 10px 20px;
+        "
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 1.22273L0.877727 0.345001H7.89955L8.77727 1.22273V8.24455L7.89955 9.12227H0.877727L0 8.24455V1.22273ZM1.75545 2.10046V7.36682H7.02182V2.10046H1.75545ZM11.4105 0.345001L10.5327 1.22273V8.24455L11.4105 9.12227H18.4323L19.31 8.24455V1.22273L18.4323 0.345001H11.4105ZM12.2882 7.36682V2.10046H17.5545V7.36682H12.2882ZM15.7991 19.655H14.0436V16.1441H10.5327V14.3886H14.0436V10.8777H15.7991V14.3886H19.31V16.1441H15.7991V19.655ZM0.877727 10.8777L0 11.7555V18.7773L0.877727 19.655H7.89955L8.77727 18.7773V11.7555L7.89955 10.8777H0.877727ZM1.75545 17.8995V12.6332H7.02182V17.8995H1.75545Z"
+            fill="white"
+          />
+        </svg>
+        Add QR Code
+      </button>
+    </div>
   </div>
   <!-- <div class="note-banner" style="margin-bottom: 40px">
     <strong

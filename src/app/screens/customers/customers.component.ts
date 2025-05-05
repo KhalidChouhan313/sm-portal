@@ -5,25 +5,27 @@ import { CustomersService } from 'src/services/customers/customers.service';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css']
+  styleUrls: ['./customers.component.css'],
 })
 export class CustomersComponent implements OnInit {
-
-  constructor(private authService: AuthService, private customersService: CustomersService) { }
+  constructor(
+    private authService: AuthService,
+    private customersService: CustomersService
+  ) {}
 
   customers: any[] = [];
   currentPage: number = 1;
   usersPerPage: number = 10;
   totalCustomers: number = 0;
-  selectedCustomer: string = "";
+  selectedCustomer: string = '';
   loading = true;
   searchByJoin = false;
   searchByWP = false;
   searchByWN = false;
 
   ngOnInit(): void {
-    this.loading = true
-    const token = localStorage.getItem("token");
+    this.loading = true;
+    const token = localStorage.getItem('token');
     this.authService.authenticateUser(token as string).subscribe(
       (res) => {
         if (res?._id) {
@@ -31,11 +33,11 @@ export class CustomersComponent implements OnInit {
             (res) => {
               this.customers = res?.data ?? [];
               this.totalCustomers = this.customers.length;
-              this.loading = false
+              this.loading = false;
             },
             (err) => {
               console.log(err);
-              this.loading = false
+              this.loading = false;
             }
           );
         }
@@ -48,7 +50,7 @@ export class CustomersComponent implements OnInit {
 
   selectCustomer(item: any) {
     if (item.user_name === this.selectedCustomer) {
-      this.selectedCustomer = "";
+      this.selectedCustomer = '';
     } else {
       this.selectedCustomer = item?.user_name;
     }
@@ -83,5 +85,19 @@ export class CustomersComponent implements OnInit {
 
   get totalPages() {
     return Math.ceil(this.totalCustomers / this.usersPerPage);
+  }
+
+  get paginationRange(): number[] {
+    const range: number[] = [];
+
+    const total = this.totalPages;
+    const start = Math.max(this.currentPage - 3, 1);
+    const end = Math.min(this.currentPage + 3, total);
+
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+    }
+
+    return range;
   }
 }

@@ -5,14 +5,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer-details',
   templateUrl: './customer-details.component.html',
-  styleUrls: ['./customer-details.component.css']
+  styleUrls: ['./customer-details.component.css'],
 })
 export class CustomerDetailsComponent {
   bookings = [];
   constructor(
     private bookingsService: BookingsService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -23,6 +23,7 @@ export class CustomerDetailsComponent {
 
     this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
       (res) => {
+        console.log('res', res);
         if (res.data.length > 15) {
           res.data = res.data.slice(0, 15);
         }
