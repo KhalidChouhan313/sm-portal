@@ -21,20 +21,20 @@
       class="top_t"
     >
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="15"
-        height="15"
-        viewBox="0 0 20 20"
+        width="20"
+        height="21"
+        viewBox="0 0 20 21"
         fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 5H11V7H9V5ZM10 15C10.55 15 11 14.55 11 14V10C11 9.45 10.55 9 10 9C9.45 9 9 9.45 9 10V14C9 14.55 9.45 15 10 15ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-          fill="#636364"
+          d="M9 5.5H11V7.5H9V5.5ZM10 15.5C10.55 15.5 11 15.05 11 14.5V10.5C11 9.95 10.55 9.5 10 9.5C9.45 9.5 9 9.95 9 10.5V14.5C9 15.05 9.45 15.5 10 15.5ZM10 0.5C4.48 0.5 0 4.98 0 10.5C0 16.02 4.48 20.5 10 20.5C15.52 20.5 20 16.02 20 10.5C20 4.98 15.52 0.5 10 0.5ZM10 18.5C5.59 18.5 2 14.91 2 10.5C2 6.09 5.59 2.5 10 2.5C14.41 2.5 18 6.09 18 10.5C18 14.91 14.41 18.5 10 18.5Z"
+          fill="#181818"
         />
       </svg>
-      <span style="font-size: 13px">Important Note:</span>
+      <span style="font-size: 13px; font-weight: 700">Important Note:</span>
     </span>
-    <p style="font-size: 13px; font-weight: 400; color: black">
+    <p style="font-size: 13px; font-weight: 400; color: black; padding: 2px">
       Adding phone numbers to blocked list will prevent that number from
       receiving WhatApp and/or SMS. Add the number below and select the message
       types you do not want the number to receive.
@@ -288,14 +288,198 @@
             </p>
           </div>
           <div class="ti-item">{{ it?.phone }}</div>
-          <div class="ti-item">
+          <div class="ti-item whatsapp" style="position: relative">
+            <div
+              class="tooltip-whatsapp"
+              style="
+                position: absolute;
+                z-index: 9;
+                width: 100px;
+                top: 36px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: transparent;
+
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+              "
+            >
+              <svg
+                width="17"
+                height="19"
+                viewBox="0 0 26 23"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_d_3995_927)">
+                  <path
+                    d="M13 0L21.6603 15L4.33975 15L13 0Z"
+                    fill="#010101"
+                    fill-opacity="0.6"
+                    shape-rendering="crispEdges"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_d_3995_927"
+                    x="0.339722"
+                    y="0"
+                    width="25.3206"
+                    height="23"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="2" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_3995_927"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_3995_927"
+                      result="shape"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+              <div
+                style="
+                  border-radius: 5px;
+                  background: rgba(1, 1, 1, 0.6);
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                  position: relative;
+                  top: -7px;
+                  width: 186px;
+                  padding: 14px 9px;
+
+                  color: #fff;
+                  text-align: center;
+                  font-family: 'DM Sans';
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 16px;
+                  letter-spacing: -0.28px;
+                "
+              >
+                Enabling the toggle will block the WhatsApp messages.
+              </div>
+            </div>
             <div
               class="switch_box"
               [class.active]="it?.whatsapp"
               (click)="blockWhatsApp(!it.whatsapp, it._id, i)"
             ></div>
           </div>
-          <div class="ti-item">
+          <div class="ti-item sms" style="position: relative">
+            <div
+              class="tooltip-sms"
+              style="
+                position: absolute;
+                z-index: 9;
+                width: 100px;
+                top: 36px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: transparent;
+
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+              "
+            >
+              <svg
+                width="17"
+                height="19"
+                viewBox="0 0 26 23"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_d_3995_927)">
+                  <path
+                    d="M13 0L21.6603 15L4.33975 15L13 0Z"
+                    fill="#010101"
+                    fill-opacity="0.6"
+                    shape-rendering="crispEdges"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_d_3995_927"
+                    x="0.339722"
+                    y="0"
+                    width="25.3206"
+                    height="23"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="2" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_3995_927"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_3995_927"
+                      result="shape"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+              <div
+                style="
+                  border-radius: 5px;
+                  background: rgba(1, 1, 1, 0.6);
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                  position: relative;
+                  top: -7px;
+                  width: 186px;
+                  padding: 14px 9px;
+
+                  color: #fff;
+                  text-align: center;
+                  font-family: 'DM Sans';
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 16px;
+                  letter-spacing: -0.28px;
+                "
+              >
+                Enabling the toggle will block the SMS messages.
+              </div>
+            </div>
             <div
               class="switch_box"
               [class.active]="it?.sms"

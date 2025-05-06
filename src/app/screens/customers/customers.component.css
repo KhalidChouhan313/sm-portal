@@ -350,11 +350,14 @@
 .icons_badge {
   display: flex;
   gap: 0.75rem;
-  padding: 5px 8px;
+  padding: 0 8px;
   border-radius: 310px;
   background: #15bd4e;
   width: fit-content;
+  aspect-ratio: 1/1;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .icons_badge button {

@@ -28,7 +28,100 @@
             backgroundColor:
               i === 1 && toggles[0].enabled ? 'lightgrey' : 'initial'
           }"
+          style="position: relative"
         >
+          <div
+            style="
+              position: absolute;
+              z-index: 9;
+              width: 100px;
+              top: 36px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: transparent;
+
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+            "
+            class="tooltip-l"
+          >
+            <svg
+              width="17"
+              height="19"
+              viewBox="0 0 26 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_d_3995_927)">
+                <path
+                  d="M13 0L21.6603 15L4.33975 15L13 0Z"
+                  fill="#010101"
+                  fill-opacity="0.6"
+                  shape-rendering="crispEdges"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_d_3995_927"
+                  x="0.339722"
+                  y="0"
+                  width="25.3206"
+                  height="23"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy="4" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_3995_927"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_3995_927"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <div
+              style="
+                border-radius: 5px;
+                background: rgba(1, 1, 1, 0.6);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: relative;
+                top: -7px;
+                width: 186px;
+                padding: 14px 9px;
+
+                color: #fff;
+                text-align: center;
+                font-family: 'DM Sans';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+                letter-spacing: -0.28px;
+              "
+            >
+              Enabling the toggle will block the SMS messages.
+            </div>
+          </div>
           <span>{{ toggle.label }}</span>
 
           <!-- Prevent interaction if second toggle is disabled -->
@@ -56,7 +149,99 @@
           *ngFor="let toggle of togglesData; let i = index"
           class="toggle"
           [class.enabled]="toggle.enabled"
+          style="position: relative"
         >
+          <div
+            style="
+              position: absolute;
+              z-index: 9;
+              width: 100px;
+              top: 36px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: transparent;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+            "
+            class="tooltip-l"
+          >
+            <svg
+              width="17"
+              height="19"
+              viewBox="0 0 26 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_d_3995_927)">
+                <path
+                  d="M13 0L21.6603 15L4.33975 15L13 0Z"
+                  fill="#010101"
+                  fill-opacity="0.6"
+                  shape-rendering="crispEdges"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_d_3995_927"
+                  x="0.339722"
+                  y="0"
+                  width="25.3206"
+                  height="23"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy="4" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_3995_927"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_3995_927"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <div
+              style="
+                border-radius: 5px;
+                background: rgba(1, 1, 1, 0.6);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: relative;
+                top: -7px;
+                width: 186px;
+                padding: 14px 9px;
+
+                color: #fff;
+                text-align: center;
+                font-family: 'DM Sans';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+                letter-spacing: -0.28px;
+              "
+            >
+              Enabling the toggle will block the SMS messages.
+            </div>
+          </div>
           <span>{{ toggle.label }}</span>
 
           <!-- Use (change) event to handle the toggle -->

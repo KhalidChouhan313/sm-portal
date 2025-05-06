@@ -316,3 +316,15 @@
   color: #737791;
   text-align: left;
 }
+
+.tooltip-l {
+  display: none;
+}
+
+.toggle:hover .tooltip-l {
+  display: flex;
+}
+
+/* .toggle:hover .tooltip {
+  display: flex;
+} */

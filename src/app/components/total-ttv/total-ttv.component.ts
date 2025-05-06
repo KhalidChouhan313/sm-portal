@@ -20,6 +20,26 @@ export class TotalTtvComponent implements OnInit {
     this.renderChart();
   }
 
+  formatCurrency(value) {
+    // Convert to string and remove pound sign if present
+    let str = value.toString().replace(/£/g, '').trim();
+
+    // Parse to float
+    let num = parseFloat(str);
+    if (isNaN(num)) return 'Invalid input';
+
+    // Check if original had pound sign
+    const hasPound = typeof value === 'string' && value.includes('£');
+
+    // Format with commas and 2 decimal places
+    const formatted = num.toLocaleString('en-GB', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return hasPound ? '£' + formatted : formatted;
+  }
+
   renderChart(): void {
     const canvas = document.getElementById('ttvChart') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');

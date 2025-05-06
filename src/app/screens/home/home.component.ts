@@ -106,7 +106,9 @@ export class HomeComponent implements OnInit {
             let endDate = new Date();
             let startDate = new Date();
             // startDate.setDate(startDate.getDate() - 6);
-            startDate.setHours(startDate.getHours() - 24);
+            startDate.setDate(startDate.getDate() - 1);
+            startDate.setHours(23, 59, 0, 0);
+            console.log(startDate, endDate);
 
             let t = endDate;
             let fd = startDate;

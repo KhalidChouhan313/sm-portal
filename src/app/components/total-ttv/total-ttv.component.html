@@ -16,7 +16,7 @@
         line-height: normal;
       "
     >
-      £{{ bookingData.totalTripValue }}
+      £{{ formatCurrency(bookingData.totalTripValue) }}
     </strong>
   </div>
   <div class="stats">
@@ -65,7 +65,7 @@
         </div>
         <p>Total Trip Value</p>
       </div>
-      <span>£{{ bookingData.totalTripValue }}</span>
+      <span>£{{ formatCurrency(bookingData.totalTripValue) }}</span>
     </div>
   </div>
 </div>

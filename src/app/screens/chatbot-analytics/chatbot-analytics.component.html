@@ -23,20 +23,37 @@
   </div>
   <div *ngIf="data">
     <div class="analytics-bar">
-      <app-overview-cards *ngIf="data.booking_conversion_rate >= 0" [totalInteractions]="data.interaction"
-        [totalBookings]="data.totalBookingCount" [bookingConversionRate]="data.booking_conversion_rate"
-        [totalTripValue]="data.totalTripValue" [averageFare]="data.averageFareValue"></app-overview-cards>
+      <app-overview-cards
+        *ngIf="data.booking_conversion_rate >= 0"
+        [totalInteractions]="data.interaction"
+        [totalBookings]="data.totalBookingCount"
+        [bookingConversionRate]="data.booking_conversion_rate"
+        [totalTripValue]="data.totalTripValue"
+        [averageFare]="data.averageFareValue"
+      ></app-overview-cards>
     </div>
     <div class="main-analytics-wrapper row">
       <div class="col-md-3 first-col">
-        <app-total-bookings *ngIf="data.booking_conversion_rate >= 0" [bookingData]="data"></app-total-bookings>
-        <app-total-ttv *ngIf="data.booking_conversion_rate >= 0" [bookingData]="data"
-          [priceBaseStats]="price_base_stats"></app-total-ttv>
+        <app-total-bookings
+          *ngIf="data.booking_conversion_rate >= 0"
+          [bookingData]="data"
+        ></app-total-bookings>
+        <app-total-ttv
+          *ngIf="data.booking_conversion_rate >= 0"
+          [bookingData]="data"
+          [priceBaseStats]="price_base_stats"
+        ></app-total-ttv>
       </div>
       <div class="col-md-3 second-col">
-        <app-booking-details *ngIf="data.booking_conversion_rate >= 0" [asap]="data.asap"
-          [pre_booking]="data.pre_booking"></app-booking-details>
-        <app-vehicle-insights *ngIf="vehicle_insights" [data]="vehicle_insights"></app-vehicle-insights>
+        <app-booking-details
+          *ngIf="data.booking_conversion_rate >= 0"
+          [asap]="data.asap"
+          [pre_booking]="data.pre_booking"
+        ></app-booking-details>
+        <app-vehicle-insights
+          *ngIf="vehicle_insights"
+          [data]="vehicle_insights"
+        ></app-vehicle-insights>
       </div>
       <div class="col-md-6">
         <app-customer-details></app-customer-details>

@@ -63,7 +63,7 @@
   align-items: center;
   gap: 8px;
   font-size: 1rem;
-  color: #8e8ea1;
+  color: #a3aed0;
 }
 
 .header span .dot {
@@ -87,13 +87,15 @@
   gap: 0px;
   /* border-radius: 2px; */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  border: 1px solid #f4f7fe;
+  /* border: 1px solid #f4f7fe; */
   flex-wrap: nowrap;
   width: 100%;
 }
 
 .asap {
   /* border-right: 1px solid #f4f7fe; */
+  display: flex;
+  justify-content: center;
 }
 
 .break {
@@ -102,7 +104,7 @@
 
 .box {
   background-color: #fff;
-  padding: 10px;
+  /* padding: 10px; */
   /* text-align: center; */
   /* width: 100%; */
   /* max-width: 500px; */
@@ -132,14 +134,19 @@
 .box .sub-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  /* margin-top: 12px; */
   font-size: 1rem;
+  border: 1px solid #f4f7fe;
+  padding: 5px 10px;
+  width: fit-content;
 }
 
 .sub-info span strong {
   color: #000;
   font-weight: 400;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  font-size: 20px;
+  /* color: #000; */
 }
 
 @media (min-width: 200px) and (max-width: 500px) {

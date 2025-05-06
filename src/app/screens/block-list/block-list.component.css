@@ -632,3 +632,16 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.tooltip-whatsapp,
+.tooltip-sms {
+  display: none;
+}
+
+.whatsapp:hover .tooltip-whatsapp {
+  display: flex;
+}
+
+.sms:hover .tooltip-sms {
+  display: flex;
+}
