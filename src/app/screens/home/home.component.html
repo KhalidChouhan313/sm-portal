@@ -1,12 +1,17 @@
 <div class="container-own">
   <div class="head-btns">
-    <button>Today</button>
-    <button>All Time</button>
+    <button [ngClass]="{ active: isTodayActive }" (click)="todayActive()">
+      Today
+    </button>
+    <button [ngClass]="{ active: isAllTimeActive }" (click)="allTimeActive()">
+      All Time
+    </button>
   </div>
   <div class="top" style="position: relative">
     <div class="reports" style="position: relative">
       <!-- <p>{{ percentChange }}%</p> -->
       <app-reports
+        *ngIf="isAllTimeActive"
         [graphData]="barChartData"
         [totalMsg]="totalMsg"
         [totalSms]="totalSms"
@@ -15,6 +20,16 @@
         [percentChange]="percentChange"
       ></app-reports>
       <!-- <app-reports></app-reports> -->
+      <app-today-reports
+        *ngIf="isTodayActive"
+        [graphData]="barChartData"
+        [totalMsg]="totalMsg"
+        [totalSms]="totalSms"
+        [totalWhatsapp]="totalWhatsapp"
+        [notSent]="notSent"
+        [percentChange]="percentChange"
+      >
+      </app-today-reports>
     </div>
     <div class="bar-container">
       <div class="banner-bg" style="position: relative">

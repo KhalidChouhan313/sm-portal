@@ -49,6 +49,7 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
 import { NgxQrcodeStylingComponent } from 'ngx-qrcode-styling';
 import { QrStacksComponent } from './screens/qr-stacks/qr-stacks.component';
 import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
+import { TodayReportsComponent } from './components/today-reports/today-reports.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -88,6 +89,7 @@ import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
     QrPageComponent,
     QrStacksComponent,
     QrStatsComponent,
+    TodayReportsComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,

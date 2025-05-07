@@ -90,10 +90,23 @@
 
                 <!-- Use (change) event to handle the toggle -->
 
-                <div style="display: flex; align-items: center; gap: 15px">
-                  <label class="switch_box" (click)="bookingConfirmation()">
-                    <input type="checkbox" />
-                    <span class="slider"></span>
+                <div
+                  style="display: flex; align-items: center; gap: 15px"
+                  [class.active]="booking_confirmation"
+                >
+                  <label
+                    class="switch_box"
+                    [class.active]="booking_confirmation"
+                    (click)="bookingConfirmation()"
+                  >
+                    <input
+                      type="checkbox"
+                      [class.active]="booking_confirmation"
+                    />
+                    <span
+                      class="slider"
+                      [class.active]="booking_confirmation"
+                    ></span>
                   </label>
 
                   <p class="helping-text">
@@ -123,10 +136,22 @@
                   <img style="width: 20px" src="../../../assets/warning.png" />
                 </div>
                 <!-- Use (change) event to handle the toggle -->
-                <div style="display: flex; align-items: center; gap: 15px">
-                  <label class="switch_box">
-                    <input type="checkbox" />
-                    <span class="slider"></span>
+                <div
+                  style="display: flex; align-items: center; gap: 15px"
+                  [class.active]="booking_confirmation"
+                >
+                  <label
+                    class="switch_box"
+                    [class.active]="booking_confirmation"
+                  >
+                    <input
+                      type="checkbox"
+                      [class.active]="booking_confirmation"
+                    />
+                    <span
+                      class="slider"
+                      [class.active]="booking_confirmation"
+                    ></span>
                   </label>
 
                   <p class="helping-text">
@@ -160,10 +185,20 @@
                 </div>
 
                 <!-- Use (change) event to handle the toggle -->
-                <div style="display: flex; align-items: center; gap: 15px">
-                  <label class="switch_box" (click)="trackDriverMsg()">
-                    <input type="checkbox" />
-                    <span class="slider"></span>
+                <div
+                  style="display: flex; align-items: center; gap: 15px"
+                  [class.active]="track_driver_msg"
+                >
+                  <label
+                    class="switch_box"
+                    (click)="trackDriverMsg()"
+                    [class.active]="track_driver_msg"
+                  >
+                    <input type="checkbox" [class.active]="track_driver_msg" />
+                    <span
+                      class="slider"
+                      [class.active]="track_driver_msg"
+                    ></span>
                   </label>
 
                   <p class="helping-text">
@@ -195,10 +230,23 @@
                 </div>
 
                 <!-- Use (change) event to handle the toggle -->
-                <div style="display: flex; align-items: center; gap: 15px">
-                  <label class="switch_box" (click)="arrivedDriverMsg()">
-                    <input type="checkbox" />
-                    <span class="slider"></span>
+                <div
+                  style="display: flex; align-items: center; gap: 15px"
+                  [class.active]="arrived_driver_msg"
+                >
+                  <label
+                    class="switch_box"
+                    (click)="arrivedDriverMsg()"
+                    [class.active]="arrived_driver_msg"
+                  >
+                    <input
+                      type="checkbox"
+                      [class.active]="arrived_driver_msg"
+                    />
+                    <span
+                      class="slider"
+                      [class.active]="arrived_driver_msg"
+                    ></span>
                   </label>
 
                   <p class="helping-text">

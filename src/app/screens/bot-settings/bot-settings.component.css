@@ -862,6 +862,10 @@ input[type="number"] {
   left: 16px;
 }
 
+.slider.active {
+  left: 16px;
+}
+
 /* ✅ Green background when checked */
 .switch_box {
   background: #ccc;
@@ -869,6 +873,10 @@ input[type="number"] {
 }
 
 .switch_box input:checked ~ .switch_box {
+  background: linear-gradient(to left, #34836e 0%, #0dc997 100%);
+}
+
+.switch_box.active {
   background: linear-gradient(to left, #34836e 0%, #0dc997 100%);
 }
 

@@ -110,10 +110,15 @@ export class BotSettingsComponent {
     if (!currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
+
+    console.log(this.booking_confirmation);
     this.AS.getUser(currentUser._id).subscribe((user) => {
+      this.booking_confirmation = user.booking_confirmation;
+      this.track_driver_msg = user.track_driver_msg;
+      this.arrived_driver_msg = user.arrived_driver_msg;
       this.BS.getCompanyBots(currentUser._id).subscribe((admin) => {
         this.adminDetails = admin.data[0];
-        console.log(this.adminDetails);
+        console.log(admin);
 
         this.vBSName1 = this.adminDetails.vehicle[0].name;
         this.vBSName2 = this.adminDetails.vehicle[1].name;
@@ -124,6 +129,8 @@ export class BotSettingsComponent {
 
         this.sAADestination = this.adminDetails.destination_sub_query;
         this.sAAPickup = this.adminDetails.pickup_sub_query;
+
+        // this.booking_confirmation = this.adminDetails.booking_confirmation;
 
         this.zipcodeList = this.adminDetails.zip_codes;
         this.queryList = this.adminDetails.query;
@@ -392,14 +399,25 @@ export class BotSettingsComponent {
   }
 
   bookingConfirmation() {
+    // Retrieve current user details from localStorage
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
+
+    // Toggle the booking confirmation status
+
+    // Prepare the updated user object
     this.booking_confirmation = !this.booking_confirmation;
-    let obj = {
+    console.log(this.booking_confirmation);
+    let updatedUser = {
       _id: currentUser._id,
       booking_confirmation: this.booking_confirmation,
     };
-    this.AS.updateUser(obj).subscribe((res) => {
+
+    // Send the updated user data to the server
+    this.AS.updateUser(updatedUser).subscribe((res) => {
       console.log(res);
+
+      // Update localStorage with the new user details
+      localStorage.setItem('user_details', JSON.stringify(res));
     });
   }
 
@@ -412,6 +430,7 @@ export class BotSettingsComponent {
     };
     this.AS.updateUser(obj).subscribe((res) => {
       console.log(res);
+      localStorage.setItem('user_details', JSON.stringify(res));
     });
   }
 
@@ -424,6 +443,7 @@ export class BotSettingsComponent {
     };
     this.AS.updateUser(obj).subscribe((res) => {
       console.log(res);
+      localStorage.setItem('user_details', JSON.stringify(res));
     });
   }
 }
