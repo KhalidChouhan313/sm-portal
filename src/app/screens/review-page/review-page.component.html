@@ -1,0 +1,181 @@
+<main>
+  <div class="heading">Review Page</div>
+
+  <div class="main">
+    <div class="settings">
+      <div class="settings-heading">Edit Page</div>
+      <div class="settings-main">
+        <div class="setting">
+          <div>
+            <strong>Title</strong>
+            <p>{{ title.length }}/25</p>
+          </div>
+          <input [(ngModel)]="title" placeholder="How was your experience" />
+        </div>
+
+        <div class="setting">
+          <div>
+            <strong>Description</strong>
+            <p>{{ description.length }}/60</p>
+          </div>
+          <input
+            [(ngModel)]="description"
+            placeholder="We’d be glad for a review, please select stars below"
+          />
+        </div>
+
+        <div class="setting">
+          <div>
+            <strong>Profile</strong>
+          </div>
+          <input
+            style="display: none"
+            type="file"
+            id="profile-img"
+            name="profile-img"
+            (change)="onProfileSelected($event)"
+            accept="image/*"
+          />
+          <label for="profile-img">
+            <!-- <img src="../../../assets/input-img.png" /> -->
+            <img
+              [src]="profilePreview"
+              *ngIf="profilePreview"
+              style="width: 100%"
+            />
+          </label>
+        </div>
+
+        <div class="setting">
+          <div>
+            <strong>Cover Photo</strong>
+          </div>
+          <input
+            style="display: none"
+            type="file"
+            id="cover-img"
+            name="cover-img"
+            (change)="onCoverSelected($event)"
+            accept="image/*"
+          />
+          <label for="cover-img">
+            <!-- <img src="../../../assets/input-img.png" /> -->
+            <img
+              [src]="coverPreview"
+              *ngIf="coverPreview"
+              style="width: 100%"
+            />
+          </label>
+        </div>
+        <div style="display: flex; justify-content: center">
+          <button
+            style="
+              display: flex;
+              /* height: 50px; */
+              padding: 10px 20px;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              align-self: stretch;
+
+              border-radius: 8px;
+              background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+
+              color: #fff;
+
+              /* Texi */
+              font-family: Nunito;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: normal;
+              letter-spacing: 0.54px;
+            "
+            (click)="updateDetails()"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="preview">
+      <div class="preview-con">
+        <div class="preview-imgs-con">
+          <div class="cover-preview" style="overflow: hidden">
+            <img
+              [src]="coverPreview"
+              *ngIf="coverPreview"
+              style="width: 100%"
+            />
+          </div>
+          <div class="profile-img-preview" style="overflow: hidden">
+            <img
+              [src]="profilePreview"
+              *ngIf="profilePreview"
+              style="width: 100%"
+            />
+          </div>
+          <p>{{ currentUser.user_name }}</p>
+        </div>
+        <div>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              top: 80px;
+            "
+          >
+            <p
+              style="
+                color: #030303;
+                text-align: center;
+                font-family: Poppins;
+                font-size: 22.163px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: 0.665px;
+              "
+            >
+              {{ previewTitle }}
+            </p>
+            <p
+              style="
+                color: #636364;
+                text-align: center;
+                font-family: Poppins;
+                font-size: 16.323px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                letter-spacing: 0.49px;
+              "
+            >
+              {{ previewDescription }}
+            </p>
+          </div>
+          <div
+            style="
+              width: 100%;
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: 0;
+            "
+          >
+            <img style="width: 100%" src="../../../assets/Rating section.png" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-con">
+        <img src="../../../assets/mobile-frame.png" />
+      </div>
+    </div>
+  </div>
+</main>

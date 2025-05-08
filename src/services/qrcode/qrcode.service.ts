@@ -70,4 +70,12 @@ export class QrcodeService {
       `${environment.qrApiUrl}/api/getDetails/bycompany/${id}/${title}`
     );
   }
+
+  public updateReviewPage(id, body, title, des): Observable<any> {
+    console.log(body);
+    return this.http.post(
+      `${environment.qrApiUrl}/api/company-profile/${id}/myLink/${title}/${des}`,
+      { body }
+    );
+  }
 }

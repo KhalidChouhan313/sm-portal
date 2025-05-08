@@ -1,5 +1,5 @@
 <div class="container-own">
-  <div class="left">
+  <div *ngIf="currentTab.name !== 'Profile'" class="left">
     <div
       class="item"
       style="width: fit-content"
@@ -281,7 +281,46 @@
 
     <!-- profile Settings -->
     <ng-container *ngIf="currentTab.name === 'Profile'">
-      <div class="h">Profile Settings</div>
+      <div class="profile-imgs-con">
+        <div class="cover-img">
+          <img src="../../../assets/default_cover_img.png" />
+        </div>
+        <div class="under-cover-img">
+          <div class="profile-img-con">
+            <div class="profile-img"></div>
+            <p>User Name</p>
+          </div>
+          <button>Edit Profile</button>
+        </div>
+      </div>
+
+      <div class="profile-details-settings">
+        <div>
+          <strong>Name</strong>
+          <p>your name</p>
+        </div>
+        <div>
+          <strong>User Name</strong>
+          <p>your name</p>
+        </div>
+        <div>
+          <strong>User ID</strong>
+          <p>your name</p>
+        </div>
+        <div>
+          <strong>Password</strong>
+          <p>your name</p>
+        </div>
+        <div>
+          <strong>Email account</strong>
+          <p>your name</p>
+        </div>
+        <div>
+          <strong>Mobile number </strong>
+          <p>your name</p>
+        </div>
+      </div>
+      <!-- <div class="h">Profile Settings</div>
       <div class="profile-settings">
         <div class="ps-left">
           <div class="field">
@@ -376,7 +415,7 @@
         <div class="ps-right">
           <img src="../../../assets/profile-settings.png" alt="" />
         </div>
-      </div>
+      </div> -->
       <!-- <div
         class="imp-banner"
         style="

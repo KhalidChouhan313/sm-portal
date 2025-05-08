@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BookingsService, AdminService } from 'src/services';
 import { Router } from '@angular/router';
 
@@ -57,7 +57,8 @@ export class BotSettingsComponent {
   constructor(
     private BS: BookingsService,
     private AS: AdminService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
   btn1 = false;
@@ -113,9 +114,16 @@ export class BotSettingsComponent {
 
     console.log(this.booking_confirmation);
     this.AS.getUser(currentUser._id).subscribe((user) => {
+      console.log('Fetched user from server:', user);
       this.booking_confirmation = user.booking_confirmation;
       this.track_driver_msg = user.track_driver_msg;
       this.arrived_driver_msg = user.arrived_driver_msg;
+      this.cd.detectChanges();
+      console.log(
+        this.booking_confirmation,
+        this.track_driver_msg,
+        this.arrived_driver_msg
+      );
       this.BS.getCompanyBots(currentUser._id).subscribe((admin) => {
         this.adminDetails = admin.data[0];
         console.log(admin);
@@ -397,53 +405,58 @@ export class BotSettingsComponent {
       console.log('vbs', res);
     });
   }
-
   bookingConfirmation() {
-    // Retrieve current user details from localStorage
-    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.booking_confirmation = !this.booking_confirmation; // toggle immediately
+    console.log('New value:', this.booking_confirmation);
 
-    // Toggle the booking confirmation status
-
-    // Prepare the updated user object
-    this.booking_confirmation = !this.booking_confirmation;
-    console.log(this.booking_confirmation);
-    let updatedUser = {
+    const updatedUser = {
       _id: currentUser._id,
       booking_confirmation: this.booking_confirmation,
     };
 
-    // Send the updated user data to the server
-    this.AS.updateUser(updatedUser).subscribe((res) => {
-      console.log(res);
-
-      // Update localStorage with the new user details
-      localStorage.setItem('user_details', JSON.stringify(res));
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        // revert if API fails
+        this.booking_confirmation = !this.booking_confirmation;
+        console.error('Failed to update booking confirmation:', err);
+      },
     });
   }
 
   trackDriverMsg() {
-    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.track_driver_msg = !this.track_driver_msg;
-    let obj = {
+    console.log('New value:', this.track_driver_msg);
+
+    const updatedUser = {
       _id: currentUser._id,
       track_driver_msg: this.track_driver_msg,
     };
-    this.AS.updateUser(obj).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('user_details', JSON.stringify(res));
+
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        this.track_driver_msg = !this.track_driver_msg;
+        console.error('Failed to update track driver message:', err);
+      },
     });
   }
 
   arrivedDriverMsg() {
-    let currentUser = JSON.parse(localStorage.getItem('user_details'));
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.arrived_driver_msg = !this.arrived_driver_msg;
-    let obj = {
+    console.log('New value:', this.arrived_driver_msg);
+
+    const updatedUser = {
       _id: currentUser._id,
       arrived_driver_msg: this.arrived_driver_msg,
     };
-    this.AS.updateUser(obj).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('user_details', JSON.stringify(res));
+
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        this.arrived_driver_msg = !this.arrived_driver_msg;
+        console.error('Failed to update arrived driver message:', err);
+      },
     });
   }
 }

@@ -116,6 +116,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'review/review-page',
+    loadChildren: () =>
+      import('./screens/review-page/review-page.module').then(
+        (m) => m.ReviewPageModule
+      ),
+  },
+  {
+    path: 'review/my-reviews',
+    loadChildren: () =>
+      import('./screens/my-reviews/my-reviews.module').then(
+        (m) => m.MyReviewsModule
+      ),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./screens/login/login.module').then((m) => m.LoginModules),
@@ -126,4 +140,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

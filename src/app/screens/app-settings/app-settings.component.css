@@ -15,11 +15,12 @@
 }
 
 .right {
-  border-radius: 18px;
   background: #fff;
-  box-shadow: 0px 5px 22px 0px rgba(238, 238, 238, 0.7);
-  padding: 10px;
+  padding: 40px 35px;
   flex: 1;
+  border-radius: 20px;
+  border: 1px solid #e4e4e7;
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
 }
 
 .item {
@@ -328,3 +329,113 @@
 /* .toggle:hover .tooltip {
   display: flex;
 } */
+
+.profile-imgs-con {
+  position: relative;
+}
+
+.cover-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.cover-img img {
+  width: 100%;
+}
+
+.profile-img-con {
+  position: relative;
+  left: 20px;
+  top: -85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 10px;
+}
+
+.profile-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.profile-img-con p {
+  color: var(--Gray---Tailwind-800, #1f2937);
+  /* Paragraph 2/Regular */
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.under-cover-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.under-cover-img button {
+  display: flex;
+  /* height: 50px; */
+  padding: 15px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  border-radius: 8px;
+  background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+  color: #fff;
+  border: none;
+  /* Texi */
+  font-family: Nunito;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.54px;
+  position: relative;
+  top: 10px;
+}
+
+.profile-details-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-details-settings div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 200px;
+}
+
+.profile-details-settings div strong {
+  color: var(--Gray---Tailwind-800, #1f2937);
+
+  /* Paragraph 2/Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.profile-details-settings div p {
+  color: var(--Gray---Tailwind-600, #4b5563);
+
+  /* Paragraph 2/Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
