@@ -49,10 +49,10 @@ option {
   display: flex;
   gap: 10px;
   position: absolute;
-  top: 30.3px;
+  top: -67.7px;
   width: -moz-fit-content;
   width: fit-content;
-  left: 441px;
+  left: 196px;
   z-index: 99999;
 }
 .head-btns button {

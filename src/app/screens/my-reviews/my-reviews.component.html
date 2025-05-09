@@ -1,1 +1,170 @@
-<p>my-reviews works!</p>
+<main>
+  <div class="filter-bar">
+    <div class="filter">
+      <p>Driver ID:</p>
+      <input placeholder="Search by Driver ID" />
+    </div>
+
+    <div class="filter">
+      <p>User ID:</p>
+      <input placeholder="Search by User ID" />
+    </div>
+
+    <div class="filter">
+      <p>Sort by:</p>
+      <input placeholder="More Recent" />
+    </div>
+
+    <div class="filter">
+      <p>Filter by Rating:</p>
+      <div class="stars">
+        <span
+          *ngFor="let star of stars; let i = index"
+          (click)="setRating(i + 1)"
+          (mouseenter)="hoverRating(i + 1)"
+          (mouseleave)="hoverRating(0)"
+          [class.filled]="i + 1 <= (hovered || rating)"
+        >
+          &#9733;
+        </span>
+      </div>
+      <input type="hidden" id="rating" />
+    </div>
+    <button>
+      <img src="../../../assets/d-refresh.png" />
+      Clear
+    </button>
+  </div>
+  <div class="reviews">
+    <div class="review" *ngFor="let review of reviews; let i = index">
+      <div class="review-1">
+        <div class="review-1-1">
+          <div style="display: flex; gap: 10px; align-items: start">
+            <div class="review-1-1-profile">T</div>
+            <div class="review-1-1-info">
+              <p
+                style="
+                  color: #1c1c1c;
+                  font-family: Poppins;
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: 16.8px; /* 120% */
+                  letter-spacing: -0.154px;
+                "
+              >
+                Test Testing
+              </p>
+
+              <p
+                style="
+                  color: #737791;
+                  font-family: Poppins;
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+                  letter-spacing: -0.28px;
+                  width: 232px;
+                  white-space: nowrap;
+                "
+              >
+                <span
+                  style="
+                    color: #1c1c1c;
+                    font-family: Poppins;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 16.8px; /* 140% */
+                    letter-spacing: -0.154px;
+                  "
+                  >User ID</span
+                >
+                {{ review.review_id }}
+              </p>
+
+              <p
+                style="
+                  color: #737791;
+                  font-family: Poppins;
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+                  letter-spacing: -0.28px;
+                  width: 232px;
+                  white-space: nowrap;
+                "
+              >
+                <span
+                  style="
+                    color: #1c1c1c;
+                    font-family: Poppins;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 16.8px; /* 140% */
+                    letter-spacing: -0.154px;
+                  "
+                  >Driver ID</span
+                >
+                {{ review.driver_id }}
+              </p>
+            </div>
+          </div>
+          <p
+            style="
+              color: #636364;
+              font-family: Nunito;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: normal;
+              letter-spacing: 0.42px;
+            "
+          >
+            {{ review.createdAt | date : "EEE, MMM d, y" }}
+          </p>
+        </div>
+      </div>
+      <div class="review-2">
+        <p
+          style="
+            color: #1c1c1c;
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 16.8px; /* 140% */
+            letter-spacing: -0.154px;
+          "
+        >
+          Rating
+        </p>
+        <div class="r-star">
+          <span
+            *ngFor="let star of stars; let i = index"
+            class="my-star"
+            [ngClass]="getStarClass(review.rating, i)"
+            >★</span
+          >
+        </div>
+      </div>
+      <div
+        class="review-3"
+        style="
+          color: #1c1c1c;
+          font-family: Poppins;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 19.2px; /* 137.143% */
+          letter-spacing: 0.176px;
+        "
+      >
+        {{ review.review }}
+      </div>
+    </div>
+  </div>
+</main>

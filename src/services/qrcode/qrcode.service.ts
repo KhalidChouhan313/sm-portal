@@ -78,4 +78,10 @@ export class QrcodeService {
       { body }
     );
   }
+
+  public getReviews(id, page): Observable<any> {
+    return this.http.get(
+      `${environment.qrApiUrl}/api/get-reviews/${id}/?page=${page}`
+    );
+  }
 }

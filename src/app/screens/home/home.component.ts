@@ -203,16 +203,46 @@ export class HomeComponent implements OnInit {
               x++;
             }
             console.log(ml);
+
             ml.map((gv, j) => {
-              this.totalMsg++;
-              if (gv.sent_by == 0) {
-                this.totalSms++;
+              console.log('gv', gv);
+              if (this.isAllTimeActive) {
+                this.totalMsg++;
+                if (gv.sent_by == 0) {
+                  this.totalSms++;
+                }
+                if (gv.sent_by == 1) {
+                  this.totalWhatsapp++;
+                }
+                if (gv.sent_by == 2) {
+                  this.notSent++;
+                }
               }
-              if (gv.sent_by == 1) {
-                this.totalWhatsapp++;
-              }
-              if (gv.sent_by == 2) {
-                this.notSent++;
+              if (this.isTodayActive) {
+                const isToday = (date) => {
+                  const today = new Date();
+                  const givenDate = new Date(date);
+
+                  return (
+                    today.getFullYear() === givenDate.getFullYear() &&
+                    today.getMonth() === givenDate.getMonth() &&
+                    today.getDate() === givenDate.getDate()
+                  );
+                };
+
+                // Example usage:
+                if (isToday(gv.createdAt)) {
+                  this.totalMsg++;
+                  if (gv.sent_by == 0) {
+                    this.totalSms++;
+                  }
+                  if (gv.sent_by == 1) {
+                    this.totalWhatsapp++;
+                  }
+                  if (gv.sent_by == 2) {
+                    this.notSent++;
+                  }
+                }
               }
 
               let td = new Date();

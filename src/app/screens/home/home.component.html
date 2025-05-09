@@ -1,10 +1,10 @@
-<div class="container-own">
+<div class="container-own" style="position: relative">
   <div class="head-btns">
     <button [ngClass]="{ active: isTodayActive }" (click)="todayActive()">
       Today
     </button>
     <button [ngClass]="{ active: isAllTimeActive }" (click)="allTimeActive()">
-      All Time
+      Last 7 days
     </button>
   </div>
   <div class="top" style="position: relative">
