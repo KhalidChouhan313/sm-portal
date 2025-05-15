@@ -18,6 +18,10 @@ export class ReviewPageComponent implements OnInit {
   profilePreview: string = '';
   coverPreview: string = '';
 
+  reviewEnable = false;
+
+  response: any;
+
   constructor(private qrSer: QrcodeService) {}
 
   ngOnInit(): void {
@@ -29,6 +33,7 @@ export class ReviewPageComponent implements OnInit {
 
       this.qrSer.getReviewPage(this.currentUser._id).subscribe((res) => {
         console.log(res);
+        this.response = res;
 
         this.previewTitle = res.data.title;
         this.title = res.data.title;
@@ -65,6 +70,7 @@ export class ReviewPageComponent implements OnInit {
         console.log('form', formData);
         console.log(res);
       });
+    this.isEditable = false;
   }
 
   onProfileSelected(event: Event): void {
@@ -96,4 +102,22 @@ export class ReviewPageComponent implements OnInit {
   }
 
   isEditable = false;
+
+  cancelEdit() {
+    this.isEditable = false;
+    this.previewTitle = this.response.data.title;
+    this.title = this.response.data.title;
+    this.previewDescription = this.response.data.description;
+    this.description = this.response.data.description;
+    this.profilePreview = this.response.data.profile_image;
+    this.coverPreview = this.response.data.cover_image;
+  }
+
+  liveDescription() {
+    this.previewDescription = this.description;
+  }
+
+  liveTitle() {
+    this.previewTitle = this.title;
+  }
 }
