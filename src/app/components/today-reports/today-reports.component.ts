@@ -64,6 +64,17 @@ export class TodayReportsComponent implements OnInit, OnChanges {
       this.chart.destroy();
     }
 
+    // this.graphData[0]['data'] = this.rotateZeros(this.graphData[0]['data']);
+    // this.graphData[1]['data'] = this.rotateZeros(this.graphData[1]['data']);
+    // this.graphData[2]['data'] = this.rotateZeros(this.graphData[2]['data']);
+    // this.graphData[3]['data'] = this.rotateZeros(this.graphData[3]['data']);
+
+    // console.log('check', this.graphData);
+
+    // this.totalMsg = this.graphData[3]['data'][6];
+    // this.totalWhatsapp = this.graphData[1]['data'][6];
+    // this.totalSms = this.graphData[0]['data'][6];
+    // this.notSent = this.graphData[2]['data'][6];
     const dataValues = [
       this.totalMsg,
       this.totalWhatsapp,

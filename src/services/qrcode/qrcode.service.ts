@@ -10,64 +10,69 @@ export class QrcodeService {
   constructor(private http: HttpClient) {}
 
   public generateCode(data): Observable<any> {
-    return this.http.post(`${environment.qrApiUrl}/api/create/qrcode`, data);
+    return this.http.post(`${environment.apiUrl}/api/qr-code/create`, data);
   }
 
   public SaveQrImg(id, img): Observable<any> {
     return this.http.post(
-      `${environment.qrApiUrl}/api/upload/qrcode/${id}`,
+      `${environment.apiUrl}/api/qr-code/upload/${id}`,
       img
     );
   }
 
   public getAllQrCodes(data, page = 1): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/qrcode/details/${data}?page=${page}&limit=10`
+      `${environment.apiUrl}/api/qr-code/company-qr-codes/${data}?page=${page}&limit=10`
     );
   }
 
   public getQrCodeDetails(id): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/singleqrcode/details/${id}`
+      `${environment.apiUrl}/api/qr-code/qr-code-details/${id}`
     );
   }
 
   public deleteQrCode(id): Observable<any> {
-    return this.http.delete(`${environment.qrApiUrl}/api/delete/qrcode/${id}`);
+    return this.http.delete(`${environment.apiUrl}/api/qr-code/delete/${id}`);
   }
 
   public updateQrCode(id, data): Observable<any> {
     return this.http.put(
-      `${environment.qrApiUrl}/api/update/qrcode/${id}`,
+      `${environment.apiUrl}/api/qr-code/update/${id}`,
       data
     );
   }
 
   public updateQrCodeStatus(id, data): Observable<any> {
     return this.http.put(
-      `${environment.qrApiUrl}/api/status/qrcode/${id}`,
+      `${environment.apiUrl}/api/qr-code/status/${id}`,
       data
     );
   }
 
   public getQrCodeStats(id): Observable<any> {
-    return this.http.get(`${environment.qrApiUrl}/api/getscannedqrcode/${id}`);
+    return this.http.get(
+      `${environment.apiUrl}/api/qr-code/get-scanned-data/${id}`
+    );
   }
 
   public updateQrImg(id, img): Observable<any> {
     return this.http.post(
-      `${environment.qrApiUrl}/api/update/qrcode/${id}`,
+      `${environment.apiUrl}/api/qr-code/update/${id}`,
       img
     );
   }
 
   public getPickupLocations(obj): Observable<any> {
-    return this.http.post(`${environment.qrApiUrl}/api/pickup-address`, obj);
+    return this.http.post(
+      `${environment.apiUrl}/api/qr-code/pickup-address`,
+      obj
+    );
   }
 
   public getQrCodeByTitle(id, title): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/getDetails/bycompany/${id}/${title}`
+      `${environment.apiUrl}/api/qr-code/getDetails/bycompany/${id}/${title}`
     );
   }
 
@@ -75,13 +80,23 @@ export class QrcodeService {
     console.log(body);
     return this.http.post(
       `${environment.qrApiUrl}/api/company-profile/${id}/myLink/${title}/${des}`,
-      { body }
+      body
     );
+  }
+
+  public getReviewPage(id): Observable<any> {
+    return this.http.get(`${environment.qrApiUrl}/api/getcompanyprofile/${id}`);
   }
 
   public getReviews(id, page): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/get-reviews/${id}/?page=${page}`
+      `${environment.qrApiUrl}/api/get-reviews/${id}?&page=${page}`
+    );
+  }
+
+  public getReviewsFitered(id, page, rating): Observable<any> {
+    return this.http.get(
+      `${environment.qrApiUrl}/api/get-reviews/${id}?rating=${rating}&page=${page}`
     );
   }
 }

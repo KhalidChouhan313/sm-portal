@@ -205,7 +205,7 @@ export class HomeComponent implements OnInit {
             console.log(ml);
 
             ml.map((gv, j) => {
-              console.log('gv', gv);
+              // console.log('gv', gv);
               if (this.isAllTimeActive) {
                 this.totalMsg++;
                 if (gv.sent_by == 0) {
@@ -222,14 +222,12 @@ export class HomeComponent implements OnInit {
                 const isToday = (date) => {
                   const today = new Date();
                   const givenDate = new Date(date);
-
                   return (
                     today.getFullYear() === givenDate.getFullYear() &&
                     today.getMonth() === givenDate.getMonth() &&
                     today.getDate() === givenDate.getDate()
                   );
                 };
-
                 // Example usage:
                 if (isToday(gv.createdAt)) {
                   this.totalMsg++;
@@ -254,7 +252,7 @@ export class HomeComponent implements OnInit {
               let ind = this.days.findIndex(
                 (day) => day === this.days[dayIndex]
               );
-              console.log(ind); // Ensure it stays within 0-6
+              // console.log(ind); // Ensure it stays within 0-6
 
               if (gv.sent_by == 0) {
                 let v = this.barChartData[0]['data'][ind];
@@ -331,7 +329,7 @@ export class HomeComponent implements OnInit {
               sms: this.totalSms,
             });
 
-            console.log(this.barChartData);
+            // console.log('checking', this.barChartData);
           });
         });
       });

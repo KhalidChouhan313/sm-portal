@@ -7,11 +7,12 @@ import { QrcodeService } from 'src/services/qrcode/qrcode.service';
   styleUrls: ['./review-page.component.css'],
 })
 export class ReviewPageComponent implements OnInit {
-  title: string = '';
-  description: string = '';
+  title: string = 'How was your experience?';
+  description: string = 'We’d be glad for a review, please select stars below';
   currentUser: any = null;
-  previewTitle: string = '';
-  previewDescription: string = '';
+  previewTitle: string = 'How was your experience?';
+  previewDescription: string =
+    'We’d be glad for a review, please select stars below';
   profileImg: any;
   coverImg: any;
   profilePreview: string = '';
@@ -25,19 +26,30 @@ export class ReviewPageComponent implements OnInit {
       this.currentUser = JSON.parse(storedUser);
       console.log(this.currentUser); // full object
       // console.log(this.currentUser.name); // access specific properties
+
+      this.qrSer.getReviewPage(this.currentUser._id).subscribe((res) => {
+        console.log(res);
+
+        this.previewTitle = res.data.title;
+        this.title = res.data.title;
+        this.previewDescription = res.data.description;
+        this.description = res.data.description;
+        this.profilePreview = res.data.profile_image;
+        this.coverPreview = res.data.cover_image;
+      });
     }
   }
 
   updateDetails() {
-    console.log('working');
+    console.log('working', this.profileImg, this.coverImg);
     const formData = new FormData();
 
     if (this.profileImg && typeof this.profileImg !== 'string') {
-      formData.append('profile_img', this.profileImg);
+      formData.append('profile_image', this.profileImg);
     }
 
     if (this.coverImg && typeof this.coverImg !== 'string') {
-      formData.append('cover_img', this.coverImg);
+      formData.append('cover_image', this.coverImg);
     }
 
     this.previewDescription = this.description;
@@ -50,6 +62,7 @@ export class ReviewPageComponent implements OnInit {
         this.description
       )
       .subscribe((res) => {
+        console.log('form', formData);
         console.log(res);
       });
   }
@@ -81,4 +94,6 @@ export class ReviewPageComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+
+  isEditable = false;
 }

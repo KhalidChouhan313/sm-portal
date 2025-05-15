@@ -127,7 +127,7 @@ export class QrPageComponent {
   fetchQrList() {
     this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
       console.log(res);
-      this.allQrCodes = res.data.location.concat(res.data.text);
+      this.allQrCodes = res.data.location.records.concat(res.data.text.records);
       this.updateFilteredQrCodes();
       console.log(this.allQrCodes);
       if (res.length == 0) {
@@ -649,9 +649,11 @@ export class QrPageComponent {
   }
 
   copyToClipboard() {
-    navigator.clipboard.writeText(this.activeQrDetails.url).then(() => {
-      alert('URL copied to clipboard!');
-    });
+    navigator.clipboard
+      .writeText(this.activeQrDetails?.recordWithoutPublicId[0].url)
+      .then(() => {
+        alert('URL copied to clipboard!');
+      });
   }
 
   copyQrLink() {
@@ -712,7 +714,7 @@ export class QrPageComponent {
 
   typeNum: TypeNumber = 0;
 
-  errorCorrection: ErrorCorrectionLevel = 'H';
+  errorCorrection: ErrorCorrectionLevel = 'Q';
 
   logoDataUrl = '';
 
@@ -753,7 +755,7 @@ export class QrPageComponent {
     this.bgGradient1 = '';
     this.bgGradient2 = '';
 
-    this.errorCorrection = 'H';
+    this.errorCorrection = 'Q';
 
     this.logoDataUrl = '';
 

@@ -1,36 +1,38 @@
 <main>
   <div class="filter-bar">
-    <div class="filter">
-      <p>Driver ID:</p>
-      <input placeholder="Search by Driver ID" />
-    </div>
+    <div style="display: flex; gap: 15px">
+      <div class="filter">
+        <p>Driver ID:</p>
+        <input placeholder="Search by Driver ID" />
+      </div>
 
-    <div class="filter">
-      <p>User ID:</p>
-      <input placeholder="Search by User ID" />
-    </div>
+      <div class="filter">
+        <p>Booking ID:</p>
+        <input placeholder="Search by User ID" />
+      </div>
 
-    <div class="filter">
+      <!-- <div class="filter">
       <p>Sort by:</p>
       <input placeholder="More Recent" />
-    </div>
+    </div> -->
 
-    <div class="filter">
-      <p>Filter by Rating:</p>
-      <div class="stars">
-        <span
-          *ngFor="let star of stars; let i = index"
-          (click)="setRating(i + 1)"
-          (mouseenter)="hoverRating(i + 1)"
-          (mouseleave)="hoverRating(0)"
-          [class.filled]="i + 1 <= (hovered || rating)"
-        >
-          &#9733;
-        </span>
+      <div class="filter">
+        <p>Filter by Rating:</p>
+        <div class="stars">
+          <span
+            *ngFor="let star of stars; let i = index"
+            (click)="setRating(i + 1)"
+            (mouseenter)="hoverRating(i + 1)"
+            (mouseleave)="hoverRating(0)"
+            [class.filled]="i + 1 <= (hovered || rating)"
+          >
+            &#9733;
+          </span>
+        </div>
+        <input type="hidden" id="rating" />
       </div>
-      <input type="hidden" id="rating" />
     </div>
-    <button>
+    <button (click)="clear()">
       <img src="../../../assets/d-refresh.png" />
       Clear
     </button>

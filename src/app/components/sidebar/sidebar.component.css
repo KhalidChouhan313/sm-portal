@@ -192,7 +192,7 @@ a {
   padding-left: 0.5rem;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #333540;
+  border-left: 1px solid lightgray;
 }
 
 .sidebar.toggled .sub_menu {

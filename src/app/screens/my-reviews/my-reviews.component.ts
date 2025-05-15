@@ -29,8 +29,27 @@ export class MyReviewsComponent implements OnInit {
     });
   }
 
+  clear() {
+    this.rating = 0;
+    this.qrSer.getReviews(this.currentUser._id, 1).subscribe((res) => {
+      console.log(res);
+      this.reviews = res.data;
+    });
+  }
+
   setRating(value: number) {
     this.rating = value;
+    this.qrSer
+      .getReviewsFitered(this.currentUser._id, 1, this.rating)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.reviews = res.data;
+        },
+        (err) => {
+          this.reviews = [];
+        }
+      );
   }
 
   hoverRating(value: number) {
