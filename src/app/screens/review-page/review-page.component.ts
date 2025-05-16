@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/services';
 import { QrcodeService } from 'src/services/qrcode/qrcode.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class ReviewPageComponent implements OnInit {
 
   response: any;
 
-  constructor(private qrSer: QrcodeService) {}
+  constructor(private qrSer: QrcodeService, private admin: AdminService) {}
 
   ngOnInit(): void {
     const storedUser = localStorage.getItem('user_details');
@@ -30,6 +31,10 @@ export class ReviewPageComponent implements OnInit {
       this.currentUser = JSON.parse(storedUser);
       console.log(this.currentUser); // full object
       // console.log(this.currentUser.name); // access specific properties
+      this.admin.getUser(this.currentUser._id).subscribe((res) => {
+        console.log(res);
+        this.reviewEnable = res.follow_up_review;
+      });
 
       this.qrSer.getReviewPage(this.currentUser._id).subscribe((res) => {
         console.log(res);
@@ -43,6 +48,16 @@ export class ReviewPageComponent implements OnInit {
         this.coverPreview = res.data.cover_image;
       });
     }
+  }
+
+  updateReviewStatus() {
+    const obj = {
+      _id: this.currentUser._id,
+      follow_up_review: !this.reviewEnable,
+    };
+    this.admin.updateUser(obj).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   updateDetails() {

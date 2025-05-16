@@ -106,6 +106,7 @@
               type="checkbox"
               (change)="reviewEnable = !reviewEnable; cancelEdit()"
               [class.active]="reviewEnable"
+              (change)="updateReviewStatus()"
             />
             <span class="slider" [class.active]="reviewEnable"></span>
           </label>
