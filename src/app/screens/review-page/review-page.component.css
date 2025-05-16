@@ -48,7 +48,7 @@ main {
   position: absolute;
   right: 0;
   top: 0;
-  /* z-index: 100; */
+  z-index: 100;
 }
 
 .mobile-con img {
