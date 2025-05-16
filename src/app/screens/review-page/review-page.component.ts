@@ -102,6 +102,7 @@ export class ReviewPageComponent implements OnInit {
   }
 
   isEditable = false;
+  isModalOpen = false;
 
   cancelEdit() {
     this.isEditable = false;

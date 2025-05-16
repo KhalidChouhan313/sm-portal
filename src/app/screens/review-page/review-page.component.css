@@ -48,6 +48,7 @@ main {
   position: absolute;
   right: 0;
   top: 0;
+  /* z-index: 100; */
 }
 
 .mobile-con img {
@@ -371,4 +372,12 @@ main {
   font-weight: 700;
   line-height: 32px; /* 200% */
   letter-spacing: -0.32px;
+}
+
+.img-in-up {
+  display: none !important;
+}
+
+.img-in:hover .img-in-up {
+  display: flex !important;
 }

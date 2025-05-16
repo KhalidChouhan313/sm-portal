@@ -1,4 +1,98 @@
 <main>
+  <app-modal *ngIf="isModalOpen">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 80vw;
+        padding: 10px;
+        position: relative;
+      "
+    >
+      <button
+        style="
+          background: white;
+          border: none;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+        "
+        (click)="isModalOpen = !isModalOpen"
+      >
+        <img
+          style="display: flex; align-items: center; justify-content: center"
+          src="../../../assets/close-icon.png"
+        />
+      </button>
+      <div
+        style="
+          padding: 10px 20px;
+          box-shadow: 0 0 10px lightgray;
+          width: 58%;
+          border-radius: 20px;
+          height: 90vh;
+          overflow: scroll;
+        "
+      >
+        <div>
+          <h3 class="r-b-h">What is the Review Template?</h3>
+          <p class="r-b-p">
+            Your Review Template helps you collect valuable feedback from your
+            customers in a simple, user-friendly way. Once enabled, it becomes
+            your branded review page — complete with your logo, custom banner,
+            and personalized title and description.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="r-b-h">How It Works:</h3>
+          <strong class="r-b-s">1-3 Stars:</strong>
+          <p class="r-b-p">
+            We understand negative feedback is sensitive. For low ratings, the
+            review message box is disabled to avoid collecting harsh comments
+            directly. You can handle these cases manually.
+          </p>
+          <strong class="r-b-s">4-5 Stars:</strong>
+          <p class="r-b-p">
+            Happy customers? Great! The message box opens, allowing them to
+            leave a comment. Once submitted, they are redirected to your Google
+            Reviews page — helping you build public trust and credibility.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="r-b-h">What You Can Edit:</h3>
+          <ul class="r-b-p">
+            <li>Title: Add a custom message like “How was your ride?”</li>
+            <li>Description: Give users context or instructions</li>
+            <li>Logo: Upload your brand's profile image</li>
+            <li>Banner: Upload a custom banner for a personalized look</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="r-b-h">How to Activate</h3>
+          <p class="r-b-p">
+            Use the toggle in the header to enable your review template. Once
+            it's on, the right side will show a live preview and the left side
+            will allow you to customize your content easily.
+          </p>
+        </div>
+      </div>
+      <div
+        style="
+          padding: 20px;
+          box-shadow: 0 0 10px lightgray;
+          width: 58%;
+          border-radius: 20px;
+          height: 90vh;
+        "
+      >
+        <img style="width: 100%" src="../../../assets/review-banner.png" />
+      </div>
+    </div>
+  </app-modal>
   <div class="heading">
     Review Page
     <div style="display: flex; align-items: center; gap: 10px">
@@ -44,13 +138,13 @@
           line-height: normal;
           letter-spacing: 0.54px;
         "
-        (click)="isEditable = !isEditable"
-        *ngIf="reviewEnable && !isEditable"
+        (click)="isEditable = !isEditable; isModalOpen = true"
+        *ngIf="!isEditable"
       >
         Edit Page
       </button>
       <div
-        *ngIf="reviewEnable && isEditable"
+        *ngIf="isEditable"
         style="display: flex; align-items: center; gap: 10px"
       >
         <button
@@ -79,6 +173,7 @@
             letter-spacing: 0.54px;
           "
           (click)="updateDetails()"
+          [disabled]="title.length == 0 || !profilePreview || !coverPreview"
         >
           Save
         </button>
@@ -95,7 +190,7 @@
 
             border-radius: 8px;
             border: none;
-            background: linear-gradient(270deg, #2ebc96 0%, #1a9096 100%);
+            background: red;
 
             color: #fff;
 
@@ -115,90 +210,21 @@
     </div>
   </div>
 
-  <div
-    *ngIf="!reviewEnable"
-    style="display: flex; align-items: center; gap: 15px"
-  >
-    <div
-      style="
-        padding: 10px 20px;
-        box-shadow: 0 0 10px lightgray;
-        width: 58%;
-        border-radius: 20px;
-      "
-    >
-      <div>
-        <h3 class="r-b-h">What is the Review Template?</h3>
-        <p class="r-b-p">
-          Your Review Template helps you collect valuable feedback from your
-          customers in a simple, user-friendly way. Once enabled, it becomes
-          your branded review page — complete with your logo, custom banner, and
-          personalized title and description.
-        </p>
-      </div>
-
-      <div>
-        <h3 class="r-b-h">How It Works:</h3>
-        <strong class="r-b-s">1-3 Stars:</strong>
-        <p class="r-b-p">
-          We understand negative feedback is sensitive. For low ratings, the
-          review message box is disabled to avoid collecting harsh comments
-          directly. You can handle these cases manually.
-        </p>
-        <strong class="r-b-s">4-5 Stars:</strong>
-        <p class="r-b-p">
-          Happy customers? Great! The message box opens, allowing them to leave
-          a comment. Once submitted, they are redirected to your Google Reviews
-          page — helping you build public trust and credibility.
-        </p>
-      </div>
-
-      <div>
-        <h3 class="r-b-h">What You Can Edit:</h3>
-        <ul class="r-b-p">
-          <li>Title: Add a custom message like “How was your ride?”</li>
-          <li>Description: Give users context or instructions</li>
-          <li>Logo: Upload your brand's profile image</li>
-          <li>Banner: Upload a custom banner for a personalized look</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="r-b-h">How to Activate</h3>
-        <p class="r-b-p">
-          Use the toggle in the header to enable your review template. Once it's
-          on, the right side will show a live preview and the left side will
-          allow you to customize your content easily.
-        </p>
-      </div>
-    </div>
-    <div
-      style="
-        padding: 20px;
-        box-shadow: 0 0 10px lightgray;
-        width: 58%;
-        border-radius: 20px;
-      "
-    >
-      <img style="width: 100%" src="../../../assets/review-banner.png" />
-    </div>
-  </div>
-
-  <div *ngIf="reviewEnable" class="main">
+  <div class="main">
     <div class="settings">
       <div class="settings-heading">Edit Page</div>
       <div class="settings-main">
         <div class="setting">
           <div>
-            <strong>Title</strong>
-            <p>{{ title.length }}/25</p>
+            <strong>Title*</strong>
+            <p>{{ title.length }}/50</p>
           </div>
           <input
             [disabled]="!isEditable"
             [(ngModel)]="title"
             (ngModelChange)="liveTitle()"
             placeholder="How was your experience"
-            maxlength="25"
+            maxlength="50"
             [ngStyle]="{ border: isEditable ? '2px solid green' : 'none' }"
           />
         </div>
@@ -206,21 +232,21 @@
         <div class="setting">
           <div>
             <strong>Description</strong>
-            <p>{{ description.length }}/60</p>
+            <p>{{ description.length }}/80</p>
           </div>
           <input
             [disabled]="!isEditable"
             [(ngModel)]="description"
             (ngModelChange)="liveDescription()"
             placeholder="We’d be glad for a review, please select stars below"
-            maxlength="60"
+            maxlength="80"
             [ngStyle]="{ border: isEditable ? '2px solid green' : 'none' }"
           />
         </div>
 
         <div class="setting">
           <div>
-            <strong>Profile</strong>
+            <strong>Profile*</strong>
           </div>
           <input
             [disabled]="!isEditable"
@@ -232,9 +258,29 @@
             accept="image/*"
           />
           <label
+            style="position: relative"
             for="profile-img"
             [ngStyle]="{ border: isEditable ? '2px solid green' : 'none' }"
+            class="img-in"
           >
+            <label
+              for="profile-img"
+              style="
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #3b323258;
+              "
+              class="img-in-up"
+            >
+              <p style="color: white">Upload Image</p>
+            </label>
             <img
               style="width: 70%"
               *ngIf="!profilePreview"
@@ -250,7 +296,7 @@
 
         <div class="setting">
           <div>
-            <strong>Cover Photo</strong>
+            <strong>Cover Photo*</strong>
           </div>
           <input
             [disabled]="!isEditable"
@@ -264,7 +310,27 @@
           <label
             for="cover-img"
             [ngStyle]="{ border: isEditable ? '2px solid green' : 'none' }"
+            style="position: relative"
+            class="img-in"
           >
+            <label
+              for="cover-img"
+              class="img-in-up"
+              style="
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #3b323258;
+              "
+            >
+              <p style="color: white">Upload Image</p>
+            </label>
             <img
               style="width: 70%"
               *ngIf="!coverPreview"
@@ -383,7 +449,7 @@
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                top: 72px;
+                top: 10vh;
               "
             >
               <p
@@ -396,9 +462,10 @@
                   font-weight: 600;
                   line-height: normal;
                   letter-spacing: 0.665px;
-                  width: 90%;
+                  min-width: 90%;
+                  max-width: 230px;
                   overflow: hidden;
-                  /* text-overflow: ellipsis; */
+                  text-overflow: ellipsis;
                   white-space: wrap;
                 "
               >
@@ -417,7 +484,8 @@
                   overflow: hidden;
                   text-overflow: ellipsis;
                   overflow: hidden;
-                  width: 90%;
+                  min-width: 90%;
+                  max-width: 230px;
                   white-space: wrap;
                 "
               >
