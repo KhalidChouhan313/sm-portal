@@ -71,6 +71,8 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    this.deviceList = [];
+
     this.AS.getUser(this.currentUser._id).subscribe((usr) => {
       this.currentUser = usr;
       this.deviceList = usr.wa_api.filter(
@@ -84,12 +86,14 @@ export class HomeComponent implements OnInit {
       console.log('home', this.deviceList);
 
       // Fetch messages for all devices
+
       this.setMessage();
     });
   }
 
   setMessage() {
     this.messageList = [];
+
     this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
       console.log('admin', admin.data[0]);
       this.wabaDeviceDetails = admin.data[0];
@@ -114,14 +118,14 @@ export class HomeComponent implements OnInit {
           let endDate = new Date();
           let startDate = new Date();
 
-          if (this.isTodayActive) {
-            startDate.setDate(startDate.getDate() - 1);
-            startDate.setHours(23, 59, 0, 0);
-            // startDate.setDate(startDate.getDate() - 6);
-          }
-          if (this.isAllTimeActive) {
-            startDate.setDate(startDate.getDate() - 6);
-          }
+          // if (this.isTodayActive) {
+          //   startDate.setDate(startDate.getDate() - 1);
+          //   startDate.setHours(23, 59, 0, 0);
+          //   // startDate.setDate(startDate.getDate() - 6);
+          // }
+          // if (this.isAllTimeActive) {
+          startDate.setDate(startDate.getDate() - 6);
+          // }
 
           let t = endDate;
           let fd = startDate;
@@ -206,42 +210,43 @@ export class HomeComponent implements OnInit {
 
             ml.map((gv, j) => {
               // console.log('gv', gv);
-              if (this.isAllTimeActive) {
-                this.totalMsg++;
-                if (gv.sent_by == 0) {
-                  this.totalSms++;
-                }
-                if (gv.sent_by == 1) {
-                  this.totalWhatsapp++;
-                }
-                if (gv.sent_by == 2) {
-                  this.notSent++;
-                }
+              // if (this.isAllTimeActive) {
+              this.totalMsg++;
+              if (gv.sent_by == 0) {
+                this.totalSms++;
               }
-              if (this.isTodayActive) {
-                const isToday = (date) => {
-                  const today = new Date();
-                  const givenDate = new Date(date);
-                  return (
-                    today.getFullYear() === givenDate.getFullYear() &&
-                    today.getMonth() === givenDate.getMonth() &&
-                    today.getDate() === givenDate.getDate()
-                  );
-                };
-                // Example usage:
-                if (isToday(gv.createdAt)) {
-                  this.totalMsg++;
-                  if (gv.sent_by == 0) {
-                    this.totalSms++;
-                  }
-                  if (gv.sent_by == 1) {
-                    this.totalWhatsapp++;
-                  }
-                  if (gv.sent_by == 2) {
-                    this.notSent++;
-                  }
-                }
+              if (gv.sent_by == 1) {
+                this.totalWhatsapp++;
               }
+              if (gv.sent_by == 2) {
+                this.notSent++;
+              }
+
+              // }
+              // if (this.isTodayActive) {
+              //   const isToday = (date) => {
+              //     const today = new Date();
+              //     const givenDate = new Date(date);
+              //     return (
+              //       today.getFullYear() === givenDate.getFullYear() &&
+              //       today.getMonth() === givenDate.getMonth() &&
+              //       today.getDate() === givenDate.getDate()
+              //     );
+              //   };
+              //   // Example usage:
+              //   if (isToday(gv.createdAt)) {
+              //     this.totalMsg++;
+              //     if (gv.sent_by == 0) {
+              //       this.totalSms++;
+              //     }
+              //     if (gv.sent_by == 1) {
+              //       this.totalWhatsapp++;
+              //     }
+              //     if (gv.sent_by == 2) {
+              //       this.notSent++;
+              //     }
+              //   }
+              // }
 
               let td = new Date();
               let d = new Date(gv.createdAt);
@@ -318,6 +323,35 @@ export class HomeComponent implements OnInit {
               yesterday: this.yesterday,
               per: this.percentChange,
             });
+            if (this.todayActive) {
+              this.barChartData[0]['data'] = this.rotateZeros(
+                this.barChartData[0]['data']
+              );
+              this.barChartData[1]['data'] = this.rotateZeros(
+                this.barChartData[1]['data']
+              );
+              this.barChartData[2]['data'] = this.rotateZeros(
+                this.barChartData[2]['data']
+              );
+              this.barChartData[3]['data'] = this.rotateZeros(
+                this.barChartData[3]['data']
+              );
+              let num1: any = this.barChartData[1]['data'][6];
+              this.totalWhatsapp = num1;
+
+              let num2: any = this.barChartData[0]['data'][6];
+              this.totalSms = num2;
+
+              let num3: any = this.barChartData[3]['data'][6];
+              this.totalMsg = num3;
+            }
+            console.log(
+              'all',
+              this.barChartData,
+              this.totalWhatsapp,
+              this.totalSms
+            );
+
             let pieTotal = this.totalWhatsapp + this.totalSms;
             this.pieData = [
               (this.totalWhatsapp / pieTotal) * 100,
@@ -336,15 +370,45 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  rotateZeros(arr) {
+    let nonZeros = arr.filter((num) => num !== 0); // Extract non-zero elements
+    let zerosCount = arr.length - nonZeros.length; // Count number of zeros
+    return new Array(zerosCount).fill(0).concat(nonZeros); // Reconstruct array
+  }
+
   todayActive() {
     this.isTodayActive = true;
     this.isAllTimeActive = false;
+    this.deviceList = [];
+
+    this.AS.getUser(this.currentUser._id).subscribe((usr) => {
+      this.currentUser = usr;
+      this.deviceList = usr.wa_api.filter(
+        (d) =>
+          d.status &&
+          (d.wa_api_platform == 'chatapi' ||
+            d.wa_api_platform == 'maytapi' ||
+            d.wa_api_platform == 'greenapi')
+      );
+    });
     this.setMessage();
   }
 
   allTimeActive() {
     this.isTodayActive = false;
     this.isAllTimeActive = true;
+    this.deviceList = [];
+
+    this.AS.getUser(this.currentUser._id).subscribe((usr) => {
+      this.currentUser = usr;
+      this.deviceList = usr.wa_api.filter(
+        (d) =>
+          d.status &&
+          (d.wa_api_platform == 'chatapi' ||
+            d.wa_api_platform == 'maytapi' ||
+            d.wa_api_platform == 'greenapi')
+      );
+    });
     this.setMessage();
   }
 

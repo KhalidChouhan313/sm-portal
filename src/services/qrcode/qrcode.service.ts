@@ -79,24 +79,26 @@ export class QrcodeService {
   public updateReviewPage(id, body, title, des): Observable<any> {
     console.log(body);
     return this.http.post(
-      `${environment.qrApiUrl}/api/company-profile/${id}/myLink/${title}/${des}`,
+      `${environment.apiUrl}/api/qr-code/company-profile/${id}/?link=myLink&title=${title}&description=${des}`,
       body
     );
   }
 
   public getReviewPage(id): Observable<any> {
-    return this.http.get(`${environment.qrApiUrl}/api/getcompanyprofile/${id}`);
+    return this.http.get(
+      `${environment.apiUrl}/api/qr-code/getcompanyprofile/${id}`
+    );
   }
 
   public getReviews(id, page): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/get-reviews/${id}?&page=${page}`
+      `${environment.apiUrl}/api/qr-code/get-reviews/${id}?&page=${page}`
     );
   }
 
   public getReviewsFitered(id, page, rating): Observable<any> {
     return this.http.get(
-      `${environment.qrApiUrl}/api/get-reviews/${id}?rating=${rating}&page=${page}`
+      `${environment.apiUrl}/api/qr-code/get-reviews/${id}?rating=${rating}&page=${page}`
     );
   }
 }

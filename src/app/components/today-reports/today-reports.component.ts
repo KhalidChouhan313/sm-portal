@@ -71,10 +71,11 @@ export class TodayReportsComponent implements OnInit, OnChanges {
 
     // console.log('check', this.graphData);
 
-    // this.totalMsg = this.graphData[3]['data'][6];
-    // this.totalWhatsapp = this.graphData[1]['data'][6];
-    // this.totalSms = this.graphData[0]['data'][6];
-    // this.notSent = this.graphData[2]['data'][6];
+    this.totalMsg = this.graphData[3]['data'][6];
+    this.totalWhatsapp = this.graphData[1]['data'][6];
+    this.totalSms = this.graphData[0]['data'][6];
+    this.notSent = this.graphData[2]['data'][6];
+
     const dataValues = [
       this.totalMsg,
       this.totalWhatsapp,

@@ -22,10 +22,12 @@ export class ReviewPageComponent implements OnInit {
   reviewEnable = false;
 
   response: any;
+  isLoading = false;
 
   constructor(private qrSer: QrcodeService, private admin: AdminService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     const storedUser = localStorage.getItem('user_details');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
@@ -36,27 +38,35 @@ export class ReviewPageComponent implements OnInit {
         this.reviewEnable = res.follow_up_review;
       });
 
-      this.qrSer.getReviewPage(this.currentUser._id).subscribe((res) => {
-        console.log(res);
-        this.response = res;
-
-        this.previewTitle = res.data.title;
-        this.title = res.data.title;
-        this.previewDescription = res.data.description;
-        this.description = res.data.description;
-        this.profilePreview = res.data.profile_image;
-        this.coverPreview = res.data.cover_image;
-      });
+      this.qrSer.getReviewPage(this.currentUser._id).subscribe(
+        (res) => {
+          console.log(res);
+          this.response = res;
+          this.isLoading = false;
+          this.previewTitle = res.data.title;
+          this.title = res.data.title;
+          this.previewDescription = res.data.description;
+          this.description = res.data.description;
+          this.profilePreview = res.data.profile_image;
+          this.coverPreview = res.data.cover_image;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
     }
   }
 
   updateReviewStatus() {
+    this.reviewEnable = !this.reviewEnable;
     const obj = {
       _id: this.currentUser._id,
-      follow_up_review: !this.reviewEnable,
+      follow_up_review: this.reviewEnable,
     };
+
     this.admin.updateUser(obj).subscribe((res) => {
-      console.log(res);
+      // this.reviewEnable = !this.reviewEnable;
+      console.log(res.follow_up_review);
     });
   }
 
@@ -81,10 +91,15 @@ export class ReviewPageComponent implements OnInit {
         this.title,
         this.description
       )
-      .subscribe((res) => {
-        console.log('form', formData);
-        console.log(res);
-      });
+      .subscribe(
+        (res) => {
+          console.log('form', formData);
+          console.log(res);
+        },
+        (err) => {
+          alert("Can't save.");
+        }
+      );
     this.isEditable = false;
   }
 

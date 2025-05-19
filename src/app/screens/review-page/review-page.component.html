@@ -1,4 +1,8 @@
-<main>
+<div style="flex: 1" *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+
+<main *ngIf="!isLoading">
   <app-modal *ngIf="isModalOpen">
     <div
       style="
@@ -51,13 +55,15 @@
           <p class="r-b-p">
             We understand negative feedback is sensitive. For low ratings, the
             review message box is disabled to avoid collecting harsh comments
-            directly. You can handle these cases manually.
+            directly. You can handle these cases manually. These reviews are
+            posted to the iCabbi record of the driver who completed the booking.
           </p>
           <strong class="r-b-s">4-5 Stars:</strong>
           <p class="r-b-p">
             Happy customers? Great! The message box opens, allowing them to
             leave a comment. Once submitted, they are redirected to your Google
-            Reviews page — helping you build public trust and credibility.
+            Reviews page, helping you build public trust and credibility. Google
+            prevent users adding more than one review.
           </p>
         </div>
 
@@ -104,8 +110,8 @@
           <label class="switch_box" [class.active]="reviewEnable">
             <input
               type="checkbox"
-              (change)="reviewEnable = !reviewEnable; cancelEdit()"
               [class.active]="reviewEnable"
+              [checked]="reviewEnable"
               (change)="updateReviewStatus()"
             />
             <span class="slider" [class.active]="reviewEnable"></span>
