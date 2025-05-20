@@ -95,6 +95,9 @@ export class QrPageComponent {
 
   currentUser: any;
   allQrCodes: any = null;
+  pagination: any = null;
+  currentPage: any = 1;
+  totalPage: any = 0;
   activeQrDetails: any = null;
   showUniversalQrGenerator = false;
 
@@ -128,7 +131,25 @@ export class QrPageComponent {
     this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
       console.log(res);
       this.allQrCodes = res.data.location.records.concat(res.data.text.records);
+      let locationPagination = [
+        res.data.location.totalPages,
+        res.data.location.currentPage,
+      ];
+
+      let textPagination = [
+        res.data.text.totalPages,
+        res.data.text.currentPage,
+      ];
+      this.pagination = {
+        location: locationPagination,
+        text: textPagination,
+      };
+      console.log(this.pagination);
       this.updateFilteredQrCodes();
+      console.log({
+        currentPage: this.currentPage,
+        pages: this.totalPage,
+      });
       console.log(this.allQrCodes);
       if (res.length == 0) {
         this.showUniversalQrGenerator = true;
@@ -141,10 +162,14 @@ export class QrPageComponent {
       this.filteredQrCodes = this.allQrCodes.filter(
         (item) => item.type === 'location'
       );
+      this.totalPage = this.pagination.location[0];
+      this.currentPage = this.pagination.location[1];
     } else if (this.activeButton === 'universal') {
       this.filteredQrCodes = this.allQrCodes.filter(
         (item) => item.type === 'text'
       );
+      this.totalPage = this.pagination.text[0];
+      this.currentPage = this.pagination.text[1];
     } else {
       this.filteredQrCodes = this.allQrCodes;
     }
