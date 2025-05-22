@@ -14,7 +14,10 @@ p {
 }
 
 #lineChart {
-  height: 210px !important;
+  height: 331px !important;
+  transform: scaleY(0.7);
+  position: relative;
+  top: 45px;
 }
 
 .chart_con {

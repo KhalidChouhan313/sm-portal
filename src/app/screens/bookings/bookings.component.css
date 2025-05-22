@@ -118,6 +118,18 @@
   position: relative;
 }
 
+.table_body {
+  cursor: pointer;
+}
+
+.table_body:hover {
+  background: lightgray;
+}
+
+.table_body:hover span {
+  background: lightgray;
+}
+
 .th_item {
   padding: 1.5rem 1rem;
   white-space: nowrap;

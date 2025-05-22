@@ -103,6 +103,10 @@ export class TodayReportsComponent implements OnInit, OnChanges {
         responsive: true,
         maintainAspectRatio: false,
         indexAxis: 'y',
+        interaction: {
+          mode: 'point', // Ensures tooltip only shows for the exact bar
+          intersect: true,
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -113,6 +117,8 @@ export class TodayReportsComponent implements OnInit, OnChanges {
             borderColor: '#ccc',
             borderWidth: 1,
             displayColors: false,
+            mode: 'nearest',
+            // intersect: true,
           },
           title: {
             // align: ""

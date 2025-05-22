@@ -2,13 +2,17 @@
   <div class="filter-bar">
     <div style="display: flex; gap: 15px">
       <div class="filter">
+        <p>Name:</p>
+        <input placeholder="Search by Name" />
+      </div>
+      <div class="filter">
         <p>Driver ID:</p>
         <input placeholder="Search by Driver ID" />
       </div>
 
       <div class="filter">
-        <p>Booking ID:</p>
-        <input placeholder="Search by User ID" />
+        <p>Review ID:</p>
+        <input placeholder="Search by Review ID" />
       </div>
 
       <!-- <div class="filter">
@@ -55,7 +59,7 @@
                   letter-spacing: -0.154px;
                 "
               >
-                Test Testing
+                {{ review.booking_name }}
               </p>
 
               <p
@@ -81,7 +85,7 @@
                     line-height: 16.8px; /* 140% */
                     letter-spacing: -0.154px;
                   "
-                  >User ID</span
+                  >Review ID</span
                 >
                 {{ review.review_id }}
               </p>
@@ -131,7 +135,7 @@
         </div>
       </div>
       <div class="review-2">
-        <p
+        <!-- <p
           style="
             color: #1c1c1c;
             font-family: Poppins;
@@ -143,7 +147,7 @@
           "
         >
           Rating
-        </p>
+        </p> -->
         <div class="r-star">
           <span
             *ngFor="let star of stars; let i = index"

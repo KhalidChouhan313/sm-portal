@@ -125,7 +125,12 @@
           *ngIf="!loading"
           class="table_body"
           (click)="selectBooking(booking)"
+          style="position: relative"
         >
+          <app-loader
+            *ngIf="bookingLoader && selectedBooking === booking._id"
+          ></app-loader>
+
           <div class="th_item">
             <input type="checkbox" [checked]="booking.selected" />
           </div>

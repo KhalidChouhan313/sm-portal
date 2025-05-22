@@ -439,3 +439,20 @@
   font-weight: 400;
   line-height: 24px; /* 150% */
 }
+
+.toggle p {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -168px;
+  width: 168px;
+  z-index: 9999;
+  padding: 10px;
+  border-radius: 10px;
+  background: grey;
+  color: white;
+}
+
+.toggle:hover p {
+  display: inline-block;
+}

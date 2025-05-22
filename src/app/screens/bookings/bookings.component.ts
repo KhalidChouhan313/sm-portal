@@ -77,7 +77,9 @@ export class BookingsComponent implements OnInit {
     );
   }
 
+  bookingLoader = false;
   selectBooking = (item: any) => {
+    this.bookingLoader = true;
     if (item._id === this.selectedBooking) {
       this.selectedBooking = '';
       this.currentBookingDetails = null;
@@ -85,6 +87,7 @@ export class BookingsComponent implements OnInit {
       this.bookingsService
         .getBookingDetails(item.booking_id, this.botDetails._id)
         .subscribe((bookingData) => {
+          this.bookingLoader = false;
           this.currentBookingDetails = bookingData.data;
           this.selectedBooking = item?._id;
           console.log(bookingData);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/services';
 
@@ -13,10 +13,15 @@ export class AppSettingsComponent implements OnInit {
   togglesData = [];
   toggles = [];
 
+  booking_confirmation: boolean = false;
+  track_driver_msg: boolean = false;
+  arrived_driver_msg: boolean = false;
+
   constructor(
     private AS: AdminService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +33,13 @@ export class AppSettingsComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
+    this.AS.getUser(this.currentUser._id).subscribe((user) => {
+      console.log('Fetched user from server:', user);
+      this.booking_confirmation = user.booking_confirmation;
+      this.track_driver_msg = user.track_driver_msg;
+      this.arrived_driver_msg = user.arrived_driver_msg;
+      this.cd.detectChanges();
+    });
 
     console.log(this.currentUser);
 
@@ -213,4 +225,59 @@ export class AppSettingsComponent implements OnInit {
   ];
   currentTab: any = this.tabs[1];
   setCurrentTab = (item) => (this.currentTab = item);
+
+  bookingConfirmation() {
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.booking_confirmation = !this.booking_confirmation; // toggle immediately
+    console.log('New value:', this.booking_confirmation);
+
+    const updatedUser = {
+      _id: currentUser._id,
+      booking_confirmation: this.booking_confirmation,
+    };
+
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        // revert if API fails
+        this.booking_confirmation = !this.booking_confirmation;
+        console.error('Failed to update booking confirmation:', err);
+      },
+    });
+  }
+
+  trackDriverMsg() {
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.track_driver_msg = !this.track_driver_msg;
+    console.log('New value:', this.track_driver_msg);
+
+    const updatedUser = {
+      _id: currentUser._id,
+      track_driver_msg: this.track_driver_msg,
+    };
+
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        this.track_driver_msg = !this.track_driver_msg;
+        console.error('Failed to update track driver message:', err);
+      },
+    });
+  }
+
+  arrivedDriverMsg() {
+    const currentUser = JSON.parse(localStorage.getItem('user_details'));
+    this.arrived_driver_msg = !this.arrived_driver_msg;
+    console.log('New value:', this.arrived_driver_msg);
+
+    const updatedUser = {
+      _id: currentUser._id,
+      arrived_driver_msg: this.arrived_driver_msg,
+    };
+
+    this.AS.updateUser(updatedUser).subscribe({
+      error: (err) => {
+        this.arrived_driver_msg = !this.arrived_driver_msg;
+        console.error('Failed to update arrived driver message:', err);
+      },
+    });
+  }
 }

@@ -36,7 +36,8 @@ export class SidebarComponent {
   }
 
   currentItem = '';
-  setCurrentItem = (e: string) => (this.currentItem = e);
+  setCurrentItem = (e: string) =>
+    (this.currentItem = this.currentItem === e ? null : e);
   currentSubItem = '';
   setCurrentSubItem = (e: string) => (this.currentSubItem = e);
 

@@ -12,11 +12,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private authService: AuthService,
     private AS: AdminService,
     private router: Router,
     private eRef: ElementRef,
-    private fb: FormBuilder,
     private BKS: BookingsService
   ) {}
 
@@ -221,7 +219,6 @@ export class HomeComponent implements OnInit {
               if (gv.sent_by == 2) {
                 this.notSent++;
               }
-
               // }
               // if (this.isTodayActive) {
               //   const isToday = (date) => {
@@ -248,15 +245,25 @@ export class HomeComponent implements OnInit {
               //   }
               // }
 
-              let td = new Date();
-              let d = new Date(gv.createdAt);
-              let t = td.getTime() - d.getTime();
-              t = t / (1000 * 60);
-              let i = parseInt(gv.day);
-              let dayIndex = parseInt(gv.day);
-              let ind = this.days.findIndex(
-                (day) => day === this.days[dayIndex]
-              );
+              // let td = new Date();
+              // let d = new Date(gv.createdAt);
+              // let t = td.getTime() - d.getTime();
+              // t = t / (1000 * 60);
+              // let i = parseInt(gv.day);
+              // let dayIndex = parseInt(gv.day);
+              // let ind = this.days.findIndex(
+              //   (day) => day === this.days[dayIndex]
+              // );
+
+              // let arrOfDays = [0, 0, 0, 0, 0, 0, 0];
+              let gvDay = parseInt(gv.day) - 1;
+              let todayDayNum = new Date().getDay();
+              let indGetter = () => {
+                let jsDay = gvDay % 7; // Converts 7 (Sunday) → 0, 1–6 stays same
+                return (jsDay - todayDayNum + 7) % 7;
+              };
+              let ind = indGetter();
+
               // console.log(ind); // Ensure it stays within 0-6
 
               if (gv.sent_by == 0) {
@@ -318,24 +325,7 @@ export class HomeComponent implements OnInit {
                 : `${this.percentChange}`;
 
             // this.percentChange = `${this.percentChange.includes()}`
-            console.log({
-              today: this.thisDay,
-              yesterday: this.yesterday,
-              per: this.percentChange,
-            });
-            if (this.todayActive) {
-              this.barChartData[0]['data'] = this.rotateZeros(
-                this.barChartData[0]['data']
-              );
-              this.barChartData[1]['data'] = this.rotateZeros(
-                this.barChartData[1]['data']
-              );
-              this.barChartData[2]['data'] = this.rotateZeros(
-                this.barChartData[2]['data']
-              );
-              this.barChartData[3]['data'] = this.rotateZeros(
-                this.barChartData[3]['data']
-              );
+            if (this.isTodayActive) {
               let num1: any = this.barChartData[1]['data'][6];
               this.totalWhatsapp = num1;
 
@@ -345,12 +335,27 @@ export class HomeComponent implements OnInit {
               let num3: any = this.barChartData[3]['data'][6];
               this.totalMsg = num3;
             }
-            console.log(
-              'all',
-              this.barChartData,
-              this.totalWhatsapp,
-              this.totalSms
-            );
+
+            if (this.isAllTimeActive) {
+              let pk = 0;
+              let num1: any = this.barChartData[1]['data'].reduce(
+                (a, b: any) => a + b,
+                0
+              );
+              this.totalWhatsapp = num1;
+
+              let num2: any = this.barChartData[0]['data'].reduce(
+                (a, b: any) => a + b,
+                0
+              );
+              this.totalSms = num2;
+
+              let num3: any = this.barChartData[3]['data'].reduce(
+                (a, b: any) => a + b,
+                0
+              );
+              this.totalMsg = num3;
+            }
 
             let pieTotal = this.totalWhatsapp + this.totalSms;
             this.pieData = [
@@ -370,11 +375,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  rotateZeros(arr) {
-    let nonZeros = arr.filter((num) => num !== 0); // Extract non-zero elements
-    let zerosCount = arr.length - nonZeros.length; // Count number of zeros
-    return new Array(zerosCount).fill(0).concat(nonZeros); // Reconstruct array
-  }
+  // rotateZeros(arr) {
+  //   let nonZeros = arr.filter((num) => num !== 0); // Extract non-zero elements
+  //   let zerosCount = arr.length - nonZeros.length; // Count number of zeros
+  //   return new Array(zerosCount).fill(0).concat(nonZeros); // Reconstruct array
+  // }
 
   todayActive() {
     this.isTodayActive = true;

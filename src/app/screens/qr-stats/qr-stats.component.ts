@@ -33,6 +33,22 @@ export class QrStatsComponent implements OnInit {
     });
   }
 
+  getStatusColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'scanned':
+        return 'blue';
+      case 'processed':
+        return 'orange';
+      case 'quoted':
+        return 'purple';
+      case 'completed':
+      case 'booked':
+        return 'green';
+      default:
+        return 'black';
+    }
+  }
+
   copyToClipboard(value: string) {
     navigator.clipboard
       .writeText(value)

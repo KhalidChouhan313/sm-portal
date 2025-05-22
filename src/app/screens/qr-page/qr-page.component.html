@@ -3514,7 +3514,8 @@
       (click)="
         setActive('universal');
         updateFilteredQrCodes();
-        selectedItemIndex = null
+        selectedItemIndex = null;
+        currentPage = 1
       "
       [class.active]="activeButton === 'universal'"
     >
@@ -3522,7 +3523,10 @@
     </button>
     <button
       (click)="
-        setActive('smart'); updateFilteredQrCodes(); selectedItemIndex = null
+        setActive('smart');
+        updateFilteredQrCodes();
+        selectedItemIndex = null;
+        currentPage = 1
       "
       [class.active]="activeButton === 'smart'"
     >
@@ -5044,9 +5048,85 @@
       </div>
     </div>
 
-    <div style="width: 100%; display: flex; justify-content: right">
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        padding-right: 200px;
+      "
+    >
       <div style="display: flex">
-        <!-- <button></button> -->
+        <div class="pagination">
+          <!-- First Page -->
+          <button
+            *ngIf="currentPage > 1"
+            class="page-btn"
+            (click)="goToPage(1)"
+          >
+            1
+          </button>
+
+          <div
+            *ngIf="currentPage > 1"
+            style="
+              width: 50px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 16px;
+            "
+          >
+            ...
+          </div>
+
+          <!-- Previous Page -->
+          <button
+            *ngIf="currentPage - 1 > 1"
+            (click)="goToPage(currentPage - 1)"
+            class="page-btn"
+          >
+            {{ currentPage - 1 }}
+          </button>
+
+          <!-- Current Page -->
+          <button disabled class="active-btn">
+            {{ currentPage }}
+          </button>
+
+          <!-- Next Page -->
+          <button
+            *ngIf="currentPage + 1 < totalPage"
+            (click)="goToPage(currentPage + 1)"
+            class="page-btn"
+          >
+            {{ currentPage + 1 }}
+          </button>
+
+          <div
+            *ngIf="currentPage < totalPage"
+            style="
+              width: 50px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 16px;
+            "
+          >
+            ...
+          </div>
+
+          <!-- Last Page -->
+          <button
+            *ngIf="currentPage < totalPage"
+            (click)="goToPage(totalPage)"
+            class="page-btn"
+          >
+            {{ totalPage }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

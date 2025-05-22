@@ -127,34 +127,45 @@ export class QrPageComponent {
     this.fetchQrList();
   }
 
-  fetchQrList() {
-    this.qrcodeService.getAllQrCodes(this.currentUser._id).subscribe((res) => {
-      console.log(res);
-      this.allQrCodes = res.data.location.records.concat(res.data.text.records);
-      let locationPagination = [
-        res.data.location.totalPages,
-        res.data.location.currentPage,
-      ];
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPage) {
+      this.currentPage = page;
+      this.fetchQrList();
+    }
+  }
 
-      let textPagination = [
-        res.data.text.totalPages,
-        res.data.text.currentPage,
-      ];
-      this.pagination = {
-        location: locationPagination,
-        text: textPagination,
-      };
-      console.log(this.pagination);
-      this.updateFilteredQrCodes();
-      console.log({
-        currentPage: this.currentPage,
-        pages: this.totalPage,
+  fetchQrList() {
+    this.qrcodeService
+      .getAllQrCodes(this.currentUser._id, this.currentPage)
+      .subscribe((res) => {
+        console.log(res);
+        this.allQrCodes = res.data.location.records.concat(
+          res.data.text.records
+        );
+        let locationPagination = [
+          res.data.location.totalPages,
+          res.data.location.currentPage,
+        ];
+
+        let textPagination = [
+          res.data.text.totalPages,
+          res.data.text.currentPage,
+        ];
+        this.pagination = {
+          location: locationPagination,
+          text: textPagination,
+        };
+        console.log(this.pagination);
+        this.updateFilteredQrCodes();
+        console.log({
+          currentPage: this.currentPage,
+          pages: this.totalPage,
+        });
+        console.log(this.allQrCodes);
+        if (res.length == 0) {
+          this.showUniversalQrGenerator = true;
+        }
       });
-      console.log(this.allQrCodes);
-      if (res.length == 0) {
-        this.showUniversalQrGenerator = true;
-      }
-    });
   }
   filteredQrCodes = [];
   updateFilteredQrCodes(): void {
