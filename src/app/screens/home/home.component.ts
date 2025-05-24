@@ -89,287 +89,562 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // setMessage() {
+  //   this.messageList = [];
+
+  //   this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
+  //     console.log('admin', admin.data[0]);
+  //     this.wabaDeviceDetails = admin.data[0];
+  //     if (admin.data[0].wa_phone_id.length) {
+  //       this.deviceList.push({
+  //         device_id: admin.data[0].wa_phone_id,
+  //         active: true,
+  //       });
+  //     }
+
+  //     let requests = this.deviceList.map((device) => {
+  //       let objMsg = {
+  //         device_id: device.device_id,
+  //         company_id: this.currentUser._id,
+  //         skip: this.currentPageLimit,
+  //       };
+  //       this.AS.getMessageList(objMsg).subscribe((ml) => {
+  //         this.messageList = this.messageList.concat(ml);
+
+  //         this.isMsgLoad = false;
+
+  //         let endDate = new Date();
+  //         let startDate = new Date();
+
+  //         // if (this.isTodayActive) {
+  //         //   startDate.setDate(startDate.getDate() - 1);
+  //         //   startDate.setHours(23, 59, 0, 0);
+  //         //   // startDate.setDate(startDate.getDate() - 6);
+  //         // }
+  //         // if (this.isAllTimeActive) {
+  //         startDate.setDate(startDate.getDate() - 6);
+  //         // }
+
+  //         let t = endDate;
+  //         let fd = startDate;
+  //         let tz = t.getTimezoneOffset() / 60;
+  //         fd.setDate(fd.getDate() - 1);
+  //         let fh = 24 + tz;
+  //         let m = (fd.getMonth() + 1).toString();
+  //         let d = fd.getDate().toString();
+  //         if (parseInt(m) < 10) {
+  //           m = '0' + m;
+  //         }
+  //         if (parseInt(d) < 10) {
+  //           d = '0' + d;
+  //         }
+  //         let startDateStr =
+  //           fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
+
+  //         let th = 23 + tz;
+  //         let em = (t.getMonth() + 1).toString();
+  //         let dm = (t.getDate() + 1).toString();
+
+  //         if (parseInt(em) < 10) {
+  //           em = '0' + em;
+  //         }
+  //         if (parseInt(dm) < 10) {
+  //           dm = '0' + dm;
+  //         }
+
+  //         let endDateStr =
+  //           t.getFullYear() + '-' + em + '-' + dm + 'T' + th + ':59:59.999Z';
+
+  //         let objVals = {
+  //           device_id: device.device_id,
+  //           company_id: this.currentUser._id,
+  //           startDate: startDateStr,
+  //           endDate: endDateStr,
+  //         };
+  //         this.totalMsg = 0;
+  //         this.totalSms = 0;
+  //         this.totalWhatsapp = 0;
+  //         this.notSent = 0;
+  //         this.barChartData = [
+  //           { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
+  //           { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
+  //           { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
+  //           { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' },
+  //         ];
+  //         this.percentChange = 0;
+  //         this.thisDay = 0;
+  //         this.yesterday = 0;
+
+  //         this.AS.getMessageGraphValue(objVals).subscribe((ml) => {
+  //           let tday = ml[ml.length - 1].day;
+  //           let today = ml[ml.length - 1].day;
+
+  //           const fDate = new Date(ml[ml.length - 1].createdAt);
+
+  //           this.firstMsgDate = fDate.toLocaleDateString('en-GB', {
+  //             day: '2-digit',
+  //             month: 'short',
+  //             year: 'numeric',
+  //           });
+
+  //           const lDate = new Date(ml[0].createdAt);
+
+  //           this.lastMsgDate = lDate.toLocaleDateString('en-GB', {
+  //             day: '2-digit',
+  //             month: 'short',
+  //             year: 'numeric',
+  //           });
+
+  //           let x = 0;
+  //           while (x < 7) {
+  //             today++;
+  //             if (today > 6) {
+  //               today = 0;
+  //             }
+  //             // this.barChartLabels[x] = this.days[today];
+  //             x++;
+  //           }
+  //           console.log(ml);
+
+  //           ml.map((gv, j) => {
+  //             // console.log('gv', gv);
+  //             // if (this.isAllTimeActive) {
+  //             this.totalMsg++;
+  //             if (gv.sent_by == 0) {
+  //               this.totalSms++;
+  //             }
+  //             if (gv.sent_by == 1) {
+  //               this.totalWhatsapp++;
+  //             }
+  //             if (gv.sent_by == 2) {
+  //               this.notSent++;
+  //             }
+  //             // }
+  //             // if (this.isTodayActive) {
+  //             //   const isToday = (date) => {
+  //             //     const today = new Date();
+  //             //     const givenDate = new Date(date);
+  //             //     return (
+  //             //       today.getFullYear() === givenDate.getFullYear() &&
+  //             //       today.getMonth() === givenDate.getMonth() &&
+  //             //       today.getDate() === givenDate.getDate()
+  //             //     );
+  //             //   };
+  //             //   // Example usage:
+  //             //   if (isToday(gv.createdAt)) {
+  //             //     this.totalMsg++;
+  //             //     if (gv.sent_by == 0) {
+  //             //       this.totalSms++;
+  //             //     }
+  //             //     if (gv.sent_by == 1) {
+  //             //       this.totalWhatsapp++;
+  //             //     }
+  //             //     if (gv.sent_by == 2) {
+  //             //       this.notSent++;
+  //             //     }
+  //             //   }
+  //             // }
+
+  //             // let td = new Date();
+  //             // let d = new Date(gv.createdAt);
+  //             // let t = td.getTime() - d.getTime();
+  //             // t = t / (1000 * 60);
+  //             // let i = parseInt(gv.day);
+  //             // let dayIndex = parseInt(gv.day);
+  //             // let ind = this.days.findIndex(
+  //             //   (day) => day === this.days[dayIndex]
+  //             // );
+
+  //             // let arrOfDays = [0, 0, 0, 0, 0, 0, 0];
+  //             let gvDay = parseInt(gv.day) - 1;
+  //             let todayDayNum = new Date().getDay();
+  //             let indGetter = () => {
+  //               let jsDay = gvDay % 7; // Converts 7 (Sunday) → 0, 1–6 stays same
+  //               return (jsDay - todayDayNum + 7) % 7;
+  //             };
+  //             let ind = indGetter();
+
+  //             // console.log(ind); // Ensure it stays within 0-6
+
+  //             if (gv.sent_by == 0) {
+  //               let v = this.barChartData[0]['data'][ind];
+  //               this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
+  //             } else if (gv.sent_by == 1) {
+  //               let v = this.barChartData[1]['data'][ind];
+  //               this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
+  //             } else {
+  //               let v = this.barChartData[2]['data'][ind];
+  //               this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
+  //             }
+  //             let v = this.barChartData[3]['data'][ind];
+  //             this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
+  //           });
+
+  //           // this.barChartData[0]['data'] = [
+  //           //   this.barChartData[0]['data'][3],
+  //           //   this.barChartData[0]['data'][4],
+  //           //   this.barChartData[0]['data'][5],
+  //           //   this.barChartData[0]['data'][6],
+  //           //   this.barChartData[0]['data'][0],
+  //           //   this.barChartData[0]['data'][1],
+  //           //   this.barChartData[0]['data'][2],
+  //           // ];
+  //           // this.barChartData[1]['data'] = [
+  //           //   this.barChartData[1]['data'][3],
+  //           //   this.barChartData[1]['data'][4],
+  //           //   this.barChartData[1]['data'][5],
+  //           //   this.barChartData[1]['data'][6],
+  //           //   this.barChartData[1]['data'][0],
+  //           //   this.barChartData[1]['data'][1],
+  //           //   this.barChartData[1]['data'][2],
+  //           // ];
+  //           // this.barChartData[2]['data'] = [
+  //           //   this.barChartData[2]['data'][3],
+  //           //   this.barChartData[2]['data'][4],
+  //           //   this.barChartData[2]['data'][5],
+  //           //   this.barChartData[2]['data'][6],
+  //           //   this.barChartData[2]['data'][0],
+  //           //   this.barChartData[2]['data'][1],
+  //           //   this.barChartData[2]['data'][2],
+  //           // ];
+  //           // this.barChartData[3]['data'] = [
+  //           //   this.barChartData[3]['data'][3],
+  //           //   this.barChartData[3]['data'][4],
+  //           //   this.barChartData[3]['data'][5],
+  //           //   this.barChartData[3]['data'][6],
+  //           //   this.barChartData[3]['data'][0],
+  //           //   this.barChartData[3]['data'][1],
+  //           //   this.barChartData[3]['data'][2],
+  //           // ];
+
+  //           this.percentChange = Math.round(((1880 - 1500) / 1500) * 10);
+
+  //           this.percentChange =
+  //             this.percentChange >= 0
+  //               ? `+${this.percentChange}`
+  //               : `${this.percentChange}`;
+
+  //           // this.percentChange = `${this.percentChange.includes()}`
+  //           if (this.isTodayActive) {
+  //             let num1: any = this.barChartData[1]['data'][6];
+  //             this.totalWhatsapp = num1;
+
+  //             let num2: any = this.barChartData[0]['data'][6];
+  //             this.totalSms = num2;
+
+  //             let num3: any = this.barChartData[3]['data'][6];
+  //             this.totalMsg = num3;
+  //           }
+
+  //           if (this.isAllTimeActive) {
+  //             let pk = 0;
+  //             let num1: any = this.barChartData[1]['data'].reduce(
+  //               (a, b: any) => a + b,
+  //               0
+  //             );
+  //             this.totalWhatsapp = num1;
+
+  //             let num2: any = this.barChartData[0]['data'].reduce(
+  //               (a, b: any) => a + b,
+  //               0
+  //             );
+  //             this.totalSms = num2;
+
+  //             let num3: any = this.barChartData[3]['data'].reduce(
+  //               (a, b: any) => a + b,
+  //               0
+  //             );
+  //             this.totalMsg = num3;
+  //           }
+
+  //           let pieTotal = this.totalWhatsapp + this.totalSms;
+  //           this.pieData = [
+  //             (this.totalWhatsapp / pieTotal) * 100,
+  //             (this.totalSms / pieTotal) * 100,
+  //           ];
+  //           console.log({
+  //             total: this.totalMsg,
+  //             whatsapp: this.totalWhatsapp,
+  //             sms: this.totalSms,
+  //           });
+
+  //           // console.log('checking', this.barChartData);
+  //         });
+  //       });
+  //     });
+  //   });
+  // }
+
   setMessage() {
     this.messageList = [];
 
-    this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
-      console.log('admin', admin.data[0]);
-      this.wabaDeviceDetails = admin.data[0];
-      if (admin.data[0].wa_phone_id.length) {
-        this.deviceList.push({
-          device_id: admin.data[0].wa_phone_id,
-          active: true,
-        });
-      }
+    this.BKS.getCompanyBots(this.currentUser._id).subscribe({
+      next: (admin) => {
+        console.log('admin', admin?.data?.[0]);
+        this.wabaDeviceDetails = admin?.data?.[0];
 
-      let requests = this.deviceList.map((device) => {
-        let objMsg = {
+        if (admin?.data?.[0]?.wa_phone_id?.length) {
+          this.deviceList.push({
+            device_id: admin.data[0].wa_phone_id,
+            active: true,
+          });
+        }
+
+        this.continueMessageFlow(); // ← Extracted logic
+      },
+      error: (err) => {
+        console.error('Error fetching company bots', err);
+        // Still continue even on error
+        // this.deviceList = []; // default or empty
+        this.continueMessageFlow(); // ← Still run the rest
+      },
+    });
+  }
+
+  continueMessageFlow() {
+    let requests = this.deviceList.map((device) => {
+      let objMsg = {
+        device_id: device.device_id,
+        company_id: this.currentUser._id,
+        skip: this.currentPageLimit,
+      };
+      this.AS.getMessageList(objMsg).subscribe((ml) => {
+        this.messageList = this.messageList.concat(ml);
+        this.isMsgLoad = false;
+
+        let endDate = new Date();
+        let startDate = new Date();
+        startDate.setDate(startDate.getDate() - 6);
+
+        let t = endDate;
+        let fd = startDate;
+        let tz = t.getTimezoneOffset() / 60;
+        fd.setDate(fd.getDate() - 1);
+        let fh = 24 + tz;
+        let m = String(fd.getMonth() + 1).padStart(2, '0');
+        let d = String(fd.getDate()).padStart(2, '0');
+
+        let startDateStr = `${fd.getFullYear()}-${m}-${d}T${fh}:00:00.000Z`;
+
+        let th = 23 + tz;
+        let em = String(t.getMonth() + 1).padStart(2, '0');
+        let dm = String(t.getDate() + 1).padStart(2, '0');
+        let endDateStr = `${t.getFullYear()}-${em}-${dm}T${th}:59:59.999Z`;
+
+        let objVals = {
           device_id: device.device_id,
           company_id: this.currentUser._id,
-          skip: this.currentPageLimit,
+          startDate: startDateStr,
+          endDate: endDateStr,
         };
-        this.AS.getMessageList(objMsg).subscribe((ml) => {
-          this.messageList = this.messageList.concat(ml);
 
-          this.isMsgLoad = false;
+        this.totalMsg = 0;
+        this.totalSms = 0;
+        this.totalWhatsapp = 0;
+        this.notSent = 0;
+        this.barChartData = [
+          { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
+          { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
+          { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
+          { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' },
+        ];
 
-          let endDate = new Date();
-          let startDate = new Date();
+        this.percentChange = 0;
 
-          // if (this.isTodayActive) {
-          //   startDate.setDate(startDate.getDate() - 1);
-          //   startDate.setHours(23, 59, 0, 0);
-          //   // startDate.setDate(startDate.getDate() - 6);
-          // }
-          // if (this.isAllTimeActive) {
-          startDate.setDate(startDate.getDate() - 6);
-          // }
+        this.AS.getMessageGraphValue(objVals).subscribe((ml) => {
+          let tday = ml[ml.length - 1].day;
+          let today = ml[ml.length - 1].day;
 
-          let t = endDate;
-          let fd = startDate;
-          let tz = t.getTimezoneOffset() / 60;
-          fd.setDate(fd.getDate() - 1);
-          let fh = 24 + tz;
-          let m = (fd.getMonth() + 1).toString();
-          let d = fd.getDate().toString();
-          if (parseInt(m) < 10) {
-            m = '0' + m;
-          }
-          if (parseInt(d) < 10) {
-            d = '0' + d;
-          }
-          let startDateStr =
-            fd.getFullYear() + '-' + m + '-' + d + 'T' + fh + ':00:00.000Z';
+          const fDate = new Date(ml[ml.length - 1].createdAt);
 
-          let th = 23 + tz;
-          let em = (t.getMonth() + 1).toString();
-          let dm = (t.getDate() + 1).toString();
-
-          if (parseInt(em) < 10) {
-            em = '0' + em;
-          }
-          if (parseInt(dm) < 10) {
-            dm = '0' + dm;
-          }
-
-          let endDateStr =
-            t.getFullYear() + '-' + em + '-' + dm + 'T' + th + ':59:59.999Z';
-
-          let objVals = {
-            device_id: device.device_id,
-            company_id: this.currentUser._id,
-            startDate: startDateStr,
-            endDate: endDateStr,
-          };
-          this.totalMsg = 0;
-          this.totalSms = 0;
-          this.totalWhatsapp = 0;
-          this.notSent = 0;
-          this.barChartData = [
-            { data: [0, 0, 0, 0, 0, 0, 0], label: 'SMS' },
-            { data: [0, 0, 0, 0, 0, 0, 0], label: 'WhatsApp' },
-            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Not Sent' },
-            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Total' },
-          ];
-          this.percentChange = 0;
-          this.thisDay = 0;
-          this.yesterday = 0;
-
-          this.AS.getMessageGraphValue(objVals).subscribe((ml) => {
-            let tday = ml[ml.length - 1].day;
-            let today = ml[ml.length - 1].day;
-
-            const fDate = new Date(ml[ml.length - 1].createdAt);
-
-            this.firstMsgDate = fDate.toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-            });
-
-            const lDate = new Date(ml[0].createdAt);
-
-            this.lastMsgDate = lDate.toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-            });
-
-            let x = 0;
-            while (x < 7) {
-              today++;
-              if (today > 6) {
-                today = 0;
-              }
-              // this.barChartLabels[x] = this.days[today];
-              x++;
-            }
-            console.log(ml);
-
-            ml.map((gv, j) => {
-              // console.log('gv', gv);
-              // if (this.isAllTimeActive) {
-              this.totalMsg++;
-              if (gv.sent_by == 0) {
-                this.totalSms++;
-              }
-              if (gv.sent_by == 1) {
-                this.totalWhatsapp++;
-              }
-              if (gv.sent_by == 2) {
-                this.notSent++;
-              }
-              // }
-              // if (this.isTodayActive) {
-              //   const isToday = (date) => {
-              //     const today = new Date();
-              //     const givenDate = new Date(date);
-              //     return (
-              //       today.getFullYear() === givenDate.getFullYear() &&
-              //       today.getMonth() === givenDate.getMonth() &&
-              //       today.getDate() === givenDate.getDate()
-              //     );
-              //   };
-              //   // Example usage:
-              //   if (isToday(gv.createdAt)) {
-              //     this.totalMsg++;
-              //     if (gv.sent_by == 0) {
-              //       this.totalSms++;
-              //     }
-              //     if (gv.sent_by == 1) {
-              //       this.totalWhatsapp++;
-              //     }
-              //     if (gv.sent_by == 2) {
-              //       this.notSent++;
-              //     }
-              //   }
-              // }
-
-              // let td = new Date();
-              // let d = new Date(gv.createdAt);
-              // let t = td.getTime() - d.getTime();
-              // t = t / (1000 * 60);
-              // let i = parseInt(gv.day);
-              // let dayIndex = parseInt(gv.day);
-              // let ind = this.days.findIndex(
-              //   (day) => day === this.days[dayIndex]
-              // );
-
-              // let arrOfDays = [0, 0, 0, 0, 0, 0, 0];
-              let gvDay = parseInt(gv.day) - 1;
-              let todayDayNum = new Date().getDay();
-              let indGetter = () => {
-                let jsDay = gvDay % 7; // Converts 7 (Sunday) → 0, 1–6 stays same
-                return (jsDay - todayDayNum + 7) % 7;
-              };
-              let ind = indGetter();
-
-              // console.log(ind); // Ensure it stays within 0-6
-
-              if (gv.sent_by == 0) {
-                let v = this.barChartData[0]['data'][ind];
-                this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
-              } else if (gv.sent_by == 1) {
-                let v = this.barChartData[1]['data'][ind];
-                this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
-              } else {
-                let v = this.barChartData[2]['data'][ind];
-                this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
-              }
-              let v = this.barChartData[3]['data'][ind];
-              this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
-            });
-
-            // this.barChartData[0]['data'] = [
-            //   this.barChartData[0]['data'][3],
-            //   this.barChartData[0]['data'][4],
-            //   this.barChartData[0]['data'][5],
-            //   this.barChartData[0]['data'][6],
-            //   this.barChartData[0]['data'][0],
-            //   this.barChartData[0]['data'][1],
-            //   this.barChartData[0]['data'][2],
-            // ];
-            // this.barChartData[1]['data'] = [
-            //   this.barChartData[1]['data'][3],
-            //   this.barChartData[1]['data'][4],
-            //   this.barChartData[1]['data'][5],
-            //   this.barChartData[1]['data'][6],
-            //   this.barChartData[1]['data'][0],
-            //   this.barChartData[1]['data'][1],
-            //   this.barChartData[1]['data'][2],
-            // ];
-            // this.barChartData[2]['data'] = [
-            //   this.barChartData[2]['data'][3],
-            //   this.barChartData[2]['data'][4],
-            //   this.barChartData[2]['data'][5],
-            //   this.barChartData[2]['data'][6],
-            //   this.barChartData[2]['data'][0],
-            //   this.barChartData[2]['data'][1],
-            //   this.barChartData[2]['data'][2],
-            // ];
-            // this.barChartData[3]['data'] = [
-            //   this.barChartData[3]['data'][3],
-            //   this.barChartData[3]['data'][4],
-            //   this.barChartData[3]['data'][5],
-            //   this.barChartData[3]['data'][6],
-            //   this.barChartData[3]['data'][0],
-            //   this.barChartData[3]['data'][1],
-            //   this.barChartData[3]['data'][2],
-            // ];
-
-            this.percentChange = Math.round(((1880 - 1500) / 1500) * 10);
-
-            this.percentChange =
-              this.percentChange >= 0
-                ? `+${this.percentChange}`
-                : `${this.percentChange}`;
-
-            // this.percentChange = `${this.percentChange.includes()}`
-            if (this.isTodayActive) {
-              let num1: any = this.barChartData[1]['data'][6];
-              this.totalWhatsapp = num1;
-
-              let num2: any = this.barChartData[0]['data'][6];
-              this.totalSms = num2;
-
-              let num3: any = this.barChartData[3]['data'][6];
-              this.totalMsg = num3;
-            }
-
-            if (this.isAllTimeActive) {
-              let pk = 0;
-              let num1: any = this.barChartData[1]['data'].reduce(
-                (a, b: any) => a + b,
-                0
-              );
-              this.totalWhatsapp = num1;
-
-              let num2: any = this.barChartData[0]['data'].reduce(
-                (a, b: any) => a + b,
-                0
-              );
-              this.totalSms = num2;
-
-              let num3: any = this.barChartData[3]['data'].reduce(
-                (a, b: any) => a + b,
-                0
-              );
-              this.totalMsg = num3;
-            }
-
-            let pieTotal = this.totalWhatsapp + this.totalSms;
-            this.pieData = [
-              (this.totalWhatsapp / pieTotal) * 100,
-              (this.totalSms / pieTotal) * 100,
-            ];
-            console.log({
-              total: this.totalMsg,
-              whatsapp: this.totalWhatsapp,
-              sms: this.totalSms,
-            });
-
-            // console.log('checking', this.barChartData);
+          this.firstMsgDate = fDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
           });
+
+          const lDate = new Date(ml[0].createdAt);
+
+          this.lastMsgDate = lDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          });
+
+          let x = 0;
+          while (x < 7) {
+            today++;
+            if (today > 6) {
+              today = 0;
+            }
+            // this.barChartLabels[x] = this.days[today];
+            x++;
+          }
+          console.log(ml);
+
+          ml.map((gv, j) => {
+            // console.log('gv', gv);
+            // if (this.isAllTimeActive) {
+            this.totalMsg++;
+            if (gv.sent_by == 0) {
+              this.totalSms++;
+            }
+            if (gv.sent_by == 1) {
+              this.totalWhatsapp++;
+            }
+            if (gv.sent_by == 2) {
+              this.notSent++;
+            }
+            // }
+            // if (this.isTodayActive) {
+            //   const isToday = (date) => {
+            //     const today = new Date();
+            //     const givenDate = new Date(date);
+            //     return (
+            //       today.getFullYear() === givenDate.getFullYear() &&
+            //       today.getMonth() === givenDate.getMonth() &&
+            //       today.getDate() === givenDate.getDate()
+            //     );
+            //   };
+            //   // Example usage:
+            //   if (isToday(gv.createdAt)) {
+            //     this.totalMsg++;
+            //     if (gv.sent_by == 0) {
+            //       this.totalSms++;
+            //     }
+            //     if (gv.sent_by == 1) {
+            //       this.totalWhatsapp++;
+            //     }
+            //     if (gv.sent_by == 2) {
+            //       this.notSent++;
+            //     }
+            //   }
+            // }
+
+            // let td = new Date();
+            // let d = new Date(gv.createdAt);
+            // let t = td.getTime() - d.getTime();
+            // t = t / (1000 * 60);
+            // let i = parseInt(gv.day);
+            // let dayIndex = parseInt(gv.day);
+            // let ind = this.days.findIndex(
+            //   (day) => day === this.days[dayIndex]
+            // );
+
+            // let arrOfDays = [0, 0, 0, 0, 0, 0, 0];
+            let gvDay = parseInt(gv.day) - 1;
+            let todayDayNum = new Date().getDay();
+            let indGetter = () => {
+              let jsDay = gvDay % 7; // Converts 7 (Sunday) → 0, 1–6 stays same
+              return (jsDay - todayDayNum + 7) % 7;
+            };
+            let ind = indGetter();
+
+            // console.log(ind); // Ensure it stays within 0-6
+
+            if (gv.sent_by == 0) {
+              let v = this.barChartData[0]['data'][ind];
+              this.barChartData[0]['data'][ind] = parseInt(v.toString()) + 1;
+            } else if (gv.sent_by == 1) {
+              let v = this.barChartData[1]['data'][ind];
+              this.barChartData[1]['data'][ind] = parseInt(v.toString()) + 1;
+            } else {
+              let v = this.barChartData[2]['data'][ind];
+              this.barChartData[2]['data'][ind] = parseInt(v.toString()) + 1;
+            }
+            let v = this.barChartData[3]['data'][ind];
+            this.barChartData[3]['data'][ind] = parseInt(v.toString()) + 1;
+          });
+
+          // this.barChartData[0]['data'] = [
+          //   this.barChartData[0]['data'][3],
+          //   this.barChartData[0]['data'][4],
+          //   this.barChartData[0]['data'][5],
+          //   this.barChartData[0]['data'][6],
+          //   this.barChartData[0]['data'][0],
+          //   this.barChartData[0]['data'][1],
+          //   this.barChartData[0]['data'][2],
+          // ];
+          // this.barChartData[1]['data'] = [
+          //   this.barChartData[1]['data'][3],
+          //   this.barChartData[1]['data'][4],
+          //   this.barChartData[1]['data'][5],
+          //   this.barChartData[1]['data'][6],
+          //   this.barChartData[1]['data'][0],
+          //   this.barChartData[1]['data'][1],
+          //   this.barChartData[1]['data'][2],
+          // ];
+          // this.barChartData[2]['data'] = [
+          //   this.barChartData[2]['data'][3],
+          //   this.barChartData[2]['data'][4],
+          //   this.barChartData[2]['data'][5],
+          //   this.barChartData[2]['data'][6],
+          //   this.barChartData[2]['data'][0],
+          //   this.barChartData[2]['data'][1],
+          //   this.barChartData[2]['data'][2],
+          // ];
+          // this.barChartData[3]['data'] = [
+          //   this.barChartData[3]['data'][3],
+          //   this.barChartData[3]['data'][4],
+          //   this.barChartData[3]['data'][5],
+          //   this.barChartData[3]['data'][6],
+          //   this.barChartData[3]['data'][0],
+          //   this.barChartData[3]['data'][1],
+          //   this.barChartData[3]['data'][2],
+          // ];
+
+          this.percentChange = Math.round(((1880 - 1500) / 1500) * 10);
+
+          this.percentChange =
+            this.percentChange >= 0
+              ? `+${this.percentChange}`
+              : `${this.percentChange}`;
+
+          // this.percentChange = `${this.percentChange.includes()}`
+          if (this.isTodayActive) {
+            let num1: any = this.barChartData[1]['data'][6];
+            this.totalWhatsapp = num1;
+
+            let num2: any = this.barChartData[0]['data'][6];
+            this.totalSms = num2;
+
+            let num3: any = this.barChartData[3]['data'][6];
+            this.totalMsg = num3;
+          }
+
+          if (this.isAllTimeActive) {
+            let pk = 0;
+            let num1: any = this.barChartData[1]['data'].reduce(
+              (a, b: any) => a + b,
+              0
+            );
+            this.totalWhatsapp = num1;
+
+            let num2: any = this.barChartData[0]['data'].reduce(
+              (a, b: any) => a + b,
+              0
+            );
+            this.totalSms = num2;
+
+            let num3: any = this.barChartData[3]['data'].reduce(
+              (a, b: any) => a + b,
+              0
+            );
+            this.totalMsg = num3;
+          }
+
+          let pieTotal = this.totalWhatsapp + this.totalSms;
+          this.pieData = [
+            (this.totalWhatsapp / pieTotal) * 100,
+            (this.totalSms / pieTotal) * 100,
+          ];
+          console.log({
+            total: this.totalMsg,
+            whatsapp: this.totalWhatsapp,
+            sms: this.totalSms,
+          });
+
+          // console.log('checking', this.barChartData);
         });
       });
     });
