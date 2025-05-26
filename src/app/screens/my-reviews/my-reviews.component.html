@@ -41,7 +41,7 @@
       Clear
     </button>
   </div>
-  <div class="reviews">
+  <!-- <div class="reviews">
     <div class="review" *ngFor="let review of reviews; let i = index">
       <div class="review-1">
         <div class="review-1-1">
@@ -135,19 +135,7 @@
         </div>
       </div>
       <div class="review-2">
-        <!-- <p
-          style="
-            color: #1c1c1c;
-            font-family: Poppins;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 16.8px; /* 140% */
-            letter-spacing: -0.154px;
-          "
-        >
-          Rating
-        </p> -->
+       
         <div class="r-star">
           <span
             *ngFor="let star of stars; let i = index"
@@ -170,6 +158,41 @@
         "
       >
         {{ review.review }}
+      </div>
+    </div>
+  </div> -->
+
+  <div class="review-list-con">
+    <div class="list-head">
+      <p>User Name</p>
+      <p>Date/time</p>
+      <p>booking ID</p>
+      <p>review ID</p>
+      <p>Driver ID</p>
+      <p>Rating</p>
+      <p>Review</p>
+    </div>
+    <div class="list-body-con">
+      <div class="list-body" *ngFor="let review of reviews; let i = index">
+        <p>
+          <span>L</span>
+          Liam Johnson
+        </p>
+
+        <p>{{ review.createdAt | date : "EEE, MMM d, y" }}</p>
+        <p>1656546131616566</p>
+        <p>{{ review.review_id }}</p>
+        <p>{{ review.driver_id }}</p>
+        <div class="r-star">
+          <span
+            *ngFor="let star of stars; let i = index"
+            class="my-star"
+            [ngClass]="getStarClass(review.rating, i)"
+            >★</span
+          >
+        </div>
+
+        <p>{{ review.review }}</p>
       </div>
     </div>
   </div>
