@@ -12,6 +12,10 @@ export class MyReviewsComponent implements OnInit {
   hovered = 0;
   currentUser: any;
 
+  fName: string = '';
+  fDriverId: string = '';
+  fReviewId: string = '';
+
   reviews: any;
 
   constructor(private qrSer: QrcodeService) {}
@@ -24,13 +28,18 @@ export class MyReviewsComponent implements OnInit {
       // console.log(this.currentUser.name); // access specific properties
     }
     this.qrSer.getReviews(this.currentUser._id, 1).subscribe((res) => {
-      console.log(res);
+      console.log('res', res);
       this.reviews = res.data;
     });
   }
 
   clear() {
     this.rating = 0;
+
+    this.fName = '';
+    this.fDriverId = '';
+    this.fReviewId = '';
+
     this.qrSer.getReviews(this.currentUser._id, 1).subscribe((res) => {
       console.log(res);
       this.reviews = res.data;

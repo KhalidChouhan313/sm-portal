@@ -1344,8 +1344,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -1373,8 +1373,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -1431,8 +1431,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -1480,8 +1480,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -1527,8 +1527,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -1566,8 +1566,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -1634,8 +1634,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -1693,8 +1693,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -1792,8 +1792,21 @@
         justify-content: center;
         height: 568px;
         overflow: scroll;
+        position: relative;
       "
     >
+      <img
+        *ngIf="!isQrChanged"
+        style="
+          position: absolute;
+          z-index: 1000;
+          width: 202px;
+          height: 202px;
+          right: 50px;
+          top: 159px;
+        "
+        [src]="activeQrDetails.recordWithoutPublicId[0].qrCodeImage"
+      />
       <div class="cus-modal">
         <div class="cus-modal-1">
           <h1>Design your QR <img src="../../../assets/warning.png" /></h1>
@@ -3069,8 +3082,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -3098,8 +3111,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -3156,8 +3169,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -3205,8 +3218,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -3252,8 +3265,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -3291,8 +3304,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -3359,8 +3372,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{ color: bgColor }"
               [qrOptions]="{
@@ -3418,8 +3431,8 @@
               [image]="logoDataUrl"
               [imageOptions]="{
                 crossOrigin: 'anonymous',
-                margin: 10,
-                imageSize: 0.2
+                margin: 2,
+                imageSize: 0.4
               }"
               [backgroundOptions]="{
                 gradient: {
@@ -4400,7 +4413,8 @@
                 <button
                   (click)="
                     openUniversalQrCustomizeFromDetails =
-                      !openUniversalQrCustomizeFromDetails
+                      !openUniversalQrCustomizeFromDetails;
+                    isQrChanged = false
                   "
                 >
                   Customize QR Code
@@ -5055,6 +5069,7 @@
         justify-content: right;
         padding-right: 200px;
       "
+      *ngIf="totalPage > 1"
     >
       <div style="display: flex">
         <div class="pagination">

@@ -365,6 +365,7 @@
   outline: none;
   background-color: transparent;
   cursor: pointer;
+  display: flex;
 }
 
 .icons_badge svg {

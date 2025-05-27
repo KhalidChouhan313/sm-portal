@@ -41,13 +41,11 @@
         >
           Update
         </button> -->
-        <button *ngIf="!btn2" (click)="startEdit('btn2'); save('btn2')">
-          Edit
-        </button>
+        <button *ngIf="!btn2" (click)="startEdit('btn2')">Edit</button>
         <div *ngIf="btn2" style="display: flex; gap: 10px">
           <button
             [disabled]="siteId < 0 || additionalPrice == null"
-            (click)="updateSiteID()"
+            (click)="updateSiteID(); save('btn2')"
           >
             Save
           </button>
@@ -71,7 +69,7 @@
                 [(ngModel)]="vBSName1"
                 [disabled]="!btn3"
                 maxlength="20"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -82,7 +80,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType1"
                 [disabled]="!btn3"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -98,7 +96,7 @@
                 [(ngModel)]="vBSName2"
                 [disabled]="!btn3"
                 maxlength="20"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -109,7 +107,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType2"
                 [disabled]="!btn3"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -125,7 +123,7 @@
                 [(ngModel)]="vBSName3"
                 [disabled]="!btn3"
                 maxlength="20"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -136,7 +134,7 @@
                 style="width: 150px"
                 [(ngModel)]="vBSType3"
                 [disabled]="!btn3"
-                style="width: 300px"
+                style="width: 280px"
               />
             </div>
           </div>
@@ -186,7 +184,7 @@
                   [(ngModel)]="pickupLatitude"
                   type="number"
                   [disabled]="!btn4"
-                  style="width: 150px"
+                  style="width: 100px"
                 />
               </div>
               <span>:</span>
@@ -206,7 +204,7 @@
                   [(ngModel)]="pickupLongitude"
                   type="number"
                   [disabled]="!btn4"
-                  style="width: 150px"
+                  style="width: 100px"
                 />
               </div>
             </div>
@@ -254,7 +252,7 @@
                   [(ngModel)]="destinationLatitude"
                   type="number"
                   [disabled]="!btn4"
-                  style="width: 150px"
+                  style="width: 100px"
                 />
               </div>
 
@@ -275,7 +273,7 @@
                   [(ngModel)]="destinationLongitude"
                   type="number"
                   [disabled]="!btn4"
-                  style="width: 150px"
+                  style="width: 100px"
                 />
               </div>
             </div>
@@ -707,10 +705,7 @@
             class="qry-list-item"
             *ngFor="let qry of queryList; let i = index"
           >
-            <div
-              class="col-md-3"
-              style="border-right: 1px solid #c1c1c1; white-space: nowrap"
-            >
+            <div class="col-md-3" style="white-space: nowrap">
               {{ qry.bot_query }}
             </div>
             <div

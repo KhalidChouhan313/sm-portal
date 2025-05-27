@@ -264,7 +264,7 @@ export class QrPageComponent {
               this.qrcodeService.updateQrImg(res._id, formData).subscribe(
                 (qrRes) => {
                   console.log(qrRes);
-
+                  this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
@@ -365,7 +365,7 @@ export class QrPageComponent {
                   let user = JSON.parse(localStorage.getItem('user_details'));
                   this.currentUser = user;
                   console.log(qrRes);
-
+                  this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
                 (qrErr) => console.log('QR save error:', qrErr)
@@ -542,6 +542,7 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
+      alert('Updated Successfully');
       this.activeQrDetails.recordWithoutPublicId[0].name = this.qrListTitle;
       this.activeQrDetails.recordWithoutPublicId[0].text =
         this.qrListDescription;
@@ -574,6 +575,8 @@ export class QrPageComponent {
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
       console.log(res);
+      alert('Updated Successfully');
+
       this.activeQrDetails.recordWithoutPublicId[0].title = this.qrListTitle;
       this.activeQrDetails.recordWithoutPublicId[0].text =
         this.qrListDescription;
@@ -594,6 +597,7 @@ export class QrPageComponent {
 
   updateQrPickupLocation(index) {
     let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
+    alert('Updated Successfully');
 
     const dataObject = {
       name: this.activeQrDetails.recordWithoutPublicId[0].name,
@@ -755,8 +759,9 @@ export class QrPageComponent {
   logoDataUrl = '';
 
   isGradient: boolean = false;
-
+  isQrChanged: boolean = false;
   regenQr() {
+    this.isQrChanged = true;
     this.qrShouldRender = false;
     // this.cShowQrLoader = true;
 

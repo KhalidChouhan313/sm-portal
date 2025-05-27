@@ -895,6 +895,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   height: 338px;
+  gap: 10px;
 }
 
 .item-detail-l-1 div {
@@ -1108,7 +1109,6 @@ h2 {
 
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 10px 0px rgba(46, 188, 150, 0.2);
 
   color: var(--dark-color, #181818);
   text-align: center;
@@ -1124,7 +1124,7 @@ h2 {
 .r-1-2 div {
   display: flex;
   height: 115px;
-  width: 330px;
+  width: 240px;
   padding: 25px 15px;
   flex-direction: column;
   justify-content: center;

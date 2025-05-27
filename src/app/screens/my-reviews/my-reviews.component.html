@@ -3,16 +3,16 @@
     <div style="display: flex; gap: 15px">
       <div class="filter">
         <p>Name:</p>
-        <input placeholder="Search by Name" />
+        <input [(ngModel)]="fName" placeholder="Search by Name" />
       </div>
       <div class="filter">
         <p>Driver ID:</p>
-        <input placeholder="Search by Driver ID" />
+        <input [(ngModel)]="fDriverId" placeholder="Search by Driver ID" />
       </div>
 
       <div class="filter">
         <p>Review ID:</p>
-        <input placeholder="Search by Review ID" />
+        <input [(ngModel)]="fReviewId" placeholder="Search by Review ID" />
       </div>
 
       <!-- <div class="filter">
@@ -165,9 +165,9 @@
   <div class="review-list-con">
     <div class="list-head">
       <p>User Name</p>
-      <p>Date/time</p>
-      <p>booking ID</p>
-      <p>review ID</p>
+      <p>Date/Time</p>
+      <p>Booking ID</p>
+      <p>Review ID</p>
       <p>Driver ID</p>
       <p>Rating</p>
       <p>Review</p>

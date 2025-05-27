@@ -66,6 +66,7 @@ main {
   border-radius: 9.418px;
   border: 0.856px solid white;
   background: rgba(217, 217, 217, 0.4);
+  color: white;
 }
 
 .filter input::-webkit-input-placeholder {
