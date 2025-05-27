@@ -280,4 +280,28 @@ export class AppSettingsComponent implements OnInit {
       },
     });
   }
+  showBookingModal = false;
+  bookingCancelTime: string = '';
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+
+    // Allow: 0-9 (char codes 48 to 57)
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  updateBookingCancelTime() {
+    const obj = {
+      booking_confirmation_time: this.bookingCancelTime,
+    };
+    this.AS.updateUser(obj).subscribe(
+      (res) => {
+        console.log(res);
+        this.showBookingModal = false;
+      },
+      (err) => {
+        this.showBookingModal = false;
+      }
+    );
+  }
 }

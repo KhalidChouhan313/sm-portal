@@ -1074,7 +1074,7 @@ export class QrPageComponent {
                 //     this.allQrCodes = res.data.location.concat(res.data.text);
                 //     this.updateFilteredQrCodes();
                 //   });
-                this.selectedItemIndex = null;
+                // this.selectedItemIndex = null;
                 // this.fetchQrList();
               },
               (qrErr) => console.log('QR save error:', qrErr)

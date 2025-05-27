@@ -1,4 +1,26 @@
 <div class="container-own">
+  <app-modal *ngIf="showBookingModal">
+    <div style="background: white; padding: 10px; border: 5px">
+      <input
+        style="padding: 10px; margin-right: 10px"
+        type="text"
+        (keypress)="allowOnlyNumbers($event)"
+        [(ngModel)]="bookingCancelTime"
+      />
+      <button
+        style="
+          background: green;
+          color: white;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+        "
+        (click)="updateBookingCancelTime()"
+      >
+        Save
+      </button>
+    </div>
+  </app-modal>
   <div *ngIf="currentTab.name !== 'Profile'" class="left">
     <div
       class="item"
@@ -18,6 +40,234 @@
 
     <!-- smsm settings -->
     <ng-container *ngIf="currentTab.name === 'SMS Settings'">
+      <div class="h">Booking Cancellation settings</div>
+      <div class="r-a-c-p">
+        <div
+          class="r-a-c-p-left"
+          style="display: flex; flex-direction: column; gap: 2rem"
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              width: 100%;
+            "
+          >
+            <div style="display: flex; flex-direction: row; width: 100%">
+              <div
+                class="f-con"
+                style="width: 50%; display: flex; justify-content: start"
+              >
+                <div
+                  class="toggle"
+                  style="
+                    border: none;
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <div style="display: flex; align-items: center; gap: 15px">
+                    <span class="f-heading"
+                      >Allow New Booking Cancellation</span
+                    >
+                    <img
+                      style="width: 20px"
+                      src="../../../assets/warning.png"
+                    />
+                  </div>
+
+                  <!-- Use (change) event to handle the toggle -->
+
+                  <div
+                    style="display: flex; align-items: center; gap: 15px"
+                    [class.active]="booking_confirmation"
+                  >
+                    <label
+                      class="switch_box"
+                      [class.active]="booking_confirmation"
+                    >
+                      <input
+                        type="checkbox"
+                        [class.active]="booking_confirmation"
+                        (change)="bookingConfirmation()"
+                        [checked]="booking_confirmation"
+                      />
+                      <span
+                        class="slider"
+                        [class.active]="booking_confirmation"
+                      ></span>
+                    </label>
+
+                    <p class="helping-text">
+                      Enable or disable the ability for users to cancel new
+                      (unassigned) bookings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="f-con"
+                style="width: 50%; display: flex; justify-content: start"
+              >
+                <div
+                  class="toggle"
+                  style="
+                    border: none;
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    style="display: flex; align-items: center; gap: 15px"
+                    [class.active]="bookingCancelTime"
+                  >
+                    <span class="f-heading" [class.active]="bookingCancelTime"
+                      >Allow Dispatched Booking Cancellation</span
+                    >
+                    <img
+                      style="width: 20px"
+                      src="../../../assets/warning.png"
+                    />
+                  </div>
+                  <!-- Use (change) event to handle the toggle -->
+                  <div
+                    style="display: flex; align-items: center; gap: 15px"
+                    [class.active]="bookingCancelTime"
+                  >
+                    <label
+                      class="switch_box"
+                      [class.active]="bookingCancelTime"
+                      (click)="showBookingModal = true"
+                    >
+                      <input
+                        type="checkbox"
+                        [class.active]="bookingCancelTime"
+                      />
+                      <span
+                        class="slider"
+                        [class.active]="bookingCancelTime"
+                      ></span>
+                    </label>
+
+                    <p class="helping-text">
+                      Enable or disable the ability for users to cancel a
+                      booking after it has been dispatched to a driver.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: row; width: 100%">
+              <div
+                class="f-con"
+                style="width: 50%; display: flex; justify-content: start"
+              >
+                <div
+                  class="toggle"
+                  style="
+                    border: none;
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <div style="display: flex; align-items: center; gap: 15px">
+                    <span class="f-heading"
+                      >Allow Customer to Message Driver on Dispatch</span
+                    >
+                    <img
+                      style="width: 20px"
+                      src="../../../assets/warning.png"
+                    />
+                  </div>
+
+                  <!-- Use (change) event to handle the toggle -->
+                  <div
+                    style="display: flex; align-items: center; gap: 15px"
+                    [class.active]="track_driver_msg"
+                  >
+                    <label class="switch_box" [class.active]="track_driver_msg">
+                      <input
+                        type="checkbox"
+                        [class.active]="track_driver_msg"
+                        (change)="trackDriverMsg()"
+                        [checked]="track_driver_msg"
+                      />
+                      <span
+                        class="slider"
+                        [class.active]="track_driver_msg"
+                      ></span>
+                    </label>
+
+                    <p class="helping-text">
+                      Enable or disable the option for customers to send a
+                      message to the driver when their ride is dispatched.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="f-con"
+                style="width: 50%; display: flex; justify-content: start"
+              >
+                <div
+                  class="toggle"
+                  style="
+                    border: none;
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <div style="display: flex; align-items: center; gap: 15px">
+                    <span class="f-heading"
+                      >Allow Customer to Message Driver on Arrival</span
+                    >
+                    <img
+                      style="width: 20px"
+                      src="../../../assets/warning.png"
+                    />
+                  </div>
+
+                  <!-- Use (change) event to handle the toggle -->
+                  <div
+                    style="display: flex; align-items: center; gap: 15px"
+                    [class.active]="arrived_driver_msg"
+                  >
+                    <label
+                      class="switch_box"
+                      [class.active]="arrived_driver_msg"
+                    >
+                      <input
+                        type="checkbox"
+                        [class.active]="arrived_driver_msg"
+                        (change)="arrivedDriverMsg()"
+                        [checked]="arrived_driver_msg"
+                      />
+                      <span
+                        class="slider"
+                        [class.active]="arrived_driver_msg"
+                      ></span>
+                    </label>
+
+                    <p class="helping-text">
+                      Enable or disable the option for customers to send a
+                      message to the driver when the driver has arrived at the
+                      pickup location.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="h">Outgoing WhatsApp settings</div>
       <div class="toggles">
         <div
@@ -141,229 +391,6 @@
             />
             <span class="slider"></span>
           </label>
-        </div>
-      </div>
-
-      <div class="r-a-c-p">
-        <div
-          class="r-a-c-p-left"
-          style="display: flex; flex-direction: column; gap: 2rem"
-        >
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              width: 100%;
-            "
-          >
-            <div style="display: flex; flex-direction: row; width: 100%">
-              <div
-                class="f-con"
-                style="width: 50%; display: flex; justify-content: start"
-              >
-                <div
-                  class="toggle"
-                  style="
-                    border: none;
-                    width: 80%;
-                    display: flex;
-                    align-items: center;
-                  "
-                >
-                  <div style="display: flex; align-items: center; gap: 15px">
-                    <span class="f-heading"
-                      >Allow New Booking Cancellation</span
-                    >
-                    <img
-                      style="width: 20px"
-                      src="../../../assets/warning.png"
-                    />
-                  </div>
-
-                  <!-- Use (change) event to handle the toggle -->
-
-                  <div
-                    style="display: flex; align-items: center; gap: 15px"
-                    [class.active]="booking_confirmation"
-                  >
-                    <label
-                      class="switch_box"
-                      [class.active]="booking_confirmation"
-                    >
-                      <input
-                        type="checkbox"
-                        [class.active]="booking_confirmation"
-                        (change)="bookingConfirmation()"
-                        [checked]="booking_confirmation"
-                      />
-                      <span
-                        class="slider"
-                        [class.active]="booking_confirmation"
-                      ></span>
-                    </label>
-
-                    <p class="helping-text">
-                      Enable or disable the ability for users to cancel new
-                      (unassigned) bookings.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="f-con"
-                style="width: 50%; display: flex; justify-content: start"
-              >
-                <div
-                  class="toggle"
-                  style="
-                    border: none;
-                    width: 80%;
-                    display: flex;
-                    align-items: center;
-                  "
-                >
-                  <div style="display: flex; align-items: center; gap: 15px">
-                    <span class="f-heading"
-                      >Allow Dispatched Booking Cancellation</span
-                    >
-                    <img
-                      style="width: 20px"
-                      src="../../../assets/warning.png"
-                    />
-                  </div>
-                  <!-- Use (change) event to handle the toggle -->
-                  <div
-                    style="display: flex; align-items: center; gap: 15px"
-                    [class.active]="booking_confirmation"
-                  >
-                    <label
-                      class="switch_box"
-                      [class.active]="booking_confirmation"
-                    >
-                      <input
-                        type="checkbox"
-                        [class.active]="booking_confirmation"
-                      />
-                      <span
-                        class="slider"
-                        [class.active]="booking_confirmation"
-                      ></span>
-                    </label>
-
-                    <p class="helping-text">
-                      Enable or disable the ability for users to cancel a
-                      booking after it has been dispatched to a driver.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; flex-direction: row; width: 100%">
-              <div
-                class="f-con"
-                style="width: 50%; display: flex; justify-content: start"
-              >
-                <div
-                  class="toggle"
-                  style="
-                    border: none;
-                    width: 80%;
-                    display: flex;
-                    align-items: center;
-                  "
-                >
-                  <div style="display: flex; align-items: center; gap: 15px">
-                    <span class="f-heading"
-                      >Allow Customer to Message Driver on Dispatch</span
-                    >
-                    <img
-                      style="width: 20px"
-                      src="../../../assets/warning.png"
-                    />
-                  </div>
-
-                  <!-- Use (change) event to handle the toggle -->
-                  <div
-                    style="display: flex; align-items: center; gap: 15px"
-                    [class.active]="track_driver_msg"
-                  >
-                    <label class="switch_box" [class.active]="track_driver_msg">
-                      <input
-                        type="checkbox"
-                        [class.active]="track_driver_msg"
-                        (change)="trackDriverMsg()"
-                        [checked]="track_driver_msg"
-                      />
-                      <span
-                        class="slider"
-                        [class.active]="track_driver_msg"
-                      ></span>
-                    </label>
-
-                    <p class="helping-text">
-                      Enable or disable the option for customers to send a
-                      message to the driver when their ride is dispatched.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="f-con"
-                style="width: 50%; display: flex; justify-content: start"
-              >
-                <div
-                  class="toggle"
-                  style="
-                    border: none;
-                    width: 80%;
-                    display: flex;
-                    align-items: center;
-                  "
-                >
-                  <div style="display: flex; align-items: center; gap: 15px">
-                    <span class="f-heading"
-                      >Allow Customer to Message Driver on Arrival</span
-                    >
-                    <img
-                      style="width: 20px"
-                      src="../../../assets/warning.png"
-                    />
-                  </div>
-
-                  <!-- Use (change) event to handle the toggle -->
-                  <div
-                    style="display: flex; align-items: center; gap: 15px"
-                    [class.active]="arrived_driver_msg"
-                  >
-                    <label
-                      class="switch_box"
-                      [class.active]="arrived_driver_msg"
-                    >
-                      <input
-                        type="checkbox"
-                        [class.active]="arrived_driver_msg"
-                        (change)="arrivedDriverMsg()"
-                        [checked]="arrived_driver_msg"
-                      />
-                      <span
-                        class="slider"
-                        [class.active]="arrived_driver_msg"
-                      ></span>
-                    </label>
-
-                    <p class="helping-text">
-                      Enable or disable the option for customers to send a
-                      message to the driver when the driver has arrived at the
-                      pickup location.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
