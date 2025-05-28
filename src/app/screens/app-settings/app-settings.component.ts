@@ -38,6 +38,15 @@ export class AppSettingsComponent implements OnInit {
       this.booking_confirmation = user.booking_confirmation;
       this.track_driver_msg = user.track_driver_msg;
       this.arrived_driver_msg = user.arrived_driver_msg;
+      if (
+        user.booking_confirmation_time !== '' &&
+        user.booking_confirmation_time !== '0'
+      ) {
+        this.bookingCancelAllow = true;
+      } else {
+        this.bookingCancelAllow = false;
+      }
+
       this.cd.detectChanges();
     });
 
@@ -282,6 +291,7 @@ export class AppSettingsComponent implements OnInit {
   }
   showBookingModal = false;
   bookingCancelTime: string = '';
+  bookingCancelAllow = false;
   allowOnlyNumbers(event: KeyboardEvent) {
     const charCode = event.which ? event.which : event.keyCode;
 
@@ -290,14 +300,31 @@ export class AppSettingsComponent implements OnInit {
       event.preventDefault();
     }
   }
+
+  cancelBookingCancelTime() {
+    this.bookingCancelTime = '';
+    this.showBookingModal = !this.showBookingModal;
+  }
+
   updateBookingCancelTime() {
     const obj = {
+      _id: this.currentUser._id,
       booking_confirmation_time: this.bookingCancelTime,
     };
     this.AS.updateUser(obj).subscribe(
       (res) => {
         console.log(res);
+        if (
+          res.booking_confirmation_time !== '' &&
+          res.booking_confirmation_time !== '0'
+        ) {
+          this.bookingCancelAllow = true;
+        } else {
+          this.bookingCancelAllow = false;
+        }
+
         this.showBookingModal = false;
+        console.log(this.bookingCancelAllow);
       },
       (err) => {
         this.showBookingModal = false;
