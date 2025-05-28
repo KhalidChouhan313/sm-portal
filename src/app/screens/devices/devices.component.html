@@ -626,7 +626,7 @@
       <a class="active" *ngIf="page > 1" (click)="previousPage()"
         >&laquo; Prev
       </a>
-      <a *ngIf="messageList.length > 0" class="active" (click)="nextPage()"
+      <a *ngIf="messageList.length == 50" class="active" (click)="nextPage()"
         >Next &raquo;</a
       >
     </div>

@@ -326,7 +326,10 @@
           ></textarea>
 
           <!-- Show Emoji Picker only for the active textarea -->
-          <div *ngIf="isExpanded && activeIndex === i" class="emoji-list">
+          <div
+            *ngIf="isExpanded && instanceData[i].isEditable"
+            class="emoji-list"
+          >
             <emoji-mart
               (emojiSelect)="addEmoji($event)"
               [darkMode]="false"

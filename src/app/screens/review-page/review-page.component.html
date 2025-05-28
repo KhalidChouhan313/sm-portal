@@ -284,6 +284,7 @@
                 justify-content: center;
                 background: #3b323258;
               "
+              *ngIf="isEditable"
               class="img-in-up"
             >
               <p style="color: white">Upload Image</p>
@@ -321,6 +322,7 @@
             class="img-in"
           >
             <label
+              *ngIf="isEditable"
               for="cover-img"
               class="img-in-up"
               style="
