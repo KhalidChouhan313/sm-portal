@@ -492,6 +492,8 @@ export class QrPageComponent {
             ?.address || '';
 
         this.currentQr = this.activeQrDetails.recordWithoutPublicId[0].url;
+        this.isStatusChecked =
+          this.activeQrDetails.recordWithoutPublicId[0].status;
 
         this.activeQrId = this.activeQrDetails.recordWithoutPublicId[0]._id;
         this.qrDetailImgLoader = false;
@@ -625,7 +627,7 @@ export class QrPageComponent {
     this.qrListPickupLocation = this.activeQrDetails.pickupDetails.address;
     this.isQrListPickupLocationEditable = true;
   }
-
+  isStatusChecked: any;
   updateQrStatus(index: number, status: string) {
     let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
     const dataObject = {

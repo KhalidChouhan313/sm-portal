@@ -4349,6 +4349,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
               "
             >
               <img style="width: 15px" src="../../../assets/see-qr.png" />
@@ -4362,6 +4363,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
               "
               (click)="directToQrStats(i)"
             >
@@ -4390,6 +4392,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
               "
               (click)="toggleDeleteModal(i)"
             >
@@ -4434,6 +4437,7 @@
                     <input
                       type="checkbox"
                       [checked]="item.status === 'active'"
+                      (change)="item.status = !item.status"
                     />
                     <span class="slider"></span>
                   </label>
