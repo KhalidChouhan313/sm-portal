@@ -630,9 +630,11 @@ export class QrPageComponent {
   isStatusChecked: any;
   updateQrStatus(index: number, status: string) {
     let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
+    // this.filteredQrCodes[index].status = !this.filteredQrCodes[index].status;
     const dataObject = {
       status: status,
     };
+
     this.qrcodeService
       .updateQrCodeStatus(qrCodeId, dataObject)
       .subscribe((res) => {

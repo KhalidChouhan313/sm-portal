@@ -36,10 +36,29 @@ export class SidebarComponent {
   }
 
   currentItem = '';
-  setCurrentItem = (e: string) =>
-    (this.currentItem = this.currentItem === e ? null : e);
+  hoveredItem: string | null = null;
+
+  onMouseEnter(item: string) {
+    this.hoveredItem = item;
+  }
+
+  onMouseLeave() {
+    if (this.currentSubItem == '') {
+      this.hoveredItem = null;
+    }
+  }
+
+  setCurrentItem = (e: string) => {
+    this.currentSubItem = '';
+    this.hoveredItem = null;
+    this.currentItem = this.currentItem === e ? null : e;
+  };
   currentSubItem = '';
-  setCurrentSubItem = (e: string) => (this.currentSubItem = e);
+
+  setCurrentSubItem = (e: string) => {
+    this.currentItem = '';
+    this.currentSubItem = e;
+  };
 
   isToggled = false;
   toggleNavbar = () => (this.isToggled = !this.isToggled);

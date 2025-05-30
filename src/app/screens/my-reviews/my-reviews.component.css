@@ -186,6 +186,7 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 4px;
 }
 
 .my-star.red {
