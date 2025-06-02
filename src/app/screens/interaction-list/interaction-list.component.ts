@@ -18,7 +18,7 @@ export class InteractionListComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.BS.getInteractionList(this.currentUser._id).subscribe((res: any) => {
-      // console.log(res);
+      console.log(res);
       this.interactionList = res//.reverse();
     });
   }

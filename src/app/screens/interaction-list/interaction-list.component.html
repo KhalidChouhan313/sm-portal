@@ -5,6 +5,7 @@
       <tr>
         <th>Created Date</th>
         <th>Phone</th>
+        <th>Source</th>
         <th>Status</th>
         <th>Booking Date/Time</th>
       </tr>
@@ -22,13 +23,17 @@
         </td>
         <td>{{ item.phone }}</td>
         <td>
-          <span
-            class="status-badge"
-            [ngClass]="{
+          <span *ngIf="item.flow == 'direct'">User Initiated</span>
+          <span *ngIf="item.flow == 'followup'">Follow Up</span>
+          <span *ngIf="item.flow == 'arrived'">Arrived</span>
+          <span *ngIf="item.flow == 'qrscan'">QR Scan</span>
+          <span *ngIf="item.flow == 'location_qrscan'">Location QR Scan</span>
+        </td>
+        <td>
+          <span class="status-badge" [ngClass]="{
               active: item.status === 'completed',
               inactive: item.status !== 'completed'
-            }"
-          >
+            }">
             <span *ngIf="item.status === 'completed'">Completed</span>
             <span *ngIf="item.status !== 'completed'">Incomplete</span>
           </span>
@@ -47,15 +52,8 @@
   </table>
 </div>
 <div class="interaction-flow-layer" *ngIf="interactionDetails"></div>
-<div
-  class="interaction-flow-container col-md-12"
-  *ngIf="interactionDetails"
-  (click)="closeInteractionFlow()"
->
-  <div
-    class="interaction-flow-box col-xl-4 col-lg-5 col-md-6 col-sm-12 col-xs-12"
-    (click)="stopPropagation($event)"
-  >
+<div class="interaction-flow-container col-md-12" *ngIf="interactionDetails" (click)="closeInteractionFlow()">
+  <div class="interaction-flow-box col-xl-4 col-lg-5 col-md-6 col-sm-12 col-xs-12" (click)="stopPropagation($event)">
     <div class="interaction-flow-header">
       <div>
         <h1>Interaction Flow</h1>
@@ -65,8 +63,6 @@
       </div>
       <a (click)="closeInteractionFlow()" class="close-interaction-flow">x</a>
     </div>
-    <app-interaction-flow
-      [interactionDetails]="interactionDetails"
-    ></app-interaction-flow>
+    <app-interaction-flow [interactionDetails]="interactionDetails"></app-interaction-flow>
   </div>
 </div>
