@@ -130,6 +130,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'chats',
+    loadChildren: () =>
+      import('./screens/chats/chats.module').then((m) => m.ChatsModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./screens/login/login.module').then((m) => m.LoginModules),
