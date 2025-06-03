@@ -481,4 +481,9 @@ export class ChatsComponent implements OnInit {
       }
     );
   }
+
+  formatBoldStars(text: string): string {
+    // Replace *word* with <strong>word</strong>
+    return text.replace(/\*(\w+)\*/g, '<strong>$1</strong>');
+  }
 }

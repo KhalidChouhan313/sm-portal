@@ -36,13 +36,15 @@
       <ng-container *ngFor="let contact of contactList; let i = index">
         <div
           (click)="selectContact(i)"
-          style="
-            padding: 20px 30px;
-            border-bottom: 1px solid lightgray;
-            cursor: pointer;
-            display: flex;
-            gap: 15px;
-          "
+          [ngStyle]="{
+            'background-color':
+              selectedContactIndex === i ? 'lightgray' : 'white',
+            padding: '20px 30px',
+            'border-bottom': '1px solid lightgray',
+            cursor: 'pointer',
+            display: 'flex',
+            gap: '15px'
+          }"
         >
           <div
             style="
@@ -157,18 +159,41 @@
             style="width: 100%"
           />
         </div>
-        <div>
-          <p style="font-weight: 600; font-family: 'DM Sans'; margin-bottom: 0">
-            {{
-              contactDetailList[selectedContactIndex]?.name ||
-                contactList[selectedContactIndex]?.chatId.split("@")[0]
-            }}
-          </p>
-          <p
-            *ngIf="contactDetailList[selectedContactIndex]?.lastSeen"
-            style="font-family: 'DM Sans'; margin-bottom: 0"
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
           >
-            Last seen: {{ contactDetailList[selectedContactIndex]?.lastSeen }}
+            <p
+              style="font-weight: 600; font-family: 'DM Sans'; margin-bottom: 0"
+            >
+              {{
+                contactDetailList[selectedContactIndex]?.name ||
+                  contactList[selectedContactIndex]?.chatId.split("@")[0]
+              }}
+            </p>
+            <p
+              *ngIf="contactDetailList[selectedContactIndex]?.lastSeen"
+              style="font-family: 'DM Sans'; margin-bottom: 0"
+            >
+              Last seen: {{ contactDetailList[selectedContactIndex]?.lastSeen }}
+            </p>
+          </div>
+          <p
+            *ngIf="contactDetailList[selectedContactIndex].name != ''"
+            style="margin-bottom: 0; font-weight: 600; font-family: 'DM Sans'"
+          >
+            {{ contactList[selectedContactIndex]?.chatId.split("@")[0] }}
           </p>
         </div>
       </div>
@@ -178,9 +203,14 @@
           class="chat-bubble"
           [ngClass]="chat.type === 'outgoing' ? 'outgoing' : 'incoming'"
         >
-          <p style="font-size: 12px">
-            {{ chat.textMessage || chat.extendedTextMessage?.text }}
-          </p>
+          <p
+            style="font-size: 12px"
+            [innerHTML]="
+              formatBoldStars(
+                chat.textMessage || chat.extendedTextMessage?.text
+              )
+            "
+          ></p>
           <div
             style="
               width: 100%;
