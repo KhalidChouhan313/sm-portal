@@ -1,6 +1,10 @@
+<div *ngIf="interactionList.length" class="pagination">
+  <a class="active" *ngIf="page >= 1" (click)="previousPage()">&laquo; Prev
+  </a>
+  <a *ngIf="interactionList.length == 50" class="active" (click)="nextPage()">Next &raquo;</a>
+</div>
 <div class="a_table_wrapper">
   <table class="table">
-    <!-- Table Head -->
     <thead>
       <tr>
         <th>Created Date</th>
@@ -11,8 +15,6 @@
       </tr>
     </thead>
 
-    <!-- Table Body -->
-    <!-- <app-loader *ngIf="interactionList.length === 0"></app-loader> -->
     <tbody>
       <tr *ngIf="interactionList.length === 0">
         <td colspan="3">No data found</td>
@@ -50,6 +52,11 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div *ngIf="interactionList.length" class="pagination">
+  <a class="active" *ngIf="page >= 1" (click)="previousPage()">&laquo; Prev
+  </a>
+  <a *ngIf="interactionList.length == 50" class="active" (click)="nextPage()">Next &raquo;</a>
 </div>
 <div class="interaction-flow-layer" *ngIf="interactionDetails"></div>
 <div class="interaction-flow-container col-md-12" *ngIf="interactionDetails" (click)="closeInteractionFlow()">

@@ -83,8 +83,8 @@ export class BookingsService {
     return this.http.get(`${environment.apiUrl}/api/waba/price-based-stats/${company_id}`);
   }
 
-  public getInteractionList(company_id) {
-    return this.http.get(`${environment.apiUrl}/api/waba/interactions/${company_id}`);
+  public getInteractionList(company_id, skip) {
+    return this.http.get(`${environment.apiUrl}/api/waba/interactions/${company_id}?s=${skip}`);
   }
 
   public getInteractionDetails(interaction_id) {
