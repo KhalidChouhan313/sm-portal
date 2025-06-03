@@ -52,6 +52,7 @@ import { QrStatsComponent } from './screens/qr-stats/qr-stats.component';
 import { TodayReportsComponent } from './components/today-reports/today-reports.component';
 import { ReviewPageComponent } from './screens/review-page/review-page.component';
 import { MyReviewsComponent } from './screens/my-reviews/my-reviews.component';
+import { ChatsComponent } from './screens/chats/chats.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -94,6 +95,7 @@ import { MyReviewsComponent } from './screens/my-reviews/my-reviews.component';
     TodayReportsComponent,
     ReviewPageComponent,
     MyReviewsComponent,
+    ChatsComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,

@@ -101,4 +101,37 @@ export class QrcodeService {
       `${environment.apiUrl}/api/qr-code/get-reviews/${id}?rating=${rating}&page=${page}`
     );
   }
+
+  public getChats(id, token, obj): Observable<any> {
+    return this.http.post(
+      `https://api.green-api.com/waInstance${id}/getChatHistory/${token}`,
+      obj
+    );
+  }
+
+  public getUpcoming(min, id, token): Observable<any> {
+    return this.http.get(
+      `https://api.green-api.com/waInstance${id}/lastIncomingMessages/${token}?minutes=${min}`
+    );
+  }
+
+  public getOutGoing(min, id, token): Observable<any> {
+    return this.http.get(
+      `https://api.green-api.com/waInstance${id}/lastOutgoingMessages/${token}?minutes=${min}`
+    );
+  }
+
+  public getContactDetails(obj, id, token): Observable<any> {
+    return this.http.post(
+      `https://api.green-api.com/waInstance${id}/getContactInfo/${token}`,
+      obj
+    );
+  }
+
+  public sendMessage(obj, id, token): Observable<any> {
+    return this.http.post(
+      `https://api.green-api.com/waInstance${id}/sendMessage/${token}`,
+      obj
+    );
+  }
 }

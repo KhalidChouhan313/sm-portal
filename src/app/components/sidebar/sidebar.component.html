@@ -60,6 +60,19 @@
             <span>Devices</span>
           </li>
         </a>
+        <a [routerLink]="'/chats'">
+          <li
+            (click)="setCurrentItem('Chats')"
+            [class.active]="currentItem === 'Chats'"
+            class="menu_item"
+          >
+            <div>
+              <img src="../../../assets/deviceicon.png" />
+              <img src="../../../assets/deviceiconw.png" />
+            </div>
+            <span>Chats</span>
+          </li>
+        </a>
         <div
           (mouseenter)="onMouseEnter('Chatbots')"
           (mouseleave)="onMouseLeave()"
