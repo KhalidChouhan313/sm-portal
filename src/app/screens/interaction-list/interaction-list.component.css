@@ -130,3 +130,19 @@ tr {
 .inactive {
   background-color: #ff0000;
 }
+.pagination {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: end;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  background: #2ebc96;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
