@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdminService, BotService, BookingsService } from 'src/services';
@@ -9,7 +9,7 @@ import { QrcodeService } from 'src/services/qrcode/qrcode.service';
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.css'],
 })
-export class ChatsComponent implements OnInit {
+export class ChatsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private AS: AdminService,
@@ -31,6 +31,11 @@ export class ChatsComponent implements OnInit {
   contactDetailList: any = [];
   contactLastMsgList: any = [];
   textMessage: string = '';
+
+  contactPollingInterval: any;
+
+  lastSeenTimestamps: { [chatId: string]: number } = {};
+  newMsgCounts: { [chatId: string]: number } = {};
 
   ngOnInit(): void {
     // this.AS.getCurrentUserFromBack().subscribe(() => {
@@ -66,6 +71,10 @@ export class ChatsComponent implements OnInit {
       this.contactToken = this.deviceList[0]?.token;
       this.fetchContact();
     });
+
+    this.contactPollingInterval = setInterval(() => {
+      this.fetchContact();
+    }, 3000); // 3000 ms = 3 seconds
   }
 
   selectDevice(i) {
@@ -95,13 +104,13 @@ export class ChatsComponent implements OnInit {
 
   fetchChat() {
     const obj = {
-      chatId: this.contactList[0]?.chatId || '',
+      chatId: this.contactList[this.selectedContactIndex]?.chatId || '',
       count: 100000,
     };
     this.QR.getChats(this.contactId, this.contactToken, obj).subscribe(
       (res) => {
         this.chatList = res;
-        console.log(res);
+        console.log('chat', res);
       }
     );
   }
@@ -133,7 +142,13 @@ export class ChatsComponent implements OnInit {
         }
       }
 
+      const prevSelectedChatId =
+        this.contactList[this.selectedContactIndex]?.chatId;
       this.contactList = Array.from(latestByChatId.values());
+      const newIndex = this.contactList.findIndex(
+        (c) => c.chatId === prevSelectedChatId
+      );
+      this.selectedContactIndex = newIndex !== -1 ? newIndex : 0;
 
       console.log(
         `Run #${runCount} | Limit: ${limit} | Contacts:`,
@@ -146,13 +161,28 @@ export class ChatsComponent implements OnInit {
         // this.fetchContactDetails();
         // this.fetchContactLastMsg();
         this.fetchContactDataForAll();
-        this.fetchChat();
+        setTimeout(() => {
+          this.fetchChat();
+        }, 1000);
         return;
       }
 
       setTimeout(() => {
         this.fetchContact(limit + 180, runCount + 1);
       }, 1000);
+
+      this.contactList.forEach((contact) => {
+        const chatId = contact.chatId;
+        const lastSeen = this.lastSeenTimestamps[chatId] || 0;
+        // Assume contact.timestamp is the latest message timestamp for this contact
+        if (contact.timestamp > lastSeen) {
+          // Count how many messages are newer than lastSeen
+          // If you only have the latest message, just set 1 if newer, else 0
+          this.newMsgCounts[chatId] = 1;
+        } else {
+          this.newMsgCounts[chatId] = 0;
+        }
+      });
     });
   }
 
@@ -465,25 +495,54 @@ export class ChatsComponent implements OnInit {
     return `${day} ${month} ${year}, ${hours}:${minutes}`;
   }
 
+  isFocused = false;
   sendTextMessage() {
+    this.isFocused = true;
     const obj = {
       chatId: this.contactList[this.selectedContactIndex]?.chatId || '',
       message: this.textMessage,
-      customPreview: {},
     };
 
     this.QR.sendMessage(obj, this.contactId, this.contactToken).subscribe(
       (res) => {
         console.log('Message sent:', res);
-        this.textMessage = '';
-        this.fetchChat();
-        // Optionally
+        this.pollForNewMessages();
       }
     );
+    this.textMessage = '';
+  }
+
+  onMouseDown(event: MouseEvent) {
+    event.preventDefault(); // Prevents the button from stealing focus
   }
 
   formatBoldStars(text: string): string {
-    // Replace *word* with <strong>word</strong>
-    return text.replace(/\*(\w+)\*/g, '<strong>$1</strong>');
+    if (!text) return '';
+
+    // First, convert newlines to <br />
+    let formatted = text.replace(/\n/g, '<br />');
+
+    // Then convert *bold* to <strong>bold</strong>
+    formatted = formatted.replace(/\*(.+?)\*/g, '<strong>$1</strong>');
+
+    return formatted;
+  }
+
+  pollForNewMessages(retries: number = 5, delayMs: number = 1000) {
+    let attempts = 0;
+    const poll = () => {
+      this.fetchChat();
+      attempts++;
+      if (attempts < retries) {
+        setTimeout(poll, delayMs);
+      }
+    };
+    poll();
+  }
+
+  ngOnDestroy(): void {
+    if (this.contactPollingInterval) {
+      clearInterval(this.contactPollingInterval);
+    }
   }
 }
