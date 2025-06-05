@@ -97,107 +97,93 @@
           >
             <div
               style="
-                height: 40px;
-                width: 40px;
-                border-radius: 50%;
-                overflow: hidden;
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                background: white;
-                border: 1px solid lightgray;
-                flex-shrink: 0;
-              "
-            >
-              <img [src]="contactDetailList[i]?.avatar" style="width: 100%" />
-            </div>
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
+                /* flex-direction: column; */
                 gap: 5px;
                 width: 100%;
-              "
-            >
-              <div style="display: flex; align-items: center; gap: 10px">
-                <p
-                  style="
-                    font-weight: 600;
-                    font-family: 'DM Sans';
-                    margin-bottom: 0;
-                    width: 100%;
-                    padding-right: 10px;
-                    font-size: 14px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    width: 150px;
-                  "
-                >
-                  {{
-                    contactDetailList[i]?.name ||
-                      contactList[i]?.chatId.split("@")[0]
-                  }}
-                </p>
-                <span class="badge" *ngIf="newMsgCounts[contact.chatId] > 0">
-                  {{ newMsgCounts[contactList[i]?.chatId] }}
-                </span>
-              </div>
-              <div style="display: flex; justify-content: space-between">
-                <p
-                  style="
-                    font-size: 14px;
-
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    margin-bottom: 0;
-                    width: 70px;
-                  "
-                  *ngIf="contactLastMsgList[i]"
-                >
-                  {{
-                    contactLastMsgList[i][0]?.extendedTextMessage?.text ||
-                      contactLastMsgList[i][0]?.textMessage
-                  }}
-                </p>
-              </div>
-            </div>
-            <p
-              *ngIf="contactLastMsgList[i]"
-              style="
-                font-size: 10px;
-                white-space: nowrap;
-
-                margin-bottom: 0;
-                width: fit-content;
-                display: flex;
-                flex-direction: column;
                 justify-content: space-between;
-                align-items: end;
               "
             >
-              {{ getTimeFromTimestamp(contactLastMsgList[i][0].timestamp) }}
-
-              <img
-                *ngIf="contactLastMsgList[i][0].statusMessage === 'sent'"
-                style="width: 15px"
-                src="../../../assets/whatsapp-single-tick.png"
-              />
-              <img
-                *ngIf="contactLastMsgList[i][0].statusMessage === 'delivered'"
-                style="width: 15px"
-                src="../../../assets/whatsapp-double-tick.png"
-              />
-              <img
-                *ngIf="contactLastMsgList[i][0].statusMessage === 'read'"
-                style="width: 15px"
-                src="../../../assets/whatsapp-double-tick-blue.png"
-              />
-            </p>
+              <div style="display: flex; flex-direction: column">
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <p
+                    style="
+                      font-weight: 600;
+                      font-family: 'DM Sans';
+                      margin-bottom: 0;
+                      width: 100%;
+                      padding-right: 10px;
+                      font-size: 14px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                      width: 150px;
+                    "
+                  >
+                    {{ contact.senderName || contact.chatId.split("@")[0] }}
+                  </p>
+                  <span class="badge" *ngIf="newMsgCounts[contact.chatId] > 0">
+                    {{ newMsgCounts[contactList[i]?.chatId] }}
+                  </span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                  "
+                >
+                  <p
+                    style="
+                      overflow: hidden;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                      height: 20px;
+                      color: #888;
+                      margin: 0;
+                      font-size: 13px;
+                      width: 150px;
+                    "
+                  >
+                    {{
+                      contact.textMessage ||
+                        contact.extendedTextMessageData.text
+                    }}
+                  </p>
+                </div>
+              </div>
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 4px;
+                  min-width: 70px;
+                  justify-content: flex-end;
+                "
+              >
+                <span style="font-size: 11px; color: #aaa">
+                  {{ getTimeFromTimestamp(contact.timestamp) }}
+                </span>
+                <img
+                  *ngIf="contact.statusMessage === 'sent'"
+                  style="width: 13px; margin-left: 2px"
+                  src="../../../assets/whatsapp-single-tick.png"
+                />
+                <img
+                  *ngIf="contact.statusMessage === 'delivered'"
+                  style="width: 13px; margin-left: 2px"
+                  src="../../../assets/whatsapp-double-tick.png"
+                />
+                <img
+                  *ngIf="contact.statusMessage === 'read'"
+                  style="width: 13px; margin-left: 2px"
+                  src="../../../assets/whatsapp-double-tick-blue.png"
+                />
+              </span>
+            </div>
           </div>
         </ng-container>
-        <div *ngIf="isLoading" class="loader"></div>
       </div>
       <div
         style="
@@ -221,24 +207,6 @@
         >
           <div
             style="
-              height: 40px;
-              width: 40px;
-              border-radius: 50%;
-              overflow: hidden;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              background: white;
-              border: 1px solid lightgray;
-            "
-          >
-            <img
-              [src]="contactDetailList[selectedContactIndex]?.avatar"
-              style="width: 100%"
-            />
-          </div>
-          <div
-            style="
               display: flex;
               justify-content: space-between;
               align-items: center;
@@ -250,8 +218,23 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap: 10px;
               "
             >
+              <div
+                style="
+                  height: 40px;
+                  width: 40px;
+                  overflow: hidden;
+                  display: flex;
+                  align-items: center;
+                  border-radius: 50%;
+                  border: 1px solid lightgray;
+                  background: white;
+                "
+              >
+                <img style="width: 100%" [src]="selectedContactInfo?.avatar" />
+              </div>
               <p
                 style="
                   font-weight: 600;
@@ -259,25 +242,24 @@
                   margin-bottom: 0;
                 "
               >
-                {{
-                  contactDetailList[selectedContactIndex]?.name ||
-                    contactList[selectedContactIndex]?.chatId.split("@")[0]
-                }}
-              </p>
-              <p
-                *ngIf="contactDetailList[selectedContactIndex]?.lastSeen"
-                style="font-family: 'DM Sans'; margin-bottom: 0"
-              >
-                Last seen:
-                {{ contactDetailList[selectedContactIndex]?.lastSeen }}
+                <ng-container
+                  *ngIf="selectedContactInfo?.name; else showNumber"
+                >
+                  {{ selectedContactInfo.name }}
+                </ng-container>
+                <ng-template #showNumber>
+                  {{ contactList[selectedContactIndex]?.chatId.split("@")[0] }}
+                </ng-template>
               </p>
             </div>
-            <p
-              *ngIf="contactDetailList[selectedContactIndex].name != ''"
-              style="margin-bottom: 0; font-weight: 600; font-family: 'DM Sans'"
+            <span
+              style="font-weight: 600; font-family: 'DM Sans'; margin-bottom: 0"
+              *ngIf="selectedContactInfo?.name"
             >
-              {{ contactList[selectedContactIndex]?.chatId.split("@")[0] }}
-            </p>
+              ({{
+                contactList[selectedContactIndex]?.chatId.split("@")[0]
+              }})</span
+            >
           </div>
         </div>
         <div class="chats-con">

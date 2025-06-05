@@ -28,7 +28,6 @@ export class ChatsComponent implements OnInit, OnDestroy {
   isIncoming = false;
   isOutgoing = false;
   contactList: any = [];
-  contactDetailList: any = [];
   contactLastMsgList: any = [];
   textMessage: string = '';
 
@@ -87,19 +86,30 @@ export class ChatsComponent implements OnInit, OnDestroy {
   }
 
   selectedContactIndex: any = 0;
-
+  selectedContactInfo: any;
   selectContact(i) {
-    const obj = {
+    const obj1 = {
       chatId: this.contactList[i]?.chatId || '',
       count: 100000,
     };
     this.selectedContactIndex = i;
-    this.QR.getChats(this.contactId, this.contactToken, obj).subscribe(
+    this.QR.getChats(this.contactId, this.contactToken, obj1).subscribe(
       (res) => {
         this.chatList = res;
         console.log(res);
       }
     );
+    const obj2 = {
+      chatId: this.contactList[i]?.chatId || '',
+    };
+    this.QR.getContactDetails(
+      obj2,
+      this.contactId,
+      this.contactToken
+    ).subscribe((res) => {
+      this.selectedContactInfo = res;
+      console.log('chatinfo', res);
+    });
   }
 
   fetchChat() {
@@ -113,6 +123,17 @@ export class ChatsComponent implements OnInit, OnDestroy {
         console.log('chat', res);
       }
     );
+    const obj2 = {
+      chatId: this.contactList[this.selectedContactIndex]?.chatId || '',
+    };
+    this.QR.getContactDetails(
+      obj2,
+      this.contactId,
+      this.contactToken
+    ).subscribe((res) => {
+      this.selectedContactInfo = res;
+      console.log('chatinfo', res);
+    });
   }
 
   contactId: any;
@@ -158,9 +179,6 @@ export class ChatsComponent implements OnInit, OnDestroy {
       if (this.contactList.length >= 15 || runCount >= 4) {
         runCount = 0;
         console.log('Stopping recursion', this.contactList);
-        // this.fetchContactDetails();
-        // this.fetchContactLastMsg();
-        this.fetchContactDataForAll();
         setTimeout(() => {
           this.fetchChat();
         }, 1000);
@@ -271,83 +289,6 @@ export class ChatsComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  fetchContactDataForAll() {
-    const maxRetries = 3;
-
-    const delay = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-
-    const fetchWithRetry = async (
-      fn: () => Promise<any>,
-      index: number,
-      type: string,
-      retries = 0
-    ): Promise<any> => {
-      try {
-        const result = await fn();
-        console.log(`Success [${index}] - ${type}`, result);
-        return result;
-      } catch (err) {
-        console.error(
-          `Failed [${index}] - ${type}, attempt ${retries + 1}`,
-          err
-        );
-        if (retries < maxRetries) {
-          await delay(10); // wait 1 sec then retry
-          return fetchWithRetry(fn, index, type, retries + 1);
-        } else {
-          console.warn(
-            `Giving up on [${index}] - ${type} after ${maxRetries} attempts.`
-          );
-          return null;
-        }
-      }
-    };
-
-    const processContact = async (item: any, index: number) => {
-      const chatId = item.chatId;
-
-      const contactDetailFn = () =>
-        new Promise((resolve, reject) => {
-          this.QR.getContactDetails(
-            { chatId },
-            this.contactId,
-            this.contactToken
-          ).subscribe(resolve, reject);
-        });
-
-      const lastMsgFn = () =>
-        new Promise((resolve, reject) => {
-          this.QR.getChats(this.contactId, this.contactToken, {
-            chatId,
-            count: 1,
-          }).subscribe(resolve, reject);
-        });
-
-      const detail = await fetchWithRetry(
-        contactDetailFn,
-        index,
-        'ContactDetails'
-      );
-      if (detail) this.contactDetailList[index] = detail;
-
-      // Delay before making the second request
-      await delay(1); // half second pause between the two API calls
-
-      const lastMsg = await fetchWithRetry(lastMsgFn, index, 'LastMessage');
-      if (lastMsg) this.contactLastMsgList[index] = lastMsg;
-    };
-
-    const runSequentially = async () => {
-      for (let index = 0; index < this.contactList.length; index++) {
-        await processContact(this.contactList[index], index);
-        await delay(10); // 1 second between each full contact's processing
-      }
-    };
-
-    runSequentially();
-  }
-
   loadCount: number = 0;
   isLoading: boolean = false;
 
@@ -398,82 +339,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
         const newContacts = Array.from(newChatMap.values());
         this.contactList = [...this.contactList, ...newContacts];
 
-        const maxRetries = 3;
-        const delay = (ms: number) =>
-          new Promise((resolve) => setTimeout(resolve, ms));
-
-        const fetchWithRetry = async (
-          fn: () => Promise<any>,
-          type: string,
-          index: number,
-          retries = 0
-        ): Promise<any> => {
-          try {
-            const res = await fn();
-            console.log(`Success [${index}] - ${type}`, res);
-            return res;
-          } catch (err) {
-            console.error(
-              `Failed [${index}] - ${type}, attempt ${retries + 1}`,
-              err
-            );
-            if (retries < maxRetries) {
-              await delay(1000);
-              return fetchWithRetry(fn, type, index, retries + 1);
-            } else {
-              console.warn(
-                `Giving up on [${index}] - ${type} after ${maxRetries} attempts.`
-              );
-              return null;
-            }
-          }
-        };
-
-        const fetchContactData = async (item: any, index: number) => {
-          const chatId = item.chatId;
-
-          const contactDetailFn = () =>
-            new Promise((resolve, reject) => {
-              this.QR.getContactDetails(
-                { chatId },
-                this.contactId,
-                this.contactToken
-              ).subscribe(resolve, reject);
-            });
-
-          const lastMsgFn = () =>
-            new Promise((resolve, reject) => {
-              this.QR.getChats(this.contactId, this.contactToken, {
-                chatId,
-                count: 1,
-              }).subscribe(resolve, reject);
-            });
-
-          const detail = await fetchWithRetry(
-            contactDetailFn,
-            'ContactDetails',
-            index
-          );
-          if (detail) this.contactDetailList[index] = detail;
-
-          await delay(500); // small gap between two requests per contact
-
-          const lastMsg = await fetchWithRetry(lastMsgFn, 'LastMessage', index);
-          if (lastMsg) this.contactLastMsgList[index] = lastMsg;
-        };
-
-        const startIndex = this.contactList.length - newContacts.length;
-
-        // Sequential async processing with delay between each contact
-        const processContacts = async () => {
-          for (let i = 0; i < newContacts.length; i++) {
-            await fetchContactData(newContacts[i], startIndex + i);
-            await delay(1000); // Wait 1s between each contact
-          }
-          this.isLoading = false;
-        };
-
-        processContacts();
+        this.isLoading = false;
         this.loadCount++;
       },
       () => {
