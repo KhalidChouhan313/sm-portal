@@ -29,7 +29,7 @@
               <img
                 *ngIf="!showDeviceList"
                 style="width: 20px"
-                src="../../../assets/More.png"
+                src="../../../assets/hamburger.png"
               />
               <img
                 *ngIf="showDeviceList"
@@ -146,7 +146,7 @@
               <div style="display: flex; justify-content: space-between">
                 <p
                   style="
-                    font-size: 12px;
+                    font-size: 14px;
 
                     white-space: nowrap;
                     overflow: hidden;
@@ -375,6 +375,7 @@
             (blur)="isFocused = false"
             placeholder="Type a message"
             [(ngModel)]="textMessage"
+            (keydown.enter)="sendTextMessage()"
           />
           <button
             *ngIf="isFocused"
@@ -411,7 +412,10 @@
             <img style="width: 15px" src="../../../assets/emoji-icon.png" />
           </button>
           <button style="border: none; background: none">
-            <img style="width: 15px" src="../../../assets/camera-icon.png" />
+            <img
+              style="width: 15px"
+              src="../../../assets/camera-icon (2).png"
+            />
           </button>
         </div>
       </div>

@@ -498,8 +498,20 @@ export class ChatsComponent implements OnInit, OnDestroy {
   isFocused = false;
   sendTextMessage() {
     this.isFocused = true;
+    const chatId = this.contactList[this.selectedContactIndex]?.chatId || '';
+    const tempMsg = {
+      chatId,
+      message: this.textMessage,
+      timestamp: Math.floor(Date.now() / 1000), // current time in seconds
+      fromMe: true, // or whatever your sent message flag is
+      pending: true, // custom flag to show it's not confirmed yet
+    };
+
+    // Optimistically add to chatList
+    this.chatList.push(tempMsg);
+
     const obj = {
-      chatId: this.contactList[this.selectedContactIndex]?.chatId || '',
+      chatId,
       message: this.textMessage,
     };
 
@@ -507,6 +519,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
       (res) => {
         console.log('Message sent:', res);
         this.pollForNewMessages();
+        // Optionally, update/remove the pending message here if you want
       }
     );
     this.textMessage = '';
