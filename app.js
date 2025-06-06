@@ -10,9 +10,9 @@ app.use(compression())
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
-app.use(express.static(__dirname + '/dist/wa-bot'));
+app.use(express.static(__dirname + '/dist/taxi-messages'));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/dist/wa-bot/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/taxi-messages/index.html'));
 });
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/app.taximessages.com/privkey.pem', 'utf8');
