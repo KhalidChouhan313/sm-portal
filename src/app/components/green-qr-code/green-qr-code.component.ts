@@ -24,13 +24,9 @@ export class GreenQrCodeComponent {
   }
 
   getQr(url) {
-    console.log(url);
-
     this.qrShow = false;
     this.qrSrc = '';
     this.AS.getGreenApiQrCode(url).subscribe(qrRes => {
-      console.log(qrRes);
-
       if (qrRes.type == 'qrCode') {
         this.qrSrc = `data:image/png;base64,${qrRes['message']}`
         this.qrShow = true;
