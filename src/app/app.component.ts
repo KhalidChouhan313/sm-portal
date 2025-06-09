@@ -10,14 +10,23 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
 })
 export class AppComponent {
   showNavbar: boolean = true;
-
+  isQr = true;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.updateNavbarVisibility();
+      .subscribe((s) => {
+        if (this.activatedRoute.snapshot['_routerState'].url.startsWith('/qr-code')) {
+          this.isQr = true;
+        } else {
+          this.isQr = false;
+          this.updateNavbarVisibility();
+        }
       });
   }
+
+  // ngOnInit(): void {
+  //   console.log(this.activatedRoute.snapshot);
+  // }
 
   shouldShowNavbar(): boolean {
     return (

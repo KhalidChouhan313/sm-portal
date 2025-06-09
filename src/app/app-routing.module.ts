@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './screens/home/home.component';
+import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.component';
 
 const routes: Routes = [
+  { path: 'qr-code', component: GreenQrCodeComponent },
   {
     path: '',
     component: HomeComponent,
@@ -145,4 +147,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

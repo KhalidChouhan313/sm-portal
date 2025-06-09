@@ -1,4 +1,4 @@
-<div class="container-own">
+<div *ngIf="!isQr" class="container-own">
     <ng-container *ngIf="showNavbar">
         <app-sidebar></app-sidebar>
     </ng-container>
@@ -11,3 +11,4 @@
         </main>
     </div>
 </div>
+<router-outlet *ngIf="isQr"></router-outlet>
