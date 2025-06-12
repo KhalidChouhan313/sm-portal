@@ -54,6 +54,7 @@ import { ReviewPageComponent } from './screens/review-page/review-page.component
 import { MyReviewsComponent } from './screens/my-reviews/my-reviews.component';
 import { ChatsComponent } from './screens/chats/chats.component';
 import { AiPromptOfficialComponent } from './screens/ai-prompt-official/ai-prompt-official.component';
+import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -98,6 +99,7 @@ import { AiPromptOfficialComponent } from './screens/ai-prompt-official/ai-promp
     MyReviewsComponent,
     ChatsComponent,
     AiPromptOfficialComponent,
+    GreenQrCodeComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,
