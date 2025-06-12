@@ -55,6 +55,13 @@
       </div>
       <div
         class="tab"
+        [class.active]="tab === 'review2'"
+        (click)="openMessageList('review2')"
+      >
+        Review 2
+      </div>
+      <div
+        class="tab"
         [class.active]="tab === 'dreview'"
         (click)="openMessageList('dreview')"
       >
@@ -444,8 +451,8 @@
           Important Note:</span
         >
         Keep your SMS text within 160 characters to ensure it is sent as a
-        single message. Messages over 160 characters will be counted as two or
-        more.
+        single message. Messages over 160 characters may not be delivered
+        successfully.
       </p>
     </div>
     <div class="instance_grid">

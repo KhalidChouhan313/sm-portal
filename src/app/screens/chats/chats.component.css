@@ -33,7 +33,7 @@ main > div {
 
 .devices {
   height: 100px;
-  border-bottom: 1px solid lightgrey;
+  /* border-bottom: 1px solid lightgrey; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@ main > div {
   width: 100%;
   top: 100px;
   left: 0;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
   z-index: 11;
   box-shadow: 0 4px 10px -2px lightgrey;
 

@@ -15,13 +15,21 @@ export class SidebarComponent {
 
   loading = true;
   haveBot = false;
+  token = false;
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
       this.router.navigateByUrl('/sessions/signin');
     }
+
     // console.log(currentUser._id);
+
+    if (!localStorage.getItem('token')) {
+      this.token = false;
+    } else {
+      this.token = true;
+    }
 
     this.bookingsService.getCompanyBots(currentUser._id).subscribe(
       (res) => {

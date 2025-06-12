@@ -169,6 +169,7 @@ export class DevicesComponent implements OnInit {
             device_id: admin.data[0].wa_phone_id,
             device_name: 'Official WhatsApp Account',
           });
+          this.setCurrent(0, 0);
         }
       });
       this.currentUser = usr;

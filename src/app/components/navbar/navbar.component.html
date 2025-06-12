@@ -1,4 +1,4 @@
-<header class="navbar">
+<header *ngIf="token" class="navbar">
   <div class="left">
     <!-- <div class="kanban" style="text-transform: capitalize">
       {{ currentUrl }}
@@ -30,6 +30,10 @@
     <input placeholder="Search here..." />
   </div> -->
   <div class="right" *ngIf="!loading">
+    <div class="user-details">
+      <h2>{{ user?.name }}</h2>
+      <span>Admin</span>
+    </div>
     <div class="dp">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +81,20 @@
           />
         </defs>
       </svg>
-      <h5>{{ user?.name }}</h5>
+      <h5>
+        {{ user?.name }}
+        <br />
+        <span
+          style="
+            font-size: 16px;
+            color: grey;
+            font-family: Nunito;
+            font-weight: 700;
+          "
+        >
+          Admin
+        </span>
+      </h5>
     </div>
     <svg
       class="svg"

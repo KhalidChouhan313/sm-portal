@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { QrPageComponent } from './screens/qr-page/qr-page.component';
@@ -8,7 +8,7 @@ import { QrPageComponent } from './screens/qr-page/qr-page.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showNavbar: boolean = true;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -28,5 +28,13 @@ export class AppComponent {
 
   private updateNavbarVisibility(): void {
     this.showNavbar = this.shouldShowNavbar();
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

@@ -16,7 +16,11 @@ export class MyReviewsComponent implements OnInit {
   fDriverId: string = '';
   fReviewId: string = '';
 
-  reviews: any;
+  reviews: any[] = [];
+
+  // Pagination state
+  currentPage = 1;
+  totalPages = 1;
 
   constructor(private qrSer: QrcodeService) {}
 
@@ -24,38 +28,63 @@ export class MyReviewsComponent implements OnInit {
     const storedUser = localStorage.getItem('user_details');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
-      console.log(this.currentUser); // full object
-      // console.log(this.currentUser.name); // access specific properties
     }
-    this.qrSer.getReviews(this.currentUser._id, 1).subscribe((res) => {
-      console.log('res', res);
-      this.reviews = res.data;
-    });
+    this.loadReviews();
+  }
+
+  loadReviews() {
+    this.qrSer.getReviews(this.currentUser._id, this.currentPage).subscribe(
+      (res) => {
+        this.reviews = res.data;
+        this.totalPages = res.pagination?.totalPages || 1;
+      },
+      (err) => {
+        this.reviews = [];
+      }
+    );
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadReviews();
+    }
+  }
+
+  goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadReviews();
+    }
+  }
+
+  goToNextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadReviews();
+    }
   }
 
   clear() {
     this.rating = 0;
-
     this.fName = '';
     this.fDriverId = '';
     this.fReviewId = '';
-
-    this.qrSer.getReviews(this.currentUser._id, 1).subscribe((res) => {
-      console.log(res);
-      this.reviews = res.data;
-    });
+    this.currentPage = 1;
+    this.loadReviews();
   }
 
   setRating(value: number) {
     this.rating = value;
+    this.currentPage = 1;
     this.qrSer
-      .getReviewsFitered(this.currentUser._id, 1, this.rating)
+      .getReviewsFitered(this.currentUser._id, this.currentPage, this.rating)
       .subscribe(
         (res) => {
-          console.log(res);
           this.reviews = res.data;
+          this.totalPages = res.pagination?.totalPages || 1;
         },
-        (err) => {
+        () => {
           this.reviews = [];
         }
       );
@@ -66,18 +95,10 @@ export class MyReviewsComponent implements OnInit {
   }
 
   getStarClass(rating: number, index: number): string {
-    if (rating === 5) {
-      return 'dark-green';
-    }
-    if (rating >= 3 && index < rating) {
-      return 'light-gray';
-    }
-    if (rating === 2 && index < 2) {
-      return 'red';
-    }
-    if (rating === 1 && index === 0) {
-      return 'red';
-    }
+    if (rating === 5) return 'dark-green';
+    if (rating >= 3 && index < rating) return 'light-gray';
+    if (rating === 2 && index < 2) return 'red';
+    if (rating === 1 && index === 0) return 'red';
     return '';
   }
 }

@@ -328,3 +328,41 @@ main {
 .list-body p:nth-child(7) {
   width: 300px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: end;
+  padding-bottom: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text, #636364);
+  font-family: Nunito;
+  font-size: 14.325px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.43px;
+}
+
+.pagination button.active {
+  border-radius: 23.875px;
+  background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
+
+  color: #fff;
+  font-family: Nunito;
+  font-size: 14.325px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.43px;
+}

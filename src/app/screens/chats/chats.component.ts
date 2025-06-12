@@ -36,7 +36,9 @@ export class ChatsComponent implements OnInit, OnDestroy {
   lastSeenTimestamps: { [chatId: string]: number } = {};
   newMsgCounts: { [chatId: string]: number } = {};
 
+  showMainLoader = true;
   ngOnInit(): void {
+    this.showMainLoader = true;
     // this.AS.getCurrentUserFromBack().subscribe(() => {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
     console.log(this.currentUser);
@@ -68,12 +70,14 @@ export class ChatsComponent implements OnInit, OnDestroy {
       this.selectedDevice = this.deviceList[0] || null;
       this.contactId = this.deviceList[0]?.device_id;
       this.contactToken = this.deviceList[0]?.token;
-      this.fetchContact();
+      setTimeout(() => {
+        this.fetchContact();
+      }, 1000);
     });
 
     this.contactPollingInterval = setInterval(() => {
-      this.fetchContact();
-    }, 3000); // 3000 ms = 3 seconds
+      this.fetchContact(360, 3);
+    }, 6000); // 3000 ms = 3 seconds
   }
 
   selectDevice(i) {
@@ -102,16 +106,17 @@ export class ChatsComponent implements OnInit, OnDestroy {
     const obj2 = {
       chatId: this.contactList[i]?.chatId || '',
     };
-    this.QR.getContactDetails(
-      obj2,
-      this.contactId,
-      this.contactToken
-    ).subscribe((res) => {
-      this.selectedContactInfo = res;
-      console.log('chatinfo', res);
-    });
+    // this.QR.getContactDetails(
+    //   obj2,
+    //   this.contactId,
+    //   this.contactToken
+    // ).subscribe((res) => {
+    //   this.selectedContactInfo = res;
+    //   console.log('chatinfo', res);
+    // });
   }
 
+  chatLoader = false;
   fetchChat() {
     const obj = {
       chatId: this.contactList[this.selectedContactIndex]?.chatId || '',
@@ -121,6 +126,8 @@ export class ChatsComponent implements OnInit, OnDestroy {
       (res) => {
         this.chatList = res;
         console.log('chat', res);
+        this.showMainLoader = false;
+        this.chatLoader = true;
       }
     );
     const obj2 = {
@@ -152,20 +159,25 @@ export class ChatsComponent implements OnInit, OnDestroy {
 
       const merged = [...incoming, ...outgoing];
 
-      const latestByChatId = new Map<string, any>();
+      const updatedContactMap = new Map<string, any>();
+      this.contactList.forEach((contact) => {
+        updatedContactMap.set(contact.chatId, contact);
+      });
 
       for (const item of merged) {
         if (item.chatId.split('@')[0].length > 13) continue; // Skip chatIds longer than 13
 
-        const existing = latestByChatId.get(item.chatId);
+        const existing = updatedContactMap.get(item.chatId);
         if (!existing || item.timestamp > existing.timestamp) {
-          latestByChatId.set(item.chatId, item);
+          updatedContactMap.set(item.chatId, item);
         }
       }
 
       const prevSelectedChatId =
         this.contactList[this.selectedContactIndex]?.chatId;
-      this.contactList = Array.from(latestByChatId.values());
+      this.contactList = Array.from(updatedContactMap.values());
+      // Sort the contactList by timestamp in descending order (latest first)
+      this.contactList.sort((a, b) => b.timestamp - a.timestamp);
       const newIndex = this.contactList.findIndex(
         (c) => c.chatId === prevSelectedChatId
       );
@@ -176,8 +188,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
         this.contactList.length
       );
 
-      if (this.contactList.length >= 15 || runCount >= 4) {
-        runCount = 0;
+      if (this.contactList.length >= 15 || runCount >= 6) {
         console.log('Stopping recursion', this.contactList);
         setTimeout(() => {
           this.fetchChat();
@@ -185,9 +196,8 @@ export class ChatsComponent implements OnInit, OnDestroy {
         return;
       }
 
-      setTimeout(() => {
-        this.fetchContact(limit + 180, runCount + 1);
-      }, 1000);
+      // Recursive call moved inside the subscribe block to ensure it waits for the response
+      this.fetchContact(limit + 180, runCount + 1);
 
       this.contactList.forEach((contact) => {
         const chatId = contact.chatId;
@@ -292,6 +302,8 @@ export class ChatsComponent implements OnInit, OnDestroy {
   loadCount: number = 0;
   isLoading: boolean = false;
 
+  showContactLoader = false;
+
   handleScrollAndLoad(event: Event) {
     const target = event.target as HTMLElement;
     const threshold = 100;
@@ -301,6 +313,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     if (height - position > threshold || this.isLoading) return;
 
     this.isLoading = true;
+    this.showContactLoader = true;
 
     const baseMinutes = 1080; // 24 hours
     const extraMinutes = this.loadCount * 360; // +6 hours per call
@@ -320,30 +333,35 @@ export class ChatsComponent implements OnInit, OnDestroy {
     }).subscribe(
       ({ incoming, outgoing }) => {
         const merged = [...incoming, ...outgoing];
-        const newChatMap = new Map<string, any>();
+        const updatedContactMap = new Map<string, any>();
+
+        // Populate map with existing contacts
+        this.contactList.forEach((contact) => {
+          updatedContactMap.set(contact.chatId, contact);
+        });
 
         for (const item of merged) {
           const chatId = item.chatId;
           const numberPart = chatId.split('@')[0];
-          if (numberPart.length > 13) continue;
+          if (numberPart.length > 13) continue; // Skip chatIds longer than 13
 
-          const exists = this.contactList.some((c) => c.chatId === chatId);
-          if (!exists) {
-            const current = newChatMap.get(chatId);
-            if (!current || item.timestamp > current.timestamp) {
-              newChatMap.set(chatId, item);
-            }
+          const existing = updatedContactMap.get(chatId);
+          if (!existing || item.timestamp > existing.timestamp) {
+            updatedContactMap.set(chatId, item);
           }
         }
 
-        const newContacts = Array.from(newChatMap.values());
-        this.contactList = [...this.contactList, ...newContacts];
+        this.contactList = Array.from(updatedContactMap.values());
+        // Sort the contactList by timestamp in descending order (latest first)
+        this.contactList.sort((a, b) => b.timestamp - a.timestamp);
 
         this.isLoading = false;
+        this.showContactLoader = false;
         this.loadCount++;
       },
       () => {
         this.isLoading = false;
+        this.showContactLoader = false;
       }
     );
   }
@@ -420,8 +438,12 @@ export class ChatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.contactPollingInterval) {
-      clearInterval(this.contactPollingInterval);
-    }
+    // if (this.contactPollingInterval) {
+    //   clearInterval(this.contactPollingInterval);
+    // }
+  }
+
+  trackByChatId(index: number, contact: any): string {
+    return contact.chatId;
   }
 }

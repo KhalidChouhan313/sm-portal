@@ -195,5 +195,45 @@
         <p>{{ review.review }}</p>
       </div>
     </div>
+    <!-- Pagination Buttons -->
+    <div class="pagination">
+      <button
+        (click)="goToPreviousPage()"
+        [disabled]="currentPage === 1"
+        class="nav"
+      >
+        ◀
+      </button>
+
+      <ng-container *ngIf="totalPages > 1">
+        <button
+          class="page"
+          *ngIf="currentPage > 1"
+          (click)="goToPage(currentPage - 1)"
+        >
+          {{ currentPage - 1 }}
+        </button>
+
+        <button class="page active" disabled>
+          {{ currentPage }}
+        </button>
+
+        <button
+          class="page"
+          *ngIf="currentPage < totalPages"
+          (click)="goToPage(currentPage + 1)"
+        >
+          {{ currentPage + 1 }}
+        </button>
+      </ng-container>
+
+      <button
+        (click)="goToNextPage()"
+        [disabled]="currentPage === totalPages"
+        class="nav"
+      >
+        ▶
+      </button>
+    </div>
   </div>
 </main>

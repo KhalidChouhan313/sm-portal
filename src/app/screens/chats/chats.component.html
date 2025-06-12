@@ -1,6 +1,7 @@
 <div style="box-shadow: 0 0 10px lightgray; border-radius: 13px">
   <main>
-    <div>
+    <app-loader *ngIf="showMainLoader"></app-loader>
+    <div *ngIf="!showMainLoader">
       <div
         class="contacts"
         style="overflow: scroll"
@@ -17,6 +18,7 @@
               </h1>
             </div>
             <button
+              *ngIf="deviceList.length > 1"
               (click)="showDeviceList = !showDeviceList"
               style="
                 display: flex;
@@ -83,7 +85,7 @@
 
         <ng-container *ngFor="let contact of contactList; let i = index">
           <div
-            (click)="selectContact(i)"
+            (click)="selectContact(i); chatLoader = false"
             [ngStyle]="{
               'background-color':
                 selectedContactIndex === i ? 'lightgray' : 'white',
@@ -120,11 +122,11 @@
                       width: 150px;
                     "
                   >
-                    {{ contact.senderName || contact.chatId.split("@")[0] }}
+                    {{ contact?.senderName || contact?.chatId.split("@")[0] }}
                   </p>
-                  <span class="badge" *ngIf="newMsgCounts[contact.chatId] > 0">
+                  <!-- <span class="badge" *ngIf="newMsgCounts[contact.chatId] > 0">
                     {{ newMsgCounts[contactList[i]?.chatId] }}
-                  </span>
+                  </span> -->
                 </div>
                 <div
                   style="
@@ -145,21 +147,18 @@
                       width: 150px;
                     "
                   >
-                    {{
-                      contact.textMessage ||
-                        contact.extendedTextMessageData.text
-                    }}
+                    {{ contact?.textMessage }}
                   </p>
                 </div>
               </div>
               <span
                 style="
                   display: flex;
-                  align-items: center;
+                  align-items: end;
                   flex-direction: column;
                   gap: 4px;
                   min-width: 70px;
-                  justify-content: flex-end;
+                  justify-content: space-between;
                 "
               >
                 <span style="font-size: 11px; color: #aaa">
@@ -184,6 +183,7 @@
             </div>
           </div>
         </ng-container>
+        <div *ngIf="showContactLoader" class="loader"></div>
       </div>
       <div
         style="
@@ -262,18 +262,21 @@
             >
           </div>
         </div>
-        <div class="chats-con">
+        <div style="flex: 1" *ngIf="!chatLoader">
+          <app-loader></app-loader>
+        </div>
+        <div class="chats-con" *ngIf="chatLoader">
           <div
             *ngFor="let chat of chatList"
             class="chat-bubble"
             [ngClass]="chat.type === 'outgoing' ? 'outgoing' : 'incoming'"
           >
             <p
-              *ngIf="chat.textMessage || chat.extendedTextMessageData?.text"
+              *ngIf="chat?.textMessage || chat?.extendedTextMessage?.text"
               style="font-size: 16px; margin-bottom: 0"
               [innerHTML]="
                 formatBoldStars(
-                  chat.textMessage || chat.extendedTextMessageData.text
+                  chat?.textMessage || chat?.extendedTextMessage?.text
                 )
               "
             ></p>
@@ -328,7 +331,7 @@
         <div
           style="
             background: #eff6fc;
-            height: 60px;
+            height: 80px;
             width: 100%;
             padding: 5px 15px;
             display: flex;
@@ -353,6 +356,7 @@
               outline: none;
             "
             [style.background]="isFocused ? '#ffffff' : '#eff6fc'"
+            [style.boxShadow]="isFocused ? '0 0 10px lightgray' : 'none'"
             (focus)="isFocused = true"
             (blur)="isFocused = false"
             placeholder="Type a message"
@@ -390,12 +394,12 @@
               "
             />
           </button>
-          <button style="border: none; background: none">
-            <img style="width: 15px" src="../../../assets/emoji-icon.png" />
+          <button style="border: none; background: none; margin-left: 10px">
+            <img style="width: 20px" src="../../../assets/emoji-icon.png" />
           </button>
           <button style="border: none; background: none">
             <img
-              style="width: 15px"
+              style="width: 20px"
               src="../../../assets/camera-icon (2).png"
             />
           </button>

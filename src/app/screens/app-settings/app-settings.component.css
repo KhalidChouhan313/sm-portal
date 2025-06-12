@@ -456,3 +456,20 @@
 .toggle:hover p {
   display: inline-block;
 }
+
+.role-head {
+  padding: 15px 10px;
+
+  border-radius: 10px;
+}
+
+.role-head > div {
+  color: #1c1c1c;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16.8px; /* 93.333% */
+  letter-spacing: -0.154px;
+}

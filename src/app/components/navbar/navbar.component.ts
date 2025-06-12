@@ -19,8 +19,15 @@ export class NavbarComponent implements OnInit {
   loading = true;
   showLogoutOptions = false;
 
+  token = false;
   ngOnInit(): void {
     this.checkAuthentication();
+
+    if (!localStorage.getItem('token')) {
+      this.token = false;
+    } else {
+      this.token = true;
+    }
 
     // Run immediately
     this.updateUrlAndTitle(this.router.url);

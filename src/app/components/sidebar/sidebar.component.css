@@ -157,7 +157,7 @@ a {
 }
 
 .menu_item span {
-  color: #333540;
+  color: gray;
   font-size: 0.9rem;
 }
 
@@ -221,7 +221,7 @@ a {
 }
 
 .sub_menu_item span {
-  color: #333540;
+  color: gray;
   font-size: 0.9rem;
 }
 
@@ -235,6 +235,10 @@ a {
 }
 
 .sub_menu_item.active {
+  background: #eeeeee;
+}
+
+.sub_menu_item:hover {
   background: #eeeeee;
 }
 

@@ -214,6 +214,7 @@
     <div>
       <div
         (click)="openGreenApi(currentDevice, currentIndex)"
+        *ngIf="currentDevice.device_name !== 'Official WhatsApp Account'"
         class="device-btn-container"
         style="position: relative; z-index: 100"
       >

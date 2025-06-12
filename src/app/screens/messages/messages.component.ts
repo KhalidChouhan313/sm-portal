@@ -39,6 +39,7 @@ export class MessagesComponent implements OnInit {
     { name: 'Paylink' },
     { name: 'PrePay' },
     { name: 'Review' },
+    { name: 'Review 2' },
     { name: 'Driver' },
     { name: 'Pre Auth' },
     { name: 'Custom 1' },
@@ -145,6 +146,12 @@ export class MessagesComponent implements OnInit {
   ];
   prepay_msg = ['message text', 'message text', 'message text', 'message text'];
   review_msg = ['message text', 'message text', 'message text', 'message text'];
+  review2_msg = [
+    'message text',
+    'message text',
+    'message text',
+    'message text',
+  ];
   dreview_msg = [
     'message text',
     'message text',
@@ -195,7 +202,7 @@ export class MessagesComponent implements OnInit {
 
     this.AS.getUser(this.currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
-      console.log(admin);
+      console.log('test', admin.messages);
       this.currentMessageList = admin.messages.booking;
       this.tab = 'booking';
       console.log('msgs', this.currentMessageList);
@@ -221,6 +228,9 @@ export class MessagesComponent implements OnInit {
       }
       if (admin.messages.review.length) {
         this.review_msg = admin.messages.review;
+      }
+      if (admin.messages.review2.length) {
+        this.review2_msg = admin.messages.review2;
       }
       if (admin.messages.preAuth.length) {
         this.preauth_msg = admin.messages.preAuth;
@@ -382,6 +392,7 @@ export class MessagesComponent implements OnInit {
         paylink: this.paylink_msg,
         prepay: this.prepay_msg,
         review: this.review_msg,
+        review2: this.review2_msg,
         noshow: this.noshow_msg,
         missedcall: this.missedcall_msg,
         dreview: this.dreview_msg,
@@ -440,6 +451,9 @@ export class MessagesComponent implements OnInit {
     }
     if (this.currentList == 'review') {
       this.currentMessageList = this.review_msg;
+    }
+    if (this.currentList == 'review2') {
+      this.currentMessageList = this.review2_msg;
     }
     if (this.currentList == 'missedcall') {
       this.currentMessageList = this.missedcall_msg;

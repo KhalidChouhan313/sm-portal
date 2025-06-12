@@ -123,6 +123,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'official-ai-prompt/ai-prompt',
+    loadChildren: () =>
+      import('./screens/ai-prompt-official/ai-prompt-official.module').then(
+        (m) => m.AiPromptOfficialModule
+      ),
+  },
+  {
     path: 'review/my-reviews',
     loadChildren: () =>
       import('./screens/my-reviews/my-reviews.module').then(

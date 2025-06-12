@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from 'src/services';
+import { AdminService, BookingsService } from 'src/services';
 
 @Component({
   selector: 'app-app-settings',
@@ -21,8 +21,11 @@ export class AppSettingsComponent implements OnInit {
     private AS: AdminService,
     private router: Router,
     private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private BKS: BookingsService
   ) {}
+
+  haveWabaDevice: boolean = false;
 
   ngOnInit(): void {
     this.isLoad = false;
@@ -34,6 +37,11 @@ export class AppSettingsComponent implements OnInit {
       return;
     }
     this.AS.getUser(this.currentUser._id).subscribe((user) => {
+      this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
+        if (admin.data[0].wa_phone_id.length) {
+          this.haveWabaDevice = true;
+        }
+      });
       console.log('Fetched user from server:', user);
       this.booking_confirmation = user.booking_confirmation;
       this.track_driver_msg = user.track_driver_msg;
@@ -219,16 +227,20 @@ export class AppSettingsComponent implements OnInit {
       name: 'SMS Settings',
       icon: '../../../assets/icons/sms.png',
     },
-    {
-      name: 'Profile',
-      icon: '../../../assets/icons/profile.png',
-    },
+    // {
+    //   name: 'Profile',
+    //   icon: '../../../assets/icons/profile.png',
+    // },
     {
       name: 'Notification',
       icon: '../../../assets/icons/notification.png',
     },
     {
       name: 'Help & Support',
+      icon: '../../../assets/icons/help.png',
+    },
+    {
+      name: 'Role Management',
       icon: '../../../assets/icons/help.png',
     },
   ];
@@ -331,4 +343,6 @@ export class AppSettingsComponent implements OnInit {
       }
     );
   }
+
+  showAddUserModal = false;
 }

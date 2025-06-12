@@ -258,6 +258,9 @@
 .contacts {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  box-shadow: 0px 4px 20px 0px rgba(112, 144, 128, 0.2);
+  border-radius: 12px;
 }
 
 .c-header {
