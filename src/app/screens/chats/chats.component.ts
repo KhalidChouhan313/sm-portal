@@ -74,24 +74,69 @@ export class ChatsComponent implements OnInit, OnDestroy {
         this.fetchContact();
       }, 1000);
     });
-
     this.contactPollingInterval = setInterval(() => {
-      this.fetchContact(360, 3);
+      if (this.selectedDevice.device_name !== 'Official WhatsApp Account') {
+        console.log(this.selectedDevice);
+        this.fetchContact(360, 3);
+      }
     }, 6000); // 3000 ms = 3 seconds
   }
 
   selectDevice(i) {
+    // Clear existing polling interval
+    if (this.contactPollingInterval) {
+      clearInterval(this.contactPollingInterval);
+    }
+
     this.selectedDevice = this.deviceList[i];
     this.showDeviceList = false;
     this.contactId = this.deviceList[i]?.device_id;
     this.contactToken = this.deviceList[i]?.token;
 
+    // Reset contact list and selected contact
+    this.contactList = [];
+    this.selectedContactIndex = 0;
+    this.chatList = [];
+
+    console.log('current device', this.selectedDevice);
+    // Start fresh contact fetch
     this.fetchContact();
+
+    // Restart polling with new device
+    this.contactPollingInterval = setInterval(() => {
+      if (this.selectedDevice.device_name !== 'Official WhatsApp Account') {
+        this.fetchContact(360, 3);
+      }
+    }, 6000);
+
+    if (this.selectedDevice.device_name == 'Official WhatsApp Account') {
+      console.log('Fetching official contacts...');
+      this.QR.getOfficialContacts().subscribe((res) => {
+        console.log('Official contacts response:', res);
+        this.contactList = res.phones;
+        let officialNumber = this.contactList[0];
+        console.log('Selected official number:', officialNumber);
+
+        this.QR.getOfficialChat(officialNumber).subscribe((chat) => {
+          console.log('Raw official chat response:', chat);
+          this.officialChatList = chat.chat_panel;
+          console.log(
+            'Official chat list after assignment:',
+            this.officialChatList
+          );
+          console.log('First chat in list:', this.officialChatList?.[0]);
+          this.chatLoader = true; // Set to true to show the chat
+        });
+      });
+    }
   }
+
+  officialChatList;
 
   selectedContactIndex: any = 0;
   selectedContactInfo: any;
   selectContact(i) {
+    this.chatLoader = true;
     const obj1 = {
       chatId: this.contactList[i]?.chatId || '',
       count: 100000,
@@ -100,6 +145,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.QR.getChats(this.contactId, this.contactToken, obj1).subscribe(
       (res) => {
         this.chatList = res;
+        this.chatLoader = false;
         console.log(res);
       }
     );
@@ -438,9 +484,9 @@ export class ChatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // if (this.contactPollingInterval) {
-    //   clearInterval(this.contactPollingInterval);
-    // }
+    if (this.contactPollingInterval) {
+      clearInterval(this.contactPollingInterval);
+    }
   }
 
   trackByChatId(index: number, contact: any): string {

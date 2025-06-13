@@ -134,4 +134,16 @@ export class QrcodeService {
       obj
     );
   }
+
+  public getOfficialContacts(): Observable<any> {
+    return this.http.get(
+      'https://lookup-dev-d8c5e8b91c4d.herokuapp.com/api/chat/chatHistory'
+    );
+  }
+
+  public getOfficialChat(id): Observable<any> {
+    return this.http.get(
+      `https://lookup-dev-d8c5e8b91c4d.herokuapp.com/api/chat/chatHistory/${id}`
+    );
+  }
 }

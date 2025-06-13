@@ -109,6 +109,9 @@
               <div style="display: flex; flex-direction: column">
                 <div style="display: flex; align-items: center; gap: 10px">
                   <p
+                    *ngIf="
+                      selectedDevice.device_name !== 'Official WhatsApp Account'
+                    "
                     style="
                       font-weight: 600;
                       font-family: 'DM Sans';
@@ -124,6 +127,26 @@
                   >
                     {{ contact?.senderName || contact?.chatId.split("@")[0] }}
                   </p>
+
+                  <p
+                    *ngIf="
+                      selectedDevice.device_name == 'Official WhatsApp Account'
+                    "
+                    style="
+                      font-weight: 600;
+                      font-family: 'DM Sans';
+                      margin-bottom: 0;
+                      width: 100%;
+                      padding-right: 10px;
+                      font-size: 14px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                      width: 150px;
+                    "
+                  >
+                    {{ contact }}
+                  </p>
                   <!-- <span class="badge" *ngIf="newMsgCounts[contact.chatId] > 0">
                     {{ newMsgCounts[contactList[i]?.chatId] }}
                   </span> -->
@@ -136,6 +159,9 @@
                   "
                 >
                   <p
+                    *ngIf="
+                      selectedDevice.device_name !== 'Official WhatsApp Account'
+                    "
                     style="
                       overflow: hidden;
                       white-space: nowrap;
@@ -159,6 +185,9 @@
                   gap: 4px;
                   min-width: 70px;
                   justify-content: space-between;
+                "
+                *ngIf="
+                  selectedDevice.device_name !== 'Official WhatsApp Account'
                 "
               >
                 <span style="font-size: 11px; color: #aaa">
@@ -265,7 +294,13 @@
         <div style="flex: 1" *ngIf="!chatLoader">
           <app-loader></app-loader>
         </div>
-        <div class="chats-con" *ngIf="chatLoader">
+        <div
+          class="chats-con"
+          *ngIf="
+            chatLoader &&
+            selectedDevice.device_name !== 'Official WhatsApp Account'
+          "
+        >
           <div
             *ngFor="let chat of chatList"
             class="chat-bubble"
@@ -328,6 +363,25 @@
             </div>
           </div>
         </div>
+        <div
+          class="chats-con"
+          *ngIf="selectedDevice.device_name === 'Official WhatsApp Account'"
+        >
+          <div
+            *ngIf="!officialChatList?.length"
+            style="padding: 20px; color: gray"
+          >
+            No chats available
+          </div>
+          <div
+            *ngFor="let chat of officialChatList"
+            [ngClass]="chat.from_me ? 'outgoing' : 'incoming'"
+            class="chat-bubble"
+          >
+            {{ chat.interactive.body?.text }}
+          </div>
+        </div>
+
         <div
           style="
             background: #eff6fc;

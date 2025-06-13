@@ -239,10 +239,10 @@ export class AppSettingsComponent implements OnInit {
       name: 'Help & Support',
       icon: '../../../assets/icons/help.png',
     },
-    {
-      name: 'Role Management',
-      icon: '../../../assets/icons/help.png',
-    },
+    // {
+    //   name: 'Role Management',
+    //   icon: '../../../assets/icons/help.png',
+    // },
   ];
   currentTab: any = this.tabs[1];
   setCurrentTab = (item) => (this.currentTab = item);
