@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((s) => {
+        console.log('sssssss', s);
+
         if (this.activatedRoute.snapshot['_routerState'].url.startsWith('/qr-code')) {
           this.isQr = true;
         } else {

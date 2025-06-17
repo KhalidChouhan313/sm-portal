@@ -22,7 +22,7 @@ export class MyReviewsComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private qrSer: QrcodeService) {}
+  constructor(private qrSer: QrcodeService) { }
 
   ngOnInit(): void {
     const storedUser = localStorage.getItem('user_details');
@@ -35,7 +35,9 @@ export class MyReviewsComponent implements OnInit {
   loadReviews() {
     this.qrSer.getReviews(this.currentUser._id, this.currentPage).subscribe(
       (res) => {
+
         this.reviews = res.data;
+        console.log(this.reviews);
         this.totalPages = res.pagination?.totalPages || 1;
       },
       (err) => {
