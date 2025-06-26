@@ -223,21 +223,46 @@
           class="banner_img"
         />
         <img [src]="qrSrc" /> -->
-        <div style="width: 60%;padding: 1rem;margin-top: 1rem;">
-          <h5 style="margin-bottom: 1rem;">To send and receive messages, you have to authorize our server like for
-            WhatsApp
-            Web.</h5>
-          <ul style=" list-style: none;">
-            <li>1. Open the WhatsApp app on your phone</li>
-            <li>2. Press Settings->WhatsApp WEB and then plus</li>
-            <li>3. Scan a code and wait a minute</li>
-            <li>4. Keep your phone turned on and connected to the Internet</li>
-            <li>QR code is valid only for 45 seconds. Message sennding will be available
-              right after authorization.</li>
-          </ul>
+        <div style="display: flex">
+          <div style="    width: 60%;
+    padding: 1rem;
+    margin-top: 1rem;
+    max-height: 275px;
+    overflow-x: auto;
+    margin-right: 1rem;
+    padding: 1rem
+12.8px
+;">
+            <h5 style="margin-bottom: 1rem;">To send and receive messages, you have to authorize our server like for
+              WhatsApp
+              Web.</h5>
+            <ul style=" list-style: none;">
+              <li>1. Open the WhatsApp app on your phone</li>
+              <li>2. Press Settings (three dots on top right of screen) ->Linked Devices</li>
+              <li>3. ⁠Then press Link Device</li>
+              <li>4. This will open up the camera on the sending devicet</li>
+              <li>5. Scan a code and wait a minute</li>
+              <li>6. Once synchronised you will then be given the option to name device</li>
+              <li>7. ⁠Keep your phone turned on and connected to the Internet</li>
+              <li>8. ⁠Message sending will commence after a few minutes</li>
+              <li>QR code is valid only for 45 seconds.<br>
+                If device won't connect try again in a few minutes.<br>
+                You might find that the send messages have not downloaded to your device, this will require a restart of
+                the device, then after several minutes the messages will start uploading, while this is taking place the
+                device will not link, you must allow the messages to upload.
+                Message sending will be available right after authorisation..
+              </li>
+            </ul>
+          </div>
+          <div style="display: flex;width: 40%;height: fit-content;">
+            <img style="width: 100%;border-radius: 5px;height: fit-content;" [src]="qrSrc">
+          </div>
         </div>
-        <div style="display: flex;width: 40%;height: fit-content;"><img
-            style="width: 100%;border-radius: 5px;height: fit-content;" [src]="qrSrc"></div>
+        <!-- <div>
+          <ul style=" list-style: none;">
+            
+          </ul>
+        </div> -->
       </div>
       <div class="whatsapp-banner-con">
         <div class="whatsapp-banner" *ngIf="
