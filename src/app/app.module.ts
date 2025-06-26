@@ -55,6 +55,8 @@ import { MyReviewsComponent } from './screens/my-reviews/my-reviews.component';
 import { ChatsComponent } from './screens/chats/chats.component';
 import { AiPromptOfficialComponent } from './screens/ai-prompt-official/ai-prompt-official.component';
 import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { ReviewComponent } from './components/review/review.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -100,6 +102,8 @@ import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.c
     ChatsComponent,
     AiPromptOfficialComponent,
     GreenQrCodeComponent,
+    ConfirmationModalComponent,
+    ReviewComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,
@@ -125,4 +129,4 @@ import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.c
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

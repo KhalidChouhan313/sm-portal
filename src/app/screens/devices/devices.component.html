@@ -133,12 +133,8 @@
         <p>{{ item.name }}</p>
       </div>
     </li> -->
-    <li
-      *ngFor="let item of deviceList; let i = index"
-      (click)="setCurrent(item.id, i)"
-      [class.active]="currentDeviceIndex === i"
-      style="min-width: fit-content; max-width: 300px"
-    >
+    <li *ngFor="let item of deviceList; let i = index" (click)="setCurrent(item.id, i)"
+      [class.active]="currentDeviceIndex === i" style="min-width: fit-content; max-width: 300px">
       <div class="icon">
         <img src="../../../assets/androidlogo.png" alt="a" />
       </div>
@@ -164,11 +160,8 @@
     </li> -->
   </ul>
 
-  <div
-    class="header"
-    [ngStyle]="qrShow && !isLoad ? { height: '300px' } : { height: '166px' }"
-  >
-    <div class="grid-img">
+  <div class="header" [ngStyle]="qrShow && !isLoad ? { height: '300px' } : { height: '166px' }">
+    <!-- <div class="grid-img">
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
@@ -181,15 +174,13 @@
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
       <img src="../../../assets/bg-grid.png" />
-    </div>
-    <div
-      style="
+    </div> -->
+    <div style="
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         height: 100px;
-      "
-    >
+      ">
       <div class="h-item">
         <strong>Device Name</strong>
         :
@@ -198,12 +189,8 @@
       <div class="h-item">
         <strong>Auth Status</strong>
         :
-        <span
-          ><img
-            *ngIf="authStatus == 'Authenticated' || !authStatus"
-            src="../../../assets/auth-sign.png"
-          />{{ authStatus || "Authenticated" }}</span
-        >
+        <span><img *ngIf="authStatus == 'Authenticated' || !authStatus" src="../../../assets/auth-sign.png" />{{
+          authStatus || "Authenticated" }}</span>
       </div>
       <div class="h-item">
         <strong>Connection</strong>
@@ -212,12 +199,9 @@
       </div>
     </div>
     <div>
-      <div
-        (click)="openGreenApi(currentDevice, currentIndex)"
-        *ngIf="currentDevice.device_name !== 'Official WhatsApp Account'"
-        class="device-btn-container"
-        style="position: relative; z-index: 100"
-      >
+      <div (click)="openGreenApi(currentDevice, currentIndex)"
+        *ngIf="currentDevice.device_name !== 'Official WhatsApp Account'" class="device-btn-container"
+        style="position: relative; z-index: 100">
         <button>
           <img src="../../../assets/d-reboot.png" />
           <img src="../../../assets/device-tt-1.png" />
@@ -232,46 +216,51 @@
         </button>
       </div>
 
-      <div *ngIf="qrShow && !isLoad" class="qr-banner-container">
-        <img
+      <div *ngIf="qrShow && !isLoad" class="col-md-8 qr-banner-container">
+        <!-- <img
           src="../../../assets/qr-banner.png"
           alt="banner"
           class="banner_img"
         />
-        <img [src]="qrSrc" />
+        <img [src]="qrSrc" /> -->
+        <div style="width: 60%;padding: 1rem;margin-top: 1rem;">
+          <h5 style="margin-bottom: 1rem;">To send and receive messages, you have to authorize our server like for
+            WhatsApp
+            Web.</h5>
+          <ul style=" list-style: none;">
+            <li>1. Open the WhatsApp app on your phone</li>
+            <li>2. Press Settings->WhatsApp WEB and then plus</li>
+            <li>3. Scan a code and wait a minute</li>
+            <li>4. Keep your phone turned on and connected to the Internet</li>
+            <li>QR code is valid only for 45 seconds. Message sennding will be available
+              right after authorization.</li>
+          </ul>
+        </div>
+        <div style="display: flex;width: 40%;height: fit-content;"><img
+            style="width: 100%;border-radius: 5px;height: fit-content;" [src]="qrSrc"></div>
       </div>
       <div class="whatsapp-banner-con">
-        <div
-          class="whatsapp-banner"
-          *ngIf="
+        <div class="whatsapp-banner" *ngIf="
             !qrShow &&
             !isLoad &&
             authStatus == 'Authenticated' &&
             connection == 'Active'
-          "
-        >
+          ">
           <img src="../../../assets/whatsappbanner.png" />
           <div class="">
             <p>Keep your phone connected</p>
-            <span
-              >WhatsApp connects to your phone to sync messages. To reduce data
-              usage, connect your phone to Wi-Fi.</span
-            >
+            <span>WhatsApp connects to your phone to sync messages. To reduce data
+              usage, connect your phone to Wi-Fi.</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="display: flex; gap: 10px; margin-top: 20px">
+  <div style="display: flex; gap: 10px;margin-top: 6rem;">
     <div class="reports">
-      <app-reports
-        [graphData]="barChartData"
-        [totalMsg]="totalMsg"
-        [totalSms]="totalSms"
-        [totalWhatsapp]="totalWhatsapp"
-        [notSent]="notSent"
-      ></app-reports>
+      <app-reports [graphData]="barChartData" [totalMsg]="totalMsg" [totalSms]="totalSms"
+        [totalWhatsapp]="totalWhatsapp" [notSent]="notSent"></app-reports>
     </div>
     <div class="msg-details">
       <div class="msg-details-sec">
@@ -364,13 +353,8 @@
     </div>
   </div>
 
-  <div
-    *ngIf="isBannerVisible"
-    class="note-banner"
-    style="display: flex; gap: 5px"
-  >
-    <span
-      style="
+  <div *ngIf="isBannerVisible" class="note-banner" style="display: flex; gap: 5px">
+    <span style="
         font-weight: 600;
         color: black;
         display: inline-flex;
@@ -381,19 +365,11 @@
         font-size: 15px;
         white-space: nowrap;
         font-family: 'DM Sans';
-      "
-    >
-      <svg
-        width="20"
-        height="21"
-        viewBox="0 0 20 21"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      ">
+      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M9 5.5H11V7.5H9V5.5ZM10 15.5C10.55 15.5 11 15.05 11 14.5V10.5C11 9.95 10.55 9.5 10 9.5C9.45 9.5 9 9.95 9 10.5V14.5C9 15.05 9.45 15.5 10 15.5ZM10 0.5C4.48 0.5 0 4.98 0 10.5C0 16.02 4.48 20.5 10 20.5C15.52 20.5 20 16.02 20 10.5C20 4.98 15.52 0.5 10 0.5ZM10 18.5C5.59 18.5 2 14.91 2 10.5C2 6.09 5.59 2.5 10 2.5C14.41 2.5 18 6.09 18 10.5C18 14.91 14.41 18.5 10 18.5Z"
-          fill="#181818"
-        />
+          fill="#181818" />
       </svg>
       Important Note:
 
@@ -401,15 +377,13 @@
         <img src="../../../assets/close-icon.png" />
       </button> -->
     </span>
-    <p
-      style="
+    <p style="
         font-size: 14px;
         font-family: 'DM Sans';
         margin-bottom: 0;
         font-size: 14px;
         color: black;
-      "
-    >
+      ">
       A message marked as "not sent" may be due to an invalid mobile or
       international number, or your settings preventing this message type from
       being sent via SMS. Device sending is limited to avoid bans, these limits
@@ -429,33 +403,15 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 10px">
-        <button
-          class="page-reload-btn"
-          style="height: 40px; background: white"
-          (click)="reloadWindow()"
-        >
-          <svg
-            width="13"
-            height="12"
-            viewBox="0 0 13 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+        <button class="page-reload-btn" style="height: 40px; background: white" (click)="reloadWindow()">
+          <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M2.25589 3.55C3.14198 2.02561 4.79815 1 6.69502 1C8.84573 1 10.687 2.31846 11.4472 4.1875M3.81236 4.1875H1.25V1.6375M11.0816 8.65C10.1955 10.1744 8.53935 11.2 6.64247 11.2C4.49177 11.2 2.6505 9.88154 1.89026 8.0125M9.52513 8.0125H12.0875V10.5625"
-              stroke="#636364"
-              stroke-width="1.1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+              stroke="#636364" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <img src="../../../assets/device-tt-3.png" />
         </button>
-        <button
-          class="filter"
-          [ngClass]="{ active: showFilters }"
-          (click)="filters()"
-        >
+        <button class="filter" [ngClass]="{ active: showFilters }" (click)="filters()">
           <img src="../../../assets/filter-icon-black.png" />
           <img src="../../../assets/filter-icon.png" />
           <span>Search</span>
@@ -464,20 +420,9 @@
     </div>
     <div *ngIf="showFilter == true" class="filters">
       <button class="close" (click)="filters()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="13"
-          height="13"
-          viewBox="0 0 13 13"
-          fill="none"
-        >
-          <path
-            d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573"
-            stroke="#2EBC96"
-            stroke-width="1.60279"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path d="M12.0278 11.6573L0.808298 1.34253M12.0278 1.34253L0.808298 11.6573" stroke="#2EBC96"
+            stroke-width="1.60279" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
       <div class="filter-inputs">
@@ -580,14 +525,10 @@
               {{ item.createdAt | date : "dd/MM/y, h:mma" }}
             </td>
 
-            <td
-              [ngStyle]="{
+            <td [ngStyle]="{
                 color: item.target_type === 'whatsapp' ? '#2EBC96' : '#3981F7'
-              }"
-            >
-              <ng-container
-                *ngIf="item.target_type === 'whatsapp'; else smsText"
-              >
+              }">
+              <ng-container *ngIf="item.target_type === 'whatsapp'; else smsText">
                 WhatsApp
               </ng-container>
               <ng-template #smsText>SMS</ng-template>
@@ -624,12 +565,9 @@
       </table>
     </div>
     <div *ngIf="!isMsgLoad" class="pagination">
-      <a class="active" *ngIf="page > 1" (click)="previousPage()"
-        >&laquo; Prev
+      <a class="active" *ngIf="page > 1" (click)="previousPage()">&laquo; Prev
       </a>
-      <a *ngIf="messageList.length == 50" class="active" (click)="nextPage()"
-        >Next &raquo;</a
-      >
+      <a *ngIf="messageList.length == 50" class="active" (click)="nextPage()">Next &raquo;</a>
     </div>
   </div>
 </div>

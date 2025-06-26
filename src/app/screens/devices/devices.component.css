@@ -1202,15 +1202,73 @@ tr {
 }
 
 .qr-banner-container {
-  position: relative;
+    /* position: relative;
+    display: flex;
+    background-color: #e7e7e7;
+    width: 90%;
+    border-radius: 10px;
+    padding: 1rem; */
+  /* background-color: #ffffff; */
+  background-color: #e7e7e7;
+  max-height: 300px;
+  min-height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5rem;
+  padding: 1rem;
+  align-items: center;
+  border-radius: 5px;
+
+@media (max-width: 575.98px) {
+  /* Phones (portrait) */
+  font-size: xx-small;
+  h5{font-size: smaller;}
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Phones (landscape) / small devices */
+  font-size: x-small;
+  h5{font-size: small;}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Tablets */
+  font-size: x-small;
+  h5{font-size: small;}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Small laptops/desktops */
+  font-size: x-small;
+  h5{font-size: small;}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* Desktops */
+  font-size: smaller;
+  h5{font-size: medium;}
+}
+@media (min-width: 1400px) and (max-width: 1599.98px) {
+  /* Desktops */
+  font-size: small;
+  h5{font-size: large;}
+}
+@media (min-width: 1600px) {
+  /* Very large desktops, 4K screens */
+  font-size: medium;
+  h5{font-size: larger;}
+}
 }
 
-.qr-banner-container img:nth-child(2) {
+@media (min-width: 768px) {
+  .col-md-8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+  }
+}
+
+/* .qr-banner-container img:nth-child(2) {
   position: absolute;
   width: 160px;
   right: 25px;
   top: 15px;
-}
+} */
 
 .whatsapp-banner-con {
   position: relative;

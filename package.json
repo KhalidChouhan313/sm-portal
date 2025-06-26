@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@ctrl/ngx-emoji-mart": "^9.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
     "@swimlane/ngx-charts": "^22.0.0-alpha.1",
     "@swimlane/ngx-graph": "^10.0.0-alpha.0",
@@ -45,6 +44,7 @@
     "path": "^0.12.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

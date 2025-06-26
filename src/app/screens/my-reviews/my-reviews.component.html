@@ -174,8 +174,8 @@
           {{review.name}}
         </p>
 
-        <p *ngIf="review.date">{{ review.date | date : " hh:mm, MMM dd, yy" }}</p>
-        <p *ngIf="!review.date">{{ review.createdAt | date : " hh:mm, MMM dd, yy" }}</p>
+        <p *ngIf="review.date">{{ review.date | date : "hh:mm, MMM dd, yy" }}</p>
+        <p *ngIf="!review.date">{{ review.createdAt | date : "hh:mm, MMM dd, yy" }}</p>
         <p>{{review.booking_id}}</p>
         <p>{{ review.review_id }}</p>
         <p>{{ review.driver_id }}</p>
