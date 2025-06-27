@@ -150,6 +150,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/login/login.module').then((m) => m.LoginModules),
   },
+  {
+    path: 'sessions/signin',
+    loadChildren: () =>
+      import('./screens/login/login.module').then((m) => m.LoginModules),
+  },
 ];
 
 @NgModule({
