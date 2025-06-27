@@ -13,7 +13,7 @@ export class OverviewCardsComponent implements OnInit {
   @Input() totalTripValue = 0;
   @Input() averageFare = 0;
   overviewCards = [];
-  constructor(private BS: BookingsService) {}
+  constructor(private BS: BookingsService) { }
 
   formatCurrency(value) {
     let str = value.toString().replace(/£/g, '').trim();
@@ -36,13 +36,13 @@ export class OverviewCardsComponent implements OnInit {
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
-    console.log(
-      this.totalInteractions,
-      this.totalBookings,
-      this.bookingConversionRate,
-      this.totalTripValue,
-      this.averageFare
-    );
+    // console.log(
+    //   this.totalInteractions,
+    //   this.totalBookings,
+    //   this.bookingConversionRate,
+    //   this.totalTripValue,
+    //   this.averageFare
+    // );
 
     this.overviewCards = [
       {

@@ -11,7 +11,7 @@ export class CustomersComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private customersService: CustomersService
-  ) {}
+  ) { }
 
   customers: any[] = [];
   currentPage: number = 1;
@@ -36,14 +36,14 @@ export class CustomersComponent implements OnInit {
               this.loading = false;
             },
             (err) => {
-              console.log(err);
+              // console.log(err);
               this.loading = false;
             }
           );
         }
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       }
     );
   }

@@ -184,7 +184,7 @@ export class MessagesComponent implements OnInit {
     private AS: AdminService,
     // private _serviceModal: NgbModal,
     private router: Router
-  ) {}
+  ) { }
 
   currentUser: any;
   ngOnInit() {
@@ -196,16 +196,16 @@ export class MessagesComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!this.currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
-    console.log('here', this.currentUser);
+    // console.log('here', this.currentUser);
 
     this.AS.getUser(this.currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
-      console.log('test', admin.messages);
+      // console.log('test', admin.messages);
       this.currentMessageList = admin.messages.booking;
       this.tab = 'booking';
-      console.log('msgs', this.currentMessageList);
+      // console.log('msgs', this.currentMessageList);
 
       this.currentMsg = admin.messages.booking[0];
       if (admin.messages.booking.length) {
@@ -270,7 +270,7 @@ export class MessagesComponent implements OnInit {
       this.isLoad = false;
       // console.log(this.chatbot_msg);
     });
-    console.log(this.currentMsg);
+    // console.log(this.currentMsg);
   }
 
   tempMessages: any;
@@ -292,7 +292,7 @@ export class MessagesComponent implements OnInit {
       delete this.tempMessages[index]; // Remove temp data after resetting
     }
 
-    console.log(instance);
+    // console.log(instance);
   }
 
   editMessageLimit() {
@@ -300,10 +300,10 @@ export class MessagesComponent implements OnInit {
     this.tab === 'review'
       ? (toEdit = 'review_limit')
       : this.tab === 'preauth'
-      ? (toEdit = 'preAuth_limit')
-      : this.tab === 'custom1'
-      ? (toEdit = 'custom1_limit')
-      : (toEdit = 'custom2_limit');
+        ? (toEdit = 'preAuth_limit')
+        : this.tab === 'custom1'
+          ? (toEdit = 'custom1_limit')
+          : (toEdit = 'custom2_limit');
     const obj = {
       _id: this.currentUser._id,
       [toEdit]: this.messageLimit,
@@ -401,7 +401,7 @@ export class MessagesComponent implements OnInit {
         custom2: this.custom2_msg,
       },
     };
-    console.log(this.currentMsg);
+    // console.log(this.currentMsg);
 
     this.AS.updateUser(obj).subscribe((res) => {
       if (res) {

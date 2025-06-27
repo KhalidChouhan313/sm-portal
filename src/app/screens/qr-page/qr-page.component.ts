@@ -91,7 +91,7 @@ export class QrPageComponent {
     },
   };
 
-  constructor(private qrcodeService: QrcodeService, private router: Router) {}
+  constructor(private qrcodeService: QrcodeService, private router: Router) { }
 
   currentUser: any;
   allQrCodes: any = null;
@@ -119,9 +119,9 @@ export class QrPageComponent {
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('user_details'));
     this.currentUser = user;
-    console.log(user);
+    // console.log(user);
     if (user) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
 
     this.fetchQrList();
@@ -138,7 +138,7 @@ export class QrPageComponent {
     this.qrcodeService
       .getAllQrCodes(this.currentUser._id, this.currentPage)
       .subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.allQrCodes = res.data.location.records.concat(
           res.data.text.records
         );
@@ -155,13 +155,13 @@ export class QrPageComponent {
           location: locationPagination,
           text: textPagination,
         };
-        console.log(this.pagination);
+        // console.log(this.pagination);
         this.updateFilteredQrCodes();
-        console.log({
-          currentPage: this.currentPage,
-          pages: this.totalPage,
-        });
-        console.log(this.allQrCodes);
+        // console.log({
+        //   currentPage: this.currentPage,
+        //   pages: this.totalPage,
+        // });
+        // console.log(this.allQrCodes);
         if (res.length == 0) {
           this.showUniversalQrGenerator = true;
         }
@@ -235,7 +235,7 @@ export class QrPageComponent {
     this.universalQrData = JSON.stringify(dataObject);
 
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.universalQrString = `${res.URL}`;
       this.qrString = `${res.URL}`;
       this.smartQrString = null;
@@ -258,19 +258,18 @@ export class QrPageComponent {
               const formData = new FormData();
               formData.append('qrCodeImage', qrBlob, 'qrcode.png');
 
-              console.log('FormData:', formData);
+              // console.log('FormData:', formData);
 
               // Send to backend
               this.qrcodeService.updateQrImg(res._id, formData).subscribe(
                 (qrRes) => {
-                  console.log(qrRes);
+                  // console.log(qrRes);
                   this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
-                (qrErr) => console.log('QR save error:', qrErr)
-              );
+                (qrErr) => { });
             })
-            .catch((err) => console.log('QR capture error:', err));
+            .catch((err) => { });
         } else {
           console.error('QR element not found!');
         }
@@ -335,10 +334,10 @@ export class QrPageComponent {
     this.qrcodeService.generateCode(dataObject).subscribe((res) => {
       this.smartQrString = `${res.URL}`;
       this.qrString = `${res.URL}`;
-      console.log(this.qrString);
+      // console.log(this.qrString);
       this.universalQrString = null;
       this.currentQrId = res._id;
-      console.log('smart qr link', res);
+      // console.log('smart qr link', res);
 
       setTimeout(() => {
         const qrElement = document.querySelector(
@@ -357,21 +356,20 @@ export class QrPageComponent {
               const formData = new FormData();
               formData.append('qrCodeImage', qrBlob, 'qrcode.png');
 
-              console.log('FormData:', formData);
+              // console.log('FormData:', formData);
 
               // Send to backend
               this.qrcodeService.updateQrImg(res._id, formData).subscribe(
                 (qrRes) => {
                   let user = JSON.parse(localStorage.getItem('user_details'));
                   this.currentUser = user;
-                  console.log(qrRes);
+                  // console.log(qrRes);
                   this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
-                (qrErr) => console.log('QR save error:', qrErr)
-              );
+                (qrErr) => { });
             })
-            .catch((err) => console.log('QR capture error:', err));
+            .catch((err) => { });
         } else {
           console.error('QR element not found!');
         }
@@ -385,7 +383,7 @@ export class QrPageComponent {
   locations = [];
   locationLoader = false;
   getLocations() {
-    console.log(this.inputSmartPickup);
+    // console.log(this.inputSmartPickup);
     this.locationLoader = true;
     this.locations = [];
 
@@ -402,7 +400,7 @@ export class QrPageComponent {
       this.qrcodeService.getPickupLocations(obj).subscribe((res) => {
         this.locations = res.addresses;
         this.locationLoader = false;
-        console.log(res);
+        // console.log(res);
       });
     }, 1500);
   }
@@ -411,7 +409,7 @@ export class QrPageComponent {
   locationsFromDetails = [];
   locationLoaderFromDetails = false;
   getLocationsFromDetails() {
-    console.log('working');
+    // console.log('working');
     this.locationLoaderFromDetails = true;
     this.locationsFromDetails = [];
     clearTimeout(this.timeoutFromDetails);
@@ -427,7 +425,7 @@ export class QrPageComponent {
       this.qrcodeService.getPickupLocations(obj).subscribe((res) => {
         this.locationsFromDetails = res.addresses;
         this.locationLoaderFromDetails = false;
-        console.log(res);
+        // console.log(res);
       });
     }, 1500);
   }
@@ -497,7 +495,7 @@ export class QrPageComponent {
 
         this.activeQrId = this.activeQrDetails.recordWithoutPublicId[0]._id;
         this.qrDetailImgLoader = false;
-        console.log(res);
+        // console.log(res);
         if (index === this.filteredQrCodes.length - 1) {
           setTimeout(() => {
             window.scrollTo({
@@ -518,7 +516,7 @@ export class QrPageComponent {
   deleteQr(index: number = this.deleteIndex) {
     let qrCodeId = this.filteredQrCodes[index].id;
     this.qrcodeService.deleteQrCode(qrCodeId).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.filteredQrCodes.splice(index, 1); // Remove the deleted QR code from the list
       // this.toggleDetails(index);
       this.selectedItemIndex = null;
@@ -531,7 +529,7 @@ export class QrPageComponent {
 
   updateQrTitle(index) {
     let qrCodeId = this.activeQrDetails.recordWithoutPublicId[0]._id;
-    console.log(qrCodeId);
+    // console.log(qrCodeId);
 
     const dataObject = {
       name: this.qrListTitle,
@@ -543,7 +541,7 @@ export class QrPageComponent {
       // },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       alert('Updated Successfully');
       this.activeQrDetails.recordWithoutPublicId[0].name = this.qrListTitle;
       this.activeQrDetails.recordWithoutPublicId[0].text =
@@ -576,7 +574,7 @@ export class QrPageComponent {
       // },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       alert('Updated Successfully');
 
       this.activeQrDetails.recordWithoutPublicId[0].title = this.qrListTitle;
@@ -611,7 +609,7 @@ export class QrPageComponent {
       },
     };
     this.qrcodeService.updateQrCode(qrCodeId, dataObject).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.activeQrDetails.recordWithoutPublicId[0].title = this.qrListTitle;
       this.activeQrDetails.recordWithoutPublicId[0].text =
         this.qrListDescription;
@@ -638,7 +636,7 @@ export class QrPageComponent {
     this.qrcodeService
       .updateQrCodeStatus(qrCodeId, dataObject)
       .subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.filteredQrCodes[index].status = status;
       });
   }
@@ -916,7 +914,7 @@ export class QrPageComponent {
     const bgGradient = this.qrCombo.includes('gradientBg');
     this.setQRStyle(dotGradient, true, bgGradient);
     this.regenQr();
-    console.log(this.eyeGradient1, this.eyeGradient2);
+    // console.log(this.eyeGradient1, this.eyeGradient2);
   }
 
   // Function for selecting internal eye shape
@@ -946,7 +944,7 @@ export class QrPageComponent {
 
   // Function for selecting background gradient
   cBgGradient(c1: string, c2: string) {
-    console.log(c1, c2);
+    // console.log(c1, c2);
     this.bgGradient1 = c1;
     this.bgGradient2 = c2;
     this.setQRStyle(
@@ -1009,7 +1007,7 @@ export class QrPageComponent {
             const formData = new FormData();
             formData.append('qrCodeImage', qrBlob, 'qrcode.png');
 
-            console.log('FormData:', formData);
+            // console.log('FormData:', formData);
 
             // Send to backend
             this.qrcodeService
@@ -1018,7 +1016,7 @@ export class QrPageComponent {
                 (qrRes) => {
                   let user = JSON.parse(localStorage.getItem('user_details'));
                   this.currentUser = user;
-                  console.log(qrRes);
+                  // console.log(qrRes);
 
                   this.openUniversalQrCustomize = false;
                   this.saveBtnText = 'Save Changes';
@@ -1031,12 +1029,11 @@ export class QrPageComponent {
                   // this.fetchQrList();
                   this.selectedItemIndex = null;
                 },
-                (qrErr) => console.log('QR save error:', qrErr)
-              );
+                (qrErr) => { });
           })
-          .catch((err) => console.log('QR capture error:', err));
+          .catch((err) => { });
       } else {
-        console.error('QR element not found!');
+        // console.error('QR element not found!');
       }
     }, 4000);
     this.resetQr();
@@ -1061,14 +1058,14 @@ export class QrPageComponent {
             const formData = new FormData();
             formData.append('qrCodeImage', qrBlob, 'qrcode.png');
 
-            console.log('FormData:', formData);
+            // console.log('FormData:', formData);
 
             // Send to backend
             this.qrcodeService.updateQrImg(this.activeQrId, formData).subscribe(
               (qrRes) => {
                 let user = JSON.parse(localStorage.getItem('user_details'));
                 this.currentUser = user;
-                console.log(qrRes);
+                // console.log(qrRes);
 
                 this.openUniversalQrCustomizeFromDetails = false;
                 this.saveBtnText = 'Save Changes';
@@ -1081,12 +1078,11 @@ export class QrPageComponent {
                 // this.selectedItemIndex = null;
                 // this.fetchQrList();
               },
-              (qrErr) => console.log('QR save error:', qrErr)
-            );
+              (qrErr) => { });
           })
-          .catch((err) => console.log('QR capture error:', err));
+          .catch((err) => { });
       } else {
-        console.error('QR element not found!');
+        // console.error('QR element not found!');
       }
     }, 4000);
     this.resetQr();
@@ -1115,7 +1111,7 @@ export class QrPageComponent {
     this.qrcodeService
       .getQrCodeByTitle(this.currentUser._id, this.searchQrQry)
       .subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         res.qrCodeData.map((item) => {
           item.title = item.name;
         });

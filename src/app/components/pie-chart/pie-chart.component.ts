@@ -82,7 +82,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     if (changes['data'] || changes['colors']) {
       this.updateChartData();
     }
-    console.log('Updated Data:', this.data);
+    // console.log('Updated Data:', this.data);
   }
 
   private updateChartData(): void {

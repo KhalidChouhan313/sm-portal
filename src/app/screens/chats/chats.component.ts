@@ -15,7 +15,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     private AS: AdminService,
     private BKS: BookingsService,
     private QR: QrcodeService
-  ) {}
+  ) { }
 
   currentUser: any;
   wabaDeviceDetails: any;
@@ -41,14 +41,14 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.showMainLoader = true;
     // this.AS.getCurrentUserFromBack().subscribe(() => {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
 
     if (!this.currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
     this.AS.getUser(this.currentUser._id).subscribe((usr) => {
       this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
-        console.log('admin', admin.data[0]);
+        // console.log('admin', admin.data[0]);
         this.wabaDeviceDetails = admin.data[0];
         if (admin.data[0].wa_phone_id.length) {
           this.haveWabaDevice = true;
@@ -66,7 +66,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
             d.wa_api_platform == 'maytapi' ||
             d.wa_api_platform == 'greenapi')
       );
-      console.log(this.deviceList);
+      // console.log(this.deviceList);
       this.selectedDevice = this.deviceList[0] || null;
       this.contactId = this.deviceList[0]?.device_id;
       this.contactToken = this.deviceList[0]?.token;
@@ -76,7 +76,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     });
     this.contactPollingInterval = setInterval(() => {
       if (this.selectedDevice.device_name !== 'Official WhatsApp Account') {
-        console.log(this.selectedDevice);
+        // console.log(this.selectedDevice);
         this.fetchContact(360, 3);
       }
     }, 6000); // 3000 ms = 3 seconds
@@ -98,7 +98,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.selectedContactIndex = 0;
     this.chatList = [];
 
-    console.log('current device', this.selectedDevice);
+    // console.log('current device', this.selectedDevice);
     // Start fresh contact fetch
     this.fetchContact();
 
@@ -110,21 +110,21 @@ export class ChatsComponent implements OnInit, OnDestroy {
     }, 6000);
 
     if (this.selectedDevice.device_name == 'Official WhatsApp Account') {
-      console.log('Fetching official contacts...');
+      // console.log('Fetching official contacts...');
       this.QR.getOfficialContacts().subscribe((res) => {
-        console.log('Official contacts response:', res);
+        // console.log('Official contacts response:', res);
         this.contactList = res.phones;
         let officialNumber = this.contactList[0];
-        console.log('Selected official number:', officialNumber);
+        // console.log('Selected official number:', officialNumber);
 
         this.QR.getOfficialChat(officialNumber).subscribe((chat) => {
-          console.log('Raw official chat response:', chat);
+          // console.log('Raw official chat response:', chat);
           this.officialChatList = chat.chat_panel;
-          console.log(
-            'Official chat list after assignment:',
-            this.officialChatList
-          );
-          console.log('First chat in list:', this.officialChatList?.[0]);
+          // console.log(
+          // 'Official chat list after assignment:',
+          //   this.officialChatList
+          // );
+          // console.log('First chat in list:', this.officialChatList?.[0]);
           this.chatLoader = true; // Set to true to show the chat
         });
       });
@@ -146,7 +146,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
       (res) => {
         this.chatList = res;
         this.chatLoader = false;
-        console.log(res);
+        // console.log(res);
       }
     );
     const obj2 = {
@@ -158,7 +158,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     //   this.contactToken
     // ).subscribe((res) => {
     //   this.selectedContactInfo = res;
-    //   console.log('chatinfo', res);
+    // console.log('chatinfo', res);
     // });
   }
 
@@ -171,7 +171,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.QR.getChats(this.contactId, this.contactToken, obj).subscribe(
       (res) => {
         this.chatList = res;
-        console.log('chat', res);
+        // console.log('chat', res);
         this.showMainLoader = false;
         this.chatLoader = true;
       }
@@ -185,7 +185,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
       this.contactToken
     ).subscribe((res) => {
       this.selectedContactInfo = res;
-      console.log('chatinfo', res);
+      // console.log('chatinfo', res);
     });
   }
 
@@ -229,13 +229,13 @@ export class ChatsComponent implements OnInit, OnDestroy {
       );
       this.selectedContactIndex = newIndex !== -1 ? newIndex : 0;
 
-      console.log(
-        `Run #${runCount} | Limit: ${limit} | Contacts:`,
-        this.contactList.length
-      );
+      // console.log(
+      // `Run #${runCount} | Limit: ${limit} | Contacts:`,
+      //   this.contactList.length
+      // );
 
       if (this.contactList.length >= 15 || runCount >= 6) {
-        console.log('Stopping recursion', this.contactList);
+        // console.log('Stopping recursion', this.contactList);
         setTimeout(() => {
           this.fetchChat();
         }, 1000);
@@ -280,7 +280,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
   //     ).subscribe(
   //       (res) => {
   //         this.contactDetailList[index] = res;
-  //         console.log(`Success [${index}]`, res);
+  // console.log(`Success [${index}]`, res);
   //       },
   //       async (err) => {
   //         console.error(`Failed [${index}] attempt ${retries + 1}`, err);
@@ -322,7 +322,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
   //     this.QR.getChats(this.contactId, this.contactToken, obj).subscribe(
   //       (res) => {
   //         this.contactLastMsgList[index] = res;
-  //         console.log(`Success [${index}]`, res);
+  // console.log(`Success [${index}]`, res);
   //       },
   //       async (err) => {
   //         console.error(`Failed [${index}] attempt ${retries + 1}`, err);
@@ -447,7 +447,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
 
     this.QR.sendMessage(obj, this.contactId, this.contactToken).subscribe(
       (res) => {
-        console.log('Message sent:', res);
+        // console.log('Message sent:', res);
         this.pollForNewMessages();
         // Optionally, update/remove the pending message here if you want
       }

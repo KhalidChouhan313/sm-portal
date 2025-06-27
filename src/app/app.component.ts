@@ -15,12 +15,19 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((s) => {
-        // console.log('sssssss', s, this.activatedRoute.snapshot);
-        if (this.activatedRoute.snapshot['_routerState'].url.startsWith('/qr-code') || this.activatedRoute.snapshot['_routerState'].url.startsWith('/r')) {
+        // console.log(this.activatedRoute.snapshot['_routerState'].url);
+        // console.log(localStorage.getItem('token'))
+
+        if (this.activatedRoute.snapshot['_routerState'].url.startsWith('/qr-code?') || this.activatedRoute.snapshot['_routerState'].url.startsWith('/r/')) {
           this.isQr = true;
         } else {
           this.isQr = false;
           this.updateNavbarVisibility();
+          if (!localStorage.getItem('token')) {
+            this.router.navigate(['/login']);
+          } else {
+            // this.router.navigate(['/']);
+          }
         }
       });
   }
@@ -41,10 +48,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('token')) {
-      this.router.navigate(['/login']);
-    } else {
-      // this.router.navigate(['/']);
-    }
+    //   console.log(this.router['routerState']);
+    //   if (this.activatedRoute.snapshot['_routerState'].url.startsWith('/qr-code') || this.activatedRoute.snapshot['_routerState'].url.startsWith('/r')) {
+    //     // this.isQr = true;
+    //   } else {
+    //     // if (!localStorage.getItem('token')) {
+    //     //   this.router.navigate(['/login']);
+    //     // } else {
+    //     //   // this.router.navigate(['/']);
+    //     // }
+    //   }
   }
 }

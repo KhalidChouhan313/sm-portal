@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class QrcodeService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public generateCode(data): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/qr-code/create`, data);
@@ -77,7 +77,7 @@ export class QrcodeService {
   }
 
   public updateReviewPage(id, body, title, des): Observable<any> {
-    console.log(body);
+    // console.log(body);
     return this.http.post(
       `${environment.apiUrl}/api/qr-code/company-profile/${id}/?link=myLink&title=${title}&description=${des}`,
       body

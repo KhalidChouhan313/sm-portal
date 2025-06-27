@@ -14,7 +14,7 @@ export class QrStatsComponent implements OnInit {
   title: string = '';
   ipAddress: string | null = '';
 
-  constructor(private route: ActivatedRoute, private QR: QrcodeService) {}
+  constructor(private route: ActivatedRoute, private QR: QrcodeService) { }
 
   ngOnInit(): void {
     // Fetching query parameters from the URL
@@ -22,10 +22,10 @@ export class QrStatsComponent implements OnInit {
       this.qrId = params['qrId']; // qrId is the query parameter in the URL
       this.title = params['title'];
       this.qrURL = params['qrURL'];
-      console.log('QR ID:', this.qrId); // Should log '1000'
+      // console.log('QR ID:', this.qrId); // Should log '1000'
 
       this.QR.getQrCodeStats(params['qrId']).subscribe((res) => {
-        console.log('QR Code Stats:', res);
+        // console.log('QR Code Stats:', res);
 
         this.stats = res;
         this.ipAddress = res.ipAddress;
@@ -53,7 +53,7 @@ export class QrStatsComponent implements OnInit {
     navigator.clipboard
       .writeText(value)
       .then(() => {
-        console.log('Copied to clipboard:', value);
+        // console.log('Copied to clipboard:', value);
         // Optionally show a success message
       })
       .catch((err) => {

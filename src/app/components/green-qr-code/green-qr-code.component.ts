@@ -16,7 +16,7 @@ export class GreenQrCodeComponent {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.queryParams['_value']);
+    // console.log(this.activatedRoute.queryParams['_value']);
     let id1 = this.activatedRoute.queryParams['_value'].id1;
     let id2 = this.activatedRoute.queryParams['_value'].id2;
     let url = `https://api.green-api.com/waInstance${id1}/qr/${id2}`

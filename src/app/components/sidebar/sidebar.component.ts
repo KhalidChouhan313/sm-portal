@@ -11,7 +11,7 @@ export class SidebarComponent {
   constructor(
     private router: Router,
     private bookingsService: BookingsService
-  ) {}
+  ) { }
 
   loading = true;
   haveBot = false;
@@ -20,7 +20,7 @@ export class SidebarComponent {
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
 
     // console.log(currentUser._id);

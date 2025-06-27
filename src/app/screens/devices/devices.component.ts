@@ -147,21 +147,21 @@ export class DevicesComponent implements OnInit {
     private BS: BotService,
     private BKS: BookingsService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let user_id = this.activatedRoute.params['value'].id;
 
     // this.AS.getCurrentUserFromBack().subscribe(() => {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
 
     if (!this.currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
     this.AS.getUser(this.currentUser._id).subscribe((usr) => {
       this.BKS.getCompanyBots(this.currentUser._id).subscribe((admin) => {
-        console.log('admin', admin.data[0]);
+        // console.log('admin', admin.data[0]);
         this.wabaDeviceDetails = admin.data[0];
         if (admin.data[0].wa_phone_id.length) {
           this.haveWabaDevice = true;
@@ -180,7 +180,7 @@ export class DevicesComponent implements OnInit {
             d.wa_api_platform == 'maytapi' ||
             d.wa_api_platform == 'greenapi')
       );
-      console.log(this.deviceList);
+      // console.log(this.deviceList);
       // Initialize device connection statuses
       this.deviceConnections = {}; // Reset deviceConnections before fetching new statuses
 
@@ -214,7 +214,7 @@ export class DevicesComponent implements OnInit {
   setCurrent = (id: number, index: number) => {
     this.currentDevice = this.deviceList[index];
     this.currentDeviceIndex = index;
-    console.log('current', this.currentDevice);
+    // console.log('current', this.currentDevice);
     this.openGreenApi(this.deviceList[index], index);
   };
 
@@ -244,7 +244,7 @@ export class DevicesComponent implements OnInit {
       this.AS.getMessageList(obj).subscribe((ml) => {
         this.messageList = ml;
         this.isMsgLoad = false;
-        console.log('msgs', ml);
+        // console.log('msgs', ml);
       });
     } else if (device.wa_api_platform == 'maytapi') {
       this.openMaytApi(device, index);
@@ -355,7 +355,7 @@ export class DevicesComponent implements OnInit {
   }
 
   openGreenApi(device, index) {
-    console.log('green', device);
+    // console.log('green', device);
     this.creatGraph(device, index);
     this.clean();
     this.isLoad = true;
@@ -375,7 +375,7 @@ export class DevicesComponent implements OnInit {
     };
     this.AS.getMessageList(obj).subscribe((ml) => {
       this.messageList = ml;
-      console.log('list', ml);
+      // console.log('list', ml);
       this.isMsgLoad = false;
       // this.targetList = [...new Set(this.messageList.map(item => item.to_number))];
       // this.targetTypeList = [...new Set(this.messageList.map(item => item.target_type))];
@@ -386,7 +386,7 @@ export class DevicesComponent implements OnInit {
   }
 
   creatGraph(device, index) {
-    console.log('dev', device, 'ind', index);
+    // console.log('dev', device, 'ind', index);
     this.waToday = 0;
     this.wa15Min = 0;
     this.wa30Min = 0;
@@ -569,7 +569,7 @@ export class DevicesComponent implements OnInit {
           this.isGraphLoad = true;
         }
       });
-      console.log(this.barChartData);
+      // console.log(this.barChartData);
       // this.barChartData[0]['data'] = [
       //   this.barChartData[0]['data'][3],
       //   this.barChartData[0]['data'][4],
@@ -606,13 +606,13 @@ export class DevicesComponent implements OnInit {
       //   this.barChartData[3]['data'][1],
       //   this.barChartData[3]['data'][2],
       // ];
-      console.log({
-        total: this.totalMsg,
-        whatsapp: this.totalWhatsapp,
-        sms: this.totalSms,
-      });
+      // console.log({
+      //   total: this.totalMsg,
+      //   whatsapp: this.totalWhatsapp,
+      //   sms: this.totalSms,
+      // });
     });
-    console.log(this.barChartData);
+    // console.log(this.barChartData);
   }
 
   public getDeviceStatus(device, index) {
@@ -647,7 +647,7 @@ export class DevicesComponent implements OnInit {
   }
 
   getMaytApiStatus(device, index) {
-    console.log('qr', device);
+    // console.log('qr', device);
     this.AS.getMaytApiStatus(device).subscribe((res) => {
       this.isLoad = false;
       if (res.success && res.status.state) {
@@ -724,7 +724,7 @@ export class DevicesComponent implements OnInit {
       } else {
         let url = `https://api.green-api.com/waInstance${device.device_id}/qr/${device.token}`;
         this.AS.getGreenApiQrCode(url).subscribe((qrRes) => {
-          console.log('qr', qrRes);
+          // console.log('qr', qrRes);
           if (qrRes.type == 'qrCode') {
             this.qrSrc = `data:image/png;base64,${qrRes['message']}`;
             this.authStatus = 'Scan QR code';
@@ -749,7 +749,7 @@ export class DevicesComponent implements OnInit {
       this.deviceActive = false;
       this.qrShow = false;
       let obj = this.currentDevice;
-      console.log(obj);
+      // console.log(obj);
       obj['user_id'] = this.currentUser._id;
       this.AS.getGreenApiStatus(obj).subscribe(
         (res) => {
@@ -759,7 +759,7 @@ export class DevicesComponent implements OnInit {
             this.connection = 'Active';
           } else {
             let url = `https://api.green-api.com/waInstance${obj.device_id}/qr/${obj.token}`;
-            console.log(url);
+            // console.log(url);
             this.AS.getGreenApiQrCode(url).subscribe((qrRes) => {
               if (qrRes.type == 'qrCode') {
                 this.qrSrc = `data:image/png;base64,${qrRes['message']}`;
@@ -891,7 +891,7 @@ export class DevicesComponent implements OnInit {
     if (this.status != '') {
       obj['status'] = this.status;
     }
-    // console.log(obj);
+    console.log(obj);
 
     this.AS.getMessageList(obj).subscribe((ml) => {
       this.messageList = ml;

@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
       this.title = urlParts[urlParts.length - 1].replace(/-/g, ' ');
     }
 
-    console.log('Current URL:', `"${this.currentUrl}"`);
+    // console.log('Current URL:', `"${this.currentUrl}"`);
   }
 
   checkAuthentication(): void {

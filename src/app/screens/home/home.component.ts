@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private eRef: ElementRef,
     private BKS: BookingsService
-  ) {}
+  ) { }
 
   currentUser: any;
   deviceList = [];
@@ -62,10 +62,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
 
     if (!this.currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
       return;
     }
 
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
             d.wa_api_platform == 'greenapi')
       );
 
-      console.log('home', this.deviceList);
+      // console.log('home', this.deviceList);
 
       // Fetch messages for all devices
 
@@ -480,7 +480,7 @@ export class HomeComponent implements OnInit {
             // this.barChartLabels[x] = this.days[today];
             x++;
           }
-          console.log(ml);
+          // console.log(ml);
 
           ml.map((gv, j) => {
             // console.log('gv', gv);
@@ -638,11 +638,11 @@ export class HomeComponent implements OnInit {
             (this.totalWhatsapp / pieTotal) * 100,
             (this.totalSms / pieTotal) * 100,
           ];
-          console.log({
-            total: this.totalMsg,
-            whatsapp: this.totalWhatsapp,
-            sms: this.totalSms,
-          });
+          // console.log({
+          //   total: this.totalMsg,
+          //   whatsapp: this.totalWhatsapp,
+          //   sms: this.totalSms,
+          // });
 
           // console.log('checking', this.barChartData);
         });
@@ -755,7 +755,7 @@ export class HomeComponent implements OnInit {
       if (this.sent_by) obj['sent_by'] = parseInt(this.sent_by);
       if (this.status) obj['status'] = this.status;
 
-      console.log('obj', obj);
+      // console.log('obj', obj);
 
       return this.AS.getMessageList(obj);
     });
@@ -763,7 +763,7 @@ export class HomeComponent implements OnInit {
     // Wait for all API calls to complete and merge results
     forkJoin(requests).subscribe((results) => {
       this.messageList = results.flat(); // Flatten and merge all responses
-      console.log('Combined Messages:', this.messageList);
+      // console.log('Combined Messages:', this.messageList);
       this.isMsgLoad = false;
     });
 

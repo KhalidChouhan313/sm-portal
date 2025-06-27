@@ -24,23 +24,23 @@ export class ReviewPageComponent implements OnInit {
   response: any;
   isLoading = false;
 
-  constructor(private qrSer: QrcodeService, private admin: AdminService) {}
+  constructor(private qrSer: QrcodeService, private admin: AdminService) { }
 
   ngOnInit(): void {
     this.isLoading = true;
     const storedUser = localStorage.getItem('user_details');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
-      console.log(this.currentUser); // full object
+      // console.log(this.currentUser); // full object
       // console.log(this.currentUser.name); // access specific properties
       this.admin.getUser(this.currentUser._id).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.reviewEnable = res.follow_up_review;
       });
 
       this.qrSer.getReviewPage(this.currentUser._id).subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
           this.response = res;
           this.isLoading = false;
           this.previewTitle = res.data.title;
@@ -66,12 +66,12 @@ export class ReviewPageComponent implements OnInit {
 
     this.admin.updateUser(obj).subscribe((res) => {
       // this.reviewEnable = !this.reviewEnable;
-      console.log(res.follow_up_review);
+      // console.log(res.follow_up_review);
     });
   }
 
   updateDetails() {
-    console.log('working', this.profileImg, this.coverImg);
+    // console.log('working', this.profileImg, this.coverImg);
     const formData = new FormData();
 
     if (this.profileImg && typeof this.profileImg !== 'string') {
@@ -93,8 +93,8 @@ export class ReviewPageComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          console.log('form', formData);
-          console.log(res);
+          // console.log('form', formData);
+          // console.log(res);
         },
         (err) => {
           alert("Can't save.");

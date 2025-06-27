@@ -52,7 +52,7 @@ export class BlockListComponent {
     this.phone = (event.target as HTMLInputElement).value;
   }
 
-  constructor(private router: Router, private BS: BotService) {}
+  constructor(private router: Router, private BS: BotService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user_details'));
@@ -190,7 +190,7 @@ export class BlockListComponent {
   isVisible: boolean = false; // Initial state
 
   toggleVisibility() {
-    console.log('working');
+    // console.log('working');
     this.isVisible = !this.isVisible; // Toggle the boolean value
   }
 

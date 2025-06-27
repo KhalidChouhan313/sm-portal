@@ -23,7 +23,7 @@ export class AppSettingsComponent implements OnInit {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private BKS: BookingsService
-  ) {}
+  ) { }
 
   haveWabaDevice: boolean = false;
 
@@ -42,7 +42,7 @@ export class AppSettingsComponent implements OnInit {
           this.haveWabaDevice = true;
         }
       });
-      console.log('Fetched user from server:', user);
+      // console.log('Fetched user from server:', user);
       this.booking_confirmation = user.booking_confirmation;
       this.track_driver_msg = user.track_driver_msg;
       this.arrived_driver_msg = user.arrived_driver_msg;
@@ -58,7 +58,7 @@ export class AppSettingsComponent implements OnInit {
       this.cd.detectChanges();
     });
 
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
 
     // Initialize togglesData AFTER currentUser is assigned
     this.togglesData = [
@@ -162,7 +162,7 @@ export class AppSettingsComponent implements OnInit {
       this.toggles[1].enabled = false;
     }
 
-    console.log(`Toggle ${index + 1} Status:`, this.toggles[index].enabled);
+    // console.log(`Toggle ${index + 1} Status:`, this.toggles[index].enabled);
 
     let waba_check = '';
 
@@ -179,10 +179,10 @@ export class AppSettingsComponent implements OnInit {
       waba_check: waba_check,
     };
 
-    console.log(obj);
+    // console.log(obj);
 
     this.AS.updateUser(obj).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
     });
   }
 
@@ -202,7 +202,7 @@ export class AppSettingsComponent implements OnInit {
 
     // Send update request
     this.AS.updateUser(updateObj).subscribe((res) => {
-      console.log('Update Response:', res);
+      // console.log('Update Response:', res);
       this.isLoad = false;
     });
   }
@@ -213,11 +213,11 @@ export class AppSettingsComponent implements OnInit {
       _id: this.currentUser._id,
     };
     obj[type] = e.target.checked;
-    console.log(obj);
+    // console.log(obj);
 
     this.AS.updateUser(obj).subscribe((res) => {
-      console.log(res);
-      console.log(this.togglesData);
+      // console.log(res);
+      // console.log(this.togglesData);
       this.isLoad = false;
     });
   }
@@ -250,7 +250,7 @@ export class AppSettingsComponent implements OnInit {
   bookingConfirmation() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.booking_confirmation = !this.booking_confirmation; // toggle immediately
-    console.log('New value:', this.booking_confirmation);
+    // console.log('New value:', this.booking_confirmation);
 
     const updatedUser = {
       _id: currentUser._id,
@@ -269,7 +269,7 @@ export class AppSettingsComponent implements OnInit {
   trackDriverMsg() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.track_driver_msg = !this.track_driver_msg;
-    console.log('New value:', this.track_driver_msg);
+    // console.log('New value:', this.track_driver_msg);
 
     const updatedUser = {
       _id: currentUser._id,
@@ -287,7 +287,7 @@ export class AppSettingsComponent implements OnInit {
   arrivedDriverMsg() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.arrived_driver_msg = !this.arrived_driver_msg;
-    console.log('New value:', this.arrived_driver_msg);
+    // console.log('New value:', this.arrived_driver_msg);
 
     const updatedUser = {
       _id: currentUser._id,
@@ -325,7 +325,7 @@ export class AppSettingsComponent implements OnInit {
     };
     this.AS.updateUser(obj).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         if (
           res.booking_confirmation_time !== '' &&
           res.booking_confirmation_time !== '0'
@@ -336,7 +336,7 @@ export class AppSettingsComponent implements OnInit {
         }
 
         this.showBookingModal = false;
-        console.log(this.bookingCancelAllow);
+        // console.log(this.bookingCancelAllow);
       },
       (err) => {
         this.showBookingModal = false;

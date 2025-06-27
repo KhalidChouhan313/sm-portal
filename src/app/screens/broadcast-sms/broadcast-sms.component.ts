@@ -43,7 +43,7 @@ export class BroadcastSmsComponent {
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
     this.AS.getUser(currentUser._id).subscribe(admin => {
       this.adminDetails = admin;

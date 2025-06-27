@@ -129,17 +129,17 @@ export class ChatFlowComponent implements OnInit {
     private AS: AdminService,
     // private _serviceModal: NgbModal,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     // if (!currentUser) {
-    //   this.router.navigateByUrl('/sessions/signin');
+    //   this.router.navigateByUrl('login');
     // }
     this.AS.getUser(currentUser._id).subscribe((admin) => {
       this.adminDetails = admin;
       // if (!this.adminDetails.wtsp_bot) {
-      //   this.router.navigateByUrl('/sessions/signin');
+      //   this.router.navigateByUrl('login');
       // }
       this.BS.getBotMessages(currentUser._id).subscribe((result: any) => {
         // console.log(result);

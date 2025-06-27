@@ -17,7 +17,7 @@ export class ReviewComponent {
   ngOnInit() {
     let id = this.activatedRoute.params['value'].id
     this.BS.getPassenger(id).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       window.location.replace(res.url)
     })
   }

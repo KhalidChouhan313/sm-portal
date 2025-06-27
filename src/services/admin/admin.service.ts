@@ -147,7 +147,7 @@ export class AdminService {
       catchError(err => {
         localStorage.removeItem('SMS');
         localStorage.removeItem('SMSID');
-        this.router.navigateByUrl('/sessions/signin');
+        this.router.navigateByUrl('login');
         return err;
       })
     );

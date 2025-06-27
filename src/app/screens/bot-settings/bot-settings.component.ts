@@ -59,7 +59,7 @@ export class BotSettingsComponent {
     private AS: AdminService,
     private router: Router,
     private cd: ChangeDetectorRef
-  ) {}
+  ) { }
 
   btn1 = false;
   btn2 = false;
@@ -73,7 +73,7 @@ export class BotSettingsComponent {
   }
 
   save(button) {
-    console.log(`${button} saved`);
+    // console.log(`${button} saved`);
     alert('Saved');
     this[button] = false; // Reset to Update button
   }
@@ -109,24 +109,24 @@ export class BotSettingsComponent {
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
 
-    console.log(this.booking_confirmation);
+    // console.log(this.booking_confirmation);
     this.AS.getUser(currentUser._id).subscribe((user) => {
-      console.log('Fetched user from server:', user);
+      // console.log('Fetched user from server:', user);
       this.booking_confirmation = user.booking_confirmation;
       this.track_driver_msg = user.track_driver_msg;
       this.arrived_driver_msg = user.arrived_driver_msg;
       this.cd.detectChanges();
-      console.log(
-        this.booking_confirmation,
-        this.track_driver_msg,
-        this.arrived_driver_msg
-      );
+      // console.log(
+      //   this.booking_confirmation,
+      //   this.track_driver_msg,
+      //   this.arrived_driver_msg
+      // );
       this.BS.getCompanyBots(currentUser._id).subscribe((admin) => {
         this.adminDetails = admin.data[0];
-        console.log(admin);
+        // console.log(admin);
 
         this.vBSName1 = this.adminDetails.vehicle[0].name;
         this.vBSName2 = this.adminDetails.vehicle[1].name;
@@ -175,7 +175,7 @@ export class BotSettingsComponent {
       pickup_sub_query: this.sAAPickup,
     };
     this.BS.updateBotAdmin(obj).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
     });
   }
 
@@ -277,7 +277,7 @@ export class BotSettingsComponent {
     };
 
     this.queryList.push(obj);
-    console.log(this.queryList);
+    // console.log(this.queryList);
     let editObj = {
       _id: this.adminDetails._id,
       query: this.queryList,
@@ -323,7 +323,7 @@ export class BotSettingsComponent {
     const trimmedQuery = this.userQueryString.trim();
     if (trimmedQuery && !this.userQuery.includes(trimmedQuery)) {
       this.userQuery.push(trimmedQuery);
-      console.log(this.userQuery);
+      // console.log(this.userQuery);
       this.userQueryString = ''; // Clear only if added
     }
   }
@@ -340,7 +340,7 @@ export class BotSettingsComponent {
       destination_radius: this.destinationRadius,
     };
 
-    console.log(obj);
+    // console.log(obj);
 
     this.BS.updateBotAdmin(obj).subscribe((res) => {
       this.isLoad = false;
@@ -400,15 +400,15 @@ export class BotSettingsComponent {
         },
       ],
     };
-    console.log('vbsobj', obj);
+    // console.log('vbsobj', obj);
     this.BS.changeVehicalButtonsSetting(obj).subscribe((res) => {
-      console.log('vbs', res);
+      // console.log('vbs', res);
     });
   }
   bookingConfirmation() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.booking_confirmation = !this.booking_confirmation; // toggle immediately
-    console.log('New value:', this.booking_confirmation);
+    // console.log('New value:', this.booking_confirmation);
 
     const updatedUser = {
       _id: currentUser._id,
@@ -427,7 +427,7 @@ export class BotSettingsComponent {
   trackDriverMsg() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.track_driver_msg = !this.track_driver_msg;
-    console.log('New value:', this.track_driver_msg);
+    // console.log('New value:', this.track_driver_msg);
 
     const updatedUser = {
       _id: currentUser._id,
@@ -445,7 +445,7 @@ export class BotSettingsComponent {
   arrivedDriverMsg() {
     const currentUser = JSON.parse(localStorage.getItem('user_details'));
     this.arrived_driver_msg = !this.arrived_driver_msg;
-    console.log('New value:', this.arrived_driver_msg);
+    // console.log('New value:', this.arrived_driver_msg);
 
     const updatedUser = {
       _id: currentUser._id,

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) { }
 
   disabled = false;
   error = '';
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           this.authService.authenticateUser(token).subscribe(
             (res) => {
               this.authService.user$ = res;
-              console.log(res, token);
+              // console.log(res, token);
               localStorage.setItem('token', token);
               localStorage.setItem(
                 'user_details',

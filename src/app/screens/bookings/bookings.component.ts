@@ -44,18 +44,18 @@ export class BookingsComponent implements OnInit {
   constructor(
     private bookingsService: BookingsService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let currentUser = JSON.parse(localStorage.getItem('user_details'));
     if (!currentUser) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
     // console.log(currentUser._id);
 
     this.bookingsService.getCompanyBookings(currentUser._id).subscribe(
       (res) => {
-        console.log('bookings', res);
+        // console.log('bookings', res);
         this.bookingsService
           .getCompanyBots(currentUser._id)
           .subscribe((bot) => {
@@ -90,7 +90,7 @@ export class BookingsComponent implements OnInit {
           this.bookingLoader = false;
           this.currentBookingDetails = bookingData.data;
           this.selectedBooking = item?._id;
-          console.log(bookingData);
+          // console.log(bookingData);
         });
     }
   };

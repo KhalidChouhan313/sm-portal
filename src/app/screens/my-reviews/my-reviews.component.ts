@@ -37,7 +37,7 @@ export class MyReviewsComponent implements OnInit {
       (res) => {
 
         this.reviews = res.data;
-        console.log(this.reviews);
+        // console.log(this.reviews);
         this.totalPages = res.pagination?.totalPages || 1;
       },
       (err) => {

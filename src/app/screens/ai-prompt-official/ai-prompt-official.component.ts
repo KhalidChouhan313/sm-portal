@@ -19,14 +19,14 @@ export class AiPromptOfficialComponent implements OnInit {
   flightInfoPromptText = '';
   flightInfoPromptTextInit: any = null;
 
-  constructor(private AIS: AiPromptService, private router: Router) {}
+  constructor(private AIS: AiPromptService, private router: Router) { }
 
   ngOnInit(): void {
     let user = JSON.parse(localStorage.getItem('user_details'));
     this.currentUser = user;
     console.log(user);
     if (user) {
-      this.router.navigateByUrl('/sessions/signin');
+      this.router.navigateByUrl('login');
     }
     this.AIS.getMainPrompt(this.currentUser._id).subscribe((res) => {
       this.mainPromptText = res.system_prompt;

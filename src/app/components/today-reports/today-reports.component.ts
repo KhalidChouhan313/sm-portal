@@ -36,7 +36,7 @@ export class TodayReportsComponent implements OnInit, OnChanges {
   isUpdated = false;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['graphData'] && changes['graphData'].currentValue) {
-      console.log(this.notSent);
+      // console.log(this.notSent);
       this.activeIndex = 0;
       this.updateChart();
       setTimeout(() => {
