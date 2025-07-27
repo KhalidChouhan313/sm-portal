@@ -12,6 +12,11 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'chat-history',
+    loadChildren: () =>
+      import('./screens/chat-history/chat-history.module').then((m) => m.ChatHistoryModule),
+  },
+  {
     path: 'messages',
     loadChildren: () =>
       import('./screens/messages/messages.module').then(

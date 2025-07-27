@@ -57,6 +57,7 @@ import { AiPromptOfficialComponent } from './screens/ai-prompt-official/ai-promp
 import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { ReviewComponent } from './components/review/review.component';
+import { ChatHistoryComponent } from './screens/chat-history/chat-history.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -104,6 +105,7 @@ import { ReviewComponent } from './components/review/review.component';
     GreenQrCodeComponent,
     ConfirmationModalComponent,
     ReviewComponent,
+    ChatHistoryComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,

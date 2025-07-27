@@ -100,6 +100,16 @@
           </ul>
         </div>
 
+        <div (click)="setCurrentItem('Chat History')">
+          <li [routerLink]="'/chat-history'" [class.active]="currentItem === 'Chat History'" class="menu_item">
+            <div>
+              <img src="../../../assets/chatboticon.png" alt="">
+            </div>
+            <span>Chat History</span>
+          </li>
+        </div>
+
+
         <div (click)="setCurrentItem('Broadcast')">
           <li [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')"
             [class.active]="currentItem === 'Broadcast'" class="menu_item">
