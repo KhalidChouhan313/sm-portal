@@ -74,6 +74,64 @@ export class ChatHistoryComponent implements OnInit, OnDestroy {
     this.emojiClickedInside = false;
   }
 
+  getSelectedButton(msg, btn): any {
+    if (msg.from_me) {
+      return ''
+    }
+    let pressed = false;
+    let found = this.messages.find(ml => ml.context_id == msg.wamid)
+    // console.log(found);
+
+    if (found) {
+      if (found.type == 'interactive') {
+        if (found.interactive.type == "button_reply") {
+          if (found.interactive.button_reply.id == btn.reply.id) {
+            pressed = true;
+          }
+        }
+      }
+      if (found.type == 'button') {
+        if (found.button.text == btn.text) {
+          pressed = true;
+        }
+      }
+    }
+
+    return {
+      'background-color': pressed ? '#28c8d1' : '#1a9096',
+      'box-shadow': pressed ? '2px 2px 5px 0px #1a7e84' : ''
+      // 'font-weight': this.isImportant ? 'bold' : 'normal',
+      // 'font-size': this.isLarge ? '20px' : '14px'
+    };
+  }
+
+  getSelectedListItem(msg, item): any {
+    if (msg.from_me) {
+      return ''
+    }
+    let pressed = false;
+    let found = this.messages.find(ml => ml.context_id == msg.wamid)
+    // console.log(found);
+
+    if (found) {
+      if (found.type == 'interactive') {
+        if (found.interactive.type == "list_reply") {
+          if (found.interactive.list_reply.id == item.id) {
+            pressed = true;
+          }
+        }
+      }
+    }
+
+    return {
+      'background-color': pressed ? '#1a9096' : '#f9fff9',
+      'box-shadow': pressed ? '#b6b6b6 0px 0px 8px 3px' : '',
+      'color': pressed ? '#fff' : ''
+      // 'font-weight': this.isImportant ? 'bold' : 'normal',
+      // 'font-size': this.isLarge ? '20px' : '14px'
+    };
+  }
+
   toggleEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
@@ -215,7 +273,7 @@ export class ChatHistoryComponent implements OnInit, OnDestroy {
       (res: any) => {
         const newMessages = res || [];
         this.messages = [...newMessages, ...this.messages];
-        // console.log(this.messages.length);
+        console.log(this.messages);
 
         this.allMessages[phone] = this.messages;
         this.skip += newMessages.length;

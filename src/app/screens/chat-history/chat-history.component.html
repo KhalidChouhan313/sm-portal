@@ -85,14 +85,14 @@
         <div *ngIf="msg.type === 'interactive' && msg.interactive?.type === 'button'">
           <p class="button-item">{{ msg.interactive?.body?.text }}</p>
           <div class="interactive-buttons">
-            <button *ngFor="let btn of msg.interactive?.action?.buttons">
+            <button *ngFor="let btn of msg.interactive?.action?.buttons" [ngStyle]="getSelectedButton(msg,btn)">
               {{ btn?.reply?.title }}
             </button>
           </div>
         </div>
 
         <div *ngIf="msg.interactive?.type === 'button_reply' || msg.interactive?.type === 'list_reply'">
-          <div class="reply-tag">
+          <div class="reply-tag" (click)="scrollToContext(msg.context_id)">
             {{ getReplyBody(msg.context_id) }}
           </div>
           <div class="font-medium">
@@ -101,7 +101,7 @@
         </div>
 
         <div *ngIf="msg.type === 'button'">
-          <div class="reply-tag">
+          <div class="reply-tag" (click)="scrollToContext(msg.context_id)">
             {{ getReplyBody(msg.context_id) }}
           </div>
           <div class="font-medium">
@@ -114,7 +114,7 @@
             <p *ngIf="comp.type =='HEADER'" class="button-item" style="font-weight: bold;">{{ comp.text }}</p>
             <p *ngIf="comp.type =='BODY'" class="button-item">{{ comp.text }}</p>
             <div *ngIf="comp.type =='BUTTONS'" class="interactive-buttons">
-              <button *ngFor="let btn of comp.buttons">
+              <button *ngFor="let btn of comp.buttons" [ngStyle]="getSelectedButton(msg,btn)">
                 {{ btn.text }}
               </button>
             </div>
@@ -126,7 +126,7 @@
           <div class="interactive-list">
             <div *ngFor="let section of msg.interactive?.action?.sections">
               <h5 style="font-weight: 600; margin-bottom: 4px;">{{ section.title }}</h5>
-              <div *ngFor="let item of section.rows" class="list-item">
+              <div *ngFor="let item of section.rows" class="list-item" [ngStyle]="getSelectedListItem(msg,item)">
                 {{ item.title }} - {{ item.description }}
               </div>
             </div>
@@ -157,7 +157,7 @@
         </div>
 
         <div *ngIf="msg.timestamp" class="message-time">
-          {{ formatTime(msg.timestamp)|date: 'dd/mm/yy hh:mm a' }}
+          {{ formatTime(msg.timestamp)|date: 'dd/MM/yy hh:mm a' }}
         </div>
       </div>
     </div>
