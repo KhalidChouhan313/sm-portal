@@ -16,7 +16,7 @@
         <div class="chat-info">
           <div class="chat-header-flow">
             <div class="phone-number">{{ item._id }}</div>
-            <div class="chat-time">{{item.latestCreatedAt | date: 'hh:mm a'}}</div>
+            <div class="chat-time">{{item.latestCreatedAt | date: 'dd/MM/yy hh:mm a'}}</div>
           </div>
           <div *ngIf="item.type == 'text'" class="last-message">
             {{item.latestMessage}}
@@ -157,7 +157,7 @@
         </div>
 
         <div *ngIf="msg.timestamp" class="message-time">
-          {{ formatTime(msg.timestamp)|date: 'dd/MM/yy hh:mm a' }}
+          {{ msg.createdAt|date: 'dd/MM/yy hh:mm a' }}
         </div>
       </div>
     </div>
