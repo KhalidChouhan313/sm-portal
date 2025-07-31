@@ -121,6 +121,13 @@
           </div>
         </div>
 
+        <div *ngIf="msg.type === 'sms'">
+          <div>
+            <p class="button-item" style="font-weight: bold;">SMS</p>
+            <p class="button-item">{{msg.text}}</p>
+          </div>
+        </div>
+
         <div *ngIf="msg.type === 'interactive' && msg.interactive?.type === 'list'">
           <p class="button-item">{{ msg.interactive?.body?.text }}</p>
           <div class="interactive-list">
@@ -152,7 +159,7 @@
           ⚠️ Unknown interactive type: {{ msg.interactive?.type || 'N/A' }}
         </div>
 
-        <div *ngIf="!['text', 'image', 'location', 'interactive','template','button'].includes(msg.type)">
+        <div *ngIf="!['text', 'image', 'location', 'interactive','template','button','sms'].includes(msg.type)">
           ⚠️ Unknown message type: {{ msg.type }}
         </div>
 
