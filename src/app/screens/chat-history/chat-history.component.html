@@ -164,6 +164,12 @@
         </div>
 
         <div *ngIf="msg.timestamp" class="message-time">
+          <span *ngIf="msg.paid">
+            <div class="red"></div>paid
+          </span>
+          <span *ngIf="!msg.paid">
+            <div class="green"></div>free
+          </span>
           {{ msg.createdAt|date: 'dd/MM/yy hh:mm a' }}
         </div>
       </div>
