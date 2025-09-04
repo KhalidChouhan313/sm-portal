@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'chat-history',
     loadChildren: () =>
-      import('./screens/chat-history/chat-history.module').then((m) => m.ChatHistoryModule),
+      import('./screens/chat-history/chat-history.module').then(
+        (m) => m.ChatHistoryModule
+      ),
   },
   {
     path: 'messages',
@@ -166,4 +168,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
