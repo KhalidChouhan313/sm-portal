@@ -218,7 +218,10 @@
   </app-modal>
   <app-modal *ngIf="showBookingModal">
     <div style="background: white; padding: 10px; border: 5px">
-      <p style="font-weight: 600">Add time in seconds</p>
+      <p style="font-weight: 600">
+        Please enter the time in seconds after which you don’t want to allow
+        booking cancellations .
+      </p>
       <div>
         <input
           style="padding: 10px; margin-right: 10px; width: 100%"
@@ -496,9 +499,12 @@
                     style="display: flex; align-items: center; gap: 15px"
                     [class.active]="bookingCancelAllow"
                   >
-                    <span class="f-heading" [class.active]="bookingCancelAllow"
-                      >Allow Dispatched Booking Cancellation</span
-                    >
+                    <span class="f-heading" [class.active]="bookingCancelAllow">
+                      Allow Dispatched Booking Cancellation
+                      <ng-container *ngIf="bookingCancelAllow">
+                        ({{ bookingCancelTime }} seconds)
+                      </ng-container>
+                    </span>
                   </div>
                   <!-- Use (change) event to handle the toggle -->
                   <div
@@ -508,13 +514,12 @@
                     <label
                       class="switch_box"
                       [class.active]="bookingCancelAllow"
-                      (click)="showBookingModal = true"
                     >
                       <input
                         type="checkbox"
                         [checked]="bookingCancelAllow"
                         [class.active]="bookingCancelAllow"
-                        disabled
+                        (change)="onBookingToggle($event)"
                       />
                       <span
                         class="slider"

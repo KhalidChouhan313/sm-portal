@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './screens/home/home.component';
 import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.component';
 import { ReviewComponent } from './components/review/review.component';
+import { ProfileComponent } from './screens/profile/profile.component';
 
 const routes: Routes = [
   { path: 'qr-code', component: GreenQrCodeComponent },
   { path: 'r/:id', component: ReviewComponent },
+  { path: 'profile', component: ProfileComponent },
   {
     path: '',
     component: HomeComponent,

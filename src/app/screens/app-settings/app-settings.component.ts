@@ -23,7 +23,7 @@ export class AppSettingsComponent implements OnInit {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private BKS: BookingsService
-  ) { }
+  ) {}
 
   haveWabaDevice: boolean = false;
 
@@ -51,10 +51,10 @@ export class AppSettingsComponent implements OnInit {
         user.booking_confirmation_time !== '0'
       ) {
         this.bookingCancelAllow = true;
+        this.bookingCancelTime = user.booking_confirmation_time;
       } else {
         this.bookingCancelAllow = false;
       }
-
       this.cd.detectChanges();
     });
 
@@ -143,6 +143,34 @@ export class AppSettingsComponent implements OnInit {
       },
     ];
   }
+  onBookingToggle(event: Event) {
+    const input = event.target as HTMLInputElement;
+    // console.log('Toggle clicked. Checked =', input.value);
+    // console.log(
+    //   'Current booking_confirmation_time =',
+    //   this.currentUser.booking_confirmation_time
+    // );
+
+    if (input.checked) {
+      this.bookingCancelAllow = true;
+      this.showBookingModal = true;
+    } else {
+      const obj = {
+        _id: this.currentUser._id,
+        booking_confirmation_time: '0',
+      };
+      this.AS.updateUser(obj).subscribe(
+        (res) => {
+          this.bookingCancelAllow = false;
+          this.showBookingModal = false;
+        },
+        (err) => {
+          this.bookingCancelAllow = true;
+          console.error(err);
+        }
+      );
+    }
+  }
 
   isActive: boolean = false;
 
@@ -182,7 +210,8 @@ export class AppSettingsComponent implements OnInit {
     // console.log(obj);
 
     this.AS.updateUser(obj).subscribe((res) => {
-      // console.log(res);
+      this.currentUser.waba_check = waba_check;
+      localStorage.setItem('user_details', JSON.stringify(this.currentUser));
     });
   }
 
