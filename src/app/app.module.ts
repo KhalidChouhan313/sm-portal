@@ -59,6 +59,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { ReviewComponent } from './components/review/review.component';
 import { ChatHistoryComponent } from './screens/chat-history/chat-history.component';
 import { ProfileComponent } from './screens/profile/profile.component';
+import { ButtonStatsComponent } from './screens/button-stats/button-stats.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -108,6 +109,7 @@ import { ProfileComponent } from './screens/profile/profile.component';
     ReviewComponent,
     ChatHistoryComponent,
     ProfileComponent,
+    ButtonStatsComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,

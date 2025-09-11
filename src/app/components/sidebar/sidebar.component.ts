@@ -41,7 +41,7 @@ export class SidebarComponent {
         this.haveBot = false;
       }
     );
-  }
+  }w
 
   currentItem = '';
   hoveredItem: string | null = null;

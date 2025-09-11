@@ -191,6 +191,32 @@
             </li>
           </ul> -->
         </div>
+        <div (click)="setCurrentItem('buttonstats')">
+          <li
+            [routerLink]="'/buttonstats'"
+            (click)="setCurrentSubItem('buttonstats')"
+            [class.active]="currentItem === 'buttonstats'"
+            class="menu_item"
+          >
+            <div>
+              <img src="../../../assets/Vector (2).svg" />
+              <img src="../../../assets/Vector.png" />
+            </div>
+            <span>Button Stats</span>
+          </li>
+          <!-- <ul *ngIf="hoveredItem === 'Broadcast' || currentItem === 'Broadcast'" class="sub_menu">
+            <li [routerLink]="'/broadcast-sms'" (click)="setCurrentSubItem('SMS')"
+              [class.active]="currentSubItem === 'SMS'" class="sub_menu_item">
+              <img src="../../../assets/icons/broadcast-sms.svg" />
+              <span>SMS</span>
+            </li>
+            <li [routerLink]="'/broadcast-whatsapp'" (click)="setCurrentSubItem('WhatsApp')"
+              [class.active]="currentSubItem === 'WhatsApp'" class="sub_menu_item">
+              <img src="../../../assets/icons/broadcast-w.svg" />
+              <span>WhatsApp</span>
+            </li>
+          </ul> -->
+        </div>
 
         <!-- <div (click)="setCurrentItem('AI Prompt')">
           <li
@@ -291,10 +317,10 @@
           <span>App Settings</span>
         </li>
         <li
-           [routerLink]="'profile'"
-            (click)="setCurrentSubItem('profile Page')"
-            [class.active]="currentItem === 'profile Page'"
-            class="menu_item"
+          [routerLink]="'profile'"
+          (click)="setCurrentSubItem('profile Page')"
+          [class.active]="currentItem === 'profile Page'"
+          class="menu_item"
         >
           <div>
             <img src="../../../assets/profileicon.png" />
