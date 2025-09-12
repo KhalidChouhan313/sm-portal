@@ -4,16 +4,17 @@ import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
-
   constructor(
     private httpClient: HttpClient,
-    private router: Router, private http: HttpService) { }
+    private router: Router,
+    private http: HttpService
+  ) {}
 
   public createDevice(obj) {
     return this.http.post(`${environment.apiUrl}/api/wa/device`, obj);
@@ -55,7 +56,6 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}/api/wa/device`, obj);
   }
 
-
   // GREENAPI
 
   public getGreenApiStatus(obj) {
@@ -74,8 +74,7 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/api/wa/rebootGreenapi`, obj);
   }
 
-
-  // MAYTAPI 
+  // MAYTAPI
 
   public getMaytApiStatus(obj) {
     return this.http.post(`${environment.apiUrl}/api/wa/maytapiStatus`, obj);
@@ -85,8 +84,9 @@ export class AdminService {
     return this.httpClient.get(imageUrl, {
       headers: {
         'Content-Type': 'image/json',
-        'x-maytapi-key': '8113246b-4665-4418-b237-84c0562ba620'
-      }, responseType: 'blob'
+        'x-maytapi-key': '8113246b-4665-4418-b237-84c0562ba620',
+      },
+      responseType: 'blob',
     });
   }
 
@@ -98,7 +98,6 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/api/wa/rebootMaytapi`, obj);
   }
 
-
   //OTHER API
 
   public getMessageList(obj) {
@@ -106,7 +105,10 @@ export class AdminService {
   }
 
   public getMessageGraphValue(obj) {
-    return this.http.post(`${environment.apiUrl}/api/user/messageGraphValue`, obj);
+    return this.http.post(
+      `${environment.apiUrl}/api/user/messageGraphValue`,
+      obj
+    );
   }
 
   public sendCode(obj) {
@@ -119,6 +121,11 @@ export class AdminService {
 
   public getBotAdmin(id) {
     return this.http.get(`${environment.apiUrl}/api/app/getBotAdmin/${id}`);
+  }
+  public getButtonStats(companyId: string, messageType: string) {
+    return this.http.get(
+      `${environment.apiUrl}/api/waba/get-buttons-stats/${companyId}/${messageType}`
+    );
   }
 
   public updateBotAdmin(obj) {
@@ -139,18 +146,21 @@ export class AdminService {
 
   public getCurrentUserFromBack() {
     // localStorage.getItem('SPOID')
-    return this.http.get(`${environment.apiUrl}/api/user/${localStorage.getItem('SMSID')}`).pipe(map((response: any) => {
-      // this.currentUser = response;
-      localStorage.setItem(`SMS`, JSON.stringify(response));
-      return response;
-    }),
-      catchError(err => {
-        localStorage.removeItem('SMS');
-        localStorage.removeItem('SMSID');
-        this.router.navigateByUrl('login');
-        return err;
-      })
-    );
+    return this.http
+      .get(`${environment.apiUrl}/api/user/${localStorage.getItem('SMSID')}`)
+      .pipe(
+        map((response: any) => {
+          // this.currentUser = response;
+          localStorage.setItem(`SMS`, JSON.stringify(response));
+          return response;
+        }),
+        catchError((err) => {
+          localStorage.removeItem('SMS');
+          localStorage.removeItem('SMSID');
+          this.router.navigateByUrl('login');
+          return err;
+        })
+      );
   }
 
   public getAdmin(id) {
@@ -167,18 +177,22 @@ export class AdminService {
 
   public getCurrentAdminFromBack() {
     // localStorage.getItem('SPOID')
-    return this.http.get(`${environment.apiUrl}/api/admin/${localStorage.getItem('SMSADMID')}`).pipe(map((response: any) => {
-      // this.currentUser = response;
-      localStorage.setItem(`SMSADM`, JSON.stringify(response));
-      return response;
-    }),
-      catchError(err => {
-        localStorage.removeItem('SMSADM');
-        localStorage.removeItem('SMSADMID');
-        this.router.navigateByUrl('/sessions/admin/signin');
-        return err;
-      })
-    );
+    return this.http
+      .get(
+        `${environment.apiUrl}/api/admin/${localStorage.getItem('SMSADMID')}`
+      )
+      .pipe(
+        map((response: any) => {
+          // this.currentUser = response;
+          localStorage.setItem(`SMSADM`, JSON.stringify(response));
+          return response;
+        }),
+        catchError((err) => {
+          localStorage.removeItem('SMSADM');
+          localStorage.removeItem('SMSADMID');
+          this.router.navigateByUrl('/sessions/admin/signin');
+          return err;
+        })
+      );
   }
-
 }
