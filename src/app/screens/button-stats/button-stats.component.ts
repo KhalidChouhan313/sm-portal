@@ -11,8 +11,10 @@ export class ButtonStatsComponent implements OnInit {
   col2: any[] = [];
   col3: any[] = [];
 
+  private bookingOrPaylink: any[] = [];
+  private trackingOrReview: any[] = [];
+  private arrived: any[] = [];
   constructor(private adminService: AdminService) {}
-
   ngOnInit(): void {
     const userData = localStorage.getItem('user_details');
     const user = userData ? JSON.parse(userData) : null;
@@ -20,18 +22,14 @@ export class ButtonStatsComponent implements OnInit {
 
     const messageTypes = [
       { title: 'Booking', icon: 'assets/icons/Frame.svg', type: 'booking' },
-      { title: 'Arrived', icon: 'assets/icons/Group 73.png', type: 'arrived' },
-      {
-        title: 'Tracking',
-        icon: 'assets/icons/tracking.svg',
-        type: 'tracking',
-      },
       {
         title: 'Paylink',
         icon: 'assets/icons/Group 73 (1).png',
         type: 'paylink',
       },
-      { title: 'Review', icon: 'assets/icons/Vector.png', type: 'review' },
+      { title: 'Tracking', icon: 'assets/icons/tracking.svg', type: 'track' },
+      { title: 'Follow Up', icon: 'assets/icons/Vector.png', type: 'followup' },
+      { title: 'Arrived', icon: 'assets/icons/Group 73.png', type: 'arrived' },
     ];
 
     messageTypes.forEach((mt) => {
@@ -80,14 +78,27 @@ export class ButtonStatsComponent implements OnInit {
             items,
           };
 
-          if (mt.title === 'Booking' || mt.title === 'Paylink') {
-            this.col1.push(template);
-          } else if (mt.title === 'Arrived' || mt.title === 'Review') {
-            this.col2.push(template);
-          } else if (mt.title === 'Tracking') {
-            this.col3.push(template);
+          const title = mt.title.trim();
+          if (title === 'Follow Up' || title === 'Booking') {
+            this.bookingOrPaylink.push(template);
+          } else if (title === 'Paylink' || title === 'Tracking') {
+            this.trackingOrReview.push(template);
+          } else if (title === 'Arrived') {
+            this.arrived.push(template);
           }
+          this.buildColumns();
         });
     });
+  }
+
+  private buildColumns() {
+    this.col1 = [...this.bookingOrPaylink];
+    if (this.trackingOrReview.length > 0) {
+      this.col2 = [...this.trackingOrReview];
+      this.col3 = [...this.arrived];
+    } else {
+      this.col2 = [...this.arrived];
+      this.col3 = [];
+    }
   }
 }
