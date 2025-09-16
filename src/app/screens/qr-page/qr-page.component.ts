@@ -91,7 +91,7 @@ export class QrPageComponent {
     },
   };
 
-  constructor(private qrcodeService: QrcodeService, private router: Router) { }
+  constructor(private qrcodeService: QrcodeService, private router: Router) {}
 
   currentUser: any;
   allQrCodes: any = null;
@@ -120,11 +120,11 @@ export class QrPageComponent {
     let user = JSON.parse(localStorage.getItem('user_details'));
     this.currentUser = user;
     // console.log(user);
-    if (user) {
+    if (!user) {
       this.router.navigateByUrl('login');
+    } else {
+      this.fetchQrList();
     }
-
-    this.fetchQrList();
   }
 
   goToPage(page: number) {
@@ -267,9 +267,10 @@ export class QrPageComponent {
                   this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
-                (qrErr) => { });
+                (qrErr) => {}
+              );
             })
-            .catch((err) => { });
+            .catch((err) => {});
         } else {
           console.error('QR element not found!');
         }
@@ -367,9 +368,10 @@ export class QrPageComponent {
                   this.selectedItemIndex = null;
                   this.fetchQrList();
                 },
-                (qrErr) => { });
+                (qrErr) => {}
+              );
             })
-            .catch((err) => { });
+            .catch((err) => {});
         } else {
           console.error('QR element not found!');
         }
@@ -1029,9 +1031,10 @@ export class QrPageComponent {
                   // this.fetchQrList();
                   this.selectedItemIndex = null;
                 },
-                (qrErr) => { });
+                (qrErr) => {}
+              );
           })
-          .catch((err) => { });
+          .catch((err) => {});
       } else {
         // console.error('QR element not found!');
       }
@@ -1078,9 +1081,10 @@ export class QrPageComponent {
                 // this.selectedItemIndex = null;
                 // this.fetchQrList();
               },
-              (qrErr) => { });
+              (qrErr) => {}
+            );
           })
-          .catch((err) => { });
+          .catch((err) => {});
       } else {
         // console.error('QR element not found!');
       }
