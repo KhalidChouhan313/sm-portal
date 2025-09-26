@@ -23,17 +23,23 @@ export class ReportsComponent implements OnInit, OnChanges {
   activeIndex: number = 0; // Default to "Total"
   buttons = ['Total', 'WhatsApp', 'SMS', 'Not Sent'];
   chart: any; // Store chart instance
+  isUpdated = false;
 
   constructor(private cdr: ChangeDetectorRef) {
     Chart.register(...registerables); // Ensure Chart.js is registered
   }
 
   ngOnInit(): void {
-    if (this.graphData && this.graphData.length > 0) {
-      setTimeout(() => this.updateChart(), 200);
+    // if (this.graphData && this.graphData.length > 0) {
+    //   setTimeout(() => this.updateChart(), 200);
+    // }
+  }
+  ngAfterViewInit(): void {
+    // view ready hai aur agar data aa gaya hai tabhi chart banao
+    if (this.graphData && this.graphData.length) {
+      this.updateChart();
     }
   }
-  isUpdated = false;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['graphData'] && changes['graphData'].currentValue) {
       // console.log(this.notSent);
@@ -43,6 +49,7 @@ export class ReportsComponent implements OnInit, OnChanges {
         this.activeIndex = 0;
         this.isUpdated = true;
         this.updateChart();
+        this.cdr.detectChanges();
       }, 5000);
     }
   }
@@ -71,7 +78,10 @@ export class ReportsComponent implements OnInit, OnChanges {
     // );
 
     const canvas = document.getElementById('lineChart') as HTMLCanvasElement;
-    if (!canvas) return;
+    if (!canvas) {
+      setTimeout(() => this.updateChart(), 50);
+      return;
+    }
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -107,7 +117,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointBackgroundColor: '#EAB054',
           backgroundColor: createGradient('rgba(234, 177, 84, 0.5)'),
           fill: true,
-          tension: 0.3, // Straight line
+          tension: 0.4, // Straight line
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
@@ -119,7 +129,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointBackgroundColor: '#2EBC96',
           backgroundColor: createGradient('rgba(46, 188, 150, 0.5)'),
           fill: true,
-          tension: 0.3,
+          tension: 0.4,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
@@ -131,7 +141,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointBackgroundColor: '#3981F7',
           backgroundColor: createGradient('rgba(57, 130, 247, 0.5)'),
           fill: true,
-          tension: 0.3,
+          tension: 0.4,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
@@ -143,7 +153,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointBackgroundColor: '#FF0606',
           backgroundColor: createGradient('rgba(255, 6, 6, 0.5)'),
           fill: true,
-          tension: 0.3,
+          tension: 0.4,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
@@ -152,30 +162,30 @@ export class ReportsComponent implements OnInit, OnChanges {
     } else {
       const selectedData =
         this.activeIndex === 3
-          ? this.graphData[2] 
+          ? this.graphData[2] // Fix for "Not Send"
           : this.activeIndex === 2
-            ? this.graphData[0]
-            : this.activeIndex === 1
-              ? this.graphData[1]
-              : this.graphData[3];
+          ? this.graphData[0]
+          : this.activeIndex === 1
+          ? this.graphData[1]
+          : this.graphData[3];
 
       let selectedColor =
         this.activeIndex === 3
           ? '#FF0606' // Color fix for "Not Send"
           : this.activeIndex === 1
-            ? '#2EBC96'
-            : this.activeIndex === 2
-              ? '#3981F7'
-              : '#EAB054';
+          ? '#2EBC96'
+          : this.activeIndex === 2
+          ? '#3981F7'
+          : '#EAB054';
 
       let selectedBackgroundColor =
         this.activeIndex === 3
           ? createGradient('rgba(255, 6, 6, 0.5)')
           : this.activeIndex === 1
-            ? createGradient('rgba(46, 188, 150, 0.5)')
-            : this.activeIndex === 2
-              ? createGradient('rgba(57, 130, 247, 0.5)')
-              : createGradient('rgba(234, 177, 84, 0.5)');
+          ? createGradient('rgba(46, 188, 150, 0.5)')
+          : this.activeIndex === 2
+          ? createGradient('rgba(57, 130, 247, 0.5)')
+          : createGradient('rgba(234, 177, 84, 0.5)');
       // : 'rgba(57, 130, 247, 0.3)';
 
       datasets = [
@@ -186,7 +196,7 @@ export class ReportsComponent implements OnInit, OnChanges {
           pointBackgroundColor: selectedColor,
           backgroundColor: selectedBackgroundColor,
           fill: true,
-          tension: 0.3,
+          tension: 0.4,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
@@ -201,6 +211,7 @@ export class ReportsComponent implements OnInit, OnChanges {
         datasets: datasets,
       },
       options: {
+        animation: false,
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -238,7 +249,7 @@ export class ReportsComponent implements OnInit, OnChanges {
         },
         elements: {
           line: {
-            tension: 0,
+            tension: 0.4,
           },
           point: {
             radius: 0,

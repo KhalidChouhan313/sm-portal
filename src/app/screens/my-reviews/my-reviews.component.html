@@ -173,6 +173,12 @@
       <p>Review</p>
     </div>
     <div class="list-body-con">
+      <div
+        style="display: flex; align-items: center; justify-content: center"
+        *ngIf="reviews.length === 0"
+      >
+        <div>No Data Found</div>
+      </div>
       <div class="list-body" *ngFor="let review of reviews; let i = index">
         <p>
           <span></span>
@@ -197,7 +203,7 @@
           >
         </div>
 
-        <p>{{ review?.review || "0" }}</p>
+        <p>{{ review?.review || "—" }}</p>
       </div>
     </div>
     <!-- Pagination Buttons -->
