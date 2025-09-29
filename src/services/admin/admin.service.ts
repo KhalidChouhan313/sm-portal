@@ -127,6 +127,11 @@ export class AdminService {
       `${environment.apiUrl}/api/waba/get-buttons-stats/${companyId}/${messageType}`
     );
   }
+  public filterButtonStats(companyId: string, messageType: string, from: string, to: string) {
+    return this.http.get(
+      `${environment.apiUrl}/api/waba/get-buttons-stats/${companyId}/${messageType}?from=${from}&to=${to}`
+    );
+  }
 
   public updateBotAdmin(obj) {
     return this.http.put(`${environment.apiUrl}/api/app/updateBotAdmin`, obj);

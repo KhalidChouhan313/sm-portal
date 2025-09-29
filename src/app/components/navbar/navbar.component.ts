@@ -29,10 +29,8 @@ export class NavbarComponent implements OnInit {
       this.token = true;
     }
 
-    // Run immediately
     this.updateUrlAndTitle(this.router.url);
 
-    // Run on every navigation change
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -45,6 +43,7 @@ export class NavbarComponent implements OnInit {
     spaced = spaced.replace(/([a-z])([A-Z])/g, '$1 $2');
     return spaced.replace(/\b\w/g, (char) => char.toUpperCase());
   }
+
   updateUrlAndTitle(rawUrl: string): void {
     if (!rawUrl || rawUrl.trim() === '/' || rawUrl.trim() === '') {
       this.currentUrl = 'home / dashboard';

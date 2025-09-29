@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'qr-code', component: GreenQrCodeComponent },
   { path: 'r/:id', component: ReviewComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'Buttons_Stats', component: ButtonStatsComponent },
+  { path: 'buttonsStats', component: ButtonStatsComponent },
   {
     path: '',
     component: HomeComponent,
