@@ -8,7 +8,7 @@ describe('BroadcastWhatsappComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BroadcastWhatsappComponent]
+      declarations: [BroadcastWhatsappComponent],
     });
     fixture = TestBed.createComponent(BroadcastWhatsappComponent);
     component = fixture.componentInstance;

@@ -5,12 +5,14 @@ import { GreenQrCodeComponent } from './components/green-qr-code/green-qr-code.c
 import { ReviewComponent } from './components/review/review.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { ButtonStatsComponent } from './screens/button-stats/button-stats.component';
+import { CampaignsComponent } from './screens/campaigns/campaigns.component';
 
 const routes: Routes = [
   { path: 'qr-code', component: GreenQrCodeComponent },
   { path: 'r/:id', component: ReviewComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'buttonsStats', component: ButtonStatsComponent },
+  { path: 'broadcast/campaigns', component: CampaignsComponent },
   {
     path: '',
     component: HomeComponent,
@@ -119,8 +121,8 @@ const routes: Routes = [
   {
     path: 'broadcast-whatsapp',
     loadChildren: () =>
-      import('./screens/broadcast-whatsapp/broadcast-whatsapp.module').then(
-        (m) => m.broadcastWhatsappModule
+      import('./screens/Templete/broadcast-whatsapp.module').then(
+        (m) => m.TemplatesModule
       ),
   },
   {

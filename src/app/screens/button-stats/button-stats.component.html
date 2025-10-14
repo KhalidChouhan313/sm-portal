@@ -18,13 +18,19 @@
       <p>End: {{ selectedEnd | date }}</p>
     </div>
     <div class="calendar-header">
-      <button (click)="generateCalendar(currentYear, currentMonth - 1)">
+      <button
+        (click)="generateCalendar(currentYear, currentMonth - 1)"
+        [disabled]="isPrevDisabled()"
+      >
         &lt;
       </button>
       <span>{{ currentYear }} - {{ currentMonth + 1 }}</span>
       <button
         (click)="generateCalendar(currentYear, currentMonth + 1)"
-      >&gt;</button>
+        [disabled]="isNextDisabled()"
+      >
+        &gt;
+      </button>
     </div>
 
     <div class="calendar-grid">
@@ -76,7 +82,7 @@
   </div>
   <div class="col" *ngIf="!loading && col1.length > 0">
     <div class="card" *ngFor="let template of col1">
-      <div class="card-body">
+      <div class="card-head">
         <div
           class="card-body1"
           style="
@@ -145,7 +151,7 @@
 
   <div class="col" *ngIf="!loading && col2.length > 0">
     <div class="card" *ngFor="let template of col2">
-      <div class="card-body">
+      <div class="card-head">
         <div
           class="card-body1"
           style="
@@ -214,7 +220,7 @@
 
   <div class="col" *ngIf="!loading && col3.length > 0">
     <div class="card" *ngFor="let template of col3">
-      <div class="card-body">
+      <div class="card-head">
         <div
           class="card-body1"
           style="

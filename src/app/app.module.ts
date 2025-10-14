@@ -31,7 +31,6 @@ import { AppSettingsComponent } from './screens/app-settings/app-settings.compon
 import { LoaderComponent } from './components/loader/loader.component';
 import { BotSettingsComponent } from './screens/bot-settings/bot-settings.component';
 import { BroadcastSmsComponent } from './screens/broadcast-sms/broadcast-sms.component';
-import { BroadcastWhatsappComponent } from './screens/broadcast-whatsapp/broadcast-whatsapp.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ChatbotAnalyticsComponent } from './screens/chatbot-analytics/chatbot-analytics.component';
@@ -60,6 +59,8 @@ import { ReviewComponent } from './components/review/review.component';
 import { ChatHistoryComponent } from './screens/chat-history/chat-history.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { ButtonStatsComponent } from './screens/button-stats/button-stats.component';
+import { CampaignsComponent } from './screens/campaigns/campaigns.component';
+import { BroadcastWhatsappComponent } from './screens/Templete/broadcast-whatsapp.component';
 // import { SmartLocationQrComponent } from './components/smart-location-qr/smart-location-qr.component';
 // import { InteractionFlowComponent } from './screens/interaction-flow/interaction-flow.component';
 // import { InteractionListComponent } from './screens/interaction-list/interaction-list.component';
@@ -110,6 +111,7 @@ import { ButtonStatsComponent } from './screens/button-stats/button-stats.compon
     ChatHistoryComponent,
     ProfileComponent,
     ButtonStatsComponent,
+    CampaignsComponent,
     // SmartLocationQrComponent,
     // InteractionFlowComponent,
     // InteractionListComponent,
