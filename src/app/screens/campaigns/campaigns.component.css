@@ -81,7 +81,7 @@
 }
 .t-item-h {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 2fr 1fr 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
   border-radius: 5px;
   padding: 1rem;
@@ -111,7 +111,7 @@
 
 .t-item {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 3fr 2fr 2fr 1fr; /* same here */
+  grid-template-columns: 2fr 1fr 1fr 1fr 3fr 2fr 2fr 1fr;
   gap: 1rem;
   border-radius: 5px;
   border-radius: 5px;
@@ -190,4 +190,9 @@
 .btn-danger {
   background: #dc3545;
   color: #fff;
+}
+.no-data {
+  text-align: center;
+  color: gray;
+  margin-top: 40px;
 }
