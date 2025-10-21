@@ -20,22 +20,82 @@
       </div>
 
       <div class="allContact" *ngIf="!isGroup">
-        <div class="contactList" *ngFor="let contact of contactList">
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+          "
+          *ngIf="loading"
+        >
+          <app-loader></app-loader>
+        </div>
+        <div
+          class="contactList"
+          *ngFor="let contact of contactList"
+          (click)="DetailsContact(contact?._id)"
+        >
           <div class="contact">
-            <img [src]="contact.image" alt="" />
+            <img
+              [src]="
+                contact.image || 'https://randomuser.me/api/portraits/men/1.jpg'
+              "
+              alt="user"
+            />
           </div>
           <div class="contactInfo">
-            <h3>{{ contact.name }}</h3>
-            <p>{{ contact.number }}</p>
+            <h3>{{ contact.name || "TechOn Ventures" }}</h3>
+            <p>{{ contact.contact }}</p>
           </div>
         </div>
       </div>
       <div class="groupcontainer" *ngIf="isGroup">
-        <h2>No Group</h2>
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+          "
+          *ngIf="loading"
+        >
+          <app-loader></app-loader>
+        </div>
+
+        <div
+          class="contactList"
+          *ngFor="let group of groupList"
+          (click)="DetailsGroup(group._id)"
+        >
+          <div class="contact">
+            <img
+              [src]="
+                group.image || 'https://randomuser.me/api/portraits/men/1.jpg'
+              "
+              alt="user"
+            />
+          </div>
+          <div class="groupInfo">
+            <h3>{{ group.groupName || "TechOn Ventures" }}</h3>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="RightContianer">
+  <div
+    class="RightContianer"
+    *ngIf="
+      !isDetailsContact &&
+      !isAddContact &&
+      !isImportContact &&
+      !isAddGroup &&
+      !isDetailsGroup &&
+      !isAddcontactinGroup
+    "
+  >
     <div class="underContainer">
       <h1>{{ isGroup ? "Select Group" : "Select Contact" }}</h1>
       <img
@@ -44,12 +104,526 @@
         width="40px"
         height="150px"
       />
-      <button *ngIf="isGroup" class="group-button1">Add Group</button>
+      <button *ngIf="isGroup" class="group-button1" (click)="openGrouptModal()">
+        Add Group
+      </button>
 
       <div *ngIf="!isGroup" class="button2">
-        <button>Add Contact</button>
-        <button>Bulk Upload</button>
+        <button (click)="AddContact()">Add Contact</button>
+        <button (click)="ModalOpen()">Bulk Upload</button>
       </div>
     </div>
   </div>
+
+  <div
+    class="contactDetails"
+    *ngIf="
+      isDetailsContact && selectedContact && !isDetailsGroup && !isAddGroup
+    "
+  >
+    <div
+      class="contactList"
+      style="border-bottom: 1px solid rgba(118, 131, 150, 0.2)"
+    >
+      <div class="contact1">
+        <img
+          [src]="
+            selectedContact.image ||
+            'https://randomuser.me/api/portraits/men/1.jpg'
+          "
+          alt=""
+        />
+      </div>
+      <div class="contactInfo">
+        <h3 style="font-size: 32px; font-weight: 700">Techon Ventures</h3>
+        <p>{{ selectedContact.contact }}</p>
+        <div class="detailsAction">
+          <button>Edit</button>
+          <button><i class="bi bi-star"></i></button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-start">
+      <p>
+        <span class="info-label">Full Name:</span>
+        <span class="info-value">{{
+          selectedContact.name || "Techon Ventures"
+        }}</span>
+      </p>
+      <p>
+        <span class="info-label">Group:</span>
+        <span class="info-value">{{ selectedContact.group || "not set" }}</span>
+      </p>
+      <p>
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{ selectedContact.email || "not set" }}</span>
+      </p>
+      <p>
+        <span class="info-label">Contact:</span>
+        <span class="info-value">{{ selectedContact.contact }}</span>
+      </p>
+    </div>
+    <div class="text-start2">
+      <p>
+        <span class="info-label">Street:</span>
+        <span class="info-value">{{
+          selectedContact.street || "not set"
+        }}</span>
+      </p>
+      <p>
+        <span class="info-label">City:</span>
+        <span class="info-value">{{ selectedContact.city || "not set" }}</span>
+      </p>
+      <p>
+        <span class="info-label">State:</span>
+        <span class="info-value">{{ selectedContact.state || "not set" }}</span>
+      </p>
+      <p>
+        <span class="info-label">Zip Code:</span>
+        <span class="info-value">{{
+          selectedContact.zipcode || "not set"
+        }}</span>
+      </p>
+      <p>
+        <span class="info-label">Country:</span>
+        <span class="info-value">{{
+          selectedContact.country || "not set"
+        }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="addContactContainer" *ngIf="isAddContact && !isDetailsContact">
+    <div class="form-card">
+      <div class="d-flex justify-content-center gap-x-px text-center mb-3">
+        <img
+          [src]="
+            previewImage ||
+            'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
+          "
+          alt="User Avatar"
+          class="profile-img mb-3"
+        />
+        <div class="align-self-center border-0 rounded-0">
+          <input
+            type="file"
+            id="upload"
+            hidden
+            (change)="onFileSelected($event)"
+          />
+          <label for="upload" class="btnupload"> Upload Image </label>
+        </div>
+      </div>
+
+      <form>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.name"
+              name="firstName"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.lastName"
+              name="lastName"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.contact"
+              name="phone"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Email</label>
+            <input
+              type="email"
+              class="form-control"
+              [(ngModel)]="form.email"
+              name="email"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Group</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="form.group"
+            name="group"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Street</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="form.street"
+            name="street"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>City</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.city"
+              name="city"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>State</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.state"
+              name="state"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label>Zip Code</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.zip"
+              name="zip"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Country</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.country"
+              name="country"
+            />
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <button type="button" class="btn" (click)="AddContact()">
+            Cancel
+          </button>
+          <button type="submit" class="btn" (click)="AddContactNumber()">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    class="contactDetails"
+    *ngIf="
+      isDetailsGroup &&
+      selectedGroup &&
+      selectedGroup?.contacts?.length === 0 &&
+      !isDetailsContact &&
+      !isAddGroup &&
+      !isAddcontactinGroup
+    "
+  >
+    <div
+      class="contactList"
+      style="
+        border-bottom: 1px solid rgba(118, 131, 150, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div class="contact1">
+        <img
+          [src]="
+            selectedGroup.image ||
+            'https://randomuser.me/api/portraits/men/1.jpg'
+          "
+          alt=""
+        />
+      </div>
+      <div class="contactInfo">
+        <h3 style="font-size: 32px; font-weight: 700">
+          {{ selectedGroup.groupName || "No name" }}
+        </h3>
+        <div class="detailsAction">
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-start">
+      <p>
+        <span class="info-label">Group Name:</span>
+        <span class="info-value">
+          {{ selectedGroup.groupName || "Techon Ventures" }}
+        </span>
+      </p>
+      <p>
+        <span class="info-label">Total contacts:</span>
+        <span class="info-value">{{
+          selectedGroup.contacts?.length || 0
+        }}</span>
+      </p>
+    </div>
+
+    <div class="text-start2">
+      <button class="group-button1" (click)="AddcontactinGroup()">
+        Add Contacts
+      </button>
+    </div>
+  </div>
+  <div
+    class="addcontactingroup-container"
+    *ngIf="
+      isDetailsGroup &&
+      selectedGroup &&
+      (selectedGroup?.contacts?.length > 0 || isAddcontactinGroup) &&
+      !isDetailsContact &&
+      !isAddGroup
+    "
+  >
+    <div class="groupheader">
+      <div class="group-info">
+        <img
+          [src]="
+            selectedGroup?.image ||
+            'https://randomuser.me/api/portraits/men/1.jpg'
+          "
+          alt="Group Image"
+          class="group-avatar"
+        />
+        <div>
+          <h3 class="group-title">
+            {{ selectedGroup?.groupName || "Techon Ventures" }}
+          </h3>
+          <div class="group-actionsheder">
+                <span><i class="bi bi-pencil"></i></span>
+                <span (click)="deleteGroup(selectedGroup?._id)"><i class="bi bi-trash"></i></span>
+              </div>
+        </div>
+      </div>
+
+      <div class="group-meta">
+        <p>
+          <span>Group Name:</span>
+          <b>{{ selectedGroup?.groupName || "Techon Ventures" }}</b>
+        </p>
+        <p>
+          <span>Total Contacts:</span>
+          <b>{{ selectedGroup?.contacts?.length || 0 }}</b>
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="groupactions"
+      *ngIf="selectedGroup?.contacts?.length === 0 || isAddingContactMode"
+    >
+      <input type="text" placeholder="Search Contact" class="search-input" />
+    </div>
+    <div
+      class="groupAction1"
+      *ngIf="
+        selectedGroup?.contacts?.length > 0 && !isAddingContactMode && !isRemove
+      "
+    >
+      <button class="btncont" (click)="toggleAddMode()">Add Contact</button>
+      <button class="btncont" (click)="RemoveContactFromGroup()">
+        Removed Contacts
+      </button>
+    </div>
+    <div
+      class="groupAction2"
+      *ngIf="
+        selectedGroup?.contacts?.length === 0 || isAddingContactMode || isRemove
+      "
+    >
+      <div>
+        <button (click)="selectAllContacts()">
+          <img src="../../../assets/icons/importbro.png" alt="" width="30px" />
+          Select All
+        </button>
+        <h2
+          *ngIf="isRemove"
+          style="
+            color: #000;
+            font-family: 'DM Sans';
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 38px;
+            letter-spacing: -0.5px;
+          "
+        >
+          Removed Contacts
+        </h2>
+      </div>
+      <p *ngIf="contactList?.length">
+        Selected Contact: {{ selectedCount }}/{{ contactList?.length }}
+      </p>
+    </div>
+    <div class="groupbody">
+      <div class="contact-item" *ngFor="let contact of addedfilteredContacts">
+        <input
+          type="checkbox"
+          [(ngModel)]="contact.selected"
+          *ngIf="
+            selectedGroup?.contacts?.length === 0 ||
+            isAddingContactMode ||
+            isRemove
+          "
+        />
+
+        <div
+          *ngIf="selectedGroup?.contacts?.length > 0 || isAddingContactMode"
+          class="sno"
+        >
+          {{ addedfilteredContacts.indexOf(contact) + 1 }}
+        </div>
+
+        <img
+          [src]="'https://randomuser.me/api/portraits/men/1.jpg'"
+          alt="Contact Image"
+          class="contact-avatar"
+        />
+        <div class="contact-info">
+          <h4>{{ contact.name || "no name" }}</h4>
+          <p>{{ contact.contact }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="groupfooter"
+      *ngIf="
+        selectedGroup?.contacts?.length === 0 || isAddingContactMode || isRemove
+      "
+    >
+      <button class="btn-cancel" (click)="RemoveContactFromGroup()">
+        Cancel
+      </button>
+      <button class="btn-add" (click)="AddInGroup()" *ngIf="!isRemove">
+        Add
+      </button>
+      <button class="btn-add" (click)="removeGroup()" *ngIf="isRemove">
+        Remove
+      </button>
+    </div>
+  </div>
 </div>
+<app-modal *ngIf="isvisiable">
+  <div class="modal-backdrop-custom">
+    <div class="modal-custom">
+      <h3>import contacts</h3>
+      <p>
+        Upload a CSV to import your contact data. For the phone field ensure
+        that you start with the contact's country code.
+      </p>
+      <p>Click here to download sample CSV template</p>
+      <div class="import-section" (click)="triggerFileInput()">
+        <input
+          type="file"
+          accept=""
+          #fileInput
+          hidden
+          (change)="onFileSelected($event)"
+        />
+
+        <ng-container *ngIf="!previewImage; else preview">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 55 55"
+            fill="none"
+          >
+            <path
+              d="M20.625 25.209V38.959L25.2083 34.3757"
+              stroke="#768396"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20.6253 38.9583L16.042 34.375"
+              stroke="#768396"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M50.4163 22.9173V34.3756C50.4163 45.834 45.833 50.4173 34.3747 50.4173H20.6247C9.16634 50.4173 4.58301 45.834 4.58301 34.3756V20.6256C4.58301 9.16732 9.16634 4.58398 20.6247 4.58398H32.083"
+              stroke="#768396"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M50.4163 22.9173H41.2497C34.3747 22.9173 32.083 20.6257 32.083 13.7507V4.58398L50.4163 22.9173Z"
+              stroke="#768396"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p>
+            Click to upload a file or drag and drop <br />
+            CSV files only
+          </p>
+          <span>MP4 files only</span>
+        </ng-container>
+
+        <ng-template #preview>
+          <img [src]="previewImage" alt="Preview" class="preview-img" />
+        </ng-template>
+      </div>
+
+      <div class="importbutton">
+        <button (click)="sendByBulk()">Bulk Upload</button>
+      </div>
+    </div>
+  </div>
+</app-modal>
+<app-modal *ngIf="isAddGroup">
+  <div class="modal-backdrop-custom">
+    <div class="">
+      <h3>Add Group</h3>
+      <form>
+        <div class="fromitem">
+          <label for="groupName">Group Name</label>
+          <input
+            type="text"
+            id="groupName"
+            name="groupName"
+            [(ngModel)]="groupForm.groupName"
+          />
+        </div>
+      </form>
+
+      <div class="importbuttongroup">
+        <button (click)="CancelGroup()">Cancel</button>
+        <button (click)="SaveGroup()">Save</button>
+      </div>
+    </div>
+  </div>
+</app-modal>

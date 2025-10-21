@@ -1,10 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { LoaderComponent } from 'src/app/components/loader/loader.component';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { environment } from 'src/environments/environment';
 import { BroadcastService } from 'src/services/broad-casts/broadcast.service';
+import { AiPromptOfficialModule } from "../ai-prompt-official/ai-prompt-official.module";
 @Component({
   selector: 'app-sms-templates',
+  standalone: true,
   templateUrl: './sms-templates.component.html',
   styleUrls: ['./sms-templates.component.css'],
+  imports: [CommonModule, LoaderComponent, ModalComponent, AiPromptOfficialModule],
+  
 })
 export class SmsTemplatesComponent {
   smstemplates: any[] = [];

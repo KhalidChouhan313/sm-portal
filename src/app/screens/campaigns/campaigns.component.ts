@@ -1,10 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { BroadcastService } from 'src/services/broad-casts/broadcast.service';
+import { AiPromptOfficialModule } from "../ai-prompt-official/ai-prompt-official.module";
+import { LoaderComponent } from 'src/app/components/loader/loader.component';
 
 @Component({
   selector: 'app-campaigns',
+  standalone: true,
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
+  imports: [CommonModule, FormsModule, ModalComponent, AiPromptOfficialModule,LoaderComponent],
 })
 export class CampaignsComponent implements OnInit {
   broadcasts: any[] = [];

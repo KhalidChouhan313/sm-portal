@@ -33,7 +33,31 @@ export class BroadcastService {
       { headers }
     );
   }
-  
+  getallContacts(company_id: string): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get(
+      environment.broadcastUrl + `/api/web/get-all-contacts/${company_id}`,
+      { headers }
+    );
+  }
+  getallGroup(company_id: string): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get(
+      environment.broadcastUrl + `/api/web/groups/${company_id}`,
+      { headers }
+    );
+  }
+
   deleteTemplates(
     company_id: string,
     template_id: string,
@@ -52,5 +76,47 @@ export class BroadcastService {
     )}`;
 
     return this.http.delete(url, { headers });
+  }
+
+  createGroup(companyId: string, body: any): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    const url = `${environment.broadcastUrl}/api/web/create-group/${companyId}`;
+    return this.http.post(url, body, { headers });
+  }
+  DeleteGroup(companyId: string, groupId: string): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    const url = `${environment.broadcastUrl}/api/web/delete-group/${companyId}`;
+    return this.http.delete(url, { headers });
+  }
+
+  CreateNumber(companyId: string, body: any): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      // 'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    const url = `${environment.broadcastUrl}/api/web/add-contacts/${companyId}`;
+    return this.http.post(url, body, { headers });
+  }
+  AddNumber(companyId: string, body: any): Observable<any> {
+    const token = environment.TOKEN;
+    const headers = new HttpHeaders({
+      // 'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    const url = `${environment.broadcastUrl}/api/web/contacts/${companyId}`;
+    return this.http.put(url, body, { headers });
   }
 }
