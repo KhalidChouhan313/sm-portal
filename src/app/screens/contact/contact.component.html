@@ -1,8 +1,8 @@
 <div class="container">
   <div class="contactContianer">
     <div class="g-bg-head">
-      <div class="leftheading">
-        <p>Total Contacts : 120</p>
+      <div class="leftheading" *ngIf="contactList">
+        <p>Total Contacts : {{ contactList.length }}</p>
         <h2>Contacts</h2>
       </div>
       <div class="Rihgtheading">
@@ -38,12 +38,9 @@
           (click)="DetailsContact(contact?._id)"
         >
           <div class="contact">
-            <img
-              [src]="
-                contact.image || 'https://randomuser.me/api/portraits/men/1.jpg'
-              "
-              alt="user"
-            />
+            <h2 class="group-avatar">
+              {{ contact?.name ? contact.name.charAt(0).toUpperCase() : "N" }}
+            </h2>
           </div>
           <div class="contactInfo">
             <h3>{{ contact.name || "TechOn Ventures" }}</h3>
@@ -71,12 +68,11 @@
           (click)="DetailsGroup(group._id)"
         >
           <div class="contact">
-            <img
-              [src]="
-                group.image || 'https://randomuser.me/api/portraits/men/1.jpg'
-              "
-              alt="user"
-            />
+            <h2 class="group-avatar">
+              {{
+                group.groupName ? group.groupName.charAt(0).toUpperCase() : "N"
+              }}
+            </h2>
           </div>
           <div class="groupInfo">
             <h3>{{ group.groupName || "TechOn Ventures" }}</h3>
@@ -138,9 +134,9 @@
         <h3 style="font-size: 32px; font-weight: 700">Techon Ventures</h3>
         <p>{{ selectedContact.contact }}</p>
         <div class="detailsAction">
-          <button>Edit</button>
+          <button (click)="contactupdate(selectedContact)">Edit</button>
           <button><i class="bi bi-star"></i></button>
-          <button>Delete</button>
+          <button (click)="deleteContact(selectedContact._id)">Delete</button>
         </div>
       </div>
     </div>
@@ -194,7 +190,10 @@
     </div>
   </div>
 
-  <div class="addContactContainer" *ngIf="isAddContact && !isDetailsContact">
+  <div
+    class="addContactContainer"
+    *ngIf="isAddContact && !isDetailsContact && isUpdateContactNumber"
+  >
     <div class="form-card">
       <div class="d-flex justify-content-center gap-x-px text-center mb-3">
         <img
@@ -216,7 +215,11 @@
         </div>
       </div>
 
-      <form>
+      <form
+        (ngSubmit)="
+          isUpdateContactNumber ? UpdateContactNumber() : AddContactNumber()
+        "
+      >
         <div class="row mb-3">
           <div class="col-md-6">
             <label>First Name</label>
@@ -325,8 +328,8 @@
           <button type="button" class="btn" (click)="AddContact()">
             Cancel
           </button>
-          <button type="submit" class="btn" (click)="AddContactNumber()">
-            Save
+          <button type="submit" class="btn">
+            {{ isUpdateContactNumber ? "Update Contact" : "Add Contact" }}
           </button>
         </div>
       </form>
@@ -353,21 +356,23 @@
       "
     >
       <div class="contact1">
-        <img
-          [src]="
-            selectedGroup.image ||
-            'https://randomuser.me/api/portraits/men/1.jpg'
-          "
-          alt=""
-        />
+        <h2 class="group-avatar">
+          {{
+            selectedGroup?.groupName
+              ? selectedGroup.groupName.charAt(0).toUpperCase()
+              : "N"
+          }}
+        </h2>
       </div>
       <div class="contactInfo">
         <h3 style="font-size: 32px; font-weight: 700">
           {{ selectedGroup.groupName || "No name" }}
         </h3>
         <div class="detailsAction">
-          <button>Edit</button>
-          <button>Delete</button>
+          <button (click)="groupUppdate(selectedGroup)">Edit</button>
+          <button (click)="deleteGroup(selectedGroup?.groupName)">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -405,22 +410,23 @@
   >
     <div class="groupheader">
       <div class="group-info">
-        <img
-          [src]="
-            selectedGroup?.image ||
-            'https://randomuser.me/api/portraits/men/1.jpg'
-          "
-          alt="Group Image"
-          class="group-avatar"
-        />
+        <h2 class="group-avatar">
+          {{
+            selectedGroup?.groupName
+              ? selectedGroup.groupName.charAt(0).toUpperCase()
+              : "No name"
+          }}
+        </h2>
         <div>
           <h3 class="group-title">
             {{ selectedGroup?.groupName || "Techon Ventures" }}
           </h3>
           <div class="group-actionsheder">
-                <span><i class="bi bi-pencil"></i></span>
-                <span (click)="deleteGroup(selectedGroup?._id)"><i class="bi bi-trash"></i></span>
-              </div>
+            <span><i class="bi bi-pencil"></i></span>
+            <span (click)="deleteGroup(selectedGroup?.groupName)"
+              ><i class="bi bi-trash"></i
+            ></span>
+          </div>
         </div>
       </div>
 
@@ -440,7 +446,12 @@
       class="groupactions"
       *ngIf="selectedGroup?.contacts?.length === 0 || isAddingContactMode"
     >
-      <input type="text" placeholder="Search Contact" class="search-input" />
+      <input
+        type="text"
+        placeholder="Search Contact"
+        class="search-input"
+        (input)="contactSearch($event)"
+      />
     </div>
     <div
       class="groupAction1"
@@ -501,11 +512,13 @@
           {{ addedfilteredContacts.indexOf(contact) + 1 }}
         </div>
 
-        <img
-          [src]="'https://randomuser.me/api/portraits/men/1.jpg'"
-          alt="Contact Image"
-          class="contact-avatar"
-        />
+        <h2 class="contact-avatar">
+          {{
+            contact.name
+              ? contact.name.charAt(0).toUpperCase()
+              : "N"
+          }}
+        </h2>
         <div class="contact-info">
           <h4>{{ contact.name || "no name" }}</h4>
           <p>{{ contact.contact }}</p>
@@ -604,10 +617,10 @@
     </div>
   </div>
 </app-modal>
-<app-modal *ngIf="isAddGroup">
+<app-modal *ngIf="isAddGroup || isGroupUpdate">
   <div class="modal-backdrop-custom">
     <div class="">
-      <h3>Add Group</h3>
+      <h3>{{ isGroupUpdate ? "Update Group" : "Add Group" }}</h3>
       <form>
         <div class="fromitem">
           <label for="groupName">Group Name</label>
@@ -622,7 +635,9 @@
 
       <div class="importbuttongroup">
         <button (click)="CancelGroup()">Cancel</button>
-        <button (click)="SaveGroup()">Save</button>
+        <button (click)="isGroupUpdate ? UpdateGroup() : SaveGroup()">
+          {{ isGroupUpdate ? "Update" : "Save" }}
+        </button>
       </div>
     </div>
   </div>

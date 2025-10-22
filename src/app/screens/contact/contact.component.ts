@@ -32,6 +32,8 @@ export class ContactComponent {
   previewImage: string | ArrayBuffer | null = null;
   addedfilteredContacts: any[] = [];
   isRemove = false;
+  isUpdateContactNumber = false;
+  isGroupUpdate = false;
   selectedFile: File | null = null;
   form = {
     name: '',
@@ -65,13 +67,36 @@ export class ContactComponent {
     this.isRemove = !this.isRemove;
   }
   DetailsContact(contactId: string) {
+    this.isDetailsContact = true;
+    this.isDetailsGroup = false;
+    this.isAddGroup = false;
+    this.isAddcontactinGroup = false;
     const found = this.contactList.find((c) => c._id === contactId);
     if (found) {
       this.selectedContact = found;
       this.isDetailsContact = true;
     }
   }
+  contactupdate(contact: any) {
+    this.isAddContact = true;
+    this.isUpdateContactNumber = true;
+    this.isDetailsContact = false;
+
+    this.selectedContact = contact;
+    this.form = { ...contact };
+  }
+  groupUppdate(group: any) {
+    this.isAddGroup = true;
+    this.isGroupUpdate = true;
+    this.selectedGroup = group;
+    this.groupForm = { ...group };
+  }
+
   DetailsGroup(groupId: string) {
+    this.isDetailsGroup = true;
+    this.isDetailsContact = false;
+    this.isAddGroup = false;
+    this.isAddcontactinGroup = false;
     const found = this.groupList.find((c) => c._id === groupId);
     if (found) {
       this.selectedGroup = found;
@@ -89,15 +114,22 @@ export class ContactComponent {
     this.isvisiable = !this.isvisiable;
   }
   openGrouptModal() {
-    this.isAddGroup = !this.isAddGroup;
+    this.isAddGroup = true;
+    this.isGroupUpdate = false;
   }
+
+  CancelGroup() {
+    this.isAddGroup = false;
+    this.isGroupUpdate = false;
+  }
+
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedFile = file; // 👈 file ko store karo
+      this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = () => {
         this.previewImage = reader.result;
@@ -126,8 +158,6 @@ export class ContactComponent {
     this.loading = true;
     this.bdService.getallGroup(companyId).subscribe({
       next: (response) => {
-        console.log('Response:', response.data);
-
         this.groupList = response.data;
       },
       error: (err) => {
@@ -147,19 +177,17 @@ export class ContactComponent {
 
     this.bdService.createGroup(companyId, body).subscribe({
       next: (response) => {
-        console.log('✅ Group created successfully:', response);
         alert('Group created successfully!');
         this.groupForm = { groupName: '' };
         this.isAddGroup = false;
+        this.isGroupUpdate = false;
+        this.fetchGroup();
       },
       error: (err) => {
         console.error('❌ Error creating group:', err);
         alert('Failed to create group');
       },
     });
-  }
-  CancelGroup() {
-    this.isAddGroup = false;
   }
 
   AddContactNumber() {
@@ -177,7 +205,6 @@ export class ContactComponent {
 
     this.bdService.CreateNumber(companyId, body).subscribe({
       next: (response) => {
-        console.log('✅ Number added successfully:', response);
         alert('Number added successfully!');
         this.form.name = '';
         this.form.contact = '';
@@ -185,6 +212,35 @@ export class ContactComponent {
       error: (err) => {
         console.error('❌ Error adding number:', err);
         alert('Failed to add number');
+      },
+    });
+  }
+  UpdateContactNumber() {
+    const companyId = environment.COMPANY_ID;
+
+    if (!this.selectedContact._id || !this.form.contact) {
+      alert('Please fill all required fields!');
+      return;
+    }
+
+    const body = {
+      _id: this.selectedContact._id,
+      newContact: this.form.contact,
+    };
+
+    this.bdService.UpdateNumber(companyId, body).subscribe({
+      next: (response) => {
+        alert('Number Update successfully!');
+        this.form.name = '';
+        this.form.contact = '';
+        this.isAddContact = false;
+        this.isUpdateContactNumber = false;
+        this.fetchContacts();
+      },
+
+      error: (err) => {
+        console.error('❌ Error Update number:', err);
+        alert('Failed to update number');
       },
     });
   }
@@ -197,7 +253,6 @@ export class ContactComponent {
 
       this.bdService.CreateNumber(companyId, formData).subscribe({
         next: (response) => {
-          console.log('✅ Bulk contacts uploaded successfully:', response);
           alert('Bulk contacts uploaded successfully!');
           this.selectedFile = null;
           this.previewImage = null;
@@ -230,7 +285,6 @@ export class ContactComponent {
 
     this.bdService.AddNumber(companyId, body).subscribe({
       next: (response) => {
-        console.log('✅ Contacts added successfully:', response);
         alert('Contacts added successfully!');
         this.contactList.forEach((c) => (c.selected = false));
       },
@@ -291,10 +345,10 @@ export class ContactComponent {
       },
     });
   }
-  deleteGroup(groupId: string) {
+  deleteGroup(groupName: string) {
     const companyId = environment.COMPANY_ID;
 
-    this.bdService.DeleteGroup(companyId, groupId).subscribe({
+    this.bdService.DeleteGroup(companyId, groupName).subscribe({
       next: (response) => {
         alert('Group deleted successfully!');
         this.fetchGroup();
@@ -304,5 +358,72 @@ export class ContactComponent {
         alert('Failed to delete group');
       },
     });
+  }
+  UpdateGroup() {
+    const companyId = environment.COMPANY_ID;
+
+    if (!this.selectedGroup._id || !this.groupForm.groupName) {
+      alert('Please fill all required fields!');
+      return;
+    }
+
+    const body = {
+      _id: this.selectedGroup._id,
+      newName: this.groupForm.groupName,
+    };
+
+    this.bdService.UpdateGroupsrv(companyId, body).subscribe({
+      next: (response) => {
+        alert('Number Update successfully!');
+        this.isAddGroup = false;
+        this.isGroupUpdate = false;
+        this.fetchGroup();
+      },
+
+      error: (err) => {
+        console.error('❌ Error Update number:', err);
+        alert('Failed to update number');
+      },
+    });
+  }
+  deleteContact(contactId: string) {
+    const companyId = environment.COMPANY_ID;
+    const contacts = [contactId];
+
+    this.bdService.DeleteContactNumber(companyId, contacts).subscribe({
+      next: (response) => {
+        alert('Contact deleted successfully!');
+        this.fetchContacts();
+      },
+      error: (err) => {
+        console.error('❌ Error deleting contact:', err);
+        alert('Failed to delete contact');
+      },
+    });
+  }
+
+  contactSearch(event: any) {
+    // const companyId = environment.COMPANY_ID;
+    const query = event.target.value.trim();
+
+    // if (!query) {
+    //   this.fetchContacts();
+    //   return;
+    // }
+
+    // this.bdService.getSearchResult(companyId, query).subscribe({
+    //   next: (response) => {
+    //     this.addedfilteredContacts = response?.data || []; 
+    //     console.log('Search result:', this.addedfilteredContacts);
+    //   },
+    //   error: (err) => {
+    //     console.error('❌ Error fetching search results:', err);
+    //     alert('Failed to fetch contacts');
+    //   },
+    // });
+  this.addedfilteredContacts = this.contactList.filter(contact =>
+    contact.name?.toLowerCase().includes(query) ||
+    contact.contact?.toLowerCase().includes(query)
+  );
   }
 }

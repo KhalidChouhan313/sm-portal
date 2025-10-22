@@ -30,11 +30,12 @@
               name="template"
             >
               <option value="" disabled selected>Select Template</option>
-              <option value="Header">Header</option>
-              <option value="Body">Body</option>
-              <option value="Footer">Footer</option>
-              <option value="Signature">Signature</option>
-              <option value="Promotion">Promotion</option>
+              <option
+                *ngFor="let template of smstemplates"
+                [value]="template.name"
+              >
+                {{ template.name }}
+              </option>
             </select>
           </div>
 
@@ -43,8 +44,12 @@
             <select name="send" id="send" [(ngModel)]="sendTo">
               <option value="" disabled selected>Select Contact</option>
               <option value="All Contacts">All Contacts</option>
-              <option value="Subscribers">Subscribers</option>
-              <option value="Admins">Admins</option>
+              <option
+                *ngFor="let contact of contactList"
+                value="{{ contact.contact }}"
+              >
+                {{ contact.contact }}
+              </option>
             </select>
           </div>
         </div>
@@ -60,7 +65,6 @@
           />
         </div>
 
-        <!-- Checkbox -->
         <div class="term">
           <input
             type="checkbox"
@@ -73,7 +77,7 @@
 
         <div class="frombtn">
           <button type="button">Cancel</button>
-          <button type="submit">Save</button>
+          <button type="submit" (click)="createCampaign()">Save</button>
         </div>
       </form>
     </div>

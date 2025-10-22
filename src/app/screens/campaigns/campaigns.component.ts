@@ -33,7 +33,7 @@ export class CampaignsComponent implements OnInit {
   }
 
   fetchBroadcasts() {
-    const Job_Id = '7';
+    const Job_Id = '9';
 
     this.loading = true;
     this.bdcast.getBroadcast(Job_Id).subscribe({
